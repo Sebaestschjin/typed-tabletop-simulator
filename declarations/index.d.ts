@@ -10,5 +10,6 @@ import "./player";
 import "./physics";
 import "./uiClassic";
 import "./unity";
+import "./vector";
 import "./wait";
 import "./webRequest";
