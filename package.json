@@ -1,0 +1,17 @@
+{
+  "name": "typed-tabletop-simulator",
+  "version": "0.1.0",
+  "description": "",
+  "main": "declarations/index.d.ts",
+  "types": "declarations/index.d.ts",
+  "scripts": {},
+  "keywords": [
+    "typescript",
+    "lua",
+    "tabletopsimulator"
+  ],
+  "license": "MIT",
+  "devDependencies": {
+    "typescript-to-lua": "^1.4.2"
+  }
+}
