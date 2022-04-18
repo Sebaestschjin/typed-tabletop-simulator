@@ -1,4 +1,4 @@
-interface UI {}
+declare interface UI {}
 // /** @noSelf */
 // declare interface UI {
 //     loading: boolean;

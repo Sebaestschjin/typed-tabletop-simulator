@@ -18,7 +18,10 @@ type nil = undefined;
  */
 type int = number;
 type float = number;
+/** An alias representing the global ID of an object. */
 type GUID = string;
+/** An alias representing an asset URI. */
+type URI = string;
 
 declare const _G: Record<string, any>;
 declare const self: TTSObject;

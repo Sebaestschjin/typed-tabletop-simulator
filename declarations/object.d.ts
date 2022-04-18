@@ -60,6 +60,7 @@ declare const enum ObjectName {
     MahjongTile = "Mahjong_Tile",
     MetalBall = "Ball",
     Model = "Custom_Model",
+    ModelBag = "Custom_Model_Bag",
     Pachisiboard = "Pachisi_board",
     PlayerPawn = "PlayerPawn",
     Quarter = "Quarter",
@@ -148,6 +149,18 @@ declare const enum ObjectType {
     Tile = "Tile",
     Tileset = "Tileset",
     VRUI = "VR UI",
+}
+
+/**
+ * Type of material an object is made of.
+ * Determines shader settings and sound of the object.
+ */
+declare const enum MaterialType {
+    Plastic = 0,
+    Wood = 1,
+    Metal = 2,
+    Cardboard = 3,
+    Glass = 4,
 }
 
 /** @noSelf */

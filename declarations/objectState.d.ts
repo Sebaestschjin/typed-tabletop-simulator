@@ -1,56 +1,66 @@
+// TODO the aliases for the minimum types are totally horrible right now O_O
+
 /** Base type for all object data. */
 interface ObjectData {
     /** The "unique" ID of the object. */
-    GUID: string;
+    GUID?: GUID;
     /** The type of the object. */
     Name: string;
     /** Contains the position, rotation and scale of the object. */
     Transform: TransformData;
     /** The name of the object that is also visible as part of the object's tooltip. */
-    Nickname: string;
+    Nickname?: string;
     /** The description of the object that is also visible as part of the object's tooltip. */
-    Description: string;
+    Description?: string;
     /** The hidden notes that are only visible to the GM player. */
-    GMNotes: string;
+    GMNotes?: string;
     /** Hidden notes only accessible via script. */
     Memo?: string;
-    ColorDiffuse: ColorData;
+    ColorDiffuse?: ColorData;
     /** Added tags for the object. */
     Tags?: string[];
-    LayoutGroupSortIndex: int;
-    Value: number;
+    LayoutGroupSortIndex?: int;
+    Value?: number;
     /** Whether the object is currently locked. */
-    Locked: boolean;
+    Locked?: boolean;
     /** Whether the object should snap to grid points. */
-    Grid: boolean;
+    Grid?: boolean;
     /** Whether the object should snap to snap points. */
-    Snap: boolean;
-    IgnoreFoW: boolean;
-    MeasureMovement: boolean;
-    DragSelectable: boolean;
-    Autoraise: boolean;
-    Sticky: boolean;
-    Tooltip: boolean;
-    GridProjection: boolean;
-    HideWhenFaceDown: boolean;
-    Hands: boolean;
-    MaterialIndex: int;
-    MeshIndex: int;
-    Number: int;
+    Snap?: boolean;
+    IgnoreFoW?: boolean;
+    MeasureMovement?: boolean;
+    DragSelectable?: boolean;
+    Autoraise?: boolean;
+    Sticky?: boolean;
+    Tooltip?: boolean;
+    GridProjection?: boolean;
+    HideWhenFaceDown?: boolean;
+    Hands?: boolean;
+    MaterialIndex?: MaterialType;
+    MeshIndex?: int;
+    Number?: int;
     /** The attached Lua script. */
-    LuaScript: string;
+    LuaScript?: string;
     /** The current saved script state. */
-    LuaScriptState: string;
+    LuaScriptState?: string;
     /** The attached XML UI. */
-    XmlUI: string;
+    XmlUI?: string;
+    /** Objects attached to this object. */
+    ChildObjects?: ObjectData[];
 }
 
 /** Object data for a regular bag. */
 interface BagData extends ObjectData {
-    Bag: {
+    Bag?: {
         Order: BagOrder;
     };
     ContainedObjects?: ObjectData[];
+}
+
+declare const enum BagOrder {
+    LIFO = 0,
+    FIFO = 1,
+    Random = 2,
 }
 
 /** Object data for a custom card. */
@@ -69,34 +79,71 @@ interface DeckCustomData extends ObjectData {
     CustomDeck: LuaTable<int, CustomDeckData>;
 }
 
-/** Object data for a custom token. */
-interface TokenData extends ObjectData {
-    CustomImage: TokenDataCustomImage;
+interface DieData extends ObjectData {
+    RotationValues?: {
+        Value: number | string;
+        Rotation: VectorTable;
+    }[];
+    CustomImage: DieDataCustomImage;
 }
 
-interface TokenDataCustomImage {
+interface DieDataCustomImage {
     ImageURL: string;
-    CustomToken: {
-        Thickness: number;
-        MergeDistancePixels: number;
-        StandUp: boolean;
-        Stackable: boolean;
+    CustomDice: {
+        Type: DieType;
+    };
+}
+
+interface ModelData extends ObjectData {
+    CustomMesh: {
+        MeshURL?: URI;
+        DiffuseURL?: URI;
+        NormalURL?: URI;
+        ColliderURL?: URI;
+        Convex?: boolean;
+        MaterialIndex?: MaterialType;
+        TypeIndex?: ModelType;
+        CastShadows?: boolean;
+    };
+    ContainedObjects?: ObjectData[];
+}
+
+/** Type of a custom model object */
+declare const enum ModelType {
+    Generic = 0,
+    Figurine = 1,
+    Dice = 2,
+    Coin = 3,
+    Board = 4,
+    Chip = 5,
+    Bag = 6,
+    Infinite = 7,
+}
+
+/** Object data for a custom token. */
+interface TokenData extends ObjectData {
+    CustomImage: {
+        ImageURL: string;
+        CustomToken: {
+            Thickness?: number;
+            MergeDistancePixels?: number;
+            StandUp?: boolean;
+            Stackable?: boolean;
+        };
     };
 }
 
 /** Object data for a custom tile. */
 interface TileData extends ObjectData {
-    CustomImage: TileDataCustomImage;
-}
-
-interface TileDataCustomImage {
-    ImageURL: string;
-    ImageSecondaryURL: string;
-    CustomTile: {
-        Type: TileType;
-        Thickness: number;
-        Stackable: boolean;
-        Stretch: boolean;
+    CustomImage: {
+        ImageURL: string;
+        ImageSecondaryURL?: string;
+        CustomTile: {
+            Type: TileType;
+            Thickness?: number;
+            Stackable?: boolean;
+            Stretch?: boolean;
+        };
     };
 }
 
@@ -110,18 +157,21 @@ interface CustomDeckData {
     UniqueBack: boolean;
 }
 
-declare const enum BagOrder {
-    LIFO = 0,
-    FIFO = 1,
-    Random = 2,
-}
-
 declare const enum CardType {
     RectangleRounded = 0,
     Rectangle = 1,
     HexRounded = 2,
     Hex = 3,
     Circle = 4,
+}
+
+declare const enum DieType {
+    D4 = 0,
+    D6 = 1,
+    D8 = 2,
+    D10 = 3,
+    D12 = 4,
+    D20 = 5,
 }
 
 declare const enum TileType {

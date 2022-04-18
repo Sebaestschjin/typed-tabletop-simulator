@@ -8,6 +8,7 @@ import "./objectCustom";
 import "./objectState";
 import "./player";
 import "./physics";
+import "./ui";
 import "./uiClassic";
 import "./unity";
 import "./vector";
