@@ -166,6 +166,7 @@ declare const enum MaterialType {
 /** @noSelf */
 declare interface TTSObject
     extends TTSObjectMembers,
+        TTSObjectGlobalFunctions,
         TTSObjectTransformFunctions,
         TTSObjectTagFunctions,
         TTSObjectClassicUiFunctions,
@@ -176,6 +177,9 @@ declare interface TTSObject
         Omit<GameObject, "name"> {}
 
 interface TTSObjectGlobalFunctions {
+    /** The attached XML UI of the object. */
+    readonly UI: UI;
+
     /**
      * Add a Decal onto an object or the game world.
      *
@@ -438,9 +442,6 @@ interface TTSObjectGlobalFunctions {
      * ```
      */
     setVectorLines(parameters: Optional<VectorLine, "color" | "thickness" | "rotation">[]): boolean;
-
-    /** The attached XML UI of the object. */
-    UI: UI;
 }
 
 interface TTSObjectMembers {
