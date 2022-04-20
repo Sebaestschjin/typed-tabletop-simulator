@@ -12,7 +12,7 @@ type PlayerColor =
     | "Grey"
     | "Black";
 
-type PlayerTeam = "None" | "Clubs" | "Diamonds" | "Hearts" | "Spades" | "Jokers";
+type PlayerTeam = "" | "Clubs" | "Diamonds" | "Hearts" | "Spades" | "Jokers";
 
 /** @noSelf */
 declare interface Player {

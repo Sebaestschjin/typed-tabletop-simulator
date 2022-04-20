@@ -1,13 +1,14 @@
 import "./base";
 import "./color";
 import "./core";
+import "./event";
 import "./json";
 import "./notes";
 import "./object";
 import "./objectCustom";
 import "./objectState";
-import "./player";
 import "./physics";
+import "./player";
 import "./ui";
 import "./uiClassic";
 import "./unity";
