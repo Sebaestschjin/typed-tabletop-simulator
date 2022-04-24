@@ -3,6 +3,7 @@ import "./base";
 import "./color";
 import "./core";
 import "./event";
+import "./grid";
 import "./json";
 import "./notes";
 import "./object";
