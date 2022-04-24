@@ -7,6 +7,7 @@ import "./grid";
 import "./hands";
 import "./info";
 import "./json";
+import "./lighting";
 import "./notes";
 import "./object";
 import "./objectCustom";
