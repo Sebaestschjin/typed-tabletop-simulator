@@ -1,5 +1,13 @@
+/**
+ * The `Wait` class is a static global class which allows you to schedule code (functions) to be executed later on.
+ *
+ * ~~~important
+ * Please note that `Wait` does not pause Lua script execution, because that would freeze Tabletop Simulator! The next
+ * line of code after a `Wait` function call will always be executed immediately.
+ * ~~~
+ */
 /** @noSelf */
-declare interface Wait {
+declare class TTSWait {
     /**
      * Schedules a function to be executed after the specified condition has been met.
      *
@@ -20,7 +28,6 @@ declare interface Wait {
      * @param timeoutFunc The function that will be executed if the timeout is reached.
      *
      * @example Roll a die, and wait until it comes to rest.
-     *
      * ```lua
      * die.randomize() -- Roll a die
      * Wait.condition(
@@ -38,7 +45,6 @@ declare interface Wait {
      * ```
      *
      * @example
-     *
      * Launch an object into the air with a random impulse and wait until it comes to rest. However, if it's taking too long (more than two seconds), give up waiting.
      *
      * ```lua
@@ -79,7 +85,6 @@ declare interface Wait {
      *                     Optional, defaults to `1`.
      *
      * @example
-     *
      * Prints "Hello!" after 60 frames have elapsed.
      *
      * ```lua
@@ -98,7 +103,6 @@ declare interface Wait {
      * ```
      *
      * @example Advanced Example
-     *
      * Prints "1", "2", "3", "4", "5", waiting 60 frames before each printed number.
      *
      * Note that the scheduled function, upon execution, will reschedule itself unless count has reached 5.
@@ -125,7 +129,6 @@ declare interface Wait {
      * @param id A wait ID (returned from Wait scheduling functions).
      *
      * @example
-     *
      * Schedules two functions: one that says "Hello!", and one that says "Goodbye!". However, the latter is stopped
      * before it has a chance to execute i.e. We'll see "Hello!" printed, but we won't see "Goodbye!"
      *
@@ -146,7 +149,6 @@ declare interface Wait {
      * with stop instead.
      *
      * @example
-     *
      * Schedules two functions: one that says "Hello!", and one that says "Goodbye!". However, both are stopped before either has the chance to execute.
      *
      * ```lua
@@ -172,7 +174,6 @@ declare interface Wait {
      *                    Optional, defaults to `1`.
      *
      * @example
-     *
      * Prints "Hello!" after 1 second has elapsed.
      *
      * ```lua
@@ -191,7 +192,6 @@ declare interface Wait {
      * ```
      *
      * @example
-     *
      * Prints "1", "2", "3", "4", "5", waiting 1 second before each printed number.
      *
      * ```lua
@@ -209,4 +209,4 @@ declare interface Wait {
     time(toRunFunc: () => unknown, seconds: float, repetitions?: int): int;
 }
 
-declare const Wait: Wait;
+declare const Wait: TTSWait;
