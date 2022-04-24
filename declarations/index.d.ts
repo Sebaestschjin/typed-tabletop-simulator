@@ -17,6 +17,7 @@ import "./physics";
 import "./player";
 import "./tables";
 import "./time";
+import "./turns";
 import "./ui";
 import "./uiClassic";
 import "./unity";
