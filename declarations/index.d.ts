@@ -4,6 +4,7 @@ import "./color";
 import "./core";
 import "./event";
 import "./grid";
+import "./hands";
 import "./json";
 import "./notes";
 import "./object";
