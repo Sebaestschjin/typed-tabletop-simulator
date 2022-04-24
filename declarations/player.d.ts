@@ -1,16 +1,16 @@
 type PlayerColor =
-    | "White"
-    | "Brown"
-    | "Red"
-    | "Orange"
-    | "Yellow"
-    | "Green"
-    | "Teal"
+    | "Black"
     | "Blue"
-    | "Purple"
-    | "Pink"
+    | "Brown"
+    | "Green"
     | "Grey"
-    | "Black";
+    | "Orange"
+    | "Pink"
+    | "Purple"
+    | "Red"
+    | "Teal"
+    | "White"
+    | "Yellow";
 
 type PlayerTeam = "" | "Clubs" | "Diamonds" | "Hearts" | "Spades" | "Jokers";
 

@@ -1,3 +1,4 @@
+import "./backgrounds";
 import "./base";
 import "./color";
 import "./core";
