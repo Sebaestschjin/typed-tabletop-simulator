@@ -138,7 +138,7 @@ declare interface Player {
 }
 
 /** @noSelf */
-declare interface PlayerManager {
+declare class PlayerManager {
     /** Returns the player currently seated for player color White */
     White: Maybe<Player>;
 

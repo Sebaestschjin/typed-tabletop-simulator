@@ -1,4 +1,12 @@
-declare interface Physics {
+/**
+ * Physics, a static global class, allows access to casts and gravity. Physics casts are a way to detect Objects. You
+ * call these functions like this: Physics.getGravity(). This class also allows you to access elements of the
+ * environment.
+ *
+ * For more information on physics casts in Unity, refer to the Unity documentation under BoxCast/RayCast/SphereCast.
+ */
+/** @noSelf */
+declare class TTSPhysics {
     /** The play area being used (ie. how far from middle you can get). Values from 0 - 1. Default is 0.5 */
     play_area: float;
 
@@ -24,6 +32,7 @@ declare interface Physics {
     setGravity(direction: VectorShape): boolean;
 }
 
+/** The type of a cast. */
 declare const enum CastType {
     Ray = 1,
     Sphere = 2,
@@ -109,11 +118,4 @@ declare interface CastResult {
     hit_object: TTSObject;
 }
 
-/**
- * Physics, a static global class, allows access to casts and gravity. Physics casts are a way to detect Objects. You
- * call these functions like this: Physics.getGravity(). This class also allows you to access elements of the
- * environment.
- *
- * For more information on physics casts in Unity, refer to the Unity documentation under BoxCast/RayCast/SphereCast.
- */
-declare const Physics: Physics;
+declare const Physics: TTSPhysics;

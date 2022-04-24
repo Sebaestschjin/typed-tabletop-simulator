@@ -1,5 +1,8 @@
+/**
+ * `Notes`, a static global class, allows access to the on-screen notes and the notebook.
+ */
 /** @noSelf */
-declare interface Notes {
+declare class TTSNotes {
     /**
      * Returns Table containing data on all tabs in the notebook.
      */
@@ -54,4 +57,4 @@ declare interface Notebook {
 type AddNotebook = Omit<AllOptionalExpect<Notebook, "title">, "index">;
 type EditNotebook = AllOptionalExpect<Notebook, "index">;
 
-declare const Notes: Notes;
+declare const Notes: TTSNotes;
