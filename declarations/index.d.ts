@@ -8,6 +8,7 @@ import "./hands";
 import "./info";
 import "./json";
 import "./lighting";
+import "./musicPlayer";
 import "./notes";
 import "./object";
 import "./objectCustom";
