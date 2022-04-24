@@ -15,6 +15,7 @@ import "./objectCustom";
 import "./objectState";
 import "./physics";
 import "./player";
+import "./time";
 import "./ui";
 import "./uiClassic";
 import "./unity";
