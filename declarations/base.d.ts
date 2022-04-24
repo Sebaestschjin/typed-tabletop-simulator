@@ -1,3 +1,4 @@
+/** @noSelfInFile */
 /**
  * Adds a menu item to the Global right-click context menu. Global menu is shown when player right-clicks on empty space
  * or table.

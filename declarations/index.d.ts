@@ -5,6 +5,7 @@ import "./core";
 import "./event";
 import "./grid";
 import "./hands";
+import "./info";
 import "./json";
 import "./notes";
 import "./object";
