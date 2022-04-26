@@ -1,0 +1,9 @@
+{
+  "$schema": "https://typedoc.org/schema.json",
+  "entryPoints": ["declarations"],
+  "entryPointStrategy": "Expand",
+  "out": "docs",
+  "disableSources": true,
+  "excludePrivate": true,
+  "excludeTags": ["noself"]
+}

@@ -1,5 +1,15 @@
 /** @noSelfInFile */
 /**
+ * These are a loose collection of functions which can be used to perform a variety of actions within Tabletop
+ * Simulator.
+ *
+ * These functions can utilize in-game Objects, but none of them can be enacted on in-game Objects. They all deal with
+ * the game space.
+ *
+ * @module Base
+ */
+
+/**
  * Adds a menu item to the Global right-click context menu. Global menu is shown when player right-clicks on empty space
  * or table.
  *
@@ -11,7 +21,6 @@
  *                     when right-clicked on empty space or table
  *
  * @example
- *
  * ```lua
  * function onLoad()
  *     addContextMenuItem("doStuff", itemAction)
@@ -21,25 +30,33 @@
  *     print(player_color)
  * end
  * ```
+ * @category Global
  */
 declare function addContextMenuItem(
     label: string,
+    /**
+     * @param playerColor Player Color who selected the menu item.
+     * @param menuPosition Global position of the right-click context menu.
+     */
     toRunFunc: (playerColor: PlayerColor, menuPosition: Vector) => unknown,
     keepOpen?: boolean,
     requireTable?: boolean
 ): boolean;
 
-/** Clears all menu items added by function addContextMenuItem. */
+/**
+ * Clears all menu items added by function [[addContextMenuItem]].
+ *
+ * @category Global
+ */
 declare function clearContextMenu(): boolean;
 
 /**
- * Copy a list of Objects to the clipboard. Works with paste.
+ * Copy a list of Objects to the clipboard. Works with [[paste]].
  *
  * @param objects A Table of in-game objects to be copied. This is similar to highlighting the objects in-game and
  *                copying them.
  *
  * @example
- *
  * ```lua
  * object_list = {
  *     getObjectFromGUID("######"),
@@ -47,6 +64,8 @@ declare function clearContextMenu(): boolean;
  * }
  * copy(object_list)
  * ```
+ *
+ * @category Global
  */
 declare function copy(objects: TTSObject[]): boolean;
 
@@ -54,11 +73,15 @@ declare function copy(objects: TTSObject[]): boolean;
  * Destroy an Object.
  *
  * @param object The Object you wish to delete from the instance.
+ *
+ * @category Global
  */
 declare function destroyObject(object: TTSObject): boolean;
 
 /**
  * Flip the table.
+ *
+ * @category Global
  */
 declare function flipTable(): boolean;
 
@@ -68,11 +91,15 @@ declare function flipTable(): boolean;
  * @param guid GUID of the Object to get a reference of.
  *             GUID can be obtained by right clicking an object and going to Scripting.
  *             In a script, it can be obtained from any Object by using .getGUID().
+ *
+ * @category Global
  */
-declare function getObjectFromGUID(guid: GUID): TTSObject | nil;
+declare function getObjectFromGUID(guid: GUID): Maybe<TTSObject>;
 
 /**
  * Returns a Table of all Objects in the game.
+ *
+ * @category Global
  */
 declare function getObjects(): TTSObject[];
 
@@ -80,6 +107,8 @@ declare function getObjects(): TTSObject[];
  * Returns Table of all Objects which have the specified tag attached.
  *
  * @param tag The tag.
+ *
+ * @category Global
  */
 declare function getObjectsWithTag(tag: string): TTSObject[];
 
@@ -87,6 +116,8 @@ declare function getObjectsWithTag(tag: string): TTSObject[];
  * Returns Table of all Objects which have at least one of the specified tags attached.
  *
  * @param tags The list of tags.
+ *
+ * @category Global
  */
 declare function getObjectsWithAnyTags(tags: string[]): TTSObject[];
 
@@ -94,11 +125,15 @@ declare function getObjectsWithAnyTags(tags: string[]): TTSObject[];
  * Returns Table of all Objects which have all of the specified tags attached.
  *
  * @param tags The list of tags.
+ *
+ * @category Global
  */
 declare function getObjectsWithAllTags(tags: string[]): TTSObject[];
 
 /**
  * Returns a Table of the Player Colors strings of seated players.
+ *
+ * @category Global
  */
 declare function getSeatedPlayers(): PlayerColor[];
 
@@ -110,7 +145,6 @@ declare function getSeatedPlayers(): PlayerColor[];
  * @returns A table containing the grouped objects, numerically indexed. Different types of object are grouped independently i.e. cards will form into a deck, each type of checker will form their own stack.
  *
  * @example
- *
  * ```lua
  * function onLoad()
  *     local objects = {
@@ -124,13 +158,17 @@ declare function getSeatedPlayers(): PlayerColor[];
  *     log(objGroupedList)
  * end
  * ```
+ *
+ * @category Global
  */
 declare function group(objects: TTSObject[]): TTSObject[];
 
 /**
- * Pastes Objects in-game that were copied to the in-game clipboard. Works with copy(...).
+ * Pastes Objects in-game that were copied to the in-game clipboard. Works with [[copy]].
  *
  * @param parameters A Table containing instructions of where to spawn the Objects.
+ *
+ * @category Global
  */
 declare function paste(parameters: {
     /**
@@ -138,7 +176,8 @@ declare function paste(parameters: {
      *
      * @defaultValue {0, 3, 0}
      */
-    position?: Vector;
+    position?: VectorShape;
+
     /**
      * If snap-to-grid is active on the spawned items.
      *
@@ -150,18 +189,36 @@ declare function paste(parameters: {
 /**
  * Enables/disables looking for group. This is visible in the server browsers, indicating if you are recruiting for a
  * game.
+ *
+ * @category Global
  */
 declare function setLookingForPlayers(lfp: boolean): boolean;
 
+/** Parameters shared by all spawn functions. */
 interface SpawnParamater {
     /** Position where the object will be spawned. When specified, overrides the Transform position in data. */
-    position?: Vector;
+    position?: VectorShape;
+
     /** Rotation of the spawned object. When specified, overrides the Transform rotation in data. */
-    rotation?: Vector;
+    rotation?: VectorShape;
+
     /** Scale of the spawned object. When specified, overrides the Transform scale in data. */
-    scale?: Vector;
+    scale?: VectorShape;
+
     /** Called when the object has finished spawning. The spawned object will be passed as the first and only parameter. */
     callback_function?: (object: TTSObject) => unknown;
+}
+
+/** Parameters for the [[spawnObject]] function. */
+interface SpawnObjectParameters extends SpawnParamater {
+    /** Built-in or Custom Game Object name. */
+    type: ObjectName;
+
+    /** Whether a sound will be played as the object spawns. */
+    sound?: boolean;
+
+    /** Whether upon spawning, the object will snap to nearby grid lines (or snap points). */
+    snap_to_grid?: boolean;
 }
 
 /**
@@ -170,17 +227,16 @@ interface SpawnParamater {
  * Refer to the spawnable Built-in Object and Custom Object pages for details about the types of objects that can be
  * spawned.
  *
- * If you are spawning a Custom Object, you should immediately call setCustomObject(...) on the object returned from
- * spawnObject(...).
+ * If you are spawning a Custom Object, you should immediately call [[setCustomObject]] on the object returned from
+ * `spawnObject`.
  *
- * Objects take a moment to spawn. The purpose of callback_function is to allow you to execute additional code after the
- * object has finished spawning.
+ * Objects take a moment to spawn. The purpose of `callback_function` is to allow you to execute additional code after
+ * the object has finished spawning.
  *
  * @param parameters type is mandatory, all other properties are optional. When a property is omitted, it will be given
  *                   the corresponding default value (above).
  *
  * @example
- *
  * ```lua
  * local object = spawnObject({
  *     type = "rpg_BEAR",
@@ -193,34 +249,35 @@ interface SpawnParamater {
  * })
  * object.setPositionSmooth({10, 5, 10})
  * ```
+ *
+ * @category Global
  */
-declare function spawnObject(
-    parameters: SpawnParamater & {
-        /** Built-in or Custom Game Object name. */
-        type: ObjectName;
-        /** Whether a sound will be played as the object spawns. */
-        sound?: boolean;
-        /** Whether upon spawning, the object will snap to nearby grid lines (or snap points). */
-        snap_to_grid?: boolean;
-    }
-): TTSObject;
+declare function spawnObject(parameters: SpawnObjectParameters): TTSObject;
+
+/** Parameters for the [[spawnObjectData]] function. */
+interface SpawnObjectDataParameters extends SpawnParamater {
+    /**
+     * Table with properties describing the object that will be spawned. Required content depends on the type of
+     * object being spawned.
+     */
+    data: ObjectData;
+}
 
 /**
  * Spawns an object from an object data table representation.
  *
  * This API gives you complete control over all persistent properties that an object has.
  *
- * Objects take a moment to spawn. The purpose of callback_function is to allow you to execute additional code after the
- * object has finished spawning.
+ * Objects take a moment to spawn. The purpose of `callback_function` is to allow you to execute additional code after
+ * the object has finished spawning.
  *
- * You can derive your data table from another object by calling getData() on it, and manipulating the resultant table
- * as you see fit.
+ * You can derive your data table from another object by calling [[TTSObject.getData|getData]] on it, and manipulating the resultant
+ * table as you see fit.
  *
  * @param parameters data is mandatory, all other properties are optional. When a property is omitted, it will be given
  *                   the corresponding default value (above).
  *
  * @example
- *
  * ```lua
  * local object = spawnObjectData({
  *     data = {
@@ -248,16 +305,19 @@ declare function spawnObject(
  * })
  * object.setPositionSmooth({10, 5, 10})
  * ```
+ *
+ * @category Global
  */
-declare function spawnObjectData(
-    parameters: SpawnParamater & {
-        /**
-         * Table with properties describing the object that will be spawned. Required content depends on the type of
-         * object being spawned.
-         */
-        data: ObjectData;
-    }
-): TTSObject;
+declare function spawnObjectData(parameters: SpawnObjectDataParameters): TTSObject;
+
+/** Parameters for the [[spawnObjectJSON]] function. */
+declare interface SpawnObjectJSONParameters extends SpawnParamater {
+    /**
+     * JSON string describing the object that will be spawned. Required content depends on the type of object being
+     * spawned.
+     */
+    json: string;
+}
 
 /**
  * Spawns an object from a JSON string.
@@ -274,7 +334,6 @@ declare function spawnObjectData(
  *                   the corresponding default value (above).
  *
  * @example
- *
  * ```lua
  * local object = spawnObjectJSON({
  *     json = [[{
@@ -302,31 +361,20 @@ declare function spawnObjectData(
  * })
  * object.setPositionSmooth({10, 5, 10})
  * ```
+ * @category Global
  */
-declare function spawnObjectJSON(
-    parameters: SpawnParamater & {
-        /**
-         * JSON string describing the object that will be spawned. Required content depends on the type of object being
-         * spawned.
-         */
-        json: string;
-    }
-): TTSObject;
+declare function spawnObjectJSON(parameters: SpawnObjectJSONParameters): TTSObject;
 
 /**
  * Start a coroutine. A coroutine is similar to a function, but has the unique ability to have its run paused until the
  * next frame of the game using coroutine.yield(0).
  *
- * Attention
- * ---
- *
- * You MUST return a 1 at the end of any coroutine or it will throw an error.
+ * > **Attention** You MUST return a 1 at the end of any coroutine or it will throw an error.
  *
  * @param functionOwner The Object that the function being called is on. Global is a valid target.
  * @param functionName Name of the function being called as a coroutine.
  *
  * @example
- *
  * ```lua
  * function onLoad()
  *     startLuaCoroutine(Global, "print_coroutine")
@@ -346,6 +394,7 @@ declare function spawnObjectJSON(
  *     return 1
  * end
  * ```
+ * @category Global
  */
 declare function startLuaCoroutine(functionOwner: TTSObject, functionName: string): boolean;
 
@@ -355,10 +404,10 @@ declare function startLuaCoroutine(functionOwner: TTSObject, functionName: strin
  * @param playerColor A String of a Player Color.
  *
  * @example
- *
  * ```lua
  * printToAll("Blue message", stringColorToRGB("Blue"))
  * ```
+ * @category Global
  */
 declare function stringColorToRGB(playerColor: PlayerColor): Color;
 
@@ -369,6 +418,8 @@ declare function stringColorToRGB(playerColor: PlayerColor): Color;
  *                      pressed/released. nil if no object was under the Player's pointer at the time.
  * @param pointerPosition Word Position of the Player's pointer at the moment the key was pressed/released
  * @param isKeyUp Whether this callback is being triggered in response to a hotkey being released.
+ *
+ * @category Hotkeys
  */
 type AddHotkeyCallback = (
     playerColor: PlayerColor,
@@ -406,16 +457,22 @@ type AddHotkeyCallback = (
  *     print(playerColor .. " " .. action .. " the hotkey")
  * end, true)
  * ```
+ *
+ * @category Hotkeys
  */
 declare function addHotkey(label: string, callback: AddHotkeyCallback, triggerOnKeyUp?: boolean): boolean;
 
 /**
  * Clears all hotkeys previously added via addHotkey(...).
+ *
+ * @category Hotkeys
  */
 declare function clearHotkeys(): boolean;
 
 /**
  * Shows the hotkey configuration window under Options->Game Keys.
+ *
+ * @category Hotkeys
  */
 declare function showHotkeyConfig(): boolean;
 
@@ -426,12 +483,13 @@ declare function showHotkeyConfig(): boolean;
  * @param messageTint A Table containing the RGB color tint for the text.
  *
  * @example
- *
  * ```lua
  * msg = "Hello all."
  * rgb = {r=1, g=0, b=0}
  * broadcastToAll(msg, rgb)
  * ```
+ *
+ * @category Message
  */
 declare function broadcastToAll(message: string, messageTint?: ColorValue): boolean;
 
@@ -443,13 +501,14 @@ declare function broadcastToAll(message: string, messageTint?: ColorValue): bool
  * @param messageTint RGB color tint for the text.
  *
  * @example
- *
  * ```lua
  * msg = "Hello White."
  * color = "White"
  * rgb = {r=1, g=0, b=0}
  * broadcastToColor(msg, color, rgb)
  * ```
+ *
+ * @category Message
  */
 declare function broadcastToColor(message: string, playerColor: PlayerColor, messageTint?: ColorValue): boolean;
 
@@ -474,12 +533,13 @@ declare function broadcastToColor(message: string, playerColor: PlayerColor, mes
  *             to logging with the <default> log style.
  *
  * @example
- *
  * ```lua
  * log("Something happened")
  * log(getObjects())
  * log("Something unexpected happened.", "Oh no!", "error")
  * ```
+ *
+ * @category Message
  */
 declare function log(value: any, label?: string, tags?: string): boolean;
 
@@ -508,10 +568,11 @@ declare function log(value: any, label?: string, tags?: string): boolean;
  *                   defaults to `false`.
  *
  * @example
- *
  * ```lua
  * print(logString(getObjects()))
  * ```
+ *
+ * @category Message
  */
 declare function logString(value: any, label?: string, tags?: string, concise?: boolean, displayTag?: boolean): string;
 
@@ -531,11 +592,12 @@ declare function logString(value: any, label?: string, tags?: string, concise?: 
  *                not displayed.
  *
  * @example
- *
  * ```lua
  * logStyle("seats", {0.5, 0.5, 0.5}, "", "End List")
  * log(Player.getAvailableColors(), nil, "seats")
  * ```
+ *
+ * @category Message
  */
 declare function logStyle(tag: string, tint: ColorValue, prefix?: string, postfix?: string): boolean;
 
@@ -543,6 +605,8 @@ declare function logStyle(tag: string, tint: ColorValue, prefix?: string, postfi
  * Print a string into chat that only the host is able to see. Used for debugging scripts.
  *
  * @param message Text to print into the chat log.
+ *
+ * @category Message
  */
 declare function print(message: string): nil;
 
@@ -553,10 +617,11 @@ declare function print(message: string): nil;
  * @param messageTint RGB values for the text's color tint.
  *
  * @example
- *
  * ```lua
  * printToAll("Hello World!", {r=1,g=0,b=0})
  * ```
+ *
+ * @category Message
  */
 declare function printToAll(message: string, messageTint: ColorValue): boolean;
 
@@ -568,10 +633,11 @@ declare function printToAll(message: string, messageTint: ColorValue): boolean;
  * @param messageTint RGB values for the text's color tint.
  *
  * @example
- *
  * ```lua
  * printToColor("Hello Red.", "Red", {r=1,g=0,b=0})
  * ```
+ *
+ * @category Message
  */
 declare function printToColor(message: string, playerColor: PlayerColor, messageTint: ColorValue): boolean;
 
@@ -579,5 +645,7 @@ declare function printToColor(message: string, playerColor: PlayerColor, message
  * Send a table to your external script editor, most likely Atom. This is for custom editor functionality.
  *
  * @param data
+ *
+ * @category Message
  */
 declare function sendExternalMessage(data: any): boolean;

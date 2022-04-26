@@ -1,8 +1,12 @@
 /**
  * `Backgrounds` is a global which provides the ability to interact with the background.
+ *
+ * @module Backgrounds
  */
 /** @noSelf */
-declare interface Backgrounds {
+declare class TTSBackgrounds {
+    private constructor();
+
     /**
      * Returns the current background name.
      */
@@ -28,4 +32,4 @@ declare interface Backgrounds {
     setCustomURL(url: URI): boolean;
 }
 
-declare const Backgrounds: Backgrounds;
+declare const Backgrounds: TTSBackgrounds;

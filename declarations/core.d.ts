@@ -1,3 +1,4 @@
+/** Denotes an optional return type. Can either be the given type or {@link nil} */
 type Maybe<T> = T | nil;
 
 /**

@@ -4,7 +4,10 @@
   "description": "",
   "main": "declarations/index.d.ts",
   "types": "declarations/index.d.ts",
-  "scripts": {},
+  "scripts": {
+    "build:doc": "typedoc",
+    "build:doc-watch": "typedoc --watch"
+  },
   "keywords": [
     "typescript",
     "lua",

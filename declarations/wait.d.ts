@@ -27,7 +27,9 @@ declare class TTSWait {
      *                Optional, defaults to never timing out.
      * @param timeoutFunc The function that will be executed if the timeout is reached.
      *
-     * @example Roll a die, and wait until it comes to rest.
+     * @example
+     * Roll a die, and wait until it comes to rest.
+     *
      * ```lua
      * die.randomize() -- Roll a die
      * Wait.condition(

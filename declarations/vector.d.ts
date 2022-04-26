@@ -4,6 +4,6 @@ type VectorTable = {
     y: float;
     z: float;
 };
-type VectorShape = VectorNumeric | VectorTable;
+type VectorShape = VectorNumeric | VectorTable | Vector;
 
-type Vector = VectorShape;
+declare class Vector {}
