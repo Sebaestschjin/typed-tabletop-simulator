@@ -1,21 +1,13 @@
 {
-  "name": "typed-tabletop-simulator",
+  "name": "@typed-tabletop-simulator/core",
   "version": "0.1.0",
   "description": "",
-  "main": "declarations/index.d.ts",
-  "types": "declarations/index.d.ts",
-  "scripts": {
-    "build:doc": "typedoc",
-    "build:doc-watch": "typedoc --watch"
-  },
+  "scripts": {},
   "keywords": [
     "typescript",
     "lua",
     "tabletopsimulator"
   ],
   "license": "MIT",
-  "devDependencies": {
-    "typedoc": "^0.22.15",
-    "typescript-to-lua": "^1.4.2"
-  }
+  "devDependencies": {}
 }
