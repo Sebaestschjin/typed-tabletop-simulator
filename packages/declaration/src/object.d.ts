@@ -1,3 +1,6 @@
+/**
+ * A game object within TTS.
+ */
 /** @noSelf */
 declare interface TTSObject<D extends ObjectData = ObjectData> extends GameObjectFunctions {
     /** When non-zero, the Alt view will use the specified Euler angle to look at the object. */
@@ -1515,7 +1518,7 @@ declare interface TTSObject<D extends ObjectData = ObjectData> extends GameObjec
      *
      * @category Action
      */
-    takeObject(parameters: TakeObject): TTSObject;
+    takeObject(parameters: TakeObjectByIndex | TakeObjectByGuid): TTSObject;
 
     /**
      * Unregisters this object for Global collision events. Returns true if the object was previously registered, false
@@ -1901,17 +1904,84 @@ declare interface TTSObject<D extends ObjectData = ObjectData> extends GameObjec
 }
 
 /**
- * Type of material an object is made of.
- * Determines shader settings and sound of the object.
+ * A bag object.
  */
-declare const enum MaterialType {
-    Plastic = 0,
-    Wood = 1,
-    Metal = 2,
-    Cardboard = 3,
-    Glass = 4,
+declare interface TTSBag extends TTSObject<BagData> {
+    getObjects(): ContainedObjectInfo[];
 }
 
+/**
+ * An infinite bag object.
+ */
+declare interface TTSBagInfinite extends TTSObject<BagInfiniteData> {
+    getObjects(): [ContainedObjectInfo];
+}
+
+declare interface TTSBoard extends TTSObject<BoardData> {}
+
+/**
+ * A custom card object.
+ *
+ * @information
+ * `Custom` is not part of the type name, because there's no type for the standard card, since that one is not really
+ * useful.
+ */
+declare interface TTSCard extends TTSObject<CardCustomData> {
+    putObject(object: TTSCard | TTSDeck): TTSDeck;
+}
+
+/**
+ * A custom deck object.
+ *
+ * @information
+ * `Custom` is not part of the type name, because there's no type for the standard deck, since that one is not really
+ * useful.
+ */
+declare interface TTSDeck extends TTSObject<DeckCustomData> {
+    getObjects(): ContainedObjectInfo[];
+
+    putObject(object: TTSCard | TTSDeck): TTSDeck;
+}
+
+/**
+ * A standard die object.
+ */
+declare interface TTSDie extends TTSObject<DieData> {}
+
+/**
+ * A custom die object.
+ */
+declare interface TTSDieCustom extends TTSObject<DieCustomData> {}
+
+declare interface TTSFigurine extends TTSObject<FigurineData> {}
+
+/**
+ * A hand zone object.
+ */
+declare interface TTSHandZone extends TTSObject<HandZoneData> {
+    getObjects(): TTSObject[];
+}
+
+/**
+ * A scripting zone object.
+ */
+declare interface TTSScriptingZone extends TTSObject<ScriptingZoneData> {
+    getObjects(): TTSObject[];
+}
+
+/**
+ * A custom tile object.
+ */
+declare interface TTSTile extends TTSObject<TileData> {}
+
+/**
+ * A custom token object.
+ */
+declare interface TTSToken extends TTSObject<TokenData> {}
+
+/**
+ * Possible settings for the fog of war.
+ */
 interface FogOfWarSettings {
     reveal: boolean;
     color: PlayerColor | "All";
@@ -1921,7 +1991,7 @@ interface FogOfWarSettings {
 
 // TODO
 interface Joint {
-    type: JoinType;
+    type: "Fixed" | "Hinge" | "Spring";
     joint_object_guid: GUID;
     collision: boolean;
     break_force: float;
@@ -1931,15 +2001,18 @@ interface Joint {
     connector_anchor?: VectorNumeric;
 }
 
-type JoinType = "Fixed" | "Hinge" | "Spring";
-
-interface FixedJoint extends Joint {}
+interface FixedJoint extends Joint {
+    type: "Fixed";
+}
 
 interface SpringJoint extends Joint {
+    type: "Spring";
+
     /**
      * @defaultValue 10
      */
     spring?: float;
+
     /**
      * @defaultValue 0.2
      */
@@ -1947,6 +2020,7 @@ interface SpringJoint extends Joint {
 }
 
 interface HingeJoint extends Joint {
+    type: "Hinge";
     motor_force?: float;
     motor_velocity?: float;
     motor_free_spin?: boolean;
@@ -1956,9 +2030,7 @@ interface HingeJoint extends Joint {
 
 type ContextMenuHandler = (playerColor: PlayerColor) => unknown;
 
-type TakeObjectParameters = TakeObjectByIndex | TakeObjectByGuid;
-
-interface TakeObject {
+interface TakeObjectParameter {
     /** A Vector of the position to place Object. Optional, defaults to container's position + 2 on the x axis. */
     position?: VectorShape;
     /** A Vector of the rotation of the Object. Optional, defaults to the container's rotation. */
@@ -1979,12 +2051,12 @@ interface TakeObject {
     callback_function?: ObjectCallback;
 }
 
-interface TakeObjectByIndex extends TakeObject {
+interface TakeObjectByIndex extends TakeObjectParameter {
     /** Index of the Object to take. Optional, no default. Only use index or guid, never both. */
     index: int;
 }
 
-interface TakeObjectByGuid extends TakeObject {
+interface TakeObjectByGuid extends TakeObjectParameter {
     /** GUID of the Object to take. Optional, no default. Only use index or guid, never both. */
     guid: GUID;
 }
@@ -2229,4 +2301,16 @@ declare const enum ForceType {
     Impulse = 3,
     /** Instant velocity change, ignores mass. */
     VelocityChange = 4,
+}
+
+/**
+ * Type of material an object is made of.
+ * Determines shader settings and sound of the object.
+ */
+declare const enum MaterialType {
+    Plastic = 0,
+    Wood = 1,
+    Metal = 2,
+    Cardboard = 3,
+    Glass = 4,
 }

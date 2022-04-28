@@ -49,7 +49,9 @@ interface ObjectData {
     ChildObjects?: ObjectData[];
 }
 
-/** Object data for a regular bag. */
+/**
+ * Object data for a regular bag.
+ */
 interface BagData extends ObjectData {
     Bag?: {
         Order: BagOrder;
@@ -57,19 +59,26 @@ interface BagData extends ObjectData {
     ContainedObjects?: ObjectData[];
 }
 
-declare const enum BagOrder {
-    LIFO = 0,
-    FIFO = 1,
-    Random = 2,
+interface BagInfiniteData extends ObjectData {
+    ContainedObjects?: [ObjectData];
 }
 
-/** Object data for a custom card. */
+/**
+ * Object data for a board.
+ */
+interface BoardData extends ObjectData {}
+
+/**
+ * Object data for a custom card.
+ */
 interface CardCustomData extends ObjectData {
     CardID: int;
     CustomDeck: LuaTable<int, CustomDeckData>;
 }
 
-/** Object data for a deck containing custom cards. */
+/**
+ * Object data for a deck containing custom cards.
+ */
 interface DeckCustomData extends ObjectData {
     /** The card IDs (sic!) of all cards contained in this deck. */
     DeckIDs: int[];
@@ -79,21 +88,42 @@ interface DeckCustomData extends ObjectData {
     CustomDeck: LuaTable<int, CustomDeckData>;
 }
 
+/**
+ * Object data of a custom die.
+ */
+interface DieCustomData extends ObjectData {
+    RotationValues?: {
+        Value: number | string;
+        Rotation: VectorTable;
+    }[];
+    CustomImage: {
+        ImageURL: string;
+        CustomDice: {
+            Type: DieType;
+        };
+    };
+}
+
+/**
+ * Object data of a regular die.
+ */
 interface DieData extends ObjectData {
     RotationValues?: {
         Value: number | string;
         Rotation: VectorTable;
     }[];
-    CustomImage: DieDataCustomImage;
 }
 
-interface DieDataCustomImage {
-    ImageURL: string;
-    CustomDice: {
-        Type: DieType;
-    };
-}
+interface FigurineData extends ObjectData {}
 
+/**
+ * Object data of a hand zone.
+ */
+interface HandZoneData extends ObjectData {}
+
+/**
+ * Object data of a custom model.
+ */
 interface ModelData extends ObjectData {
     CustomMesh: {
         MeshURL?: URI;
@@ -108,19 +138,14 @@ interface ModelData extends ObjectData {
     ContainedObjects?: ObjectData[];
 }
 
-/** Type of a custom model object */
-declare const enum ModelType {
-    Generic = 0,
-    Figurine = 1,
-    Dice = 2,
-    Coin = 3,
-    Board = 4,
-    Chip = 5,
-    Bag = 6,
-    Infinite = 7,
-}
+/**
+ * Object data of a scripting zone.
+ */
+interface ScriptingZoneData extends ObjectData {}
 
-/** Object data for a custom token. */
+/**
+ * Object data for a custom token.
+ */
 interface TokenData extends ObjectData {
     CustomImage: {
         ImageURL: string;
@@ -133,7 +158,9 @@ interface TokenData extends ObjectData {
     };
 }
 
-/** Object data for a custom tile. */
+/**
+ * Object data for a custom tile.
+ */
 interface TileData extends ObjectData {
     CustomImage: {
         ImageURL: string;
@@ -157,6 +184,59 @@ interface CustomDeckData {
     UniqueBack: boolean;
 }
 
+/**
+ * Data for the position, scale and rotation of an object.
+ */
+interface TransformData {
+    /** X-coordinate (left/right) of the position. */
+    posX: number;
+    /** Y-coordinate (up/down) of the position. */
+    posY: number;
+    /** Z-coordinate (front/back) of the position. */
+    posZ: number;
+    /** Rotation on the x-axis. */
+    rotX: number;
+    /** Rotation on the y-axis. */
+    rotY: number;
+    /** Rotation on the z-axis. */
+    rotZ: number;
+    /** Scale on the x-axis. */
+    scaleX: number;
+    /** Scale on the y-axis. */
+    scaleY: number;
+    /** Scale on the z-axis. */
+    scaleZ: number;
+}
+
+/**
+ * Data for the color of an object.
+ */
+interface ColorData {
+    /** Red value between 0 and 1. */
+    r: float;
+    /** Green value between 0 and 1. */
+    g: float;
+    /** Blue value between 0 and 1. */
+    b: float;
+    /** Alpha value between 0 and 1. */
+    a: float;
+}
+
+/**
+ * Possible order of objects inside a bag.
+ */
+declare const enum BagOrder {
+    /** Last object put in is the first taken out (stack). */
+    LIFO = 0,
+    /** First object put in is the first taken out (queue). */
+    FIFO = 1,
+    /** Objects are taken out randomly. */
+    Random = 2,
+}
+
+/**
+ * Possible type for a card.
+ */
 declare const enum CardType {
     RectangleRounded = 0,
     Rectangle = 1,
@@ -165,6 +245,9 @@ declare const enum CardType {
     Circle = 4,
 }
 
+/**
+ * Possible type for a die,
+ */
 declare const enum DieType {
     D4 = 0,
     D6 = 1,
@@ -174,28 +257,26 @@ declare const enum DieType {
     D20 = 5,
 }
 
+/**
+ * Possible type for a custom model.
+ */
+declare const enum ModelType {
+    Generic = 0,
+    Figurine = 1,
+    Dice = 2,
+    Coin = 3,
+    Board = 4,
+    Chip = 5,
+    Bag = 6,
+    Infinite = 7,
+}
+
+/**
+ * Possible type for a tile.
+ */
 declare const enum TileType {
     Box = 0,
     Hex = 1,
     Circle = 2,
     Rounded = 3,
-}
-
-interface TransformData {
-    posX: number;
-    posY: number;
-    posZ: number;
-    rotX: number;
-    rotY: number;
-    rotZ: number;
-    scaleX: number;
-    scaleY: number;
-    scaleZ: number;
-}
-
-interface ColorData {
-    r: number;
-    g: number;
-    b: number;
-    a: number;
 }

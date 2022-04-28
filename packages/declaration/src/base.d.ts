@@ -94,7 +94,7 @@ declare function flipTable(): boolean;
  *
  * @category Global
  */
-declare function getObjectFromGUID(guid: GUID): Maybe<TTSObject>;
+declare function getObjectFromGUID<T extends TTSObject>(guid: GUID): Maybe<T>;
 
 /**
  * Returns a Table of all Objects in the game.
