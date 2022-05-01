@@ -1,11 +1,12 @@
 /**
- * `Info` global allows you to manipulate the information about your game/mod, in the same way as the in-game Options ->
- * Info menu.
- *
- * This information helps players find your game/mod within Tabletop Simulator's server list and via Steam Workshop's
- * search/filter capabilities.
+ * @module Info
  */
-declare class TTSInfo {
+/**
+ * `Info` global allows you to manipulate the information about your game/mod, in the same way as the in-game Options -> Info menu.
+ *
+ * This information helps players find your game/mod within Tabletop Simulator's server list and via Steam Workshop's search/filter capabilities.
+ */
+declare interface InfoStatic {
     /** The complexity of the current game/mod. */
     complexity: string;
 
@@ -25,4 +26,5 @@ declare class TTSInfo {
     type: string;
 }
 
-declare const Info: TTSInfo;
+/** The static global class of [[InfoStatic]] */
+declare const Info: InfoStatic;

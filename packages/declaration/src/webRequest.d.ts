@@ -1,3 +1,7 @@
+/**
+ * @module WebRequest
+ */
+
 declare interface WebRequest {
     /** Download percentage, represented as a number in the range 0-1. */
     download_progress: float;
@@ -5,15 +9,18 @@ declare interface WebRequest {
     /**
      * Reason why the request failed to complete.
      *
-     * If the server responds with a HTTP status code that represents a HTTP error (4xx/5xx), this is not considered a
-     * request error.
+     * If the server responds with a HTTP status code that represents a HTTP error (4xx/5xx), this is not considered a request error.
      */
     error: string;
 
     /** If the request failed due to an error. */
     is_error: boolean;
 
-    /** If the request completed or failed. If the request failed, is_error will be set. */
+    /**
+     * If the request completed or failed.
+     *
+     * If the request failed, is_error will be set.
+     */
     is_done: boolean;
 
     /** Response HTTP status code. */
@@ -25,7 +32,11 @@ declare interface WebRequest {
     /** Upload percentage, represented as a number from 0-1. */
     upload_progress: float;
 
-    /** The request's target URL. If the request was redirected, this will still return the initial URL. */
+    /**
+     * The request's target URL.
+     *
+     * If the request was redirected, this will still return the initial URL.
+     */
     url: string;
 
     /**
@@ -45,33 +56,37 @@ declare interface WebRequest {
     /**
      * Returns the table of response headers. Keys and values are both .
      */
-    getResponseHeaders(): WebWebRequestHeaders;
+    getResponseHeaders(): WebRequestHeaders;
 }
 
 declare interface WebRequestManager {
     /**
-     * Performs a HTTP request using the specified method, data and headers. Returns a Web Request Instance.
+     * Performs a HTTP request using the specified method, data and headers.
+     *
+     * Returns a Web Request Instance.
      *
      * @param url The URL.
      * @param method The HTTP method.
-     * @param download Whether you want to handle the response body. Must be true if you intend to read the response
-     *                 text.
+     * @param download Whether you want to handle the response body.
+     *                 Must be true if you intend to read the response text.
      * @param data The request body.
-     * @param headers Table of request headers. The table's keys and values must both be .
-     * @param callback Called when the request completes (or fails). Passed the Web Request Instance.
+     * @param headers Table of request headers.
+     *                The table's keys and values must both be .
+     * @param callback Called when the request completes (or fails).
+     *                 Passed the Web Request Instance.
      */
     custom(
         url: string,
         method: string,
         download: boolean,
         data?: string,
-        headers?: WebWebRequestHeaders,
-        callback?: WebWebRequestCallback
+        headers?: WebRequestHeaders,
+        callback?: WebRequestCallback
     ): WebRequest;
 }
 
-type WebWebRequestHeaders = LuaTable<string, string>;
-type WebWebRequestCallback = (request: WebRequest) => unknown;
+type WebRequestHeaders = LuaTable<string, string>;
+type WebRequestCallback = (request: WebRequest) => unknown;
 
 /**
  * WebRequest is a static global class which allows you to send HTTP web request, from the game host's computer only.

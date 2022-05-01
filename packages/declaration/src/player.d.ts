@@ -1,3 +1,7 @@
+/**
+ * @module Player
+ */
+
 type PlayerColor =
     | "Black"
     | "Blue"
@@ -17,26 +21,45 @@ type PlayerTeam = "" | "Clubs" | "Diamonds" | "Hearts" | "Spades" | "Jokers";
 /** @noSelf */
 declare interface Player {
     /** If the player is promoted or the host of the game. */
+
     readonly admin: boolean;
+
     /** If the player is blindfolded. */
     blindfolded: boolean;
+
     /** The player's Player Color. */
+
     readonly color: PlayerColor;
+
     /**	If the player is the host. */
     readonly host: boolean;
-    /** The lift height for the player.
+
+    /**
+     * The lift height for the player.
+     *
      * This is how far an object is raised when held in a player's hand.
      * Value is ranged 0 to 1.
      */
     lift_height: number;
+
     /** If the current player is promoted. */
+
     promoted: boolean;
+
     /** If a player is currently seated at this color. */
+
     readonly seated: boolean;
-    /** The Steam ID of the player. This is unique to each player's Steam account. */
+
+    /**
+     * The Steam ID of the player.
+     *
+     * This is unique to each player's Steam account.
+     */
     readonly steam_id: string;
+
     /** The Steam name of the player. */
     readonly steam_name: string;
+
     /** The team of the player. */
     team: PlayerTeam;
 
@@ -138,7 +161,7 @@ declare interface Player {
 }
 
 /** @noSelf */
-declare class PlayerManager {
+declare interface PlayerManager {
     /** Returns the player currently seated for player color White */
     White: Maybe<Player>;
 
@@ -173,13 +196,16 @@ declare class PlayerManager {
     Black: Maybe<Player>;
 
     /**
-     * Returns a table of strings of every valid seat color at the current table. Returned colors are in the default
-     * order.
+     * Returns a table of strings of every valid seat color at the current table.
+     *
+     * Returned colors are in the default order.
      */
     getAvailableColors(): PlayerColor[];
 
     /**
-     * Returns a table of strings of every possible seat color. Returned colors are in the default order.
+     * Returns a table of strings of every possible seat color.
+     *
+     * Returned colors are in the default order.
      */
     getColors(): PlayerColor[];
 
@@ -200,41 +226,56 @@ declare const Player: PlayerManager;
 declare const enum PlayerAction {
     /** Copy (or commence cloning) the targets. */
     Copy = 0,
+
     /** Cut (copy and delete) the targets. */
     Cut = 1,
+
     /** Delete the targets. */
     Delete = 2,
+
     /** Incrementally rotate the targets counter-clockwise around their flip axes, typically the scene's Z-axis. */
     FlipIncrementalLeft = 3,
+
     /** Incrementally rotate the targets clockwise around their flip axes, typically the scene's Z-axis. */
     FlipIncrementalRight = 4,
+
     /**
-     * Rotate the targets 180 degrees around their flip axes, typically the scene's Z-axis i.e. toggle the targets
-     * between face up and face down.
+     * Rotate the targets 180 degrees around their flip axes, typically the scene's Z-axis i.e. toggle the targets between face up and face down.
      */
     FlipOver = 5,
+
     /** Group the targets. */
     Group = 6,
+
     /** Paste (spawn) the targets. */
     Paste = 7,
+
     /** Pick up the targets. */
     PickUp = 8,
+
     /** Randomize the targets. */
     Randomize = 9,
+
     /**
-     * Rotate the targets incrementally, typically counter-clockwise around the scene's Y-axis. Instead of being rotated
-     * exclusively around the Y-axis, dice will be rotated to the previous rotation value.
+     * Rotate the targets incrementally, typically counter-clockwise around the scene's Y-axis.
+     *
+     * Instead of being rotated exclusively around the Y-axis, dice will be rotated to the previous rotation value.
      */
     RotateIncrementalLeft = 10,
+
     /**
-     * Rotate the targets incrementally, typically clockwise around the scene's Y-axis. Instead of being rotated
-     * exclusively around the Y-axis, dice will be rotated to the next rotation value.
+     * Rotate the targets incrementally, typically clockwise around the scene's Y-axis.
+     *
+     * Instead of being rotated exclusively around the Y-axis, dice will be rotated to the next rotation value.
      */
     RotateIncrementalRight = 11,
+
     /** Rotate the targets 180 degrees around the scene's Y-axis. */
     RotateOver = 12,
+
     /** Add the targets to the player's selection. */
     Select = 13,
+
     /** Move the targets underneath objects below them on table. */
     Under = 14,
 }

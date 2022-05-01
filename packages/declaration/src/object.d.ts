@@ -1,8 +1,14 @@
 /**
- * A game object within TTS.
+ * @module Object
  */
-/** @noSelf */
-declare interface TTSObject<D extends ObjectData = ObjectData> extends GameObjectFunctions {
+
+/**
+ * A game object within TTS.
+ *
+ * @noSelf
+ */
+declare interface TTSObject<D extends ObjectData = ObjectData, C extends CustomObject = CustomObject>
+    extends GameObjectFunctions {
     /** When non-zero, the Alt view will use the specified Euler angle to look at the object. */
     alt_view_angle: Vector;
 
@@ -19,27 +25,37 @@ declare interface TTSObject<D extends ObjectData = ObjectData> extends GameObjec
     drag: float;
 
     /**
-     * When false, the object will not be selected by regular (click and drag) selection boxes that are drawn around the
-     * object. Players may proceed to override this behavior by holding the "Shift" modifier whilst drag selecting.
+     * When `false`, the object will not be selected by regular (click and drag) selection boxes that are drawn around the object.
+     *
+     * Players may proceed to override this behavior by holding the "Shift" modifier whilst drag selecting.
      */
     drag_selectable: boolean;
 
-    /** Dynamic friction, value of 0-1. Unity physics material. */
+    /**
+     * Dynamic friction, value of 0-1.
+     *
+     * Unity physics material.
+     */
     dynamic_friction: float;
 
     /** If grid lines can appear on the Object if visible grids are turned on. */
     grid_projection: boolean;
 
     /**
-     * The 6 character unique Object identifier within Tabletop Simulator. It is assigned correctly once the spawning
-     * member variable becomes false.
+     * The 6 character unique Object identifier within Tabletop Simulator.
+     *
+     * It is assigned correctly once the spawning member variable becomes false.
      */
     guid: GUID;
 
     /** The Color of the Player that is holding the object. */
     held_by_color: Maybe<PlayerColor>;
 
-    /** 0-23 value. Changes when a Player hits flip or alt + rotate. */
+    /**
+     * 0-23 value.
+     *
+     * Changes when a Player hits flip or alt + rotate.
+     */
     held_flip_index: int;
 
     /** Position offset from pointer. */
@@ -53,24 +69,35 @@ declare interface TTSObject<D extends ObjectData = ObjectData> extends GameObjec
     /** Rotation offset from pointer. */
     held_rotation_offset: Vector;
 
-    /** 0-23 value. Changes when a Player rotates the Object. */
+    /**
+     * 0-23 value.
+     *
+     * Changes when a Player rotates the Object.
+     */
     held_spin_index: int;
 
     /**
-     * Hide the Object when face-down as if it were in a hand zone. The face is the "top" of the Object, the direction of
-     * its positive Y coordinate. Cards/decks default to true.
+     * Hide the Object when face-down as if it were in a hand zone.
+     *
+     * The face is the "top" of the Object, the direction of its positive Y coordinate.
+     * Cards/decks default to `true`.
      */
     hide_when_face_down: boolean;
 
     /** Makes the object not be hidden by Fog of War. */
     ignore_fog_of_war: boolean;
 
-    /** If the object can be interacted with by Players. Other object will still be able to interact with it. */
+    /**
+     * If the object can be interacted with by Players.
+     *
+     * Other object will still be able to interact with it.
+     */
     interactable: boolean;
 
     /**
-     * If the Object is roughly face-down (like with cards). The face is the "top" of the Object, the direction of its
-     * positive Y coordinate.
+     * If the Object is roughly face-down (like with cards).
+     *
+     * The face is the "top" of the Object, the direction of its positive Y coordinate.
      */
     readonly is_face_down: boolean;
 
@@ -80,13 +107,17 @@ declare interface TTSObject<D extends ObjectData = ObjectData> extends GameObjec
     /** If the object is frozen in place (preventing physics interactions). */
     locked: boolean;
 
-    /** Mass. Unity rigidbody property. */
+    /**
+     * Mass.
+     *
+     * Unity rigidbody property.
+     */
     mass: float;
 
     /**
-     * Determines the maximum number of digits which a user may type whilst hovering over the object. As soon as a player
-     * types the maximum number of digits, the corresponding behavior (e.g. onObjectNumberTyped/onNumberTyped) is
-     * triggered immediately, improving responsiveness.
+     * Determines the maximum number of digits which a user may type whilst hovering over the object.
+     *
+     * As soon as a player types the maximum number of digits, the corresponding behavior (e.g. [[onObjectNumberTyped]]/[[onNumberTyped]]) is triggered immediately, improving responsiveness.
      */
     max_typed_number: int;
 
@@ -94,12 +125,19 @@ declare interface TTSObject<D extends ObjectData = ObjectData> extends GameObjec
     measure_movement: boolean;
 
     /**
-     * A string where you may persist user-data associated with the object. Tabletop Simulator saves this field, but
-     * otherwise does not use it. Store whatever information you see fit.
+     * A string where you may persist user-data associated with the object.
+     *
+     * Tabletop Simulator saves this field, but otherwise does not use it.
+     * Store whatever information you see fit.
      */
     memo: string;
 
-    /** Internal resource name for this Object. Only useful for spawnObjectData(). Generally, you want getName(). */
+    /**
+     * Internal resource name for this Object.
+     *
+     * Only useful for [[spawnObjectData()]].
+     * Generally, you want [[getName()]].
+     */
     readonly name: string;
 
     /** The position the Object was picked up at. */
@@ -109,36 +147,53 @@ declare interface TTSObject<D extends ObjectData = ObjectData> extends GameObjec
     readonly pick_up_rotation: Vector;
 
     /**
-     * If this object is a container that cannot exist with less than two contained objects (e.g. a deck), taking out the
-     * second last contained object will result in the container being destroyed. In its place the last remaining object
-     * in the container will be spawned. This variable provides a reference to the remaining object when it is being
-     * spawned. Otherwise, it's nil.
+     * If this object is a container that cannot exist with less than two contained objects (e.g. a deck), taking out the second last contained object will result in the container being destroyed.
+     *
+     * In its place the last remaining object in the container will be spawned.
+     * This variable provides a reference to the remaining object when it is being spawned.
+     * Otherwise, it's `nil`.
      */
     readonly remainder: Maybe<TTSObject>;
 
-    /** If the Object is at rest. Unity rigidbody property. */
+    /**
+     * If the Object is at rest.
+     *
+     * Unity rigidbody property.
+     */
     resting: boolean;
 
     /** The Lua Script on the Object. */
     script_code: string;
 
-    /** The saved data on the object. See onSave(). */
+    /**
+     * The saved data on the object.
+     *
+     * See [[onSave()]].
+     */
     script_state: string;
 
     /** If the Object is finished spawning. */
     readonly spawning: boolean;
 
-    /** Static friction, value of 0-1. Unity physics material. */
+    /**
+     * Static friction, value of 0-1.
+     *
+     * Unity physics material.
+     */
     static_friction: float;
 
     /** If other Objects on top of this one are also picked up when this Object is. */
     sticky: boolean;
 
-    /** If the tooltip opens when a pointer hovers over the object. Tooltips display name and description. */
-    tooltip: string;
+    /**
+     * If the tooltip opens when a pointer hovers over the object.
+     *
+     * Tooltips display name and description.
+     */
+    tooltip: boolean;
 
     /** This object's type. */
-    readonly type: string;
+    readonly type: ObjectType;
 
     /**
      * The attached XML UI of the object.
@@ -164,9 +219,9 @@ declare interface TTSObject<D extends ObjectData = ObjectData> extends GameObjec
 
     /**
      * A numeric value associated with the object, which when non-zero, will be displayed when hovering over the object.
-     * In the case of stacks, the value shown in the UI will be multiplied by the stack size i.e. you can use value to
-     * create custom stackable chips. When multiple objects are selected, values will be summed together with objects
-     * sharing overlapping object tags.
+     *
+     * In the case of stacks, the value shown in the UI will be multiplied by the stack size i.e. you can use value to create custom stackable chips.
+     * When multiple objects are selected, values will be summed together with objects sharing overlapping object tags.
      */
     value: int;
 
@@ -174,7 +229,8 @@ declare interface TTSObject<D extends ObjectData = ObjectData> extends GameObjec
      * Adds force to an object in a directional Vector.
      *
      * @param vector A Vector of the direction and magnitude of force.
-     * @param forceType A [[ForceType]] representing the force type to apply. Defaults to [[ForceType.Impulse]].
+     * @param forceType A [[ForceType]] representing the force type to apply.
+     *                  Defaults to [[ForceType.Impulse]].
      *
      * @category Transform
      */
@@ -184,8 +240,8 @@ declare interface TTSObject<D extends ObjectData = ObjectData> extends GameObjec
      * Adds torque to an object in a rotational Vector.
      *
      * @param vector A Vector of the direction and magnitude of rotational force.
-     * @param forceType A [[ForceType]] representing the force type to apply. Defaults to [[ForceType.Impulse]].
-     * Optional, defaults to 3.
+     * @param forceType A [[ForceType]] representing the force type to apply.
+     *                  Defaults to [[ForceType.Impulse]].
      *
      * @category Transform
      */
@@ -199,17 +255,19 @@ declare interface TTSObject<D extends ObjectData = ObjectData> extends GameObjec
     getAngularVelocity(): Vector;
 
     /**
-     * Returns a Table of Vector information describing the size of an object in Global terms. Bounds are part of Unity,
-     * and represent an imaginary square box that can be drawn around an object. Unlike scale, it can help indicate the
-     * size of an object in in-game units, not just relative model size.
+     * Returns a Table of Vector information describing the size of an object in Global terms.
+     *
+     * Bounds are part of Unity, and represent an imaginary square box that can be drawn around an object.
+     * Unlike scale, it can help indicate the size of an object in in-game units, not just relative model size.
      *
      * @category Transform
      */
     getBounds(): Bounds;
 
     /**
-     * Returns a Table of Vector information describing the size of an object in Global terms, as if it was rotated to
-     * `{0,0,0}`. Bounds are part of Unity, and represent an imaginary square box that can be drawn around an object.
+     * Returns a Table of Vector information describing the size of an object in Global terms, as if it was rotated to `{0,0,0}`.
+     *
+     * Bounds are part of Unity, and represent an imaginary square box that can be drawn around an object.
      * Unlike scale, it can help indicate the size of an object in in-game units, not just relative model size.
      *
      * @category Transform
@@ -238,24 +296,26 @@ declare interface TTSObject<D extends ObjectData = ObjectData> extends GameObjec
     getRotation(): Vector;
 
     /**
-     * Returns a [[Vector]] of the current smooth rotation target if the object is smooth moving, otherwise returns
-     * `nil`.
+     * Returns a [[Vector]] of the current smooth rotation target if the object is smooth moving, otherwise returns `nil`.
      *
      * @category Transform
      */
     getRotationSmooth(): Maybe<Vector>;
 
     /**
-     * Returns a [[Vector]] of the current scale. Scale is not an absolute measurement, it is a multiple of the Object's
-     * default model size. So `{x=2, y=2, z=2}` would be a model twice its default size, not 2 units large.
+     * Returns a [[Vector]] of the current scale.
+     *
+     * Scale is not an absolute measurement, it is a multiple of the Object's default model size.
+     * So `{x=2, y=2, z=2}` would be a model twice its default size, not 2 units large.
      *
      * @category Transform
      */
     getScale(): Vector;
 
     /**
-     * Returns a [[Vector]] of the forward direction of this Object. The direction is relative to how the object is
-     * facing.
+     * Returns a [[Vector]] of the forward direction of this Object.
+     *
+     * The direction is relative to how the object is facing.
      *
      * @example Example of moving forward 5 units
      * ```lua
@@ -277,8 +337,9 @@ declare interface TTSObject<D extends ObjectData = ObjectData> extends GameObjec
     getTransformForward(): Vector;
 
     /**
-     * Returns a [[Vector]] of the forward direction of this object. The direction is relative to how the object is
-     * facing.
+     * Returns a [[Vector]] of the forward direction of this object.
+     *
+     * The direction is relative to how the object is facing.
      *
      * @example Example of moving right 5 units
      * ```lua
@@ -300,7 +361,9 @@ declare interface TTSObject<D extends ObjectData = ObjectData> extends GameObjec
     getTransformRight(): Vector;
 
     /**
-     * Returns a [[Vector]] of the up direction of this Object. The direction is relative to how the object is facing.
+     * Returns a [[Vector]] of the up direction of this Object.
+     *
+     * The direction is relative to how the object is facing.
      *
      * @example Example of moving up 5 units
      * ```lua
@@ -329,17 +392,19 @@ declare interface TTSObject<D extends ObjectData = ObjectData> extends GameObjec
     getVelocity(): Vector;
 
     /**
-     * Indicates if an object is traveling as part of a Smooth move. Smooth moving is performed by [[setPositionSmooth]]
-     * and [[setRotationSmooth]].
+     * Indicates if an object is traveling as part of a Smooth move.
+     *
+     * Smooth moving is performed by [[setPositionSmooth]] and [[setRotationSmooth]].
      *
      * @category Transform
      */
     isSmoothMoving(): boolean;
 
     /**
-     * Returns a [[Vector]] after converting a world vector to a local Vector. A world [[Vector]] is a positional
-     * [[Vector]] using the world's coordinate system. A Local [[Vector]] is a positional [[Vector]] that is relative to
-     * the position of the given object.
+     * Returns a [[Vector]] after converting a world vector to a local Vector.
+     *
+     * A world [[Vector]] is a positional [[Vector]] using the world's coordinate system.
+     * A Local [[Vector]] is a positional [[Vector]] that is relative to the position of the given object.
      *
      * @information This function takes the Object's scale into account, as the Object is the key relative point.
      *
@@ -350,9 +415,10 @@ declare interface TTSObject<D extends ObjectData = ObjectData> extends GameObjec
     positionToLocal(vector: VectorShape): Vector;
 
     /**
-     * Returns a [[Vector]] after converting a local [[Vector]] to a world [[Vector]]. A world [[Vector]] is a
-     * positional [[Vector]] using the world's coordinate system. A local [[Vector]] is a positional [[Vector]] that is
-     * relative to the position of the given object.
+     * Returns a [[Vector]] after converting a local [[Vector]] to a world [[Vector]].
+     *
+     * A world [[Vector]] is a positional [[Vector]] using the world's coordinate system.
+     * A local [[Vector]] is a positional [[Vector]] that is relative to the position of the given object.
      *
      * @information This function takes the Object's scale into account, as the Object is the key relative point.
      *
@@ -363,8 +429,9 @@ declare interface TTSObject<D extends ObjectData = ObjectData> extends GameObjec
     positionToWorld(vector: VectorShape): Vector;
 
     /**
-     * Rotates Object smoothly in the direction of the given Vector. This does not set the Object to face a specific
-     * rotation, it rotates the Object around by the number of degrees given for x/y/z.
+     * Rotates Object smoothly in the direction of the given Vector.
+     *
+     * This does not set the Object to face a specific rotation, it rotates the Object around by the number of degrees given for x/y/z.
      *
      * @param vector The amount of x/y/z to rotate by.
      *
@@ -378,8 +445,9 @@ declare interface TTSObject<D extends ObjectData = ObjectData> extends GameObjec
     rotate(vector: VectorShape): boolean;
 
     /**
-     * Scales Object by a multiple. This does not set the Object to a specific scale, it scales the Object by the given
-     * multiple.
+     * Scales Object by a multiple.
+     *
+     * This does not set the Object to a specific scale, it scales the Object by the given multiple.
      *
      * @param vector Multiplier for scale. `{x=1, y=1, z=1}` or 1 would not change the scale.
      *
@@ -394,7 +462,7 @@ declare interface TTSObject<D extends ObjectData = ObjectData> extends GameObjec
     scale(vector: VectorShape | float): boolean;
 
     /**
-     * Sets a Vector as the current angular velocity.
+     * Sets a [[Vector]] as the current angular velocity.
      *
      * @param vector
      *
@@ -403,7 +471,9 @@ declare interface TTSObject<D extends ObjectData = ObjectData> extends GameObjec
     setAngularVelocity(vector: VectorShape): boolean;
 
     /**
-     * Instantly moves an Object to the given Vector. The Vector is interpreted as World Position.
+     * Instantly moves an Object to the given Vector.
+     *
+     * The [[Vector]] is interpreted as World Position.
      *
      * @param vector The new position
      *
@@ -416,7 +486,9 @@ declare interface TTSObject<D extends ObjectData = ObjectData> extends GameObjec
      *
      * @param vector A positional Vector.
      * @param collide If the Object will collide with other Objects while moving.
+     *                Defaults to `false`
      * @param fast If the Object is moved quickly.
+     *             Defaults to `false.
      *
      * @category Transform
      */
@@ -436,7 +508,9 @@ declare interface TTSObject<D extends ObjectData = ObjectData> extends GameObjec
      *
      * @param vector A rotational Vector.
      * @param collide If the Object will collide with other Objects while rotating.
+     *                Defaults to `false.
      * @param fast If the Object is rotated quickly.
+     *             Defaults to `false.
      *
      * @category Transform
      */
@@ -543,61 +617,77 @@ declare interface TTSObject<D extends ObjectData = ObjectData> extends GameObjec
     clearInputs(): boolean;
 
     /**
-     * Creates a scripted button attached to the Object. Scripted buttons are buttons that can be clicked while in-game
-     * that trigger a function in a script.
+     * Creates a scripted button attached to the Object.
+     *
+     * Scripted buttons are buttons that can be clicked while in-game that trigger a function in a script.
      *
      * @category UI
      */
     createButton(params: CreateButton): boolean;
 
     /**
-     * Creates a scripted input attached to the Object. Scripted inputs are boxes you can click inside of in-game to
-     * input/edit text. Every letter typed triggers the function. The bool that is returned as part of the input_function
-     * allows you to determine when a player has finished editing the input.
+     * Creates a scripted input attached to the Object.
+     *
+     * Scripted inputs are boxes you can click inside of in-game to input/edit text.
+     * Every letter typed triggers the function.
+     * The bool that is returned as part of the input_function allows you to determine when a player has finished editing the input.
      *
      * @category UI
      */
     createInput(params: CreateInput): boolean;
 
     /**
-     * Modify an existing button. The only parameter that is required is the index. The rest are optional, and not using
-     * them will cause the edited button's element to remain. Indexes start at 0. The first button on any given Object has
-     * an index of 0, the next button on it has an index of 1, etc. Each Object has its own indexes.
+     * Modify an existing button.
+     *
+     * The only parameter that is required is the index.
+     * The rest are optional, and not using them will cause the edited button's element to remain.
+     * Indexes start at 0.
+     * The first button on any given Object has an index of 0, the next button on it has an index of 1, etc.
+     * Each Object has its own indexes.
      *
      * @category UI
      */
     editButton(params: EditButton): boolean;
 
     /**
-     * Modify an existing input. The only parameter that is required is the index. The rest are optional, and not using
-     * them will cause the edited input's element to remain. Indexes start at 0. The first input on any given Object has
-     * an index of 0, the next input on it has an index of 1, etc. Each Object has its own indexes.
+     * Modify an existing input.
+     *
+     * The only parameter that is required is the index.
+     * The rest are optional, and not using them will cause the edited input's element to remain.
+     * Indexes start at 0.
+     * The first input on any given Object has an index of 0, the next input on it has an index of 1, etc.
+     * Each Object has its own indexes.
      *
      * @category UI
      */
     editInput(params: EditInput): boolean;
 
     /**
-     * Returns a Table of all buttons on this Object. The Table contains parameters tables with the same keys as seen in
-     * the createButton section, except each Table of parameters also contains an index entry. This is used to identify
-     * each button, used by editButton and removeButton.
+     * Returns a Table of all buttons on this Object.
+     *
+     * The Table contains parameters tables with the same keys as seen in the [[createButton]] section, except each Table of parameters also contains an index entry.
+     * This is used to identify each button, used by [[editButton]] and [[removeButton]].
      *
      * @category UI
      */
     getButtons(): Maybe<Button[]>;
 
     /**
-     * Returns a Table of all inputs on this Object. The Table contains parameters tables with the same keys as seen in
-     * the createInput section, except each Table of parameters also contains an index entry. This is used to identify
-     * each input, used by editInput and removeInput.
+     * Returns a Table of all inputs on this Object.
+     *
+     * The Table contains parameters tables with the same keys as seen in the [[createInput]] section, except each Table of parameters also contains an index entry.
+     * This is used to identify each input, used by editInput and removeInput.
      *
      * @category UI
      */
     getInputs(): Maybe<Input[]>;
 
     /**
-     * Removes a specific button. Indexes start at 0. The first button on any given Object has an index of 0, the next
-     * button on it has an index of 1, etc. Each Object has its own indexes.
+     * Removes a specific button.
+     *
+     * Indexes start at 0.
+     * The first button on any given Object has an index of 0, the next button on it has an index of 1, etc.
+     * Each Object has its own indexes.
      *
      * Removing an index instantly causes all other higher indexes to shift down 1.
      *
@@ -608,8 +698,11 @@ declare interface TTSObject<D extends ObjectData = ObjectData> extends GameObjec
     removeButton(index: int): boolean;
 
     /**
-     * Removes a specific input. Indexes start at 0. The first input on any given Object has an index of 0, the next input
-     * on it has an index of 1, etc. Each Object has its own indexes.
+     * Removes a specific input.
+     *
+     * Indexes start at 0.
+     * The first input on any given Object has an index of 0, the next input on it has an index of 1, etc.
+     * Each Object has its own indexes.
      *
      * Removing an index instantly causes all other higher indexes to shift down 1.
      *
@@ -620,7 +713,7 @@ declare interface TTSObject<D extends ObjectData = ObjectData> extends GameObjec
     removeInput(index: int): boolean;
 
     /**
-     * Returns a table in the same format as getObjects() for containers.
+     * Returns a table in the same format as [[getObjects()]] for containers.
      *
      * @category Get
      */
@@ -634,15 +727,18 @@ declare interface TTSObject<D extends ObjectData = ObjectData> extends GameObjec
     getColorTint(): Color;
 
     /**
-     * Returns a Table with the Custom Object information of a Custom Object. See the Custom Game Objects page for the
-     * kind of information returned.
+     * Returns a Table with the Custom Object information of a Custom Object.
+     *
+     * See the Custom Game Objects page for the kind of information returned.
      *
      * @category Get
      */
-    getCustomObject(): CustomObject;
+    getCustomObject(): C;
 
     /**
-     * Returns a table data structure representation of the object. Works with [[spawnObjectData]].
+     * Returns a table data structure representation of the object.
+     *
+     * Works with [[spawnObjectData]].
      *
      * @category Get
      */
@@ -656,12 +752,13 @@ declare interface TTSObject<D extends ObjectData = ObjectData> extends GameObjec
     getDescription(): string;
 
     /**
-     * Settings impacting Fog of War being revealed. In the example returned table, these are the default values of any
-     * object.
+     * Settings impacting Fog of War being revealed.
+     *
+     * In the example returned table, these are the default values of any object.
      *
      * @information
-     * "Black" and "All" are synonymous for Fog of War. Either means that all players can see the revealed area when
-     * reveal = true.
+     * "Black" and "All" are synonymous for Fog of War.
+     * Either means that all players can see the revealed area when reveal = true.
      *
      * @example Example returned Table for a custom token
      * ```lua
@@ -691,19 +788,20 @@ declare interface TTSObject<D extends ObjectData = ObjectData> extends GameObjec
     getGUID(): GUID;
 
     /**
-     * Returns a JSON string representation of the object. Works with [[spawnObjectJSON]].
+     * Returns a JSON string representation of the object.
      *
-     * @param indented indented is optional and defaults to true.
+     * Works with [[spawnObjectJSON]].
+     *
+     * @param indented indented is optional and defaults to `true`.
      *
      * @category Get
      */
     getJSON(indented?: boolean): string;
 
     /**
-     * Returns information on any joints attached to this object. This information included the GUID of the other
-     * objects attached via the joints.
+     * Returns information on any joints attached to this object.
      *
-     * This function returns a table of sub-tables, each sub-table representing one joint.
+     * This information included the GUID of the other objects attached via the joints.
      *
      * @example Example of a return table of an object with 2 joints
      * ```lua
@@ -817,9 +915,10 @@ declare interface TTSObject<D extends ObjectData = ObjectData> extends GameObjec
     getQuantity(): int;
 
     /**
-     * Returns the current rotationValue. Rotation values are used to give value to different rotations (like dice) and
-     * are set using scripting or the Gizmo tool. The value returned is for the rotation that is closest to being
-     * pointed "up".
+     * Returns the current rotationValue.
+     *
+     * Rotation values are used to give value to different rotations (like dice) and are set using scripting or the Gizmo tool.
+     * The value returned is for the rotation that is closest to being pointed "up".
      *
      * The returned value will either be a number or a string, depending on the value that was given to that rotation.
      *
@@ -834,13 +933,13 @@ declare interface TTSObject<D extends ObjectData = ObjectData> extends GameObjec
     getRotationValue(): string | int;
 
     /**
-     * Returns a Table of rotation values. Rotation values are used to give value to different rotations (like dice)
-     * based on which side is pointed "up". It works by checking all of the rotation values assigned to an object and
-     * determining which one of them is closest to pointing up, and then displaying the value associated with that
+     * Returns a Table of rotation values.
+     *
+     * Rotation values are used to give value to different rotations (like dice) based on which side is pointed "up".
+     * It works by checking all of the rotation values assigned to an object and determining which one of them is closest to pointing up, and then displaying the value associated with that
      * rotation.
      *
-     * You can manually assign rotation values to objects using the Rotation Value Gizmo tool (in the left side Gizmo
-     * menu) or using setRotationValues(...).
+     * You can manually assign rotation values to objects using the Rotation Value Gizmo tool (in the left side Gizmo menu) or using [[setRotationValues()]].
      *
      * @example Example returned Table for a coin
      * ```lua
@@ -862,15 +961,19 @@ declare interface TTSObject<D extends ObjectData = ObjectData> extends GameObjec
     getSelectingPlayers(): PlayerColor[];
 
     /**
-     * Current state ID (index) an object is in. Returns -1 if there are no other states. State ids (indexes) start at
-     * 1.
+     * Current state ID (index) an object is in.
+     *
+     * Returns -1 if there are no other states.
+     * State ids (indexes) start at 1.
      *
      * @category Get
      */
     getStateId(): int;
 
     /**
-     * Returns a Table of information on the states of an Object. Stated Objects have ids (indexes) starting with 1.
+     * Returns a Table of information on the states of an Object.
+     *
+     * Stated Objects have ids (indexes) starting with 1.
      *
      * The returned table will NOT include data on the current state.
      *
@@ -901,11 +1004,12 @@ declare interface TTSObject<D extends ObjectData = ObjectData> extends GameObjec
     getStates(): StateInfo[];
 
     /**
-     * Returns the Object's value. This represents something different depending on the Object's type.
+     * Returns the Object's value.
+     *
+     * This represents something different depending on the Object's type.
      *
      * @important
-     * If the Object has rotation values, then this method will return the rotation value i.e. behave the same as
-     * getRotationValue().
+     * If the Object has rotation values, then this method will return the rotation value i.e. behave the same as [[getRotationValue()]].
      *
      * See [[setValue]] for more information.
      *
@@ -955,9 +1059,10 @@ declare interface TTSObject<D extends ObjectData = ObjectData> extends GameObjec
     setColorTint(color: ColorValue): boolean;
 
     /**
-     * Sets a custom Object's properties. It can be used after spawnObject or on an already existing custom Object. If
-     * used on an already existing custom Object, you must use reload on the object after setCustomObject for the
-     * changes to be displayed.
+     * Sets a custom Object's properties.
+     *
+     * It can be used after [[spawnObject]] or on an already existing custom Object.
+     * If used on an already existing custom Object, you must use [[reload]] on the object after [[setCustomObject]] for the changes to be displayed.
      *
      * @param parameters The custom object information.
      *
@@ -978,7 +1083,9 @@ declare interface TTSObject<D extends ObjectData = ObjectData> extends GameObjec
     setCustomObject(parameters: CustomObject): boolean;
 
     /**
-     * Sets a description for an Object. Shows in tooltip after delay.
+     * Sets a description for an Object.
+     *
+     * Shows in tooltip after delay.
      *
      * @param description The description.
      *
@@ -1024,7 +1131,9 @@ declare interface TTSObject<D extends ObjectData = ObjectData> extends GameObjec
     setLock(lock: boolean): boolean;
 
     /**
-     * Sets a name for an Object. Shows in tooltip.
+     * Sets a name for an Object.
+     *
+     * Shows in tooltip.
      *
      * @param name
      *
@@ -1035,10 +1144,9 @@ declare interface TTSObject<D extends ObjectData = ObjectData> extends GameObjec
     /**
      * Sets the Object's rotation value i.e. physically rotates the object.
      *
-     * The Object will be elevated (smooth moved upward), smoothly rotated to the rotation corresponding with the
-     * specified `rotation_value` and then released to fall back into place.
+     * The Object will be elevated (smooth moved upward), smoothly rotated to the rotation corresponding with the specified `rotation_value` and then released to fall back into place.
      *
-     * @param rotationValue A rotation value. Should be a int, string or float.
+     * @param rotationValue A rotation value.
      *
      * @example Rotate a die to show the value 6.
      * ```lua
@@ -1047,14 +1155,16 @@ declare interface TTSObject<D extends ObjectData = ObjectData> extends GameObjec
      *
      * @category Set
      */
-    setRotationValue(rotationValue: int | string | float): unknown;
+    setRotationValue(rotationValue: RotationValue): unknown;
 
     /**
-     * Sets rotation values of an object. Rotation values are used to give value to different rotations (like dice). It
-     * works by checking all of the rotation values assigned to an object and determining which one of them is closest
-     * to pointing up, and then displaying the value associated with that rotation.
+     * Sets rotation values of an object.
      *
-     * @param rotationValues A Table containing Tables with the following values. 1 sub-Table per "face".
+     * Rotation values are used to give value to different rotations (like dice).
+     * It works by checking all of the rotation values assigned to an object and determining which one of them is closest to pointing up, and then displaying the value associated with that rotation.
+     *
+     * @param rotationValues A Table containing Tables with the following values.
+     *                       1 sub-Table per "face".
      *
      * @example Set the two different sides (rotations) of a coin to have the values "Heads" and "Tails".
      * ```lua
@@ -1072,10 +1182,11 @@ declare interface TTSObject<D extends ObjectData = ObjectData> extends GameObjec
      *
      * @category Set
      */
-    setRotationValues(rotationValues: { value: int | string | float; rotation: Vector }[]): boolean;
+    setRotationValues(rotationValues: { value: RotationValue; rotation: Vector }[]): boolean;
 
     /**
      * Sets state of an Object. State ids (indexes) start at 1.
+     *
      * Will throw an error, if the current state is already the given index.
      *
      * @param stateId The new state.
@@ -1085,7 +1196,9 @@ declare interface TTSObject<D extends ObjectData = ObjectData> extends GameObjec
     setState(stateId: int): TTSObject;
 
     /**
-     * Sets the Object's value. This represents something different depending on the Object's type.
+     * Sets the Object's value.
+     *
+     * This represents something different depending on the Object's type.
      *
      * @param value
      *
@@ -1150,17 +1263,20 @@ declare interface TTSObject<D extends ObjectData = ObjectData> extends GameObjec
     clone(parameters?: { position?: Vector; snap_to_grid?: boolean }): TTSObject;
 
     /**
-     * Cuts (splits) a deck down to a given card. In other words, it counts down from the top of the deck and makes a
-     * new deck of that size and puts the remaining cards in the other pile.
+     * Cuts (splits) a deck down to a given card.
      *
-     * After the cut, the resulting decks much each have at least 2 cards. This means the parameter used must be between
-     * 2 and totalNumberOfCards - 2.
+     * In other words, it counts down from the top of the deck and makes a new deck of that size and puts the remaining cards in the other pile.
+     *
+     * After the cut, the resulting decks much each have at least 2 cards.
+     * This means the parameter used must be between 2 and totalNumberOfCards - 2.
      *
      * @important
-     * New decks take a frame to be created. This means trying to act on them immediately will not work. Use a coroutine
-     * or timer to add a delay.
+     * New decks take a frame to be created.
+     * This means trying to act on them immediately will not work.
+     * Use a coroutine or timer to add a delay.
      *
-     * @param count How many cards down to cut the deck. Optional, if no value is provided the deck is cut in half.
+     * @param count How many cards down to cut the deck.
+     *              Optional, if no value is provided the deck is cut in half.
      *
      * @returns The table that is returned
      *  1. The lower deck, containing the remaining cards in the deck.
@@ -1180,13 +1296,17 @@ declare interface TTSObject<D extends ObjectData = ObjectData> extends GameObjec
     cut(count: int): [TTSObject, TTSObject];
 
     /**
-     * Deals Objects to hand zones. Will deal from decks/bags/stacks as well as individual items. If dealing an
-     * individual item to a hand zone, it is a good idea to make sure that its Member Variable for use_hands is true.
+     * Deals Objects to hand zones.
+     *
+     * Will deal from decks/bags/stacks as well as individual items.
+     * If dealing an individual item to a hand zone, it is a good idea to make sure that its Member Variable for use_hands is true.
      *
      * @param number How many to deal.
-     * @param playerColor The Player Color to deal to. Optional, defaults to an empty string. If not supplied, it will
-     *                    attempt to deal to all seated players.
-     * @param index Index of hand zone to deal to. Optional, defaults to the first created hand zone.
+     * @param playerColor The Player Color to deal to.
+     *                    Optional, defaults to an empty string.
+     *                    If not supplied, it will attempt to deal to all seated players.
+     * @param index Index of hand zone to deal to.
+     *              Optional, defaults to the first created hand zone.
      *
      * @category Action
      */
@@ -1226,7 +1346,9 @@ declare interface TTSObject<D extends ObjectData = ObjectData> extends GameObjec
     destroyAttachments(): boolean;
 
     /**
-     * Destroys Object. Allows for `self.destruct()`.
+     * Destroys Object.
+     *
+     * Allows for `self.destruct()`.
      *
      * @category Action
      */
@@ -1247,15 +1369,15 @@ declare interface TTSObject<D extends ObjectData = ObjectData> extends GameObjec
     flip(): boolean;
 
     /**
-     * Creates a highlight around an Object. duration is optional and specified in seconds, when omitted the Object
-     * remains highlighted.
+     * Creates a highlight around an Object.
      *
-     * @param color
-     * @param duration
+     * @param color The highlight color.
+     * @param duration Duration in seconds, the object stays highlighted.
+     *                 When omitted the Object remains highlighted.
      *
      * @category Action
      */
-    highlightOn(color: ColorValue, duration: float): boolean;
+    highlightOn(color: ColorValue, duration?: float): boolean;
 
     /**
      * Removes a highlight from around an Object.
@@ -1273,8 +1395,10 @@ declare interface TTSObject<D extends ObjectData = ObjectData> extends GameObjec
      * Using obj.jointTo(), with no object or parameter used as arguments, will remove all joints from that Object.
      *
      * @param object The Object that the selected object will be jointed to.
-     * @param parameters A table of parameters. Which parameters depends on the joint type. See below for more. All
-     *                   parameters have defaults, the same as the Joint Tool.
+     * @param parameters A table of parameters.
+     *                   Which parameters depends on the joint type.
+     *                   See below for more.
+     *                   All parameters have defaults, the same as the Joint Tool.
      *
      * @example Example of Fixed
      * ```lua
@@ -1320,18 +1444,19 @@ declare interface TTSObject<D extends ObjectData = ObjectData> extends GameObjec
     jointTo(object: TTSObject, parameters: Omit<Joint, "joint_object_guid">): boolean;
 
     /**
-     * Places an object into a container (chip stacks/bags/decks). If neither Object is a container, but they are able
-     * to be combined (like with 2 cards), then they form a deck/stack.
+     * Places an object into a container (chip stacks/bags/decks).
+     *
+     * If neither Object is a container, but they are able to be combined (like with 2 cards), then they form a deck/stack.
      *
      * @param putObject An Object to place into the container.
      *
-     * @returns The container is returned as the Object reference. Either this is the container/deck/stack the other
-     *          Object was placed into, or the deck/stack that was formed by the putObject action.
+     * @returns The container is returned as the Object reference.
+     *          Either this is the container/deck/stack the other Object was placed into, or the deck/stack that was formed by the putObject action.
      *
      * @information
-     * When you call this putObject() to put a card into a deck, the card goes into the end of the deck which is closest
-     * to it in Y elevation. So, if both the card and the deck are resting on the table, the card will be put at the
-     * bottom of the deck. if the card is hovering above the deck, it will be put at the top.
+     * When you call this putObject() to put a card into a deck, the card goes into the end of the deck which is closest to it in Y elevation.
+     * So, if both the card and the deck are resting on the table, the card will be put at the bottom of the deck.
+     * If the card is hovering above the deck, it will be put at the top.
      *
      * @example Example of a script on a bag that places Object into itself
      * ```lua
@@ -1344,27 +1469,33 @@ declare interface TTSObject<D extends ObjectData = ObjectData> extends GameObjec
     putObject(putObject: TTSObject): TTSObject;
 
     /**
-     * Shuffles deck/bag, rolls dice/coin, lifts other objects into the air. Same as pressing R by default. If the
-     * optional parameter color is used, this function will trigger onObjectRandomized(), passing that player color.
+     * Shuffles deck/bag, rolls dice/coin, lifts other objects into the air.
      *
-     * @param color
+     * Same as pressing R by default.
+     *
+     * @param color When used, this function will trigger [[onObjectRandomized()]], passing that player color.
      *
      * @category Action
      */
-    randomize(color: PlayerColor): boolean;
+    randomize(color?: PlayerColor): boolean;
 
     /**
-     * Registers this object for Global collision events, such as onObjectCollisionEnter. Always returns true.
+     * Registers this object for Global collision events, such as onObjectCollisionEnter.
      *
-     * @param stay Whether we should register for onObjectCollisionStay. Stay events may negatively impact performance,
-     *             only set this to true if absolutely necessary. Optional, defaults to `false`.
+     * Always returns `true`.
+     *
+     * @param stay Whether we should register for [[onObjectCollisionStay]].
+     *             Stay events may negatively impact performance, only set this to `true` if absolutely necessary.
+     *             Optional, defaults to `false`.
      *
      * @category Action
      */
     registerCollisions(stay?: boolean): boolean;
 
     /**
-     * Removes a child with the given index. Use getAttachments() to find out the index property.
+     * Removes a child with the given index.
+     *
+     * Use [[getAttachments()]] to find out the index property.
      *
      * @param index
      *
@@ -1373,7 +1504,9 @@ declare interface TTSObject<D extends ObjectData = ObjectData> extends GameObjec
     removeAttachment(index: int): TTSObject;
 
     /**
-     * Detaches the children of this Object. Returns a table of object references.
+     * Detaches the children of this Object.
+     *
+     * Returns a table of object references.
      *
      * @category Action
      */
@@ -1389,8 +1522,9 @@ declare interface TTSObject<D extends ObjectData = ObjectData> extends GameObjec
     removeFromPlayerSelection(playerColor: PlayerColor): boolean;
 
     /**
-     * Returns Object reference of itself after it respawns itself. This function causes the Object to be deleted and
-     * respawned instantly to refresh it, so its old Object reference will no longer be valid.
+     * Returns Object reference of itself after it respawns itself.
+     *
+     * This function causes the Object to be deleted and respawned instantly to refresh it, so its old Object reference will no longer be valid.
      *
      * Most often this is used after using [[setCustomObject]] to modify a custom object.
      *
@@ -1399,8 +1533,10 @@ declare interface TTSObject<D extends ObjectData = ObjectData> extends GameObjec
     reload(): TTSObject;
 
     /**
-     * Resets this Object. Resetting a Deck brings all the Cards back into it. Resetting a Bag clears its contents
-     * (works for both Loot and Infinite Bags).
+     * Resets this Object.
+     *
+     * Resetting a Deck brings all the Cards back into it.
+     * Resetting a Bag clears its contents (works for both Loot and Infinite Bags).
      *
      * @category Action
      */
@@ -1431,14 +1567,16 @@ declare interface TTSObject<D extends ObjectData = ObjectData> extends GameObjec
      * Splits a deck, as evenly as possible, into a number of piles.
      *
      * @important
-     * New decks take a frame to be created. This means trying to act on them immediately will not work. Use a coroutine
-     * or timer to add a delay.
+     * New decks take a frame to be created.
+     * This means trying to act on them immediately will not work.
+     * Use a coroutine or timer to add a delay.
      *
-     * @param piles How many piles to split the deck into. Optional, if no value is provided, it is split into two piles.
+     * @param piles How many piles to split the deck into.
+     *              Optional, if no value is provided, it is split into two piles.
      *              Minimum Value: 2 Maximum Value: Number-Of-Cards-In-Deck / 2
      *
-     * @returns The number of Objects in the table is equal to the number of decks created by the split. They are ordered
-     *          so any larger decks come first.
+     * @returns The number of Objects in the table is equal to the number of decks created by the split.
+     *          They are ordered so any larger decks come first.
      *
      * @example
      * ```lua
@@ -1459,11 +1597,13 @@ declare interface TTSObject<D extends ObjectData = ObjectData> extends GameObjec
      * Spreads the cards of a deck out on the table.
      *
      * @Important
-     * Cards take a frame to be created. This means trying to act on them immediately will not work. Use a coroutine or
-     * timer to add a delay.
+     * Cards take a frame to be created.
+     * This means trying to act on them immediately will not work.
+     * Use a coroutine or timer to add a delay.
      *
-     * @param distance How far apart should the cards be. Optional, if no value is provided, they will be 0.6 inches
-     *                 apart. Negative values will spread to the left instead of the right.
+     * @param distance How far apart should the cards be.
+     *                 Optional, if no value is provided, they will be 0.6 inches apart.
+     *                 Negative values will spread to the left instead of the right.
      *
      * @category Action
      */
@@ -1472,20 +1612,20 @@ declare interface TTSObject<D extends ObjectData = ObjectData> extends GameObjec
     /**
      * Takes an object out of a container (bag/deck/chip stack), returning a reference to the object that was taken.
      *
-     * Objects that are taken out of a container will take one or more frames to spawn. Certain interactions (e.g.
-     * physics) will not be able to take place until the object has finished spawning.
+     * Objects that are taken out of a container will take one or more frames to spawn.
+     * Certain interactions (e.g. physics) will not be able to take place until the object has finished spawning.
      *
      * @param parameters A Table of parameters used to determine how takeObject will act.
      *
      * @important
-     * Certain containers only exist whilst they have more than one object contained within them (e.g. decks). Once you
-     * remove the second last object from a container, the container will be destroyed and the remaining contained
-     * object will spawn in its place. After calling `takeObject` you can check for a remainder.
+     * Certain containers only exist whilst they have more than one object contained within them (e.g. decks).
+     * Once you remove the second last object from a container, the container will be destroyed and the remaining contained object will spawn in its place.
+     * After calling `takeObject` you can check for a remainder.
      *
-     * @xample
-     * Take an object out of a container. As we take it out we'll instruct the object to smooth move (default
-     * positioning behavior) to coordinates (0, 5, 0). Additionally, we're going to add a blue highlight on the object
-     * we've taken out.
+     * @example
+     * Take an object out of a container.
+     * As we take it out we'll instruct the object to smooth move (default positioning behavior) to coordinates (0, 5, 0).
+     * Additionally, we're going to add a blue highlight on the object we've taken out.
      *
      * ```lua
      * local takenObject = container.takeObject({
@@ -1496,9 +1636,9 @@ declare interface TTSObject<D extends ObjectData = ObjectData> extends GameObjec
      *
      * @example Advanced example
      * Take an object out of a container, and then apply an upward force (impulse) shooting it into the air.
-     * We can only apply an impulse to an object once its (underlying rigid body) has finished spawning Additionally,
-     * freshly spawned objects are frozen in place for a single frame. So we need to wait for the taken object to finish
-     * spawning (i.e. callback_function) then wait one more frame before applying the impulse.
+     * We can only apply an impulse to an object once its (underlying rigid body) has finished spawning.
+     * Additionally, freshly spawned objects are frozen in place for a single frame.
+     * So we need to wait for the taken object to finish spawning (i.e. callback_function) then wait one more frame before applying the impulse.
      *
      * ```lua
      * container.takeObject({
@@ -1521,29 +1661,30 @@ declare interface TTSObject<D extends ObjectData = ObjectData> extends GameObjec
     takeObject(parameters: TakeObjectByIndex | TakeObjectByGuid): TTSObject;
 
     /**
-     * Unregisters this object for Global collision events. Returns true if the object was previously registered, false
-     * otherwise.
+     * Unregisters this object for Global collision events.
+     *
+     * Returns `true` if the object was previously registered, `false` otherwise.
      *
      * @category Action
      */
     unregisterCollisions(): boolean;
 
     /**
-     * A more advanced version of [[setHiddenFrom]], this function is also used to hide objects as if they were in a
-     * hand zone. It allows you to identify multiple sources of "hiding" by an ID and toggle the effect on/off easily.
+     * A more advanced version of [[setHiddenFrom]], this function is also used to hide objects as if they were in a hand zone.
      *
-     * This function is slightly more complicated to use for basic hiding, but allows for much easier hiding in complex
-     * situations.
+     * It allows you to identify multiple sources of "hiding" by an ID and toggle the effect on/off easily.
+     *
+     * This function is slightly more complicated to use for basic hiding, but allows for much easier hiding in complex situations.
      *
      * @information
-     * Just like Objects in a hand zone, the player/s the object is hidden from can still interact/move the hidden
-     * Object. It still exists to them, but is shown as a question mark or as a hidden card.
+     * Just like Objects in a hand zone, the player/s the object is hidden from can still interact/move the hidden Object.
+     * It still exists to them, but is shown as a question mark or as a hidden card.
      *
-     * @param id The unique name for this hiding effect. Tip: You can use descriptive tag names like "fog" or
-     *           "blindness"
+     * @param id The unique name for this hiding effect.
+     *           Tip: You can use descriptive tag names like "fog" or "blindness"
      * @param hidden If the hiding effect is enabled or not.
-     * @param players A table containing colors to hide the Object from. Optional, an empty table (or no table) hides
-     *                for everyone.
+     * @param players A table containing colors to hide the Object from.
+     *                Optional, an empty table (or no table) hides for everyone.
      *
      * @example
      * ```lua
@@ -1560,20 +1701,21 @@ declare interface TTSObject<D extends ObjectData = ObjectData> extends GameObjec
     attachHider(id: string, hidden: boolean, players?: PlayerColor[]): boolean;
 
     /**
-     * A more advanced version of setInvisibleTo(...), this function is also used to hide objects as if they were in a
-     * hidden zone. It allows you to identify multiple sources of "hiding" by an ID and toggle the effect on/off easily.
+     * A more advanced version of [[setInvisibleTo()]], this function is also used to hide objects as if they were in a hidden zone.
      *
-     * This function is slightly more complicated to use for basic hiding, but allows for much easier hiding in complex
-     * situations.
+     * It allows you to identify multiple sources of "hiding" by an ID and toggle the effect on/off easily.
+     *
+     * This function is slightly more complicated to use for basic hiding, but allows for much easier hiding in complex situations.
      *
      * @information
-     * Just like Objects in a hidden zone, the player/s the object is hidden from can still interact/move the hidden
-     * Object. It still exists to them, just invisibly so.
+     * Just like Objects in a hidden zone, the player/s the object is hidden from can still interact/move the hidden Object.
+     * It still exists to them, just invisibly so.
      *
-     * @param id The unique name for this hiding effect. Tip: You can use descriptive tag names like "fog" or "blindness"
+     * @param id The unique name for this hiding effect.
+     *           Tip: You can use descriptive tag names like "fog" or "blindness"
      * @param hidden If the hiding effect is enabled or not.
-     * @param players A table containing colors to hide the Object from. Optional, an empty table (or no table) hides for
-     *                everyone.
+     * @param players A table containing colors to hide the Object from.
+     *                Optional, an empty table (or no table) hides for everyone.
      *
      * @example
      * ```lua
@@ -1595,8 +1737,8 @@ declare interface TTSObject<D extends ObjectData = ObjectData> extends GameObjec
      * Using an empty table will cause the Object to remove the hiding effect.
      *
      * @information
-     * Just like Objects in a hand zone, the player/s the object is hidden from can still interact/move the hidden
-     * Object. It still exists to them, but is shown as a question mark or as a hidden card.
+     * Just like Objects in a hand zone, the player/s the object is hidden from can still interact/move the hidden Object.
+     * It still exists to them, but is shown as a question mark or as a hidden card.
      *
      * @param players A table containing colors to hide the Object from.
      *
@@ -1617,8 +1759,8 @@ declare interface TTSObject<D extends ObjectData = ObjectData> extends GameObjec
      * Using an empty table will cause the Object to remove the hiding effect.
      *
      * @information
-     * Just like Objects in a hidden zone, the player/s the object is hidden from can still interact/move the hidden
-     * Object. It still exists to them, just invisibly so.
+     * Just like Objects in a hidden zone, the player/s the object is hidden from can still interact/move the hidden Object.
+     * It still exists to them, just invisibly so.
      *
      * @param players A table containing colors to hide the Object from
      *
@@ -1630,8 +1772,8 @@ declare interface TTSObject<D extends ObjectData = ObjectData> extends GameObjec
      * Add a Decal onto an object or the game world.
      *
      * @information
-     * When using this function, the vector parameters (position, rotation) are relative to what the decal is being
-     * placed on. For example, if you put a decal at {0,0,0} on Global, it will attach to the center of the game room.
+     * When using this function, the vector parameters (position, rotation) are relative to what the decal is being placed on.
+     * For example, if you put a decal at {0,0,0} on Global, it will attach to the center of the game room.
      * If you do the same to an object, it will place the decal on the origin point of the object.
      *
      * @param parameters A Table of parameters used to determine how the function will act.
@@ -1657,11 +1799,12 @@ declare interface TTSObject<D extends ObjectData = ObjectData> extends GameObjec
     /**
      * Used to call a Lua function on another entity.
      *
-     * Var is only returned if the function called has a return. Otherwise return is nil. See example.
+     * Var is only returned if the function called has a return.
+     * Otherwise return is nil. See example.
      *
      * @param funcName Function name you want to activate.
-     * @param funcParams A Table containing any data you want to pass to that function. Optional, will not be sent by
-     *                   default.
+     * @param funcParams A Table containing any data you want to pass to that function.
+     *                   Optional, will not be sent by default.
      *
      * @example Call, used from an entity's script
      * ```lua
@@ -1681,7 +1824,7 @@ declare interface TTSObject<D extends ObjectData = ObjectData> extends GameObjec
      *
      * @category Global
      */
-    call(funcName: string, funcParams?: unknown): unknown;
+    call<T = unknown>(funcName: string, funcParams?: unknown): T;
 
     /**
      * Returns a table of sub-tables, each sub-table representing one decal.
@@ -1729,11 +1872,9 @@ declare interface TTSObject<D extends ObjectData = ObjectData> extends GameObjec
      * Returns a table representing a list of snap points.
      *
      * @information
-     * This function may be called on Global in order to return a list of global snap points (i.e. snap points on the
-     * table).
+     * This function may be called on Global in order to return a list of global snap points (i.e. snap points on the table).
      *
-     * @returns The returned value is a list (numerically indexed table) of sub-tables, where each sub-table represents
-     *          a snap point and has the following properties:
+     * @returns The returned value is a list (numerically indexed table) of sub-tables
      *
      * @example Log the list of global snap points:
      * ```lua
@@ -1745,36 +1886,41 @@ declare interface TTSObject<D extends ObjectData = ObjectData> extends GameObjec
     getSnapPoints(): SnapPoint[];
 
     /**
-     * Data value of a variable in another Object's script. Can only return a table.
+     * Data value of a variable in another Object's script.
+     *
+     * Can only return a table.
      *
      * @param tableName
      *
      * @category Global
      */
-    getTable(tableName: string): unknown;
+    getTable<T = unknown>(tableName: string): T;
 
     /**
-     * Data value of a variable in another entity's script. Cannot return a table.
+     * Data value of a variable in another entity's script.
+     *
+     * Cannot return a non-table.
      *
      * @param varName
      *
      * @category Global
      */
-    getVar(varName: string): unknown;
+    getVar<T = unknown>(varName: string): T;
 
     /**
-     * Returns Table of data representing the current Vector Lines on this entity. See setVectorLines for table format.
+     * Returns Table of data representing the current Vector Lines on this entity.
      *
      * @category Global
      */
     getVectorLines(): VectorLine[];
 
     /**
-     * Sets which decals are on an object. This removes other decals already present, and can remove all decals as well.
+     * Sets which decals are on an object.
+     *
+     * This removes other decals already present, and can remove all decals as well.
      *
      * @information
      * Using this function with an empty table will remove all decals from Global or the object it is used on.
-     * Global.setDecals({})
      *
      * @param parameters The main table, which will contain all of the sub-tables.
      *
@@ -1807,7 +1953,9 @@ declare interface TTSObject<D extends ObjectData = ObjectData> extends GameObjec
     setDecals(parameters: Decal[]): boolean;
 
     /**
-     * Input a string as an entity's Lua script. Generally only used after spawning a new Object.
+     * Input a string as an entity's Lua script.
+     *
+     * Generally only used after spawning a new Object.
      *
      * @param script
      *
@@ -1819,13 +1967,13 @@ declare interface TTSObject<D extends ObjectData = ObjectData> extends GameObjec
      * Replaces existing snap points with the specified list of snap points.
      *
      * @information
-     * This function can also be called on Global in order to create snap points directly within the scene, which are
-     * not attached to any other Object.
+     * This function can also be called on Global in order to create snap points directly within the scene, which are not attached to any other Object.
      *
      * @param snapPoints A list (numerically indexed table) of snap points.
      *
      * @example
-     * Give an object 3 snap points. A regular snap point, a rotation snap point, and a rotation snap point with a tag.
+     * Give an object 3 snap points.
+     * A regular snap point, a rotation snap point, and a rotation snap point with a tag.
      *
      * ```lua
      * object.setSnapPoints({
@@ -1861,7 +2009,9 @@ declare interface TTSObject<D extends ObjectData = ObjectData> extends GameObjec
     setTable(tableName: string, tableValue: unknown): boolean;
 
     /**
-     * Creates/updates a global variable in another entity's script. Cannot set a table.
+     * Creates/updates a global variable in another entity's script.
+     *
+     * Cannot set a table.
      *
      * @param varName The name of the variable.
      * @param varValue The new variable value.
@@ -1873,9 +2023,8 @@ declare interface TTSObject<D extends ObjectData = ObjectData> extends GameObjec
     /**
      * Spawns Vector Lines from a list of parameters.
      *
-     * > This function can also be used on the game world itself using Global.
-     *
-     * @param parameters: The table containing each "line's" data. Each contiguous line has its own sub-table.
+     * @param parameters: The table containing each "line's" data.
+     *                    Each contiguous line has its own sub-table.
      *
      * @example
      * ```lua
@@ -1919,28 +2068,34 @@ declare interface TTSBagInfinite extends TTSObject<BagInfiniteData> {
 
 declare interface TTSBoard extends TTSObject<BoardData> {}
 
+declare interface TTSBoardCustom extends TTSObject<BoardCustomData, BoardCustomObject> {
+    setCustomObject(object: BoardCustomObject): boolean;
+}
+
 /**
  * A custom card object.
  *
  * @information
- * `Custom` is not part of the type name, because there's no type for the standard card, since that one is not really
- * useful.
+ * `Custom` is not part of the type name, because there's no type for the standard card, since that one is not really useful.
  */
-declare interface TTSCard extends TTSObject<CardCustomData> {
+declare interface TTSCard extends TTSObject<CardCustomData, CardCustomObject> {
     putObject(object: TTSCard | TTSDeck): TTSDeck;
+
+    setCustomObject(object: CardCustomObjectCreate): boolean;
 }
 
 /**
  * A custom deck object.
  *
  * @information
- * `Custom` is not part of the type name, because there's no type for the standard deck, since that one is not really
- * useful.
+ * `Custom` is not part of the type name, because there's no type for the standard deck, since that one is not really useful.
  */
-declare interface TTSDeck extends TTSObject<DeckCustomData> {
+declare interface TTSDeck extends TTSObject<DeckCustomData, DeckCustomObject> {
     getObjects(): ContainedObjectInfo[];
 
     putObject(object: TTSCard | TTSDeck): TTSDeck;
+
+    setCustomObject(object: DeckCustomObjectCreate): boolean;
 }
 
 /**
@@ -1951,15 +2106,26 @@ declare interface TTSDie extends TTSObject<DieData> {}
 /**
  * A custom die object.
  */
-declare interface TTSDieCustom extends TTSObject<DieCustomData> {}
+declare interface TTSDieCustom extends TTSObject<DieCustomData, DieCustomObject> {
+    setCustomObject(object: DieCustomObjectCreate): boolean;
+}
 
-declare interface TTSFigurine extends TTSObject<FigurineData> {}
+/**
+ * A custom figurine.
+ */
+declare interface TTSFigurine extends TTSObject<FigurineCustomData, FigurineCustomObject> {
+    setCustomObject(object: FigurineCustomObject): boolean;
+}
 
 /**
  * A hand zone object.
  */
 declare interface TTSHandZone extends TTSObject<HandZoneData> {
     getObjects(): TTSObject[];
+}
+
+declare interface TTSModelCustom extends TTSObject<ModelData, ModelCustomObject> {
+    setCustomObject(object: ModelCustomObjectCreate): boolean;
 }
 
 /**
@@ -1972,12 +2138,16 @@ declare interface TTSScriptingZone extends TTSObject<ScriptingZoneData> {
 /**
  * A custom tile object.
  */
-declare interface TTSTile extends TTSObject<TileData> {}
+declare interface TTSTile extends TTSObject<TileData, TileCustomObject> {
+    setCustomObject(object: TileCustomObjectCreate): boolean;
+}
 
 /**
  * A custom token object.
  */
-declare interface TTSToken extends TTSObject<TokenData> {}
+declare interface TTSToken extends TTSObject<TokenData, TokenCustomObject> {
+    setCustomObject(object: TokenCustomObjectCreate): boolean;
+}
 
 /**
  * Possible settings for the fog of war.
@@ -2084,6 +2254,8 @@ interface SnapPoint {
     /** Table of representing the tags associated with the snap point. */
     tags: string[];
 }
+
+type RotationValue = int | float | string;
 
 interface VectorLine {
     /** Table containing Vector positions for each "point" on the line. */

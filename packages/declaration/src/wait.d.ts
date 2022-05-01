@@ -1,28 +1,29 @@
 /**
+ * @module Wait
+ */
+
+/**
  * The `Wait` class is a static global class which allows you to schedule code (functions) to be executed later on.
  *
- * ~~~important
- * Please note that `Wait` does not pause Lua script execution, because that would freeze Tabletop Simulator! The next
- * line of code after a `Wait` function call will always be executed immediately.
- * ~~~
+ * @important
+ * Please note that `Wait` does not pause Lua script execution, because that would freeze Tabletop Simulator!
+ * The next  line of code after a `Wait` function call will always be executed immediately.
  */
 /** @noSelf */
-declare class TTSWait {
+declare interface WaitStatic {
     /**
      * Schedules a function to be executed after the specified condition has been met.
      *
      * The return value is a unique ID that may be used to stop the scheduled function before it runs.
      *
-     * conditionFunc will be executed (possibly several times) until it returns true, at which point the scheduled
-     * function (toRunFunc) will be executed, and conditionFunc will no longer be executed again.
+     * conditionFunc will be executed (possibly several times) until it returns true, at which point the scheduled function (toRunFunc) will be executed, and conditionFunc will no longer be executed again.
      *
-     * Optionally, a timeout and timeoutFunc may be specified. If conditionFunc does not return true before the
-     * specified timeout (seconds) has elapsed, then the scheduled function is cancelled i.e. will not be called. If a
-     * timeoutFunc is provided, then it will be called when the timeout is reached.
+     * Optionally, a timeout and timeoutFunc may be specified.
+     * If conditionFunc does not return true before the specified timeout (seconds) has elapsed, then the scheduled function is cancelled i.e. will not be called.
+     * If a timeoutFunc is provided, then it will be called when the timeout is reached.
      *
      * @param toRunFunc The function to be executed after the specified condition is met.
-     * @param conditionFunc The function that will be executed repeatedly, until it returns true (or the timeout is
-     *                      reached).
+     * @param conditionFunc The function that will be executed repeatedly, until it returns true (or the timeout is reached).
      * @param timeout The amount of time (in seconds) that may elapse before the scheduled function is cancelled.
      *                Optional, defaults to never timing out.
      * @param timeoutFunc The function that will be executed if the timeout is reached.
@@ -47,7 +48,8 @@ declare class TTSWait {
      * ```
      *
      * @example
-     * Launch an object into the air with a random impulse and wait until it comes to rest. However, if it's taking too long (more than two seconds), give up waiting.
+     * Launch an object into the air with a random impulse and wait until it comes to rest.
+     * However, if it's taking too long (more than two seconds), give up waiting.
      *
      * ```lua
      * local upwardImpulse = math.random(5, 25)
@@ -131,8 +133,8 @@ declare class TTSWait {
      * @param id A wait ID (returned from Wait scheduling functions).
      *
      * @example
-     * Schedules two functions: one that says "Hello!", and one that says "Goodbye!". However, the latter is stopped
-     * before it has a chance to execute i.e. We'll see "Hello!" printed, but we won't see "Goodbye!"
+     * Schedules two functions: one that says "Hello!", and one that says "Goodbye!".
+     * However, the latter is stopped before it has a chance to execute i.e. We'll see "Hello!" printed, but we won't see "Goodbye!"
      *
      * ```lua
      * Wait.time(function() print("Hello!") end, 1)
@@ -147,11 +149,12 @@ declare class TTSWait {
      *
      * Warning
      *
-     * You should be extremely careful using this function. Generally you should cancel individual scheduled functions
-     * with stop instead.
+     * You should be extremely careful using this function.
+     * Generally you should cancel individual scheduled functions with stop instead.
      *
      * @example
-     * Schedules two functions: one that says "Hello!", and one that says "Goodbye!". However, both are stopped before either has the chance to execute.
+     * Schedules two functions: one that says "Hello!", and one that says "Goodbye!".
+     * However, both are stopped before either has the chance to execute.
      *
      * ```lua
      * Wait.time(function() print("Hello!") end, 1)
@@ -166,13 +169,14 @@ declare class TTSWait {
      *
      * The return value is a unique ID that may be used to stop the scheduled function before it runs.
      *
-     * repetitions is optional and defaults to 1. When repetitions is a positive number, toRunFunc will execute for the
-     * specified number of repetitions, with the specified time delay before and between each execution. When
-     * repetitions is -1, toRunFunc will be re-scheduled indefinitely (i.e. infinite repetitions).
+     * repetitions is optional and defaults to 1.
+     * When repetitions is a positive number, toRunFunc will execute for the specified number of repetitions, with the specified time delay before and between each execution.
+     * When repetitions is -1, toRunFunc will be re-scheduled indefinitely (i.e. infinite repetitions).
      *
      * @param toRunFunc The function to be executed after the specified amount of time has elapsed.
      * @param seconds The amount of time that must elapse before toRunFunc is executed.
-     * @param repetitions Number of times toRunFunc will be (re)scheduled. -1 is infinite repetitions.
+     * @param repetitions Number of times toRunFunc will be (re)scheduled.
+     *                    -1 is infinite repetitions.
      *                    Optional, defaults to `1`.
      *
      * @example
@@ -211,4 +215,4 @@ declare class TTSWait {
     time(toRunFunc: () => unknown, seconds: float, repetitions?: int): int;
 }
 
-declare const Wait: TTSWait;
+declare const Wait: WaitStatic;

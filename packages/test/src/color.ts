@@ -14,7 +14,7 @@ const colors = [
     Color.Yellow,
 ];
 
-const [someColor, someColorName] = Color.Foo!;
+const someColor = Color.Foo!;
 
 let x = Color(1, 1, 1);
 const y = Color({ r: 1 });

@@ -1,6 +1,6 @@
 {
   "$schema": "https://typedoc.org/schema.json",
-  "entryPoints": ["declarations"],
+  "entryPoints": ["src"],
   "entryPointStrategy": "Expand",
   "out": "docs",
   "disableSources": true,

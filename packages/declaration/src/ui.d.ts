@@ -1,3 +1,7 @@
+/**
+ * @module UI
+ */
+
 /** @noSelf */
 interface UI {
     /** Indicates whether (the server) has finished loading all UI custom assets */

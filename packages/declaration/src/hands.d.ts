@@ -1,8 +1,14 @@
 /**
- * The static global Hands class allows you to control the behavior of Hand Zones.
+ * The static global [[HandsStatic|Hands]] class allows you to control the behavior of Hand Zones.
+ *
+ * @module Hands
  */
-/** @noself */
-declare class TTSHands {
+/**
+ * The static global Hands class allows you to control the behavior of Hand Zones.
+ *
+ * @noSelf
+ */
+declare interface HandsStatic {
     /**	Whether hand zones are enabled i.e. hold objects. */
     enable: boolean;
 
@@ -28,4 +34,5 @@ declare const enum HandsHiding {
     Disable = 3,
 }
 
-declare const Hands: TTSHands;
+/** The static global instance of [[HandsStatic]] */
+declare const Hands: HandsStatic;

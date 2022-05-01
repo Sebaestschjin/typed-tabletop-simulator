@@ -1,8 +1,13 @@
 /**
- * Tables is a global which provides the ability to interact with the Table object.
+ * @module Tables
  */
-/** @noSelf */
-declare class TTSTables {
+
+/**
+ * Tables is a global which provides the ability to interact with the Table object.
+ *
+ * @noSelf
+ */
+declare interface TablesStatic {
     /**
      * Returns the image URL of the current Custom Table, or nil if the current table is not a Custom Table.
      */
@@ -19,7 +24,9 @@ declare class TTSTables {
     getTableObject(): TTSObject;
 
     /**
-     * Sets the image URL for the current Custom Table. Has no effect if the current Table is not a Custom Table.
+     * Sets the image URL for the current Custom Table.
+     *
+     * Has no effect if the current Table is not a Custom Table.
      */
     setCustomURL(url: URI): boolean;
 
@@ -57,4 +64,4 @@ declare type TableNameHumanReadable =
     | "Round Plastic"
     | "Square";
 
-declare const Tables: TTSTables;
+declare const Tables: TablesStatic;

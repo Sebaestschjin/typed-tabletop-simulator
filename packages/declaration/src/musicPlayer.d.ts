@@ -1,9 +1,13 @@
 /**
- * `MusicPlayer` is a static global class which allows you to control the in-game music playback i.e. the in-game
- * "Music" menu.
+ * @module MusicPlayer
  */
-/** @noSelf */
-declare class TTSMusicPlayer {
+
+/**
+ * `MusicPlayer` is a static global class which allows you to control the in-game music playback i.e. the in-game "Music" menu.
+ *
+ * @noSelf
+ */
+declare interface MusicPlayerStatic {
     /** If all players loaded the current audioclip. */
     readonly loaded: boolean;
 
@@ -54,16 +58,16 @@ declare class TTSMusicPlayer {
     setPlaylist(playlist: AudioClip[]): boolean;
 
     /**
-     * Skips to the beginning of the audioclip or if the play time is less than 3 seconds to the previous audioclip in
-     * playlist if possible.
+     * Skips to the beginning of the audioclip or if the play time is less than 3 seconds to the previous audioclip in playlist if possible.
      *
      * @returns `true` if skip was successful, otherwise `false`.
      */
     skipBack(): boolean;
 
     /**
-     * Skips to the next audioclip in the current playlist. If the current audioclip is the last of the playlist, loops
-     * around to the first audioclip in the playlist.
+     * Skips to the next audioclip in the current playlist.
+     *
+     * If the current audioclip is the last of the playlist, loops around to the first audioclip in the playlist.
      *
      * @returns `true` if skip was successful, otherwise `false`.
      */
@@ -77,6 +81,8 @@ declare interface AudioClip {
     /** The title of the current audioclip. */
     title: string;
 }
+
+/** Possible status of the music player. */
 declare type MusicPlayerStatus = "Stop" | "Play" | "Loading" | "Ready";
 
-declare const MusicPlayer: TTSMusicPlayer;
+declare const MusicPlayer: MusicPlayerStatic;

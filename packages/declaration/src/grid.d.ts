@@ -1,8 +1,19 @@
 /**
- * Grid, a static global class, controls the in-game grid. It allows you to manipulate the placement and appearance of
- * the grid in the same way as the in-game interface.
+ * [[GridStatic|Grid]], a static global class, controls the in-game grid.
+ *
+ * It allows you to manipulate the placement and appearance of the grid in the same way as the in-game interface.
+ *
+ * @module Grid
  */
-declare class TTSGrid {
+
+/**
+ * A static global class, controling the in-game grid.
+ *
+ * It allows you to manipulate the placement and appearance of the grid in the same way as the in-game interface.
+ *
+ * @noSelf
+ */
+declare interface GridStatic {
     /** The type of the grid. */
     type: GridType;
 
@@ -50,4 +61,5 @@ declare const enum GridSnapping {
     Both = 4,
 }
 
-declare const Grid: TTSGrid;
+/** The static global instance of [[GridStatic]] */
+declare const Grid: GridStatic;

@@ -280,8 +280,10 @@ declare interface VectorStatic {
      * expressable in TypeScript.
      */
     new: (x: float, y: float, z: float) => Vector;
+
     /** Return a vector with specified (x, y, z) components. */
     (this: void, x: float, y: float, z: float): Vector;
+
     /** Return a vector with x/y/z or 1/2/3 components from source table (x/y/z first). */
     (this: void, values: VectorShape): Vector;
 

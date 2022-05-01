@@ -1,9 +1,14 @@
 /**
- * Turns, a static global class, is the in-game turns system. It allows you to modify the player turns in the same way
- * that the in-game Turns menu does.
+ * @module Turns
  */
-/** @noSelf */
-declare class TTSTurns {
+
+/**
+ * Turns, a static global class, is the in-game turns system.
+ * It allows you to modify the player turns in the same way that the in-game Turns menu does.
+ *
+ * @noSelf
+ */
+declare interface TurnsStatic {
     /** Enable/disable the turns system. */
     enable: boolean;
 
@@ -44,4 +49,4 @@ declare const enum TurnType {
     Custom = 2,
 }
 
-declare const Turns: TTSTurns;
+declare const Turns: TurnsStatic;

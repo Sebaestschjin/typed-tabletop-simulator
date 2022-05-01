@@ -1,8 +1,11 @@
 /**
- * Time, not to be confused with the deprecated Timer class, is a static global class which provides access to Unity's
- * time information.
+ * @module Time
  */
-declare class TTSTime {
+
+/**
+ * Time, not to be confused with the deprecated Timer class, is a static global class which provides access to Unity's time information.
+ */
+declare interface TimeStatic {
     /** The current time. Works like `os.time()` but is more accurate. */
     readonly time: float;
 
@@ -13,4 +16,4 @@ declare class TTSTime {
     readonly fixed_delta_time: float;
 }
 
-declare const Time: TTSTime;
+declare const Time: TimeStatic;

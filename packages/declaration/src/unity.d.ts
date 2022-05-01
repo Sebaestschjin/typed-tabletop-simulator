@@ -1,3 +1,7 @@
+/**
+ * @module Unity
+ */
+
 /** @noSelf */
 interface GameObject extends GameObjectFunctions {
     /** The name of the Component. */
@@ -31,24 +35,27 @@ interface GameObjectFunctions {
     getComponent(name: string): Component;
 
     /**
-     * Returns a Component matching the specified name. Found by searching the Components of the GameObject and its
-     * children recursively (depth first).
+     * Returns a Component matching the specified name.
+     *
+     * Found by searching the Components of the GameObject and its children recursively (depth first).
      *
      * @category Component
      */
     getComponentInChildren(name: string): Component;
 
     /**
-     * Returns the GameObject's list of Components. name is optional, when specified only Components with specified
-     * name will be included.
+     * Returns the GameObject's list of Components.
+     *
+     * name is optional, when specified only Components with specified name will be included.
      *
      * @category Component
      */
     getComponents(name: string): Component[];
 
     /**
-     * Returns a list of Components found by searching the GameObject and its children recursively (depth first). name is
-     * optional, when specified only Components with specified name will be included.
+     * Returns a list of Components found by searching the GameObject and its children recursively (depth first).
+     *
+     * name is optional, when specified only Components with specified name will be included.
      *
      * @category Component
      */
@@ -59,8 +66,9 @@ interface GameObjectFunctions {
  * Danger
  *
  * Component APIs are an advanced feature. An understanding of how Unity works is required to utilize them.
+ *
+ * @noSelf
  */
-/** @noSelf */
 interface Component {
     /** The GameObject the Component composes. */
     game_object: GameObject;
