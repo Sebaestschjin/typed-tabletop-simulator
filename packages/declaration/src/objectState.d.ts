@@ -83,6 +83,23 @@ interface ObjectData {
 }
 
 /**
+ * Object data for a custom asset bundle.
+ */
+interface AssetBundleData extends ObjectData {
+    CustomAssetbundle: {
+        AssetbundleURL: URI;
+
+        AssetbundleSecondaryURL?: URI;
+
+        MaterialIndex?: MaterialType;
+
+        TypeIndex?: ModelType;
+
+        LoopingEffectIndex?: int;
+    };
+}
+
+/**
  * Object data for a regular bag.
  */
 interface BagData extends ObjectData {
@@ -93,14 +110,12 @@ interface BagData extends ObjectData {
     ContainedObjects?: ObjectData[];
 }
 
+/**
+ * Object data for an infinite bag.
+ */
 interface BagInfiniteData extends ObjectData {
     ContainedObjects?: [ObjectData];
 }
-
-/**
- * Object data for a board.
- */
-interface BoardData extends ObjectData {}
 
 /**
  * Object data for a custom board.
@@ -113,6 +128,34 @@ interface BoardCustomData extends ObjectData {
     };
 }
 
+interface BookData extends ObjectData {
+    CustomPDF: {
+        /**
+         * URI for the PDF file.
+         */
+        PDFUrl: URI;
+
+        /**
+         * Currently selected page.
+         */
+        PDFPage: int;
+
+        /**
+         * The page numbers displayed in the Custom PDF UI are offset by this amount.
+         */
+        PDFPageOffset: int;
+    };
+}
+
+/**
+ * Object data for the tablet object.
+ */
+interface BrowserData extends ObjectData {
+    Tablet: {
+        PageURL: string;
+    };
+}
+
 /**
  * Object data for a custom card.
  */
@@ -120,6 +163,22 @@ interface CardCustomData extends ObjectData {
     CardID: int;
 
     CustomDeck: LuaTable<int, CustomDeckData>;
+}
+
+interface ClockData extends ObjectData {
+    Clock: {
+        Mode: ClockMode;
+
+        SecondsPassed: int;
+
+        Paused: boolean;
+    };
+}
+
+interface CounterData extends ObjectData {
+    Counter: {
+        value: int;
+    };
 }
 
 /**
@@ -170,6 +229,186 @@ interface FigurineCustomData extends ObjectData {
  * Object data of a hand zone.
  */
 interface HandZoneData extends ObjectData {}
+
+interface LayoutZoneData extends ObjectData {
+    LayoutZone: {
+        /** Options set for this Layout Zone. */
+        Options?: {
+            /**
+             * The directions the groups in the zone expand into. This will determine the origin corner.
+             *
+             * @defaultValue [[LayoutZoneDirection.RightDown]]
+             */
+            Direction?: LayoutZoneDirection;
+
+            /**
+             * The direction the objects within a group will expand into.
+             *
+             * @defaultValue [[LayoutZoneGroupDirection.East]]
+             */
+            MeldDirection?: LayoutZoneGroupDirection;
+
+            /**
+             * Determines whether newly added objects are turned face-up or face-down.
+             *
+             * @defaultValue [[LayoutZoneFacing.FaceUp]]
+             */
+            NewObjectFacing?: LayoutZoneFacing;
+
+            /**
+             * Face-Up objects dropped on zone will be laid out.
+             *
+             * @defaultValue `true`
+             */
+            TriggerForFaceUp?: boolean;
+
+            /**
+             * Face-Down objects dropped on zone will be laid out.
+             *
+             * @defaultValue `true`
+             */
+            TriggerForFaceDown?: boolean;
+
+            /**
+             * Non-card objects dropped on zone will be laid out.
+             *
+             * @defaultValue `false`
+             */
+            TriggerForNonCards?: boolean;
+
+            /**
+             * When moving an object from one full group to another, the object you drop on will be moved to the original group.
+             *
+             * @defaultValue `true`
+             */
+            AllowSwapping?: boolean;
+
+            /**
+             * When new objects are added to a zone, they will be gathered into groups of this many objects.
+             *
+             * @defaultValue 13
+             */
+            MaxObjectsPerNewGroup?: int;
+
+            /**
+             * Each group in the zone may not contain more than this number of objects.
+             *
+             * @defaultValue 0
+             */
+            MaxObjectsPerGroup?: int;
+
+            /**
+             * How groups are sorted internally.
+             *
+             * @defaultValue [[LayoutZoneSort.Name]]
+             */
+            MeldSort?: LayoutZoneSort;
+
+            /**
+             * When enabled the sort order inside a group is reversed.
+             *
+             * @defaultValue `false`
+             */
+            MeldReverseSort?: boolean;
+
+            /**
+             * When enabled all groups will be sorted when laid out, rather than only newly added groups.
+             *
+             * @defaultValue `false`
+             */
+            MeldSortExisting?: boolean;
+
+            /**
+             * When picked up, cards above the grabbed card will also be lifted.
+             *
+             * @defaultValue `false`
+             */
+            StickyCards?: boolean;
+
+            /**
+             * How far each object in a group is moved horizontally from the previous object.
+             *
+             * @defaultValue `0.6`
+             */
+            HorizontalSpread?: float;
+
+            /**
+             * How far each object in a group is moved vertically from the previous object.
+             *
+             * @defaultValue `0`
+             */
+            VerticalSpread?: float;
+
+            /**
+             * How much horizontal space is inserted between groups.
+             *
+             * @defaultValue `1`
+             */
+            HorizontalGroupPadding?: float;
+
+            /**
+             * How much vertical space is inserted between groups.
+             *
+             * @defaultValue `1`
+             */
+            VerticalGroupPadding?: float;
+
+            /**
+             * Decks added to the zone will be split into their individual cards.
+             *
+             * @defaultValue `true`
+             */
+            SplitAddedDecks?: boolean;
+
+            /**
+             * Whether cards added to the zone should be combined into decks.
+             *
+             * You may specify the number of cards per deck.
+             *
+             * @defaultValue `false`
+             */
+            CombineIntoDecks?: boolean;
+
+            /**
+             * Sets the size of decks made by the layout zone when it combines newly added cards.
+             *
+             * @defaultValue `0`
+             */
+            CardsPerDeck?: int;
+
+            /**
+             * Objects added to a group will be aligned up or right, different from the preceding object in the group.
+             *
+             * Used, for example, in trick-taking games to make counting easier.
+             *
+             * @defaultValue `false`
+             */
+            AlternateDirection?: boolean;
+
+            /**
+             * Objects will be randomized whenever they are laid out.
+             *
+             * @defaultValue `false`
+             */
+            Randomize?: boolean;
+
+            /**
+             * When enabled, if ever a group is picked up or removed the rest of the layout will trigger to fill in the gap.
+             *
+             * @defaultValue `false`
+             */
+            InstantRefill?: boolean;
+
+            /**
+             * The zone will not automatically lay out objects: it must be triggered manually.
+             *
+             * @defaultValue `false`
+             */
+            ManualOnly?: boolean;
+        };
+        GroupsInZone?: Array<GUID[]>;
+    };
+}
 
 /**
  * Object data of a custom model.
@@ -229,10 +468,34 @@ interface ModelData extends ObjectData {
     ContainedObjects?: ObjectData[];
 }
 
+interface RPGFigurineData extends ObjectData {
+    /** Whether the mode is switched on the figurine. */
+    RPGmode: boolean;
+
+    /** Whether the dead mode is entered for the figurine. */
+    RPGdead: boolean;
+}
+
 /**
  * Object data of a scripting zone.
  */
 interface ScriptingZoneData extends ObjectData {}
+
+/**
+ * Object data of a 3D text object.
+ */
+interface TextData extends ObjectData {
+    Text: {
+        /** The text shown on the 3D text object. */
+        Text: string;
+
+        /** The color of the text. */
+        colorstate: ColorRGB;
+
+        /** The font size of the text. */
+        fontSize: int;
+    };
+}
 
 /**
  * Object data for a custom token.

@@ -2053,7 +2053,21 @@ declare interface TTSObject<D extends ObjectData = ObjectData, C extends CustomO
 }
 
 /**
+ * A custom asset bundle.
+ *
+ * @category Object Type
+ */
+declare interface TTSAssetBundle extends TTSObject<AssetBundleData, AssetBundleCustomObject> {
+    /** Gives access to the [[AssetBundleBehavior]]. */
+    AssetBundle: AssetBundleBehavior;
+
+    setCustomObject(object: AssetBundleCustomObjectCreate): boolean;
+}
+
+/**
  * A bag object.
+ *
+ * @category Object Type
  */
 declare interface TTSBag extends TTSObject<BagData> {
     getObjects(): ContainedObjectInfo[];
@@ -2061,22 +2075,46 @@ declare interface TTSBag extends TTSObject<BagData> {
 
 /**
  * An infinite bag object.
+ *
+ * @category Object Type
  */
 declare interface TTSBagInfinite extends TTSObject<BagInfiniteData> {
     getObjects(): [ContainedObjectInfo];
 }
 
-declare interface TTSBoard extends TTSObject<BoardData> {}
-
-declare interface TTSBoardCustom extends TTSObject<BoardCustomData, BoardCustomObject> {
+/**
+ * A custom board object.
+ *
+ * @category Object Type
+ */
+declare interface TTSBoard extends TTSObject<BoardCustomData, BoardCustomObject> {
     setCustomObject(object: BoardCustomObject): boolean;
+}
+
+/**
+ * A custom PDF object.
+ *
+ * @category Object Type
+ */
+declare interface TTSBook extends TTSObject<BookData> {
+    /** Gives access to the [[BookBehavior]]. */
+    Book: BookBehavior;
+}
+
+/**
+ * A tablet object.
+ *
+ * @category Object Type
+ */
+declare interface TTSBrowser extends TTSObject<BrowserData> {
+    /** Gives access to the [[BrowserBehavior]]. */
+    Browser: BrowserBehavior;
 }
 
 /**
  * A custom card object.
  *
- * @information
- * `Custom` is not part of the type name, because there's no type for the standard card, since that one is not really useful.
+ * @category Object Type
  */
 declare interface TTSCard extends TTSObject<CardCustomData, CardCustomObject> {
     putObject(object: TTSCard | TTSDeck): TTSDeck;
@@ -2085,10 +2123,29 @@ declare interface TTSCard extends TTSObject<CardCustomData, CardCustomObject> {
 }
 
 /**
+ * A digital clock object.
+ *
+ * @category Object Type
+ */
+declare interface TTSClock extends TTSObject<ClockData> {
+    /** Gives access to the [[ClockBehavior]]. */
+    Clock: ClockBehavior;
+}
+
+/**
+ * A digital counter object.
+ *
+ * @category Object Type
+ */
+declare interface TTSCounter extends TTSObject<CounterData> {
+    /** Gives access to the [[CounterBehavior]]. */
+    Counter: CounterBehavior;
+}
+
+/**
  * A custom deck object.
  *
- * @information
- * `Custom` is not part of the type name, because there's no type for the standard deck, since that one is not really useful.
+ * @category Object Type
  */
 declare interface TTSDeck extends TTSObject<DeckCustomData, DeckCustomObject> {
     getObjects(): ContainedObjectInfo[];
@@ -2100,11 +2157,15 @@ declare interface TTSDeck extends TTSObject<DeckCustomData, DeckCustomObject> {
 
 /**
  * A standard die object.
+ *
+ * @category Object Type
  */
 declare interface TTSDie extends TTSObject<DieData> {}
 
 /**
  * A custom die object.
+ *
+ * @category Object Type
  */
 declare interface TTSDieCustom extends TTSObject<DieCustomData, DieCustomObject> {
     setCustomObject(object: DieCustomObjectCreate): boolean;
@@ -2112,6 +2173,8 @@ declare interface TTSDieCustom extends TTSObject<DieCustomData, DieCustomObject>
 
 /**
  * A custom figurine.
+ *
+ * @category Object Type
  */
 declare interface TTSFigurine extends TTSObject<FigurineCustomData, FigurineCustomObject> {
     setCustomObject(object: FigurineCustomObject): boolean;
@@ -2119,24 +2182,60 @@ declare interface TTSFigurine extends TTSObject<FigurineCustomData, FigurineCust
 
 /**
  * A hand zone object.
+ *
+ * @category Object Type
  */
 declare interface TTSHandZone extends TTSObject<HandZoneData> {
     getObjects(): TTSObject[];
 }
 
+/**
+ * A layout zone object.
+ *
+ * @category Object Type
+ */
+declare interface TTSLayoutZone extends TTSObject<LayoutZoneData> {
+    LayoutZone: LayoutZoneBehavior;
+}
+
+/**
+ * @category Object Type
+ */
 declare interface TTSModelCustom extends TTSObject<ModelData, ModelCustomObject> {
     setCustomObject(object: ModelCustomObjectCreate): boolean;
 }
 
 /**
+ * A RPG Figurine from the RPG set.
+ *
+ * @category Object Type
+ */
+declare interface TTSRPGFigurine extends TTSObject<RPGFigurineData> {
+    RPGFigurine: RPGFigurineBehavior;
+}
+
+/**
  * A scripting zone object.
+ *
+ * @category Object Type
  */
 declare interface TTSScriptingZone extends TTSObject<ScriptingZoneData> {
     getObjects(): TTSObject[];
 }
 
 /**
+ * A 3D text object.
+ *
+ * @category Object Type
+ */
+declare interface TTSText extends TTSObject<TextData> {
+    TextTool: TextBehavior;
+}
+
+/**
  * A custom tile object.
+ *
+ * @category Object Type
  */
 declare interface TTSTile extends TTSObject<TileData, TileCustomObject> {
     setCustomObject(object: TileCustomObjectCreate): boolean;
@@ -2144,6 +2243,8 @@ declare interface TTSTile extends TTSObject<TileData, TileCustomObject> {
 
 /**
  * A custom token object.
+ *
+ * @category Object Type
  */
 declare interface TTSToken extends TTSObject<TokenData, TokenCustomObject> {
     setCustomObject(object: TokenCustomObjectCreate): boolean;
@@ -2464,6 +2565,15 @@ declare const enum ObjectType {
     VRUI = "VR UI",
 }
 
+declare const enum ClockMode {
+    /** Displays the current time of the host. */
+    CurrentTime = 0,
+    /** Displays a countdown and beeps once complete. */
+    Timer = 1,
+    /** Displays a running count up. */
+    Stopwatch = 2,
+}
+
 declare const enum ForceType {
     /** Continuous force, uses mass. */
     Force = 1,
@@ -2473,6 +2583,40 @@ declare const enum ForceType {
     Impulse = 3,
     /** Instant velocity change, ignores mass. */
     VelocityChange = 4,
+}
+
+declare const enum LayoutZoneDirection {
+    RightDown = 0,
+    DownRight = 1,
+    LeftDown = 2,
+    DownLeft = 3,
+    RightUp = 4,
+    UpRight = 5,
+    LeftUp = 6,
+    UpLeft = 7,
+}
+
+declare const enum LayoutZoneFacing {
+    NoChange = 0,
+    FaceUp = 1,
+    FaceDown = 2,
+}
+
+declare const enum LayoutZoneGroupDirection {
+    East = 0,
+    West = 1,
+    North = 2,
+    South = 3,
+}
+
+declare const enum LayoutZoneSort {
+    None = 0,
+    Added = 1,
+    Value = 2,
+    Name = 3,
+    Description = 4,
+    GMNotes = 5,
+    Memo = 6,
 }
 
 /**

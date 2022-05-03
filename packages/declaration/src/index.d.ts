@@ -11,6 +11,7 @@ import "./lighting";
 import "./musicPlayer";
 import "./notes";
 import "./object";
+import "./objectBehavior";
 import "./objectCustom";
 import "./objectState";
 import "./physics";
