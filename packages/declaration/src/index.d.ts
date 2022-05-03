@@ -13,7 +13,7 @@ import "./notes";
 import "./object";
 import "./objectBehavior";
 import "./objectCustom";
-import "./objectState";
+import "./objectData";
 import "./physics";
 import "./player";
 import "./tables";
