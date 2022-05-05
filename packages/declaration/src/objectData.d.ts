@@ -421,7 +421,7 @@ interface ModelData extends ObjectData {
         MeshURL: URI;
 
         /** The path/URL for the diffuse image. */
-        DiffuseURL: URI;
+        DiffuseURL?: URI;
 
         /** The path/URL for the normals image. */
         NormalURL?: URI;
