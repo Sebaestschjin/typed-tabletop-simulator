@@ -3,6 +3,8 @@
   "entryPoints": ["src"],
   "entryPointStrategy": "Expand",
   "out": "docs",
+  "json": "build/typedoc.json",
+  "pretty": true,
   "disableSources": true,
   "excludePrivate": true,
   "excludeTags": ["noself"]

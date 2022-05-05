@@ -80,6 +80,8 @@ interface ObjectData {
     ChildObjects?: ObjectData[];
 
     AttachedSnapPoints?: SnapPointData[];
+
+    AttachedVectorLines?: VectorLineData[];
 }
 
 /**
@@ -553,18 +555,39 @@ interface CustomDeckData {
     UniqueBack: boolean;
 }
 
+/**
+ * Data for a rotation value of a die.
+ */
 interface RotationValueData {
     Value: RotationValue;
 
     Rotation: VectorTable;
 }
 
+/**
+ * Data for an attached snap point.
+ */
 interface SnapPointData {
     Position: VectorTable;
 
     Rotation?: VectorTable;
 
     Tags?: string[];
+}
+
+/**
+ * Data for a drawn vector line.
+ */
+interface VectorLineData {
+    points3: VectorTable[];
+
+    color: ColorRGB;
+
+    thickness: float;
+
+    rotation: VectorTable;
+
+    loop?: boolean;
 }
 
 /**
