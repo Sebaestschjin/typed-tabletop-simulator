@@ -14,7 +14,8 @@ interface UI {
      * @param id The Id that was assigned, as an attribute, to the desired XML UI element.
      * @param attribute The name of the attribute you wish to get the value of.
      */
-    getAttribute(id: UIElementId, attribute: UIAttributeName): UIAttributeValue;
+    // TODO would be nice, if the actual return type would be automatically determined by the name of the attribute.
+    getAttribute<T extends UIAttributeValue>(id: UIElementId, attribute: UIAttributeName): T;
 
     /**
      * Returns the attributes and their values of a UI element.
@@ -121,6 +122,8 @@ type UIAttributeValue = string | number | boolean;
 /** An alias to make it clearer that the parameter denotes to name of a custom asset. */
 type UIAssetName = string;
 
+type UIHandler = (this: void, player: Player, value: string, id: UIElementId) => unknown;
+
 /** A custom asset for the XML UI. */
 interface UIAsset {
     /** The name of the asset, which is used as the XML attribute value. */
@@ -176,6 +179,8 @@ interface BaseElementAttributes {
 
     /** A unique string used to identify the element from Lua scripting. */
     id?: UIElementId;
+
+    color?: UIAttributeColor;
 
     /**
      * A pipe-separated list of visibility targets. An element is always treated as inactive to players not specified
@@ -507,6 +512,11 @@ interface ButtonElementAttributes extends BaseElementAttributes {
      * @defaultValue "#FFFFFF|#FFFFFF|#C8C8C8|rgba(0.78,0.78,0.78,0.5)"
      */
     colors?: UIAttributeColorBlock;
+
+    /** The text to display on the button. */
+    text?: string;
+
+    fontSize?: int;
 
     textShadow?: UIAttributeColor;
 
