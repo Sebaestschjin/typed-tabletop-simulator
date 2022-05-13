@@ -1,0 +1,22 @@
+{
+  "name": "@typed-tabletop-simulator/ui",
+  "version": "0.1.0",
+  "description": "",
+  "scripts": {
+    "build": "tstl",
+    "build:test": "tstl -p tsconfig.test.json"
+  },
+  "main": "dist/index",
+  "types": "dist/index.d.ts",
+  "keywords": [
+    "typescript",
+    "lua",
+    "tabletopsimulator"
+  ],
+  "license": "MIT",
+  "devDependencies": {
+    "@typed-tabletop-simulator/declaration": "workspace:../declaration",
+    "typescript": "^4.6.3",
+    "typescript-to-lua": "^1.4.2"
+  }
+}

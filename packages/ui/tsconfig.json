@@ -1,0 +1,20 @@
+{
+  "$schema": "https://raw.githubusercontent.com/TypeScriptToLua/vscode-typescript-to-lua/master/tsconfig-schema.json",
+  "include": ["src/**/*"],
+  "tstl": {
+    "noImplicitSelf": true
+  },
+  "compilerOptions": {
+    "declaration": true,
+    "module": "commonjs",
+    "removeComments": false,
+    "preserveConstEnums": true,
+    "lib": ["ESNext"],
+    "target": "esnext",
+    "moduleResolution": "node",
+    "outDir": "./dist",
+    "types": ["typescript-to-lua/language-extensions", "@typed-tabletop-simulator/declaration"],
+    "typeRoots": ["./node_modules/@types"],
+    "strict": true
+  }
+}

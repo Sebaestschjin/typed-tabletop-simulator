@@ -13,13 +13,25 @@ importers:
       typedoc: 0.22.15
       typescript-to-lua: 1.4.3
 
-  packages/test:
+  packages/jsx:
     specifiers:
       '@typed-tabletop-simulator/declaration': workspace:../declaration
       typescript: ^4.6.3
       typescript-to-lua: ^1.4.2
     devDependencies:
       '@typed-tabletop-simulator/declaration': link:../declaration
+      typescript: 4.6.3
+      typescript-to-lua: 1.4.3_typescript@4.6.3
+
+  packages/test:
+    specifiers:
+      '@typed-tabletop-simulator/declaration': workspace:../declaration
+      '@typed-tabletop-simulator/jsx': workspace:../jsx
+      typescript: ^4.6.3
+      typescript-to-lua: ^1.4.2
+    devDependencies:
+      '@typed-tabletop-simulator/declaration': link:../declaration
+      '@typed-tabletop-simulator/jsx': link:../jsx
       typescript: 4.6.3
       typescript-to-lua: 1.4.3_typescript@4.6.3
 
