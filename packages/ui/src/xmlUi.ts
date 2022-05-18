@@ -1,5 +1,9 @@
 type CreateElementFunction = (this: void, props?: any, ...children: any[]) => unknown;
 
+function createFragment(this: void, props?: object, ...children: any[]): any {
+    return children[0];
+}
+
 function createElement(this: any, tag: string | CreateElementFunction, props?: object, ...children: any[]): any {
     if (typeof tag === "function") {
         return tag(props ?? {}, children);
@@ -25,5 +29,6 @@ function createElement(this: any, tag: string | CreateElementFunction, props?: o
 }
 
 export const XmlUi = {
+    Fragment: createFragment,
     createElement: createElement,
 };
