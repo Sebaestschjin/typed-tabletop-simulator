@@ -73,10 +73,10 @@ declare interface WaitStatic {
      * ```
      */
     condition(
-        toRunFunc: () => unknown,
-        conditionFunc: () => unknown,
+        toRunFunc: (this: void) => unknown,
+        conditionFunc: (this: void) => boolean,
         timeout?: float,
-        timeoutFunc?: () => unknown
+        timeoutFunc?: (this: void) => unknown
     ): int;
 
     /**
@@ -125,7 +125,7 @@ declare interface WaitStatic {
      * Wait.frames(printAndReschedule, 60)
      * ```
      */
-    frames(toRunFunc: () => unknown, numberFrames?: int): int;
+    frames(toRunFunc: (this: void) => unknown, numberFrames?: int): int;
 
     /**
      * Cancels a Wait-scheduled function.
@@ -212,7 +212,7 @@ declare interface WaitStatic {
      * )
      * ```
      */
-    time(toRunFunc: () => unknown, seconds: float, repetitions?: int): int;
+    time(toRunFunc: (this: void) => unknown, seconds: float, repetitions?: int): int;
 }
 
 declare const Wait: WaitStatic;
