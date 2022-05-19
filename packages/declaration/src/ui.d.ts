@@ -133,60 +133,64 @@ interface UIAsset {
     url: URI;
 }
 
-interface AxisLayoutElementAttributes extends BaseElementAttributes {
-    /**
-     * @defaultValue "0 0 0 0"
-     */
-    padding?: UIAttributePadding;
-
-    /**
-     * Spacing between child elements.
-     *
-     * @defaultValue 0
-     */
-    spacing?: int;
-
-    /**
-     * @defaultValue "UpperLeft"
-     */
-    childAlignment?: Alignment;
-
-    /**
-     * @defaultValue true
-     */
-    childForceExpandWidth?: boolean;
-
-    /**
-     * @defaultValue true
-     */
-    childForceExpandHeight?: boolean;
+/**
+ * Holds the types for attributes that should be used for an element.
+ * "Base" interface for concrete instantiations.
+ */
+interface AttributeTypes {
+    Color: unknown;
+    ColorBlock: unknown;
+    HandlerFunction: unknown;
+    ListOfNumbers: unknown;
+    ListOfStrings: unknown;
+    Padding: unknown;
+    Vector2: unknown;
+    Vector3: unknown;
+    Visibility: unknown;
 }
 
-interface BaseElementAttributes {
+/**
+ * Defines the types for attribute, as the XML UI contains them.
+ * Everything that isn't a number or boolean, basically is just a string.
+ * Other libraries can make use of more conrete types and convert them to this one.
+ */
+interface RegularAttributeTypes extends AttributeTypes {
+    Color: string;
+    ColorBlock: string;
+    HandlerFunction: string;
+    ListOfStrings: string;
+    ListOfNumbers: string;
+    Padding: `${number} ${number} ${number} ${number}`;
+    Vector2: `${number} ${number}`;
+    Vector3: `${number} ${number} ${number}`;
+    Visibility: string;
+}
+
+interface BaseElementAttributes<Types extends AttributeTypes = RegularAttributeTypes> {
     /**
-     * Specifies whether or not this element and its children are visible and contribute to layout. Modifying this via
-     * script will not trigger animations.
+     * Specifies whether or not this element and its children are visible and contribute to layout.
+     * Modifying this via script will not trigger animations.
      *
      * @defaultValue true
      */
     active?: boolean;
 
     /**
-     * A list of classes, separated by spaces. An element will inherit attributes from any of its classes defined in
-     * Defaults.
+     * A list of classes, separated by spaces.
+     * An element will inherit attributes from any of its classes defined in Defaults.
      */
-    class?: string;
+    class?: Types["ListOfStrings"];
 
     /** A unique string used to identify the element from Lua scripting. */
     id?: UIElementId;
 
-    color?: UIAttributeColor;
+    color?: Types["Color"];
 
     /**
-     * A pipe-separated list of visibility targets. An element is always treated as inactive to players not specified
-     * here.
+     * A pipe-separated list of visibility targets.
+     * An element is always treated as inactive to players not specified here.
      */
-    visibility?: string;
+    visibility?: Types["Visibility"];
 
     /**
      * If the element blocks clicks.
@@ -200,32 +204,32 @@ interface BaseElementAttributes {
      *
      * @defaultValue none
      */
-    shadow?: UIAttributeColor;
+    shadow?: Types["Color"];
 
     /**
      * Defines the distance of the shadow for this element.
      *
      * @defaultValue "1 -1"
      */
-    shadowDistance?: UIAttributeVector2;
+    shadowDistance?: Types["Vector2"];
 
     /**
      * Defines the outline color of this element.
      *
      * @defaultValue none
      */
-    outline?: UIAttributeColor;
+    outline?: Types["Color"];
 
     /**
      * Defines the size of this elements outline.
      *
      * @defaultValue "1 -1"
      */
-    outlineSize?: UIAttributeVector2;
+    outlineSize?: Types["Vector2"];
 
     /**
-     * If this element ignores its parent's layout group behavior and treats it as a regular Panel. (This means it would
-     * obey regular position/size attributes.)
+     * If this element ignores its parent's layout group behavior and treats it as a regular Panel.
+     * This means it would obey regular position/size attributes.
      *
      * @defaultValue false
      */
@@ -252,14 +256,12 @@ interface BaseElementAttributes {
     preferredHeight?: number;
 
     /**
-     * If there is additional space after `preferredWidth`s are sized, defines how much the element expands to fill the
-     * available horizontal space, relative to other elements.
+     * If there is additional space after `preferredWidth`s are sized, defines how much the element expands to fill the available horizontal space, relative to other elements.
      */
     flexibleWidth?: number;
 
     /**
-     * If there is additional space after `preferredHeights`s are sized, defines how much the element expands to fill
-     * the available vertical space, relative to other elements.
+     * If there is additional space after `preferredHeights`s are sized, defines how much the element expands to fill the available vertical space, relative to other elements.
      */
     flexibleHeight?: number;
 
@@ -285,74 +287,75 @@ interface BaseElementAttributes {
     height?: number | UIAttributePercentage;
 
     /**
-     * An offset to the position of this element, e.g. a value of -32 10 will cause this element to be 10 pixels up and
-     * 32 pixels to the left of where it would otherwise be.
+     * An offset to the position of this element.
+     * E.g. a value of -32 10 will cause this element to be 10 pixels up and 32 pixels to the left of where it would otherwise be.
      *
      * @defaultValue "0 0"
      */
-    offsetXY?: UIAttributeVector2;
+    offsetXY?: Types["Vector2"];
 
     /**
-     * The anchor point for the bottom-left corner of the element, where 0 0 is its parent's bottom-left corner and 1 1
-     * is its parent's top-right corner.
+     * The anchor point for the bottom-left corner of the element, where 0 0 is its parent's bottom-left corner and 1 1 is its parent's top-right corner.
      */
-    anchorMin?: UIAttributeVector2;
+    anchorMin?: Types["Vector2"];
 
     /**
-     * The anchor point for the top-right corner of the element, where 0 0 is its parent's bottom-left corner and 1 1 is
-     * its parent's top-right corner.
+     * The anchor point for the top-right corner of the element, where 0 0 is its parent's bottom-left corner and 1 1 is its parent's top-right corner.
      */
-    anchorMax?: UIAttributeVector2;
+    anchorMax?: Types["Vector2"];
 
     /**
-     * An offset to the size of the element, e.g. a value of 15 -20 will cause this element to be 15 pixels wider and 32
-     * pixels shorter than what it would otherwise be.
+     * An offset to the size of the element.
+     * E.g. a value of 15 -20 will cause this element to be 15 pixels wider and 32 pixels shorter than what it would otherwise be.
      */
-    sizeDelta?: UIAttributeVector2;
+    sizeDelta?: Types["Vector2"];
 
     /**
-     * The pivot point this element is positioned, rotated, and scaled around. 0 0 is the element's bottom-left corner
-     * and 1 1 is its top-right corner.
+     * The pivot point this element is positioned, rotated, and scaled around.
+     * 0 0 is the element's bottom-left corner and 1 1 is its top-right corner.
      *
      * @defaultValue "0.5 0.5"
      */
-    pivot?: UIAttributeVector2;
+    pivot?: Types["Vector2"];
 
     /**
-     * An offset to the position of this element in 3D space. Z moves the element in and out.
+     * An offset to the position of this element in 3D space.
+     * Z moves the element in and out.
      *
      * @defaultValue "0 0 0"
      */
-    position?: UIAttributeVector3;
+    position?: Types["Vector3"];
 
     /**
-     * Rotates the element in 3D space. X and Y tilt it like a dish, Z turns it like a steering wheel.
+     * Rotates the element in 3D space.
+     * X and Y tilt it like a dish, Z turns it like a steering wheel.
      *
      * @defaultValue "0 0 0"
      */
-    rotation?: UIAttributeVector3;
+    rotation?: Types["Vector3"];
 
     /**
-     * Scales the component around its pivot. Note that this does not add more pixel detail, text with small font and
-     * other elements may appear pixelated or blurry. Z does not affect the thickness of the element (it is always
-     * flat), but does affect the transforms of its children.
+     * Scales the component around its pivot.
+     * Note that this does not add more pixel detail, text with small font and other elements may appear pixelated or blurry.
+     * Z does not affect the thickness of the element (it is always flat), but does affect the transforms of its children.
      *
      * @defaultValue "1 1 1"
      */
-    scale?: UIAttributeVector3;
+    scale?: Types["Vector3"];
 
     /**
      * An offset in pixels from anchorMin to be used as the bottom-left corner of the element.
      */
-    offsetMin?: UIAttributeVector2;
+    offsetMin?: Types["Vector2"];
 
     /**
      * An offset in pixels from anchorMax to be used as the top-right corner of the element.
      */
-    offsetMax?: UIAttributeVector2;
+    offsetMax?: Types["Vector2"];
 
     /**
-     * Allows the element to be dragged around. Does not work on child elements of layout groups.
+     * Allows the element to be dragged around.
+     * Does not work on child elements of layout groups.
      *
      * @defaultValue false
      */
@@ -387,16 +390,16 @@ interface BaseElementAttributes {
     hideAnimation?: HideAnimation;
 
     /**
-     * Time in seconds to wait before playing this element's show animation. Useful for staggering the animations of
-     * multiple elements.
+     * Time in seconds to wait before playing this element's show animation.
+     * Useful for staggering the animations of multiple elements.
      *
      * @defaultValue 0
      */
     showAnimationDelay?: float;
 
     /**
-     * Time in seconds to wait before playing this element's hide animation. Useful for staggering the animations of
-     * multiple elements.
+     * Time in seconds to wait before playing this element's hide animation.
+     * Useful for staggering the animations of multiple elements.
      *
      * @defaultValue 0
      */
@@ -419,14 +422,14 @@ interface BaseElementAttributes {
      *
      * @defaultValue #FFFFFF
      */
-    tooltipBorderColor?: UIAttributeColor;
+    tooltipBorderColor?: Types["Color"];
 
     /**
      * Color of the tooltip's background.
      *
      * @defaultValue rgba(0,0,0,0.62)
      */
-    tooltipBackgroundColor?: UIAttributeColor;
+    tooltipBackgroundColor?: Types["Color"];
 
     /** Image used for the tooltip's border. */
     tooltipBorderImage?: UIAssetName;
@@ -439,7 +442,7 @@ interface BaseElementAttributes {
      *
      * @defaultValue #FFFFFF
      */
-    tooltipTextColor?: UIAttributeColor;
+    tooltipTextColor?: Types["Color"];
 
     /**
      * Position of this tooltip in relation to the element.
@@ -458,51 +461,80 @@ interface BaseElementAttributes {
     /**
      * Called when the mouse is pressed while over the element and then released while still over it.
      */
-    onClick?: UIAttributeHandler;
+    onClick?: Types["HandlerFunction"];
 
     /**
      * Called when the pointer enters the boundary of the element.
      */
-    onMouseEnter?: UIAttributeHandler;
+    onMouseEnter?: Types["HandlerFunction"];
 
     /**
      * Called when the pointer leaves the boundary of the element.
      */
-    onMouseExit?: UIAttributeHandler;
+    onMouseExit?: Types["HandlerFunction"];
 
     /**
      * Called every frame if the element is being dragged and has moved that frame.
      */
-    onDrag?: UIAttributeHandler;
+    onDrag?: Types["HandlerFunction"];
 
     /**
      * Called once when the element starts being dragged.
      */
-    onBeginDrag?: UIAttributeHandler;
+    onBeginDrag?: Types["HandlerFunction"];
 
     /**
      * Called once when the element stops being dragged and the mouse button is released.
      */
-    onEndDrag?: UIAttributeHandler;
+    onEndDrag?: Types["HandlerFunction"];
 
     /**
      * Called when the mouse is pressed while over the element.
      */
-    onMouseDown?: UIAttributeHandler;
+    onMouseDown?: Types["HandlerFunction"];
 
     /**
-     * Called when the mouse is released, if it had previously been pressed while over the element (no matter where the
-     * cursor currently is).
+     * Called when the mouse is released, if it had previously been pressed while over the element (no matter where the cursor currently is).
      */
-    onMouseUp?: UIAttributeHandler;
+    onMouseUp?: Types["HandlerFunction"];
 
     /**
      * Called when the Enter key is pressed on an Input Element.
      */
-    onSubmit?: UIAttributeHandler;
+    onSubmit?: Types["HandlerFunction"];
 }
 
-interface ButtonElementAttributes extends BaseElementAttributes {
+interface AxisLayoutElementAttributes<Types extends AttributeTypes> extends BaseElementAttributes<Types> {
+    /**
+     * @defaultValue "0 0 0 0"
+     */
+    padding?: Types["Padding"];
+
+    /**
+     * Spacing between child elements.
+     *
+     * @defaultValue 0
+     */
+    spacing?: int;
+
+    /**
+     * @defaultValue "UpperLeft"
+     */
+    childAlignment?: Alignment;
+
+    /**
+     * @defaultValue true
+     */
+    childForceExpandWidth?: boolean;
+
+    /**
+     * @defaultValue true
+     */
+    childForceExpandHeight?: boolean;
+}
+
+interface ButtonElementAttributes<Types extends AttributeTypes = RegularAttributeTypes>
+    extends BaseElementAttributes<Types> {
     /**
      * @defaultValue true
      */
@@ -511,16 +543,16 @@ interface ButtonElementAttributes extends BaseElementAttributes {
     /**
      * @defaultValue "#FFFFFF|#FFFFFF|#C8C8C8|rgba(0.78,0.78,0.78,0.5)"
      */
-    colors?: UIAttributeColorBlock;
+    colors?: Types["ColorBlock"];
 
     /** The text to display on the button. */
     text?: string;
 
     fontSize?: int;
 
-    textShadow?: UIAttributeColor;
+    textShadow?: Types["Color"];
 
-    textOutline?: UIAttributeColor;
+    textOutline?: Types["Color"];
 
     /**
      * @defaultValue "UpperLeft"
@@ -531,7 +563,7 @@ interface ButtonElementAttributes extends BaseElementAttributes {
 
     iconWidth?: int;
 
-    iconColor?: UIAttributeColor;
+    iconColor?: Types["Color"];
 
     /**
      * @defaultValue "Left"
@@ -541,7 +573,7 @@ interface ButtonElementAttributes extends BaseElementAttributes {
     /**
      * @defaultValue "0 0 0 0"
      */
-    padding?: UIAttributePadding;
+    padding?: Types["Padding"];
 
     /**
      * @defaultValue "ColorTint"
@@ -561,7 +593,8 @@ interface ButtonElement {
     children?: UIElement[];
 }
 
-interface CellElementAttributes extends BaseElementAttributes {
+interface CellElementAttributes<Types extends AttributeTypes = RegularAttributeTypes>
+    extends BaseElementAttributes<Types> {
     /**
      * @defaultValue 1
      */
@@ -588,7 +621,7 @@ interface CellElementAttributes extends BaseElementAttributes {
      *
      * @defaultValue "0 0 0 0"
      */
-    padding?: UIAttributePadding;
+    padding?: Types["Padding"];
 
     /**
      * @defaultValue true
@@ -607,9 +640,10 @@ interface CellElement {
     children?: UIElement[];
 }
 
-interface DropdownElementAttributes extends BaseElementAttributes {
+interface DropdownElementAttributes<Types extends AttributeTypes = RegularAttributeTypes>
+    extends BaseElementAttributes<Types> {
     /** When an option is selected, a Lua function with this name will be triggered. */
-    onValueChanged?: UIAttributeHandler;
+    onValueChanged?: Types["HandlerFunction"];
 
     /**
      * @defaultValue true
@@ -619,37 +653,37 @@ interface DropdownElementAttributes extends BaseElementAttributes {
     /**
      * @defaultValue "#000000"
      */
-    textColor?: UIAttributeColor;
+    textColor?: Types["Color"];
 
-    itemBackgroundColors?: UIAttributeColorBlock;
-
-    /**
-     * @defaultValue "#000000"
-     */
-    itemTextColor?: UIAttributeColor;
+    itemBackgroundColors?: Types["ColorBlock"];
 
     /**
      * @defaultValue "#000000"
      */
-    checkColor?: UIAttributeColor;
+    itemTextColor?: Types["Color"];
+
+    /**
+     * @defaultValue "#000000"
+     */
+    checkColor?: Types["Color"];
 
     checkImage?: UIAssetName;
 
     /**
      * @defaultValue "#000000"
      */
-    arrowColor?: UIAttributeColor;
+    arrowColor?: Types["Color"];
 
     arrowImage?: UIAssetName;
 
     /**
      * @defaultValue "#000000"
      */
-    dropdownBackgroundColor?: UIAttributeColor;
+    dropdownBackgroundColor?: Types["Color"];
 
     dropdownBackgroundImage?: UIAssetName;
 
-    scrollbarColors?: UIAttributeColorBlock;
+    scrollbarColors?: Types["ColorBlock"];
 
     scrollbarImage?: UIAssetName;
 
@@ -662,11 +696,12 @@ interface DropdownElement {
     children?: OptionElement[];
 }
 
-interface GridLayoutElementAttributes extends BaseElementAttributes {
+interface GridLayoutElementAttributes<Types extends AttributeTypes = RegularAttributeTypes>
+    extends BaseElementAttributes<Types> {
     /**
      * @defaultValue "0 0 0 0"
      */
-    padding?: UIAttributePadding;
+    padding?: Types["Padding"];
 
     /**
      * Spacing between child elements.
@@ -677,7 +712,7 @@ interface GridLayoutElementAttributes extends BaseElementAttributes {
     /**
      * @defaultValue "100 100"
      */
-    cellSize?: UIAttributeVector2;
+    cellSize?: Types["Vector2"];
 
     /**
      * @defaultValue "UpperLeft"
@@ -687,7 +722,7 @@ interface GridLayoutElementAttributes extends BaseElementAttributes {
     /**
      * @defaultValue "Horizontal"
      */
-    startAxis?: Axis;
+    startAxis?: UIAxis;
 
     /**
      * @defaultValue "UpperLeft"
@@ -711,7 +746,8 @@ interface GridLayoutElement {
     children?: UIElement[];
 }
 
-type HorizontalLayoutElementAttributes = AxisLayoutElementAttributes;
+type HorizontalLayoutElementAttributes<Types extends AttributeTypes = RegularAttributeTypes> =
+    AxisLayoutElementAttributes<Types>;
 
 interface HorizontalLayoutElement {
     tag: "HorizontalLayout";
@@ -719,7 +755,8 @@ interface HorizontalLayoutElement {
     children?: UIElement[];
 }
 
-interface HorizontalScrollViewElementAttributes extends ScrollViewElementAttributes {
+interface HorizontalScrollViewElementAttributes<Types extends AttributeTypes = RegularAttributeTypes>
+    extends ScrollViewElementAttributes<Types> {
     /**
      * @defaultValue true
      */
@@ -744,14 +781,15 @@ interface HorizontalScrollViewElement {
     children?: UIElement[];
 }
 
-interface ImageElementAttributes extends BaseElementAttributes {
+interface ImageElementAttributes<Types extends AttributeTypes = RegularAttributeTypes>
+    extends BaseElementAttributes<Types> {
     /** The name of the file in the asset manager (upper right corner of the scripting window in-game). */
     image: UIAssetName;
 
     /**
      * @defaultValue "#FFFFFF"
      */
-    color?: UIAttributeColor;
+    color?: Types["Color"];
 
     /**
      * Image Type
@@ -773,12 +811,13 @@ interface ImageElement {
     children?: UIElement[];
 }
 
-interface InputFieldElementAttributes extends BaseElementAttributes {
+interface InputFieldElementAttributes<Types extends AttributeTypes = RegularAttributeTypes>
+    extends BaseElementAttributes<Types> {
     /** Each time the text is changed, a Lua function with this name will be triggered. */
-    onValueChanged?: UIAttributeHandler;
+    onValueChanged?: Types["HandlerFunction"];
 
     /** When the input box is deselected, a Lua function with this name will be triggered. */
-    onEndEdit?: UIAttributeHandler;
+    onEndEdit?: Types["HandlerFunction"];
 
     /**	The string in the text box, if any. Is the value sent to onValueChanged's or onEndEdit's function. */
     text?: string;
@@ -794,7 +833,7 @@ interface InputFieldElementAttributes extends BaseElementAttributes {
     /**
      * @defaultValue "#FFFFFF|#FFFFFF|#C8C8C8|rgba(0.78,0.78,0.78,0.5)"
      */
-    colors?: UIAttributeColorBlock;
+    colors?: Types["ColorBlock"];
 
     /**
      * @defaultValue "SingleLine"
@@ -809,22 +848,22 @@ interface InputFieldElementAttributes extends BaseElementAttributes {
     /**
      * @defaultValue 0.85
      */
-    caretBlinkRate?: number;
+    caretBlinkRate?: float;
 
     /**
      * @defaultValue 1
      */
-    caretWidth?: number;
+    caretWidth?: float;
 
     /**
      * @defaultValue "#323232"
      */
-    caretColor?: UIAttributeColor;
+    caretColor?: Types["Color"];
 
     /**
      * @defaultValue "rgba(0.65,0.8,1,0.75)"
      */
-    selectionColor?: UIAttributeColor;
+    selectionColor?: Types["Color"];
 
     /**
      * @defaultValue false
@@ -834,7 +873,7 @@ interface InputFieldElementAttributes extends BaseElementAttributes {
     /**
      * @defaultValue "#323232"
      */
-    textColor?: UIAttributeColor;
+    textColor?: Types["Color"];
 
     /**
      * @defaultValue 0 (no limit)
@@ -848,7 +887,8 @@ interface InputFieldElement {
     children?: UIElement[];
 }
 
-interface OptionElementAttributes extends BaseElementAttributes {
+interface OptionElementAttributes<Types extends AttributeTypes = RegularAttributeTypes>
+    extends BaseElementAttributes<Types> {
     selected?: boolean;
 }
 
@@ -857,12 +897,13 @@ interface OptionElement {
     attributes?: OptionElementAttributes;
 }
 
-interface PanelElementAttributes extends BaseElementAttributes {
+interface PanelElementAttributes<Types extends AttributeTypes = RegularAttributeTypes>
+    extends BaseElementAttributes<Types> {
     /**
      * Specifies the padding for this panel. Please note that if padding is specified, the panel will function as a
      * LayoutGroup (which it does not do by default).
      */
-    padding?: UIAttributePadding;
+    padding?: Types["Padding"];
 }
 
 interface PanelElement {
@@ -871,7 +912,8 @@ interface PanelElement {
     children?: UIElement[];
 }
 
-interface ProgressBarElementAttributes extends BaseElementAttributes {
+interface ProgressBarElementAttributes<Types extends AttributeTypes = RegularAttributeTypes>
+    extends BaseElementAttributes<Types> {
     /** Background Image */
     image?: UIAssetName;
 
@@ -881,7 +923,7 @@ interface ProgressBarElementAttributes extends BaseElementAttributes {
      * @defaultValue "#FFFFFF"
      */
 
-    color?: UIAttributeColor;
+    color?: Types["Color"];
 
     /** Fill Image */
     fillImage?: UIAssetName;
@@ -891,14 +933,14 @@ interface ProgressBarElementAttributes extends BaseElementAttributes {
      *
      * @defaultValue "#FFFFFF"
      */
-    fillImageColor?: UIAttributeColor;
+    fillImageColor?: Types["Color"];
 
     /**
      * Percentage to Display
      *
      * @defaultValue 0
      */
-    percentage?: number;
+    percentage?: float;
 
     /**
      * Is the percentage text displayed?
@@ -919,14 +961,14 @@ interface ProgressBarElementAttributes extends BaseElementAttributes {
      *
      * @defaultValue "#000000"
      */
-    textColor?: UIAttributeColor;
+    textColor?: Types["Color"];
 
     /** Percentage Text Shadow Color */
 
-    textShadow?: UIAttributeColor;
+    textShadow?: Types["Color"];
 
     /** Percentage Text Outline Color */
-    textOutline?: UIAttributeColor;
+    textOutline?: Types["Color"];
 
     /**
      * Percentage Text Alignment
@@ -942,7 +984,8 @@ interface ProgressBarElement {
     children?: UIElement[];
 }
 
-interface RowElementAttributes extends BaseElementAttributes {
+interface RowElementAttributes<Types extends AttributeTypes = RegularAttributeTypes>
+    extends BaseElementAttributes<Types> {
     /**
      * Sets the height for this row. Use a value of '0' to specify that this row should be auto-sized.
      *
@@ -965,9 +1008,10 @@ interface RowElement {
     children?: (UIElement | CellElement)[];
 }
 
-interface ScrollViewElementAttributes extends BaseElementAttributes {
+interface ScrollViewElementAttributes<Types extends AttributeTypes = RegularAttributeTypes>
+    extends BaseElementAttributes<Types> {
     /** When a selection is made, its name is sent to a function with this name. */
-    onValueChanged?: UIAttributeHandler;
+    onValueChanged?: Types["HandlerFunction"];
 
     /**
      * @defaultValue "Clamped"
@@ -977,7 +1021,7 @@ interface ScrollViewElementAttributes extends BaseElementAttributes {
     /**
      * @defaultValue 0.1
      */
-    elasticity?: number;
+    elasticity?: float;
 
     /**
      * @defaultValue true
@@ -987,12 +1031,12 @@ interface ScrollViewElementAttributes extends BaseElementAttributes {
     /**
      * @defaultValue 0.135
      */
-    decelerationRate?: number;
+    decelerationRate?: float;
 
     /**
      * @defaultValue 1
      */
-    scrollSensitivity?: number;
+    scrollSensitivity?: float;
 
     /**
      * If set to true, then this scroll view will have no visible scrollbars.
@@ -1004,19 +1048,20 @@ interface ScrollViewElementAttributes extends BaseElementAttributes {
     /**
      * @defaultValue "#FFFFFF"
      */
-    scrollbarBackgroundColor?: UIAttributeColor;
+    scrollbarBackgroundColor?: Types["Color"];
 
     /**
      * @defaultValue "#FFFFFF|#FFFFFF|#C8C8C8|rgba(0.78,0.78,0.78,0.5)"
      */
-    scrollbarColors?: UIAttributeColorBlock;
+    scrollbarColors?: Types["ColorBlock"];
 
     scrollbarImage?: UIAssetName;
 }
 
-interface SliderElementAttributes extends BaseElementAttributes {
+interface SliderElementAttributes<Types extends AttributeTypes = RegularAttributeTypes>
+    extends BaseElementAttributes<Types> {
     /** When the slider is moved, a Lua function with this name will be triggered. (rapidly) */
-    onValueChanged?: UIAttributeHandler;
+    onValueChanged?: Types["HandlerFunction"];
 
     /**
      * @defaultValue true
@@ -1026,22 +1071,22 @@ interface SliderElementAttributes extends BaseElementAttributes {
     /**
      * @defaultValue "#FFFFFF|#FFFFFF|#C8C8C8|rgba(0.78,0.78,0.78,0.5)"
      */
-    colors?: UIAttributeColorBlock;
+    colors?: Types["ColorBlock"];
 
     /**
      * @defaultValue 0
      */
-    minValue?: number;
+    minValue?: float;
 
     /**
      * @defaultValue 1
      */
-    maxValue?: number;
+    maxValue?: float;
 
     /**
      * @defaultValue 0
      */
-    value?: number;
+    value?: float;
 
     /**
      * @defaultValue false
@@ -1053,13 +1098,13 @@ interface SliderElementAttributes extends BaseElementAttributes {
      */
     direction?: "LeftToRight" | "RightToLeft" | "TopToBottom" | "BottomToTop";
 
-    backgroundColor?: UIAttributeColor;
+    backgroundColor?: Types["Color"];
 
-    fillColor?: UIAttributeColor;
+    fillColor?: Types["Color"];
 
     fillImage?: UIAssetName;
 
-    handleColor?: UIAttributeColor;
+    handleColor?: Types["Color"];
 
     handleImage?: UIAssetName;
 }
@@ -1070,11 +1115,12 @@ interface SliderElement {
     children?: UIElement[];
 }
 
-interface TableLayoutElementAttributes extends BaseElementAttributes {
+interface TableLayoutElementAttributes<Types extends AttributeTypes = RegularAttributeTypes>
+    extends BaseElementAttributes<Types> {
     /**
      * @defaultValue "0 0 0 0"
      */
-    padding?: UIAttributePadding;
+    padding?: Types["Padding"];
 
     /**
      * Spacing between child elements.
@@ -1085,7 +1131,7 @@ interface TableLayoutElementAttributes extends BaseElementAttributes {
     /**
      * Explicitly set the width of each column. Use a value of 0 to auto-size a specific column.
      */
-    columnWidths?: int[];
+    columnWidths?: Types["ListOfNumbers"];
 
     /**
      * If more cells are added to a row than are accounted for by columnWidths, should this TableLayout automatically
@@ -1123,7 +1169,7 @@ interface TableLayoutElementAttributes extends BaseElementAttributes {
      *
      * @defaultValue "0 0 0 0"
      */
-    cellPadding?: UIAttributePadding;
+    cellPadding?: Types["Padding"];
 
     /** Image to use as the background for each cell. */
     cellBackgroundImage?: UIAssetName;
@@ -1133,7 +1179,7 @@ interface TableLayoutElementAttributes extends BaseElementAttributes {
      *
      * @defaultValue "rgba(1,1,1,0.4)"
      */
-    cellBackgroundColor?: UIAttributeColor;
+    cellBackgroundColor?: Types["Color"];
 
     /** Image to use as the background for each row. */
     rowBackgroundImage?: UIAssetName;
@@ -1143,7 +1189,7 @@ interface TableLayoutElementAttributes extends BaseElementAttributes {
      *
      * @defaultValue "clear"
      */
-    rowBackgroundColor?: UIAttributeColor;
+    rowBackgroundColor?: Types["Color"];
 }
 
 interface TableLayoutElement {
@@ -1152,7 +1198,8 @@ interface TableLayoutElement {
     children?: (UIElement | RowElement)[];
 }
 
-interface TextElementAttributes extends BaseElementAttributes {
+interface TextElementAttributes<Types extends AttributeTypes = RegularAttributeTypes>
+    extends BaseElementAttributes<Types> {
     /** This can be used to determine the text that appears. It can also be modified externally by the script. */
     text?: string;
 
@@ -1164,7 +1211,7 @@ interface TextElementAttributes extends BaseElementAttributes {
     /**
      * @defaultValue "#323232"
      */
-    color?: UIAttributeColor;
+    color?: Types["Color"];
 
     /**
      * @defaultValue "Normal"
@@ -1214,9 +1261,10 @@ interface TextElement {
     children?: UIElement[];
 }
 
-interface ToggleButtonElementAttributes extends BaseElementAttributes {
+interface ToggleButtonElementAttributes<Types extends AttributeTypes = RegularAttributeTypes>
+    extends BaseElementAttributes<Types> {
     /** When toggled, a Lua function with this name will be triggered. */
-    onValueChanged?: UIAttributeHandler;
+    onValueChanged?: Types["HandlerFunction"];
 
     /**
      * @defaultValue true
@@ -1226,12 +1274,12 @@ interface ToggleButtonElementAttributes extends BaseElementAttributes {
     /**
      * @defaultValue "#000000"
      */
-    textColor?: UIAttributeColor;
+    textColor?: Types["Color"];
 
     /**
      * @defaultValue "#FFFFFF|#FFFFFF|#C8C8C8|rgba(0.78,0.78,0.78,0.5)"
      */
-    colors?: UIAttributeColorBlock;
+    colors?: Types["ColorBlock"];
 
     /**
      * If the toggle is "on" or not. Is the value sent to onValueChanged's function.
@@ -1240,9 +1288,9 @@ interface ToggleButtonElementAttributes extends BaseElementAttributes {
      */
     isOn?: boolean;
 
-    textShadow?: UIAttributeColor;
+    textShadow?: Types["Color"];
 
-    textOutline?: UIAttributeColor;
+    textOutline?: Types["Color"];
 
     /**
      * @defaultValue "UpperLeft"
@@ -1253,7 +1301,7 @@ interface ToggleButtonElementAttributes extends BaseElementAttributes {
 
     iconWidth?: int;
 
-    iconColor?: UIAttributeColor;
+    iconColor?: Types["Color"];
 
     /**
      * @defaultValue "Left"
@@ -1263,7 +1311,7 @@ interface ToggleButtonElementAttributes extends BaseElementAttributes {
     /**
      * @defaultValue "0 0 0 0"
      */
-    padding?: UIAttributePadding;
+    padding?: Types["Padding"];
 }
 
 interface ToggleButtonElement {
@@ -1272,9 +1320,10 @@ interface ToggleButtonElement {
     children?: UIElement[];
 }
 
-interface ToggleElementAttributes extends BaseElementAttributes {
+interface ToggleElementAttributes<Types extends AttributeTypes = RegularAttributeTypes>
+    extends BaseElementAttributes<Types> {
     /** When toggled, a Lua function with this name will be triggered. */
-    onValueChanged?: UIAttributeHandler;
+    onValueChanged?: Types["HandlerFunction"];
 
     /**
      * @defaultValue true
@@ -1284,12 +1333,12 @@ interface ToggleElementAttributes extends BaseElementAttributes {
     /**
      * @defaultValue "#000000"
      */
-    textColor?: UIAttributeColor;
+    textColor?: Types["Color"];
 
     /**
      * @defaultValue "#FFFFFF|#FFFFFF|#C8C8C8|rgba(0.78,0.78,0.78,0.5)"
      */
-    colors?: UIAttributeColorBlock;
+    colors?: Types["ColorBlock"];
 
     /**
      * If the toggle is "on" or not. Is the value sent to onValueChanged's function.
@@ -1319,7 +1368,8 @@ interface ToggleElement {
     children?: UIElement[];
 }
 
-interface ToggleGroupElementAttributes extends BaseElementAttributes {
+interface ToggleGroupElementAttributes<Types extends AttributeTypes = RegularAttributeTypes>
+    extends BaseElementAttributes<Types> {
     /**
      * If this is set to true, then the user may clear their selection from within the ToggleGroup by clicking on the
      * selected Toggle.
@@ -1334,7 +1384,7 @@ interface ToggleGroupElementAttributes extends BaseElementAttributes {
     /**
      * @defaultValue "#FFFFFF"
      */
-    toggleBackgroundColor?: UIAttributeColor;
+    toggleBackgroundColor?: Types["Color"];
 
     /** Sets the default image to use for selected (checked) nested Toggle elements. */
     toggleSelectedImage?: UIAssetName;
@@ -1342,7 +1392,7 @@ interface ToggleGroupElementAttributes extends BaseElementAttributes {
     /**
      * @defaultValue "#FFFFFF"
      */
-    toggleSelectedColor?: UIAttributeColor;
+    toggleSelectedColor?: Types["Color"];
 }
 
 interface ToggleGroupElement {
@@ -1351,7 +1401,8 @@ interface ToggleGroupElement {
     children?: UIElement[];
 }
 
-type VerticalLayoutElementAttributes = AxisLayoutElementAttributes;
+type VerticalLayoutElementAttributes<Types extends AttributeTypes = RegularAttributeTypes> =
+    AxisLayoutElementAttributes<Types>;
 
 interface VerticalLayoutElement {
     tag: "VerticalLayout";
@@ -1359,7 +1410,8 @@ interface VerticalLayoutElement {
     children?: UIElement[];
 }
 
-interface VerticalScrollViewElementAttributes extends ScrollViewElementAttributes {
+interface VerticalScrollViewElementAttributes<Types extends AttributeTypes = RegularAttributeTypes>
+    extends ScrollViewElementAttributes<Types> {
     /**
      * @defaultValue false
      */
@@ -1386,7 +1438,7 @@ interface VerticalScrollViewElement {
 
 type ScrollbarVisibility = "Permanent" | "AutoHide" | "AutoHideAndExpandViewport";
 
-type Axis = "Horizontal" | "Vertical";
+type UIAxis = "Horizontal" | "Vertical";
 
 type Corner = "UpperLeft" | "UpperRight" | "LowerLeft" | "LowerRight";
 
@@ -1412,14 +1464,7 @@ type HideAnimation =
     | "SlideOut_Top"
     | "SlideOut_Bottom";
 
-// TODO check out where "clear" is possible
-type UIAttributeColor = string;
-type UIAttributeColorBlock = string;
-type UIAttributeHandler = string;
-type UIAttributePadding = string;
-type UIAttributePercentage = string;
-type UIAttributeVector2 = string;
-type UIAttributeVector3 = string;
+type UIAttributePercentage = `${number}%` | `${number}${number}%` | `${number}${number}${number}%`;
 
 type UIAttributeName =
     | keyof ButtonElementAttributes

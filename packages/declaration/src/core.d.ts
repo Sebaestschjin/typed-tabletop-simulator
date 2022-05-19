@@ -29,6 +29,8 @@ type float = number;
 type GUID = string;
 /** An alias representing an asset URI. */
 type URI = string;
+/** A hex value. */
+type Hex = 0 | 1 | 2 | 3 | 4 | 5 | 6 | 7 | 8 | 9 | "A" | "B" | "C" | "D" | "E" | "F";
 
 declare const _G: {
     onBlindfold?: OnBlindfoldHandler;
