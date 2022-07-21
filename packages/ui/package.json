@@ -1,22 +1,32 @@
 {
   "name": "@typed-tabletop-simulator/ui",
-  "version": "0.2.0",
-  "description": "",
+  "description": "JSX wrapper and components for Tabletop Simulator UI",
+  "version": "0.1.0",
+  "author": "Sebastian Stern",
+  "license": "CC0-1.0",
+  "keywords": [
+    "typescript",
+    "lua",
+    "tabletopsimulator",
+    "tabletop-simulator"
+  ],
+  "homepage": "https://github.com/Sebaestschjin/typed-tabletop-simulator/tree/main/packages/ui",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/Sebaestschjin/typed-tabletop-simulator.git"
+  },
+  "bugs": "https://github.com/Sebaestschjin/typed-tabletop-simulato/issues",
+  "main": "dist/index.d.ts",
   "scripts": {
     "build": "tstl",
     "build:test": "tstl -p tsconfig.test.json"
   },
-  "main": "dist/index",
-  "types": "dist/index.d.ts",
-  "keywords": [
-    "typescript",
-    "lua",
-    "tabletopsimulator"
-  ],
-  "license": "MIT",
   "devDependencies": {
-    "@typed-tabletop-simulator/declaration": "workspace:../declaration",
-    "typescript": "^4.6.3",
-    "typescript-to-lua": "^1.4.2"
-  }
+    "@typed-tabletop-simulator/declaration": "workspace:^",
+    "typescript": "~4.7.3",
+    "typescript-to-lua": "^1.7.0"
+  },
+  "files": [
+    "/dist"
+  ]
 }
