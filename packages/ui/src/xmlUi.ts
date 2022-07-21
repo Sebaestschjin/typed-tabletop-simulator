@@ -1,12 +1,12 @@
 type CreateElementFunction = (this: void, props?: any, ...children: any[]) => unknown;
 
 function createFragment(this: void, props?: object, ...children: any[]): any {
-    return children[0];
+    return children;
 }
 
 function createElement(this: any, tag: string | CreateElementFunction, props?: object, ...children: any[]): any {
     if (typeof tag === "function") {
-        return tag(props ?? {}, children);
+        return tag(props ?? {}, ...children);
     }
 
     let theChildren: Maybe<any[]> = children;

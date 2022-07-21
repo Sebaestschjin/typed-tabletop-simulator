@@ -1,35 +1,64 @@
 import { getHandlerName } from "./uiHandler";
 
-type TypedUIAttributeColor = UIAttributeColor;
-type TypedUIAttributeVector2 = [number, number];
-type TypedUIAttributeVector3 = [number, number, number];
+export interface TypedAttributeTypes extends AttributeTypes {
+    Color: ColorShape;
+    ColorBlock: ColorShape[];
+    HandlerFunction: UIHandler;
+    ListOfNumbers: number | number[];
+    ListOfStrings: string | string[];
+    Vector2: [number, number];
+    Vector3: VectorShape;
+    Visibility: PlayerVisibility | PlayerVisibility[];
+}
 
-type UIAttributePlayerValue = PlayerColor | PlayerTeam;
-type UIAttributePlayer = UIAttributePlayerValue[];
+type TypedBaseAttributes = BaseElementAttributes<TypedAttributeTypes>;
+type PlayerVisibility = PlayerColor | PlayerTeam;
 
-export interface TypedBaseAttributes {
-    onClick?: UIHandler;
-    class?: string[];
-    color?: TypedUIAttributeColor;
-    visibility?: UIAttributePlayer;
-    shadow?: TypedUIAttributeColor;
-    shadowDistance?: TypedUIAttributeVector2;
-    outline?: TypedUIAttributeColor;
-    outlineSize?: TypedUIAttributeVector2;
-    offsetXY?: TypedUIAttributeVector2;
-    anchorMin?: TypedUIAttributeVector2;
-    anchorMax?: TypedUIAttributeVector2;
-    sizeDelta?: TypedUIAttributeVector2;
-    pivot?: TypedUIAttributeVector2;
-    position?: TypedUIAttributeVector3;
+const mappings: Map<keyof TypedBaseAttributes, (v: any) => any> = new Map();
+const handlerFields: Set<keyof TypedBaseAttributes> = new Set(["onClick", "onMouseDown"]);
+const listFields: Set<keyof TypedBaseAttributes> = new Set(["offsetXY"]);
+const colorFields: Set<keyof TypedBaseAttributes> = new Set(["color"]);
+
+const listToString = (entries: any[], separator: string) => {
+    return entries.join(separator);
+};
+
+const spaceList = (entries: any[]): string => listToString(entries, " ");
+
+const colorToString = (color: ColorShape): string => {
+    if ((color as ColorRGB).r) {
+        const rgb = color as ColorRGB;
+        return `rgb(${rgb.r},${rgb.g},${rgb.b})`;
+    }
+
+    return `:sad_emoji:`;
+};
+
+for (const field of handlerFields) {
+    mappings.set(field, getHandlerName);
+}
+for (const field of listFields) {
+    mappings.set(field, spaceList);
+}
+for (const field of colorFields) {
+    mappings.set(field, colorToString);
 }
 
 export const resolveBaseProps = (props: TypedBaseAttributes): BaseElementAttributes => {
-    const resolvedProps = props;
+    const resolvedProps: BaseElementAttributes = {};
 
-    if (resolvedProps.onClick) {
-        resolvedProps.onClick = getHandlerName(resolvedProps.onClick) as unknown as UIHandler;
+    for (const [field, value] of Object.entries(props)) {
+        const typedField = field as keyof BaseElementAttributes;
+        if (mappings.has(typedField)) {
+            resolvedProps[typedField] = mappings.get(typedField)!(value);
+        } else {
+            const valueType = typeof value;
+            if (!["string", "number", "boolean"].includes(valueType)) {
+                printToAll(`Unmapped type for field ${field}: ${valueType}`, "Red");
+            }
+            resolvedProps[typedField] = value;
+        }
     }
 
-    return resolvedProps as BaseElementAttributes;
+    return resolvedProps;
 };

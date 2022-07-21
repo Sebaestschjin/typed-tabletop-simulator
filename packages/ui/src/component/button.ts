@@ -1,10 +1,9 @@
 import { XmlUi } from "../xmlUi";
-import { resolveBaseProps, TypedBaseAttributes } from "./base";
+import { resolveBaseProps, TypedAttributeTypes } from "./base";
 
-interface TypedButtonElementAttributes extends TypedBaseAttributes {}
-type ButtonProps = Omit<ButtonElementAttributes, keyof TypedButtonElementAttributes> & TypedButtonElementAttributes;
+type TypedButtonElementAttributes = ButtonElementAttributes<TypedAttributeTypes>;
 
-export const Button = (props: ButtonProps) => {
+export const Button = (props: TypedButtonElementAttributes) => {
     return XmlUi.createElement("button", resolveProps(props));
 };
 
