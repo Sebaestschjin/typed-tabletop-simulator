@@ -16,6 +16,7 @@ import "./objectCustom";
 import "./objectData";
 import "./physics";
 import "./player";
+import "./saveFile";
 import "./tables";
 import "./time";
 import "./turns";

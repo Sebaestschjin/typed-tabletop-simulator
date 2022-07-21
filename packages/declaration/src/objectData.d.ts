@@ -82,6 +82,10 @@ interface ObjectData {
     AttachedSnapPoints?: SnapPointData[];
 
     AttachedVectorLines?: VectorLineData[];
+
+    States?: {
+        [index: number]: ObjectData;
+    };
 }
 
 /**
@@ -625,6 +629,20 @@ interface TransformData {
 /**
  * Data for the color of an object.
  */
+interface PlayerColorData {
+    /** Red value between 0 and 1. */
+    r: float;
+
+    /** Green value between 0 and 1. */
+    g: float;
+
+    /** Blue value between 0 and 1. */
+    b: float;
+}
+
+/**
+ * Data for the color of an object.
+ */
 interface ColorData {
     /** Red value between 0 and 1. */
     r: float;
@@ -637,6 +655,12 @@ interface ColorData {
 
     /** Alpha value between 0 and 1. */
     a: float;
+}
+
+interface PositionData {
+    x: float;
+    y: float;
+    z: float;
 }
 
 /**
