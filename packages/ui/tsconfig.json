@@ -13,7 +13,7 @@
     "target": "esnext",
     "moduleResolution": "node",
     "outDir": "./dist",
-    "types": [ "@typed-tabletop-simulator/declaration"],
+    "types": [ "@typed-tabletop-simulator/declaration", "@typescript-to-lua/language-extensions"],
     "strict": true
   }
 }

@@ -36,3 +36,5 @@ declare const self: TTSObject;
 declare const Global: TTSObject;
 
 type CameraMode = "ThirdPerson" | "FirstPerson" | "TopDown";
+
+declare const _G: Record<string, any>;

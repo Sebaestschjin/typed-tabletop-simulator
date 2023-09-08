@@ -25,6 +25,9 @@ importers:
       '@typed-tabletop-simulator/declaration':
         specifier: workspace:../declaration
         version: link:../declaration
+      '@typescript-to-lua/language-extensions':
+        specifier: ^1.19.0
+        version: 1.19.0
       typescript:
         specifier: ^5.2.2
         version: 5.2.2
@@ -37,6 +40,9 @@ importers:
       '@typed-tabletop-simulator/declaration':
         specifier: workspace:^
         version: link:../declaration
+      '@typescript-to-lua/language-extensions':
+        specifier: ^1.19.0
+        version: 1.19.0
       typescript:
         specifier: ~5.2.2
         version: 5.2.2
