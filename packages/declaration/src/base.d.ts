@@ -34,14 +34,14 @@
  * @category Global
  */
 declare function addContextMenuItem(
-    label: string,
-    /**
-     * @param playerColor Player Color who selected the menu item.
-     * @param menuPosition Global position of the right-click context menu.
-     */
-    toRunFunc: (playerColor: PlayerColor, menuPosition: Vector) => unknown,
-    keepOpen?: boolean,
-    requireTable?: boolean
+  label: string,
+  /**
+   * @param playerColor Player Color who selected the menu item.
+   * @param menuPosition Global position of the right-click context menu.
+   */
+  toRunFunc: (playerColor: PlayerColor, menuPosition: Vector) => unknown,
+  keepOpen?: boolean,
+  requireTable?: boolean
 ): boolean;
 
 /**
@@ -174,19 +174,19 @@ declare function group(objects: TTSObject[]): TTSObject[];
  * @category Global
  */
 declare function paste(parameters: {
-    /**
-     * Position of the first object to paste.
-     *
-     * @defaultValue {0, 3, 0}
-     */
-    position?: VectorShape;
+  /**
+   * Position of the first object to paste.
+   *
+   * @defaultValue {0, 3, 0}
+   */
+  position?: VectorShape;
 
-    /**
-     * If snap-to-grid is active on the spawned items.
-     *
-     * @defaultValue false
-     */
-    snap_to_grid?: boolean;
+  /**
+   * If snap-to-grid is active on the spawned items.
+   *
+   * @defaultValue false
+   */
+  snap_to_grid?: boolean;
 }): TTSObject[];
 
 /**
@@ -199,29 +199,29 @@ declare function setLookingForPlayers(lfp: boolean): boolean;
 
 /** Parameters shared by all spawn functions. */
 interface SpawnParamater {
-    /** Position where the object will be spawned. When specified, overrides the Transform position in data. */
-    position?: VectorShape;
+  /** Position where the object will be spawned. When specified, overrides the Transform position in data. */
+  position?: VectorShape;
 
-    /** Rotation of the spawned object. When specified, overrides the Transform rotation in data. */
-    rotation?: VectorShape;
+  /** Rotation of the spawned object. When specified, overrides the Transform rotation in data. */
+  rotation?: VectorShape;
 
-    /** Scale of the spawned object. When specified, overrides the Transform scale in data. */
-    scale?: VectorShape;
+  /** Scale of the spawned object. When specified, overrides the Transform scale in data. */
+  scale?: VectorShape;
 
-    /** Called when the object has finished spawning. The spawned object will be passed as the first and only parameter. */
-    callback_function?: (object: TTSObject) => unknown;
+  /** Called when the object has finished spawning. The spawned object will be passed as the first and only parameter. */
+  callback_function?: (object: TTSObject) => unknown;
 }
 
 /** Parameters for the [[spawnObject]] function. */
 interface SpawnObjectParameters extends SpawnParamater {
-    /** Built-in or Custom Game Object name. */
-    type: ObjectName;
+  /** Built-in or Custom Game Object name. */
+  type: ObjectName;
 
-    /** Whether a sound will be played as the object spawns. */
-    sound?: boolean;
+  /** Whether a sound will be played as the object spawns. */
+  sound?: boolean;
 
-    /** Whether upon spawning, the object will snap to nearby grid lines (or snap points). */
-    snap_to_grid?: boolean;
+  /** Whether upon spawning, the object will snap to nearby grid lines (or snap points). */
+  snap_to_grid?: boolean;
 }
 
 /**
@@ -257,11 +257,11 @@ declare function spawnObject(parameters: SpawnObjectParameters): TTSObject;
 
 /** Parameters for the [[spawnObjectData]] function. */
 interface SpawnObjectDataParameters extends SpawnParamater {
-    /**
-     * Table with properties describing the object that will be spawned.
-     * Required content depends on the type of object being spawned.
-     */
-    data: ObjectData;
+  /**
+   * Table with properties describing the object that will be spawned.
+   * Required content depends on the type of object being spawned.
+   */
+  data: ObjectData;
 }
 
 /**
@@ -312,11 +312,11 @@ declare function spawnObjectData(parameters: SpawnObjectDataParameters): TTSObje
 
 /** Parameters for the [[spawnObjectJSON]] function. */
 declare interface SpawnObjectJSONParameters extends SpawnParamater {
-    /**
-     * JSON string describing the object that will be spawned.
-     * Required content depends on the type of object being spawned.
-     */
-    json: string;
+  /**
+   * JSON string describing the object that will be spawned.
+   * Required content depends on the type of object being spawned.
+   */
+  json: string;
 }
 
 /**
@@ -410,10 +410,10 @@ declare function startLuaCoroutine(functionOwner: TTSObject, functionName: strin
  * @category Hotkeys
  */
 type AddHotkeyCallback = (
-    playerColor: PlayerColor,
-    hoveredObject: Maybe<TTSObject>,
-    pointerPosition: Vector,
-    isKeyUp: boolean
+  playerColor: PlayerColor,
+  hoveredObject: Maybe<TTSObject>,
+  pointerPosition: Vector,
+  isKeyUp: boolean
 ) => unknown;
 
 /**
@@ -595,7 +595,7 @@ declare function logStyle(tag: string, tint: ColorValue, prefix?: string, postfi
  *
  * @category Message
  */
-declare function print(message: string): nil;
+declare function print(...message: any[]): nil;
 
 /**
  * Print a message into the in-game chat of all connected players.

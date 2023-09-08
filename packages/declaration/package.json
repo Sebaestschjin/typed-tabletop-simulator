@@ -1,7 +1,7 @@
 {
   "name": "@typed-tabletop-simulator/declaration",
   "description": "Declaration files for the Tabletop Simulator API.",
-  "version": "1.0.2",
+  "version": "1.1.0",
   "author": "Sebastian Stern",
   "license": "CC0-1.0",
   "keywords": [
@@ -16,16 +16,12 @@
     "url": "https://github.com/Sebaestschjin/typed-tabletop-simulator.git"
   },
   "bugs": "https://github.com/Sebaestschjin/typed-tabletop-simulato/issues",
-  "main": "src/index.d.ts",
-  "types": "src/index.d.ts",
-  "scripts": {
-    "build:doc": "typedoc",
-    "build:doc-watch": "typedoc --watch"
-  },
+  "main": "src/index",
+  "scripts": {},
   "devDependencies": {
-    "typedoc": "^0.22.15",
-    "typescript": "~4.7.3",
-    "typescript-to-lua": "^1.7.0"
+    "@typescript-to-lua/language-extensions": "^1.19.0",
+    "typescript": "~5.2.2",
+    "typescript-to-lua": "^1.19.0"
   },
   "files": [
     "/src"

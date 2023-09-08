@@ -4,231 +4,231 @@
 
 /** Base type for all object data. */
 interface ObjectData {
-    /** The "unique" ID of the object. */
-    GUID?: GUID;
+  /** The "unique" ID of the object. */
+  GUID?: GUID;
 
-    /** The type of the object. */
-    Name: string;
+  /** The type of the object. */
+  Name: string;
 
-    /** Contains the position, rotation and scale of the object. */
-    Transform: TransformData;
+  /** Contains the position, rotation and scale of the object. */
+  Transform: TransformData;
 
-    /** The name of the object that is also visible as part of the object's tooltip. */
-    Nickname?: string;
+  /** The name of the object that is also visible as part of the object's tooltip. */
+  Nickname?: string;
 
-    /** The description of the object that is also visible as part of the object's tooltip. */
-    Description?: string;
+  /** The description of the object that is also visible as part of the object's tooltip. */
+  Description?: string;
 
-    /** The hidden notes that are only visible to the GM player. */
-    GMNotes?: string;
+  /** The hidden notes that are only visible to the GM player. */
+  GMNotes?: string;
 
-    /** Hidden notes only accessible via script. */
-    Memo?: string;
+  /** Hidden notes only accessible via script. */
+  Memo?: string;
 
-    ColorDiffuse?: ColorData;
+  ColorDiffuse?: ColorData;
 
-    /** Added tags for the object. */
-    Tags?: string[];
+  /** Added tags for the object. */
+  Tags?: string[];
 
-    LayoutGroupSortIndex?: int;
+  LayoutGroupSortIndex?: int;
 
-    Value?: number;
+  Value?: number;
 
-    /** Whether the object is currently locked. */
-    Locked?: boolean;
+  /** Whether the object is currently locked. */
+  Locked?: boolean;
 
-    /** Whether the object should snap to grid points. */
-    Grid?: boolean;
+  /** Whether the object should snap to grid points. */
+  Grid?: boolean;
 
-    /** Whether the object should snap to snap points. */
-    Snap?: boolean;
+  /** Whether the object should snap to snap points. */
+  Snap?: boolean;
 
-    IgnoreFoW?: boolean;
+  IgnoreFoW?: boolean;
 
-    MeasureMovement?: boolean;
+  MeasureMovement?: boolean;
 
-    DragSelectable?: boolean;
+  DragSelectable?: boolean;
 
-    Autoraise?: boolean;
+  Autoraise?: boolean;
 
-    Sticky?: boolean;
+  Sticky?: boolean;
 
-    Tooltip?: boolean;
+  Tooltip?: boolean;
 
-    GridProjection?: boolean;
+  GridProjection?: boolean;
 
-    HideWhenFaceDown?: boolean;
+  HideWhenFaceDown?: boolean;
 
-    Hands?: boolean;
+  Hands?: boolean;
 
-    MaterialIndex?: MaterialType;
+  MaterialIndex?: MaterialType;
 
-    MeshIndex?: int;
+  MeshIndex?: int;
 
-    Number?: int;
+  Number?: int;
 
-    /** The attached Lua script. */
-    LuaScript?: string;
+  /** The attached Lua script. */
+  LuaScript?: string;
 
-    /** The current saved script state. */
-    LuaScriptState?: string;
+  /** The current saved script state. */
+  LuaScriptState?: string;
 
-    /** The attached XML UI. */
-    XmlUI?: string;
+  /** The attached XML UI. */
+  XmlUI?: string;
 
-    /** Objects attached to this object. */
-    ChildObjects?: ObjectData[];
+  /** Objects attached to this object. */
+  ChildObjects?: ObjectData[];
 
-    AttachedSnapPoints?: SnapPointData[];
+  AttachedSnapPoints?: SnapPointData[];
 
-    AttachedVectorLines?: VectorLineData[];
+  AttachedVectorLines?: VectorLineData[];
 
-    States?: {
-        [index: number]: ObjectData;
-    };
+  States?: {
+    [index: number]: ObjectData;
+  };
 }
 
 /**
  * Object data for a custom asset bundle.
  */
 interface AssetBundleData extends ObjectData {
-    CustomAssetbundle: {
-        AssetbundleURL: URI;
+  CustomAssetbundle: {
+    AssetbundleURL: URI;
 
-        AssetbundleSecondaryURL?: URI;
+    AssetbundleSecondaryURL?: URI;
 
-        MaterialIndex?: MaterialType;
+    MaterialIndex?: MaterialType;
 
-        TypeIndex?: ModelType;
+    TypeIndex?: ModelType;
 
-        LoopingEffectIndex?: int;
-    };
+    LoopingEffectIndex?: int;
+  };
 }
 
 /**
  * Object data for a regular bag.
  */
 interface BagData extends ObjectData {
-    Bag?: {
-        Order: BagOrder;
-    };
+  Bag?: {
+    Order: BagOrder;
+  };
 
-    ContainedObjects?: ObjectData[];
+  ContainedObjects?: ObjectData[];
 }
 
 /**
  * Object data for an infinite bag.
  */
 interface BagInfiniteData extends ObjectData {
-    ContainedObjects?: [ObjectData];
+  ContainedObjects?: [ObjectData];
 }
 
 /**
  * Object data for a custom board.
  */
 interface BoardCustomData extends ObjectData {
-    CustomImage: {
-        ImageURL: URI;
+  CustomImage: {
+    ImageURL: URI;
 
-        WidthScale: float;
-    };
+    WidthScale: float;
+  };
 }
 
 interface BookData extends ObjectData {
-    CustomPDF: {
-        /**
-         * URI for the PDF file.
-         */
-        PDFUrl: URI;
+  CustomPDF: {
+    /**
+     * URI for the PDF file.
+     */
+    PDFUrl: URI;
 
-        /**
-         * Currently selected page.
-         */
-        PDFPage: int;
+    /**
+     * Currently selected page.
+     */
+    PDFPage: int;
 
-        /**
-         * The page numbers displayed in the Custom PDF UI are offset by this amount.
-         */
-        PDFPageOffset: int;
-    };
+    /**
+     * The page numbers displayed in the Custom PDF UI are offset by this amount.
+     */
+    PDFPageOffset: int;
+  };
 }
 
 /**
  * Object data for the tablet object.
  */
 interface BrowserData extends ObjectData {
-    Tablet: {
-        PageURL: string;
-    };
+  Tablet: {
+    PageURL: string;
+  };
 }
 
 /**
  * Object data for a custom card.
  */
 interface CardCustomData extends ObjectData {
-    CardID: int;
+  CardID: int;
 
-    CustomDeck: LuaTable<int, CustomDeckData>;
+  CustomDeck: LuaTable<int, CustomDeckData>;
 }
 
 interface ClockData extends ObjectData {
-    Clock: {
-        Mode: ClockMode;
+  Clock: {
+    Mode: ClockMode;
 
-        SecondsPassed: int;
+    SecondsPassed: int;
 
-        Paused: boolean;
-    };
+    Paused: boolean;
+  };
 }
 
 interface CounterData extends ObjectData {
-    Counter: {
-        value: int;
-    };
+  Counter: {
+    value: int;
+  };
 }
 
 /**
  * Object data for a deck containing custom cards.
  */
 interface DeckCustomData extends ObjectData {
-    /** The card IDs (sic!) of all cards contained in this deck. */
-    DeckIDs: int[];
+  /** The card IDs (sic!) of all cards contained in this deck. */
+  DeckIDs: int[];
 
-    /** The data of contained cards. */
-    ContainedObjects: CardCustomData[];
+  /** The data of contained cards. */
+  ContainedObjects: CardCustomData[];
 
-    /** Information about the custom decks within this deck indexed by their deck ID */
-    CustomDeck: LuaTable<int, CustomDeckData>;
+  /** Information about the custom decks within this deck indexed by their deck ID */
+  CustomDeck: LuaTable<int, CustomDeckData>;
 }
 
 /**
  * Object data of a regular die.
  */
 interface DieData extends ObjectData {
-    RotationValues?: RotationValueData[];
+  RotationValues?: RotationValueData[];
 }
 
 /**
  * Object data of a custom die.
  */
 interface DieCustomData extends DieData {
-    CustomImage: {
-        ImageURL: string;
+  CustomImage: {
+    ImageURL: string;
 
-        CustomDice: {
-            Type: DieType;
-        };
+    CustomDice: {
+      Type: DieType;
     };
+  };
 }
 
 interface FigurineCustomData extends ObjectData {
-    CustomImage: {
-        ImageURL: string;
+  CustomImage: {
+    ImageURL: string;
 
-        ImageSecondaryURL: string;
+    ImageSecondaryURL: string;
 
-        ImageScalar: float;
-    };
+    ImageScalar: float;
+  };
 }
 
 /**
@@ -237,249 +237,249 @@ interface FigurineCustomData extends ObjectData {
 interface HandZoneData extends ObjectData {}
 
 interface LayoutZoneData extends ObjectData {
-    LayoutZone: {
-        /** Options set for this Layout Zone. */
-        Options?: {
-            /**
-             * The directions the groups in the zone expand into. This will determine the origin corner.
-             *
-             * @defaultValue [[LayoutZoneDirection.RightDown]]
-             */
-            Direction?: LayoutZoneDirection;
+  LayoutZone: {
+    /** Options set for this Layout Zone. */
+    Options?: {
+      /**
+       * The directions the groups in the zone expand into. This will determine the origin corner.
+       *
+       * @defaultValue [[LayoutZoneDirection.RightDown]]
+       */
+      Direction?: LayoutZoneDirection;
 
-            /**
-             * The direction the objects within a group will expand into.
-             *
-             * @defaultValue [[LayoutZoneGroupDirection.East]]
-             */
-            MeldDirection?: LayoutZoneGroupDirection;
+      /**
+       * The direction the objects within a group will expand into.
+       *
+       * @defaultValue [[LayoutZoneGroupDirection.East]]
+       */
+      MeldDirection?: LayoutZoneGroupDirection;
 
-            /**
-             * Determines whether newly added objects are turned face-up or face-down.
-             *
-             * @defaultValue [[LayoutZoneFacing.FaceUp]]
-             */
-            NewObjectFacing?: LayoutZoneFacing;
+      /**
+       * Determines whether newly added objects are turned face-up or face-down.
+       *
+       * @defaultValue [[LayoutZoneFacing.FaceUp]]
+       */
+      NewObjectFacing?: LayoutZoneFacing;
 
-            /**
-             * Face-Up objects dropped on zone will be laid out.
-             *
-             * @defaultValue `true`
-             */
-            TriggerForFaceUp?: boolean;
+      /**
+       * Face-Up objects dropped on zone will be laid out.
+       *
+       * @defaultValue `true`
+       */
+      TriggerForFaceUp?: boolean;
 
-            /**
-             * Face-Down objects dropped on zone will be laid out.
-             *
-             * @defaultValue `true`
-             */
-            TriggerForFaceDown?: boolean;
+      /**
+       * Face-Down objects dropped on zone will be laid out.
+       *
+       * @defaultValue `true`
+       */
+      TriggerForFaceDown?: boolean;
 
-            /**
-             * Non-card objects dropped on zone will be laid out.
-             *
-             * @defaultValue `false`
-             */
-            TriggerForNonCards?: boolean;
+      /**
+       * Non-card objects dropped on zone will be laid out.
+       *
+       * @defaultValue `false`
+       */
+      TriggerForNonCards?: boolean;
 
-            /**
-             * When moving an object from one full group to another, the object you drop on will be moved to the original group.
-             *
-             * @defaultValue `true`
-             */
-            AllowSwapping?: boolean;
+      /**
+       * When moving an object from one full group to another, the object you drop on will be moved to the original group.
+       *
+       * @defaultValue `true`
+       */
+      AllowSwapping?: boolean;
 
-            /**
-             * When new objects are added to a zone, they will be gathered into groups of this many objects.
-             *
-             * @defaultValue 13
-             */
-            MaxObjectsPerNewGroup?: int;
+      /**
+       * When new objects are added to a zone, they will be gathered into groups of this many objects.
+       *
+       * @defaultValue 13
+       */
+      MaxObjectsPerNewGroup?: int;
 
-            /**
-             * Each group in the zone may not contain more than this number of objects.
-             *
-             * @defaultValue 0
-             */
-            MaxObjectsPerGroup?: int;
+      /**
+       * Each group in the zone may not contain more than this number of objects.
+       *
+       * @defaultValue 0
+       */
+      MaxObjectsPerGroup?: int;
 
-            /**
-             * How groups are sorted internally.
-             *
-             * @defaultValue [[LayoutZoneSort.Name]]
-             */
-            MeldSort?: LayoutZoneSort;
+      /**
+       * How groups are sorted internally.
+       *
+       * @defaultValue [[LayoutZoneSort.Name]]
+       */
+      MeldSort?: LayoutZoneSort;
 
-            /**
-             * When enabled the sort order inside a group is reversed.
-             *
-             * @defaultValue `false`
-             */
-            MeldReverseSort?: boolean;
+      /**
+       * When enabled the sort order inside a group is reversed.
+       *
+       * @defaultValue `false`
+       */
+      MeldReverseSort?: boolean;
 
-            /**
-             * When enabled all groups will be sorted when laid out, rather than only newly added groups.
-             *
-             * @defaultValue `false`
-             */
-            MeldSortExisting?: boolean;
+      /**
+       * When enabled all groups will be sorted when laid out, rather than only newly added groups.
+       *
+       * @defaultValue `false`
+       */
+      MeldSortExisting?: boolean;
 
-            /**
-             * When picked up, cards above the grabbed card will also be lifted.
-             *
-             * @defaultValue `false`
-             */
-            StickyCards?: boolean;
+      /**
+       * When picked up, cards above the grabbed card will also be lifted.
+       *
+       * @defaultValue `false`
+       */
+      StickyCards?: boolean;
 
-            /**
-             * How far each object in a group is moved horizontally from the previous object.
-             *
-             * @defaultValue `0.6`
-             */
-            HorizontalSpread?: float;
+      /**
+       * How far each object in a group is moved horizontally from the previous object.
+       *
+       * @defaultValue `0.6`
+       */
+      HorizontalSpread?: float;
 
-            /**
-             * How far each object in a group is moved vertically from the previous object.
-             *
-             * @defaultValue `0`
-             */
-            VerticalSpread?: float;
+      /**
+       * How far each object in a group is moved vertically from the previous object.
+       *
+       * @defaultValue `0`
+       */
+      VerticalSpread?: float;
 
-            /**
-             * How much horizontal space is inserted between groups.
-             *
-             * @defaultValue `1`
-             */
-            HorizontalGroupPadding?: float;
+      /**
+       * How much horizontal space is inserted between groups.
+       *
+       * @defaultValue `1`
+       */
+      HorizontalGroupPadding?: float;
 
-            /**
-             * How much vertical space is inserted between groups.
-             *
-             * @defaultValue `1`
-             */
-            VerticalGroupPadding?: float;
+      /**
+       * How much vertical space is inserted between groups.
+       *
+       * @defaultValue `1`
+       */
+      VerticalGroupPadding?: float;
 
-            /**
-             * Decks added to the zone will be split into their individual cards.
-             *
-             * @defaultValue `true`
-             */
-            SplitAddedDecks?: boolean;
+      /**
+       * Decks added to the zone will be split into their individual cards.
+       *
+       * @defaultValue `true`
+       */
+      SplitAddedDecks?: boolean;
 
-            /**
-             * Whether cards added to the zone should be combined into decks.
-             *
-             * You may specify the number of cards per deck.
-             *
-             * @defaultValue `false`
-             */
-            CombineIntoDecks?: boolean;
+      /**
+       * Whether cards added to the zone should be combined into decks.
+       *
+       * You may specify the number of cards per deck.
+       *
+       * @defaultValue `false`
+       */
+      CombineIntoDecks?: boolean;
 
-            /**
-             * Sets the size of decks made by the layout zone when it combines newly added cards.
-             *
-             * @defaultValue `0`
-             */
-            CardsPerDeck?: int;
+      /**
+       * Sets the size of decks made by the layout zone when it combines newly added cards.
+       *
+       * @defaultValue `0`
+       */
+      CardsPerDeck?: int;
 
-            /**
-             * Objects added to a group will be aligned up or right, different from the preceding object in the group.
-             *
-             * Used, for example, in trick-taking games to make counting easier.
-             *
-             * @defaultValue `false`
-             */
-            AlternateDirection?: boolean;
+      /**
+       * Objects added to a group will be aligned up or right, different from the preceding object in the group.
+       *
+       * Used, for example, in trick-taking games to make counting easier.
+       *
+       * @defaultValue `false`
+       */
+      AlternateDirection?: boolean;
 
-            /**
-             * Objects will be randomized whenever they are laid out.
-             *
-             * @defaultValue `false`
-             */
-            Randomize?: boolean;
+      /**
+       * Objects will be randomized whenever they are laid out.
+       *
+       * @defaultValue `false`
+       */
+      Randomize?: boolean;
 
-            /**
-             * When enabled, if ever a group is picked up or removed the rest of the layout will trigger to fill in the gap.
-             *
-             * @defaultValue `false`
-             */
-            InstantRefill?: boolean;
+      /**
+       * When enabled, if ever a group is picked up or removed the rest of the layout will trigger to fill in the gap.
+       *
+       * @defaultValue `false`
+       */
+      InstantRefill?: boolean;
 
-            /**
-             * The zone will not automatically lay out objects: it must be triggered manually.
-             *
-             * @defaultValue `false`
-             */
-            ManualOnly?: boolean;
-        };
-        GroupsInZone?: Array<GUID[]>;
+      /**
+       * The zone will not automatically lay out objects: it must be triggered manually.
+       *
+       * @defaultValue `false`
+       */
+      ManualOnly?: boolean;
     };
+    GroupsInZone?: Array<GUID[]>;
+  };
 }
 
 /**
  * Object data of a custom model.
  */
 interface ModelData extends ObjectData {
-    CustomMesh: {
-        /** The path/URL for the .obj mesh used on the custom model. */
-        MeshURL: URI;
+  CustomMesh: {
+    /** The path/URL for the .obj mesh used on the custom model. */
+    MeshURL: URI;
 
-        /** The path/URL for the diffuse image. */
-        DiffuseURL?: URI;
+    /** The path/URL for the diffuse image. */
+    DiffuseURL?: URI;
 
-        /** The path/URL for the normals image. */
-        NormalURL?: URI;
+    /** The path/URL for the normals image. */
+    NormalURL?: URI;
 
-        /** The path/URL for the collider mesh. */
-        ColliderURL?: URI;
+    /** The path/URL for the collider mesh. */
+    ColliderURL?: URI;
 
-        /**
-         * Whether the object model is convex.
-         *
-         * @defaultValue `false`
-         */
-        Convex?: boolean;
+    /**
+     * Whether the object model is convex.
+     *
+     * @defaultValue `false`
+     */
+    Convex?: boolean;
 
-        /**
-         * An Int representing the Object's material.
-         *
-         * @defaultValue [[MaterialType.Plastic]]
-         */
-        MaterialIndex?: MaterialType;
+    /**
+     * An Int representing the Object's material.
+     *
+     * @defaultValue [[MaterialType.Plastic]]
+     */
+    MaterialIndex?: MaterialType;
 
-        /**
-         * An Int representing the Object's type.
-         *
-         * @defaultValue [[ObjectType.Generic]]
-         */
-        TypeIndex?: ModelType;
+    /**
+     * An Int representing the Object's type.
+     *
+     * @defaultValue [[ObjectType.Generic]]
+     */
+    TypeIndex?: ModelType;
 
-        /**
-         * Whether the Object casts shadows.
-         *
-         * @defaultValue `true`
-         */
-        CastShadows?: boolean;
+    /**
+     * Whether the Object casts shadows.
+     *
+     * @defaultValue `true`
+     */
+    CastShadows?: boolean;
 
-        CustomShader?: {
-            SpecularColor?: ColorData;
+    CustomShader?: {
+      SpecularColor?: ColorData;
 
-            SpecularIntensity?: float;
+      SpecularIntensity?: float;
 
-            SpecularSharpness?: float;
+      SpecularSharpness?: float;
 
-            FresnelStrength?: float;
-        };
+      FresnelStrength?: float;
     };
-    ContainedObjects?: ObjectData[];
+  };
+  ContainedObjects?: ObjectData[];
 }
 
 interface RPGFigurineData extends ObjectData {
-    /** Whether the mode is switched on the figurine. */
-    RPGmode: boolean;
+  /** Whether the mode is switched on the figurine. */
+  RPGmode: boolean;
 
-    /** Whether the dead mode is entered for the figurine. */
-    RPGdead: boolean;
+  /** Whether the dead mode is entered for the figurine. */
+  RPGdead: boolean;
 }
 
 /**
@@ -491,233 +491,233 @@ interface ScriptingZoneData extends ObjectData {}
  * Object data of a 3D text object.
  */
 interface TextData extends ObjectData {
-    Text: {
-        /** The text shown on the 3D text object. */
-        Text: string;
+  Text: {
+    /** The text shown on the 3D text object. */
+    Text: string;
 
-        /** The color of the text. */
-        colorstate: ColorRGB;
+    /** The color of the text. */
+    colorstate: ColorRGB;
 
-        /** The font size of the text. */
-        fontSize: int;
-    };
+    /** The font size of the text. */
+    fontSize: int;
+  };
 }
 
 /**
  * Object data for a custom token.
  */
 interface TokenData extends ObjectData {
-    CustomImage: {
-        ImageURL: string;
+  CustomImage: {
+    ImageURL: string;
 
-        CustomToken: {
-            Thickness?: number;
+    CustomToken: {
+      Thickness?: number;
 
-            MergeDistancePixels?: number;
+      MergeDistancePixels?: number;
 
-            StandUp?: boolean;
+      StandUp?: boolean;
 
-            Stackable?: boolean;
-        };
+      Stackable?: boolean;
     };
+  };
 }
 
 /**
  * Object data for a custom tile.
  */
 interface TileData extends ObjectData {
-    CustomImage: {
-        ImageURL: string;
+  CustomImage: {
+    ImageURL: string;
 
-        ImageSecondaryURL?: string;
+    ImageSecondaryURL?: string;
 
-        CustomTile: {
-            Type: TileType;
+    CustomTile: {
+      Type: TileType;
 
-            Thickness?: number;
+      Thickness?: number;
 
-            Stackable?: boolean;
+      Stackable?: boolean;
 
-            Stretch?: boolean;
-        };
+      Stretch?: boolean;
     };
+  };
 }
 
 interface CustomDeckData {
-    Type: CardType;
+  Type: CardType;
 
-    FaceURL: string;
+  FaceURL: string;
 
-    BackURL: string;
+  BackURL: string;
 
-    NumWidth: int;
+  NumWidth: int;
 
-    NumHeight: int;
+  NumHeight: int;
 
-    BackIsHidden: boolean;
+  BackIsHidden: boolean;
 
-    UniqueBack: boolean;
+  UniqueBack: boolean;
 }
 
 /**
  * Data for a rotation value of a die.
  */
 interface RotationValueData {
-    Value: RotationValue;
+  Value: RotationValue;
 
-    Rotation: VectorTable;
+  Rotation: VectorTable;
 }
 
 /**
  * Data for an attached snap point.
  */
 interface SnapPointData {
-    Position: VectorTable;
+  Position: VectorTable;
 
-    Rotation?: VectorTable;
+  Rotation?: VectorTable;
 
-    Tags?: string[];
+  Tags?: string[];
 }
 
 /**
  * Data for a drawn vector line.
  */
 interface VectorLineData {
-    points3: VectorTable[];
+  points3: VectorTable[];
 
-    color: ColorRGB;
+  color: ColorRGB;
 
-    thickness: float;
+  thickness: float;
 
-    rotation: VectorTable;
+  rotation: VectorTable;
 
-    loop?: boolean;
+  loop?: boolean;
 }
 
 /**
  * Data for the position, scale and rotation of an object.
  */
 interface TransformData {
-    /** X-coordinate (left/right) of the position. */
-    posX: number;
+  /** X-coordinate (left/right) of the position. */
+  posX: number;
 
-    /** Y-coordinate (up/down) of the position. */
-    posY: number;
+  /** Y-coordinate (up/down) of the position. */
+  posY: number;
 
-    /** Z-coordinate (front/back) of the position. */
-    posZ: number;
+  /** Z-coordinate (front/back) of the position. */
+  posZ: number;
 
-    /** Rotation on the x-axis. */
-    rotX: number;
+  /** Rotation on the x-axis. */
+  rotX: number;
 
-    /** Rotation on the y-axis. */
-    rotY: number;
+  /** Rotation on the y-axis. */
+  rotY: number;
 
-    /** Rotation on the z-axis. */
-    rotZ: number;
+  /** Rotation on the z-axis. */
+  rotZ: number;
 
-    /** Scale on the x-axis. */
-    scaleX: number;
+  /** Scale on the x-axis. */
+  scaleX: number;
 
-    /** Scale on the y-axis. */
-    scaleY: number;
+  /** Scale on the y-axis. */
+  scaleY: number;
 
-    /** Scale on the z-axis. */
-    scaleZ: number;
+  /** Scale on the z-axis. */
+  scaleZ: number;
 }
 
 /**
  * Data for the color of an object.
  */
 interface PlayerColorData {
-    /** Red value between 0 and 1. */
-    r: float;
+  /** Red value between 0 and 1. */
+  r: float;
 
-    /** Green value between 0 and 1. */
-    g: float;
+  /** Green value between 0 and 1. */
+  g: float;
 
-    /** Blue value between 0 and 1. */
-    b: float;
+  /** Blue value between 0 and 1. */
+  b: float;
 }
 
 /**
  * Data for the color of an object.
  */
 interface ColorData {
-    /** Red value between 0 and 1. */
-    r: float;
+  /** Red value between 0 and 1. */
+  r: float;
 
-    /** Green value between 0 and 1. */
-    g: float;
+  /** Green value between 0 and 1. */
+  g: float;
 
-    /** Blue value between 0 and 1. */
-    b: float;
+  /** Blue value between 0 and 1. */
+  b: float;
 
-    /** Alpha value between 0 and 1. */
-    a: float;
+  /** Alpha value between 0 and 1. */
+  a: float;
 }
 
 interface PositionData {
-    x: float;
-    y: float;
-    z: float;
+  x: float;
+  y: float;
+  z: float;
 }
 
 /**
  * Possible order of objects inside a bag.
  */
 declare const enum BagOrder {
-    /** Last object put in is the first taken out (stack). */
-    LIFO = 0,
-    /** First object put in is the first taken out (queue). */
-    FIFO = 1,
-    /** Objects are taken out randomly. */
-    Random = 2,
+  /** Last object put in is the first taken out (stack). */
+  LIFO = 0,
+  /** First object put in is the first taken out (queue). */
+  FIFO = 1,
+  /** Objects are taken out randomly. */
+  Random = 2,
 }
 
 /**
  * Possible type for a card.
  */
 declare const enum CardType {
-    RectangleRounded = 0,
-    Rectangle = 1,
-    HexRounded = 2,
-    Hex = 3,
-    Circle = 4,
+  RectangleRounded = 0,
+  Rectangle = 1,
+  HexRounded = 2,
+  Hex = 3,
+  Circle = 4,
 }
 
 /**
  * Possible type for a die,
  */
 declare const enum DieType {
-    D4 = 0,
-    D6 = 1,
-    D8 = 2,
-    D10 = 3,
-    D12 = 4,
-    D20 = 5,
+  D4 = 0,
+  D6 = 1,
+  D8 = 2,
+  D10 = 3,
+  D12 = 4,
+  D20 = 5,
 }
 
 /**
  * Possible type for a custom model.
  */
 declare const enum ModelType {
-    Generic = 0,
-    Figurine = 1,
-    Dice = 2,
-    Coin = 3,
-    Board = 4,
-    Chip = 5,
-    Bag = 6,
-    Infinite = 7,
+  Generic = 0,
+  Figurine = 1,
+  Dice = 2,
+  Coin = 3,
+  Board = 4,
+  Chip = 5,
+  Bag = 6,
+  Infinite = 7,
 }
 
 /**
  * Possible type for a tile.
  */
 declare const enum TileType {
-    Box = 0,
-    Hex = 1,
-    Circle = 2,
-    Rounded = 3,
+  Box = 0,
+  Hex = 1,
+  Circle = 2,
+  Rounded = 3,
 }

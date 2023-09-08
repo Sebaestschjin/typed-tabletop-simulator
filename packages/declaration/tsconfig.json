@@ -8,8 +8,7 @@
     "lib": ["esnext"],
     "target": "esnext",
     "moduleResolution": "node",
-    "types": ["typescript-to-lua/language-extensions"],
-    "typeRoots": ["./node_modules/@types"]
+    "types": ["@typescript-to-lua/language-extensions"],
   },
   "main": "src/index.d.ts",
   "include": ["src/**/*.d.ts"]

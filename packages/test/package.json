@@ -13,7 +13,7 @@
   "license": "MIT",
   "devDependencies": {
     "@typed-tabletop-simulator/declaration": "workspace:../declaration",
-    "typescript": "^4.6.3",
-    "typescript-to-lua": "^1.4.2"
+    "typescript": "^5.2.2",
+    "typescript-to-lua": "^1.19.0"
   }
 }

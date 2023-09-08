@@ -192,12 +192,12 @@ type OnObjectRandomizeHandler = (object: TTSObject, player: PlayerColor) => unkn
  * @param oldFlip The object's previous flip rotation in degrees within the interval [0, 360).
  */
 type OnObjectRotateHandler = (
-    object: TTSObject,
-    spin: float,
-    flip: float,
-    player: PlayerColor,
-    oldSpin: float,
-    oldFlip: float
+  object: TTSObject,
+  spin: float,
+  flip: float,
+  player: PlayerColor,
+  oldSpin: float,
+  oldFlip: float
 ) => unknown;
 
 /**
@@ -364,12 +364,12 @@ type TryObjectRandomizeHandler = (object: TTSObject, player: PlayerColor) => May
  * @param oldFlip The object's current flip rotation in degrees within the interval [0, 360).
  */
 type TryObjectRotateHandler = (
-    object: TTSObject,
-    spin: float,
-    flip: float,
-    player: PlayerColor,
-    oldSpin: float,
-    oldFlip: float
+  object: TTSObject,
+  spin: float,
+  flip: float,
+  player: PlayerColor,
+  oldSpin: float,
+  oldFlip: float
 ) => Maybe<boolean>;
 
 /**
@@ -529,23 +529,23 @@ type TryRandomizeHandler = (player: PlayerColor) => Maybe<boolean>;
  * @param oldFlip The object's current flip rotation in degrees within the interval [0, 360).
  */
 type TryRotateHandler = (
-    spin: float,
-    flip: float,
-    player: PlayerColor,
-    oldSpin: float,
-    oldFlip: float
+  spin: float,
+  flip: float,
+  player: PlayerColor,
+  oldSpin: float,
+  oldFlip: float
 ) => Maybe<boolean>;
 
 /**
  * A table containing data about the collision.
  */
 interface CollisionInfo {
-    /** Object coming into contact with the `registered_object`. */
-    collision_object: TTSObject;
-    /** Table/array full of contact points, where each 3D point is represented by a (number indexed) table. */
-    contact_points: VectorNumeric[];
-    /** Table representation of a 3D vector indicating the direction and magnitude of the collision. */
-    relative_velocity: VectorNumeric;
+  /** Object coming into contact with the `registered_object`. */
+  collision_object: TTSObject;
+  /** Table/array full of contact points, where each 3D point is represented by a (number indexed) table. */
+  contact_points: VectorNumeric[];
+  /** Table representation of a 3D vector indicating the direction and magnitude of the collision. */
+  relative_velocity: VectorNumeric;
 }
 
 /** Possible index values for a scripting button. */
