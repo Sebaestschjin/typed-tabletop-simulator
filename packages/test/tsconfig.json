@@ -7,8 +7,7 @@
     "target": "esnext",
     "moduleResolution": "node",
     "outDir": "./build",
-    "types": ["typescript-to-lua/language-extensions", "@typed-tabletop-simulator/declaration"],
-    "typeRoots": ["./node_modules/@types"],
+    "types": ["@typescript-to-lua/language-extensions", "@typed-tabletop-simulator/declaration"],
     "strict": true
   }
 }
