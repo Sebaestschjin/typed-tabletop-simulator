@@ -264,6 +264,13 @@ declare interface Vector {
    * Same as [[VectorStatic.heading]] with this vector as the first parameter.
    */
   heading(axis: VectorAxis): float;
+
+  /** The x-coordinate. */
+  x: number;
+  /** The y-coordinate. */
+  y: number;
+  /** The z-coordinate. */
+  z: number;
 }
 
 /**
