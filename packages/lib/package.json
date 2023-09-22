@@ -1,0 +1,36 @@
+{
+  "name": "@typed-tabletop-simulator/lib",
+  "description": "Library with some helping modules for working with Tabletop Simulator",
+  "version": "0.0.1",
+  "author": "Sebastian Stern",
+  "license": "CC0-1.0",
+  "keywords": [
+    "typescript",
+    "lua",
+    "tabletopsimulator",
+    "tabletop-simulator"
+  ],
+  "homepage": "https://github.com/Sebaestschjin/typed-tabletop-simulator/tree/main/packages/lib",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/Sebaestschjin/typed-tabletop-simulator.git",
+    "directory": "packages/lib"
+  },
+  "bugs": "https://github.com/Sebaestschjin/typed-tabletop-simulato/issues",
+  "main": "dist/index",
+  "scripts": {
+    "build": "tstl -p tsconfig.build.json",
+    "test": "vitest"
+  },
+  "devDependencies": {
+    "@typed-tabletop-simulator/declaration": "workspace:^",
+    "@typescript-to-lua/language-extensions": "^1.19.0",
+    "typescript": "~5.2.2",
+    "typescript-to-lua": "^1.19.0",
+    "vitest": "^0.34.4"
+  },
+  "files": [
+    "dist/**/*.lua",
+    "dist/**/*.d.ts"
+  ]
+}

@@ -1,0 +1,19 @@
+{
+  "$schema": "https://raw.githubusercontent.com/TypeScriptToLua/TypeScriptToLua/master/tsconfig-schema.json",
+  "tstl": {
+    "noImplicitSelf": true,
+    "buildMode": "library"
+  },
+  "compilerOptions": {
+    "lib": ["ESNext"],
+    "target": "esnext",
+    "moduleResolution": "node",
+    "types": [ "@typed-tabletop-simulator/declaration", "@typescript-to-lua/language-extensions"],
+    "module": "commonjs",
+    "strict": true,
+    "outDir": "./dist",
+    "declaration": true,
+    "removeComments": false,
+    "preserveConstEnums": true,
+  }
+}

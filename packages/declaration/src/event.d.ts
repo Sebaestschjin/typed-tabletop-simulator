@@ -282,8 +282,9 @@ type OnPlayerDisconnectHandler = (player: Player) => unknown;
  *
  * @param player Player who performed the ping.
  * @param position The location that was pinged.
+ * @param object If the player pinged on top of an object, that object.
  */
-type OnPlayerPingHandler = (player: Player, position: Vector) => unknown;
+type OnPlayerPingHandler = (player: Player, position: Vector, object: Maybe<TTSObject>) => unknown;
 
 /**
  * Called at the start of a player's turn.
