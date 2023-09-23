@@ -2475,6 +2475,7 @@ declare const enum ObjectName {
   MetalBall = "Ball",
   Model = "Custom_Model",
   ModelBag = "Custom_Model_Bag",
+  Notecard = "Notecard",
   Pachisiboard = "Pachisi_board",
   PlayerPawn = "PlayerPawn",
   Quarter = "Quarter",

@@ -654,7 +654,7 @@ interface ColorData {
   b: float;
 
   /** Alpha value between 0 and 1. */
-  a: float;
+  a?: float;
 }
 
 interface PositionData {
