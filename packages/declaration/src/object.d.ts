@@ -1,11 +1,11 @@
 /**
+ * @noSelfInFile
  * @module Object
  */
 
 /**
  * A game object within TTS.
  *
- * @noSelf
  */
 declare interface TTSObject<D extends ObjectData = ObjectData, C extends CustomObject = CustomObject>
   extends GameObjectFunctions {
