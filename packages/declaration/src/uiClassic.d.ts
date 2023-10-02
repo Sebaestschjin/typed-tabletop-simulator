@@ -196,3 +196,33 @@ declare const enum InputTabBehaviour {
   SelectNextInput = 2,
   Indent = 3,
 }
+
+/**
+ * The click function which is activated by clicking this button has its own parameters it is passed automatically.
+ *
+ * @param object The Object the button is attached to.
+ * @param playerColor Player Color of the player that pressed the button.
+ * @param altClick True if a button other than left-click was used to click the button.
+ */
+declare type ButtonClickFunction = (
+  this: void,
+  object: TTSObject,
+  playerColor: PlayerColor,
+  altClick: boolean
+) => unknown;
+
+/**
+ * The click function which is activated by editing the text in this input has its own parameters it is passed automatically.
+ *
+ * @param object The Object the input is attached to.
+ * @param playerColor Player Color of the player that has selected/edited the input.
+ * @param inputValue Text currently in the input.
+ * @param selected If the value box is still being edited or not.
+ */
+declare type InputChangeFunction = (
+  this: void,
+  object: TTSObject,
+  playerColor: PlayerColor,
+  inputValue: string,
+  selected: boolean
+) => unknown;
