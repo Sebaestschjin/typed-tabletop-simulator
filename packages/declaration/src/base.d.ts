@@ -209,7 +209,7 @@ interface SpawnParamater {
   scale?: VectorShape;
 
   /** Called when the object has finished spawning. The spawned object will be passed as the first and only parameter. */
-  callback_function?: (object: TTSObject) => unknown;
+  callback_function?: ObjectCallback;
 }
 
 /** Parameters for the [[spawnObject]] function. */

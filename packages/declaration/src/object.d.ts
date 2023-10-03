@@ -2410,7 +2410,7 @@ interface StateInfo extends ObjectInfo {
   id: int;
 }
 
-type ObjectCallback = (object: TTSObject) => unknown;
+type ObjectCallback = (this: void, object: TTSObject) => unknown;
 
 declare const enum ObjectName {
   AssetBundle = "Custom_Assetbundle",
