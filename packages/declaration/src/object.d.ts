@@ -2519,6 +2519,7 @@ declare const enum ObjectName {
   TilesetTree = "Tileset_Tree",
   TilesetWall = "Tileset_Wall",
   Token = "Custom_Token",
+  TokenStack = "Custom_Token_Stack",
 }
 
 declare const enum ObjectType {
