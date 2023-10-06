@@ -25,8 +25,8 @@ export const triggerEvent = (eventName: string, ...args: any[]) => {
   }
 };
 
-onLoad = () => {
-  notifyHandlers("onLoad");
+onLoad = (savedState?: string) => {
+  notifyHandlers("onLoad", savedState);
   for (const object of getObjects()) {
     notifyHandlers("onObjectSpawn", object);
   }
