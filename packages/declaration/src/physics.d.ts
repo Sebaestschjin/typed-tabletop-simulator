@@ -27,7 +27,7 @@ declare interface PhysicsStatic {
    * It draws the imaginary cast, then moves the rap/box/sphere along that path instantly.
    * The debug Bool in the parameters allows you to see this shape, to aid in setup, but the visual is not instant (due to that making it pointless, if you can't see it).
    */
-  cast(params: Cast): CastResult;
+  cast(params: Cast): CastResult[];
 
   /**
    * Returns a Vector representing the direction and magnitude of gravity.

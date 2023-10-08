@@ -124,6 +124,15 @@ type UIAssetName = string;
 
 type UIHandler = (this: void, player: Player, value: string, id: UIElementId) => unknown;
 
+declare const enum ClickEvent {
+  LeftClick = "-1",
+  RightClick = "-2",
+  MiddleClick = "-3",
+  SingleTouch = "1",
+  DoubleTouch = "2",
+  TripleTouch = "3",
+}
+
 /** A custom asset for the XML UI. */
 interface UIAsset {
   /** The name of the asset, which is used as the XML attribute value. */
