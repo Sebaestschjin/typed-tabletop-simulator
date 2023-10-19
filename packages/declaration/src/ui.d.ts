@@ -597,7 +597,7 @@ interface ButtonElementAttributes<Types extends AttributeTypes = RegularAttribut
 }
 
 interface ButtonElement {
-  tag: "Button";
+  tag: "button";
   attributes?: ButtonElementAttributes;
   children?: UIElement[];
 }
@@ -644,13 +644,13 @@ interface CellElementAttributes<Types extends AttributeTypes = RegularAttributeT
 }
 
 interface CellElement {
-  tag: "Cell";
+  tag: "cell";
   attributes?: CellElementAttributes;
   children?: UIElement[];
 }
 
 interface DefautltsElement {
-  tag: "Defaults";
+  tag: "defaults";
 }
 
 interface DropdownElementAttributes<Types extends AttributeTypes = RegularAttributeTypes>
@@ -704,7 +704,7 @@ interface DropdownElementAttributes<Types extends AttributeTypes = RegularAttrib
 }
 
 interface DropdownElement {
-  tag: "Dropdown";
+  tag: "dropdown";
   attributes?: DropdownElementAttributes;
   children?: OptionElement[];
 }
@@ -754,7 +754,7 @@ interface GridLayoutElementAttributes<Types extends AttributeTypes = RegularAttr
 }
 
 interface GridLayoutElement {
-  tag: "GridLayout";
+  tag: "gridLayout";
   attributes?: GridLayoutElementAttributes;
   children?: UIElement[];
 }
@@ -763,7 +763,7 @@ type HorizontalLayoutElementAttributes<Types extends AttributeTypes = RegularAtt
   AxisLayoutElementAttributes<Types>;
 
 interface HorizontalLayoutElement {
-  tag: "HorizontalLayout";
+  tag: "horizontalLayout";
   attributes?: HorizontalLayoutElementAttributes;
   children?: UIElement[];
 }
@@ -789,7 +789,7 @@ interface HorizontalScrollViewElementAttributes<Types extends AttributeTypes = R
 }
 
 interface HorizontalScrollViewElement {
-  tag: "HorizontalScrollView";
+  tag: "horizontalScrollView";
   attributes?: HorizontalScrollViewElementAttributes;
   children?: UIElement[];
 }
@@ -819,7 +819,7 @@ interface ImageElementAttributes<Types extends AttributeTypes = RegularAttribute
 }
 
 interface ImageElement {
-  tag: "Image";
+  tag: "image";
   attributes?: ImageElementAttributes;
   children?: UIElement[];
 }
@@ -895,7 +895,7 @@ interface InputFieldElementAttributes<Types extends AttributeTypes = RegularAttr
 }
 
 interface InputFieldElement {
-  tag: "InputField";
+  tag: "inputField";
   attributes?: InputFieldElementAttributes;
   children?: UIElement[];
 }
@@ -906,7 +906,7 @@ interface OptionElementAttributes<Types extends AttributeTypes = RegularAttribut
 }
 
 interface OptionElement {
-  tag: "Option";
+  tag: "option";
   attributes?: OptionElementAttributes;
 }
 
@@ -920,7 +920,7 @@ interface PanelElementAttributes<Types extends AttributeTypes = RegularAttribute
 }
 
 interface PanelElement {
-  tag: "Panel";
+  tag: "panel";
   attributes?: PanelElementAttributes;
   children?: UIElement[];
 }
@@ -992,7 +992,7 @@ interface ProgressBarElementAttributes<Types extends AttributeTypes = RegularAtt
 }
 
 interface ProgressBarElement {
-  tag: "ProgressBar";
+  tag: "progressBar";
   attributes?: ProgressBarElementAttributes;
   children?: UIElement[];
 }
@@ -1016,7 +1016,7 @@ interface RowElementAttributes<Types extends AttributeTypes = RegularAttributeTy
 }
 
 interface RowElement {
-  tag: "Row";
+  tag: "row";
   attributes?: RowElementAttributes;
   children?: (UIElement | CellElement)[];
 }
@@ -1123,7 +1123,7 @@ interface SliderElementAttributes<Types extends AttributeTypes = RegularAttribut
 }
 
 interface SliderElement {
-  tag: "Slider";
+  tag: "slider";
   attributes?: SliderElementAttributes;
   children?: UIElement[];
 }
@@ -1206,7 +1206,7 @@ interface TableLayoutElementAttributes<Types extends AttributeTypes = RegularAtt
 }
 
 interface TableLayoutElement {
-  tag: "TableLayout";
+  tag: "tableLayout";
   attributes?: TableLayoutElementAttributes;
   children?: (UIElement | RowElement)[];
 }
@@ -1269,7 +1269,7 @@ interface TextElementAttributes<Types extends AttributeTypes = RegularAttributeT
 }
 
 interface TextElement {
-  tag: "Text";
+  tag: "text";
   attributes?: TextElementAttributes;
   children?: UIElement[];
 }
@@ -1328,7 +1328,7 @@ interface ToggleButtonElementAttributes<Types extends AttributeTypes = RegularAt
 }
 
 interface ToggleButtonElement {
-  tag: "ToggleButton";
+  tag: "toggleButton";
   attributes?: ToggleButtonElementAttributes;
   children?: UIElement[];
 }
@@ -1376,7 +1376,7 @@ interface ToggleElementAttributes<Types extends AttributeTypes = RegularAttribut
 }
 
 interface ToggleElement {
-  tag: "Toggle";
+  tag: "toggle";
   attributes?: ToggleElementAttributes;
   children?: UIElement[];
 }
@@ -1409,7 +1409,7 @@ interface ToggleGroupElementAttributes<Types extends AttributeTypes = RegularAtt
 }
 
 interface ToggleGroupElement {
-  tag: "ToggleGroup";
+  tag: "toggleGroup";
   attributes?: ToggleGroupElementAttributes;
   children?: UIElement[];
 }
@@ -1418,7 +1418,7 @@ type VerticalLayoutElementAttributes<Types extends AttributeTypes = RegularAttri
   AxisLayoutElementAttributes<Types>;
 
 interface VerticalLayoutElement {
-  tag: "VerticalLayout";
+  tag: "verticalLayout";
   attributes?: VerticalLayoutElementAttributes;
   children?: UIElement[];
 }
@@ -1444,7 +1444,7 @@ interface VerticalScrollViewElementAttributes<Types extends AttributeTypes = Reg
 }
 
 interface VerticalScrollViewElement {
-  tag: "VerticalScrollView";
+  tag: "verticalScrollView";
   attributes?: VerticalScrollViewElementAttributes;
   children?: UIElement[];
 }
@@ -1503,6 +1503,7 @@ type UIAttributeName =
 
 type UIElement =
   | ButtonElement
+  | CellElement
   | DropdownElement
   | DefautltsElement
   | GridLayoutElement
@@ -1510,8 +1511,10 @@ type UIElement =
   | HorizontalScrollViewElement
   | ImageElement
   | InputFieldElement
+  | OptionElement
   | PanelElement
   | ProgressBarElement
+  | RowElement
   | SliderElement
   | TableLayoutElement
   | TextElement

@@ -1,0 +1,20 @@
+{
+  "name": "@typed-tabletop-simulator/demo",
+  "description": "Demo",
+  "version": "0.1.0",
+  "keywords": [
+    "tabletop-simulator",
+    "tabletopsimulator"
+  ],
+  "scripts": {
+    "build": "tstl"
+  },
+  "devDependencies": {
+    "@typed-tabletop-simulator/declaration": "workspace:^",
+    "@typed-tabletop-simulator/lib": "workspace:^",
+    "@typed-tabletop-simulator/ui": "workspace:^",
+    "@typescript-to-lua/language-extensions": "^1.19.0",
+    "typescript": "~5.2.2",
+    "typescript-to-lua": "~1.20.1"
+  }
+}

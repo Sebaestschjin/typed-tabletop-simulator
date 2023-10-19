@@ -108,3 +108,6 @@ docs/
 # VS Code
 .vscode
 *.code-workspace
+
+# TTS
+.tts

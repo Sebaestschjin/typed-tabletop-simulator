@@ -20,6 +20,27 @@ importers:
         specifier: ^1.19.0
         version: 1.19.0(typescript@5.2.2)
 
+  packages/demo:
+    devDependencies:
+      '@typed-tabletop-simulator/declaration':
+        specifier: workspace:^
+        version: link:../declaration
+      '@typed-tabletop-simulator/lib':
+        specifier: workspace:^
+        version: link:../lib
+      '@typed-tabletop-simulator/ui':
+        specifier: workspace:^
+        version: link:../ui
+      '@typescript-to-lua/language-extensions':
+        specifier: ^1.19.0
+        version: 1.19.0
+      typescript:
+        specifier: ~5.2.2
+        version: 5.2.2
+      typescript-to-lua:
+        specifier: ~1.20.1
+        version: 1.20.1(typescript@5.2.2)
+
   packages/lib:
     devDependencies:
       '@typed-tabletop-simulator/declaration':
@@ -661,6 +682,21 @@ packages:
       typescript: 5.2.2
     dependencies:
       '@typescript-to-lua/language-extensions': 1.0.0
+      enhanced-resolve: 5.9.3
+      picomatch: 2.3.1
+      resolve: 1.22.0
+      source-map: 0.7.3
+      typescript: 5.2.2
+    dev: true
+
+  /typescript-to-lua@1.20.1(typescript@5.2.2):
+    resolution: {integrity: sha512-ca4gsRRKYSl/XGTxr+lO/i9CxRZHQuaOfP509jMoo1TBJ+4UGW6Krpk8biKyZWCRRvRLyI01uf62/cospW6xrQ==}
+    engines: {node: '>=16.10.0'}
+    hasBin: true
+    peerDependencies:
+      typescript: 5.2.2
+    dependencies:
+      '@typescript-to-lua/language-extensions': 1.19.0
       enhanced-resolve: 5.9.3
       picomatch: 2.3.1
       resolve: 1.22.0

@@ -26,7 +26,7 @@ const listToString = (entries: any[], separator: string) => {
 const spaceList = (entries: any[]): string => listToString(entries, " ");
 
 const colorToString = (color: ColorShape): string => {
-  if ((color as ColorRGB).r) {
+  if ((color as ColorRGB).r !== undefined) {
     const rgb = color as ColorRGB;
     return `rgb(${rgb.r},${rgb.g},${rgb.b})`;
   }

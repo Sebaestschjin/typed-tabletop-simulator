@@ -1,0 +1,27 @@
+{
+  "$schema": "https://raw.githubusercontent.com/TypeScriptToLua/TypeScriptToLua/master/tsconfig-schema.json",
+  "include": ["src/**/*"],
+  "tstl": {
+    "noImplicitSelf": true,
+    "luaTarget": "5.2"
+  },
+  "compilerOptions": {
+    "lib": ["ESNext"],
+    "target": "esnext",
+    "moduleResolution": "node",
+    "jsx": "react",
+    "jsxFactory": "ttsUi",
+    "jsxFragmentFactory": "ttsUiFragment",
+    "resolveJsonModule": true,
+    "types": [
+      "@typed-tabletop-simulator/declaration",
+      "@typed-tabletop-simulator/ui",
+      "@typescript-to-lua/language-extensions"
+    ],
+    "strict": true,
+    "outDir": "./imports",
+    "rootDir": "./src",
+    "baseUrl": "./src",
+    "sourceMap": true
+  }
+}
