@@ -1,9 +1,9 @@
-import { BaseUIElement } from "./base";
+import { BaseProps, BaseUIElement, ColorLikeProps } from "./base";
 
-export class Panel extends BaseUIElement<"panel"> {
-  constructor(props: PanelElementAttributes, children: JSX.Element[]) {
-    super("panel", props, children);
+export interface PanelProps extends BaseProps, ColorLikeProps {}
+
+export class Panel extends BaseUIElement<PanelProps> {
+  constructor(props: PanelProps, children: JSX.Element[]) {
+    super("panel", props, { children: children });
   }
 }
-
-export default Panel;

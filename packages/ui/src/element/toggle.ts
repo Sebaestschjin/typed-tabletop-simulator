@@ -1,7 +1,9 @@
 import { BaseUIElement } from "./base";
 
-export class Toggle extends BaseUIElement<"toggle"> {
-  constructor(props: ToggleButtonElementAttributes) {
+export interface ToggleProps {}
+
+export class Toggle extends BaseUIElement<ToggleProps> {
+  constructor(props: ToggleProps) {
     super("toggle", props);
   }
 }

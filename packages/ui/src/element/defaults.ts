@@ -1,6 +1,8 @@
 import { BaseUIElement } from "./base";
 
-export class Defaults extends BaseUIElement<"defaults"> {
+export interface DefaultsProps {}
+
+export class Defaults extends BaseUIElement<DefaultsProps> {
   constructor(props: {}) {
     super("defaults", props);
   }

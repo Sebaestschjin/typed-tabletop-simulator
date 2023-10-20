@@ -1,7 +1,9 @@
 import { BaseUIElement } from "./base";
 
-export class Row extends BaseUIElement<"row"> {
-  constructor(props: RowElementAttributes) {
+export interface RowProps {}
+
+export class Row extends BaseUIElement<RowProps> {
+  constructor(props: RowProps) {
     super("row", props);
   }
 }

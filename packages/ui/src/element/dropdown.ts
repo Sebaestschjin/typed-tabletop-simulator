@@ -1,7 +1,9 @@
-import { BaseUIElement } from "./base";
+import { BaseProps, BaseUIElement } from "./base";
 
-export class Dropdown extends BaseUIElement<"dropdown"> {
-  constructor(props: DropdownElementAttributes) {
+export interface DropdownProps extends BaseProps {}
+
+export class Dropdown extends BaseUIElement<DropdownProps> {
+  constructor(props: DropdownProps) {
     super("dropdown", props);
   }
 }

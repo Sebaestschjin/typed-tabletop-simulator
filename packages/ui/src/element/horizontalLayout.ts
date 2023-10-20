@@ -1,7 +1,9 @@
-import { BaseUIElement } from "./base";
+import { BaseProps, BaseUIElement } from "./base";
 
-export class HorizontalLayout extends BaseUIElement<"horizontalLayout"> {
-  constructor(props: HorizontalLayoutElementAttributes) {
+export interface HorizontalLayoutProps extends BaseProps {}
+
+export class HorizontalLayout extends BaseUIElement<HorizontalLayoutProps> {
+  constructor(props: HorizontalLayoutProps) {
     super("horizontalLayout", props);
   }
 }

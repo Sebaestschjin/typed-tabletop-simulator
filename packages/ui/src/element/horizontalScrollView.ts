@@ -1,7 +1,9 @@
-import { BaseUIElement } from "./base";
+import { BaseProps, BaseUIElement } from "./base";
 
-export class HorizontalScrollView extends BaseUIElement<"horizontalScrollView"> {
-  constructor(props: HorizontalScrollViewElementAttributes) {
+export interface HorizontalScrollViewProps extends BaseProps {}
+
+export class HorizontalScrollView extends BaseUIElement<HorizontalScrollViewProps> {
+  constructor(props: HorizontalScrollViewProps) {
     super("horizontalScrollView", props);
   }
 }

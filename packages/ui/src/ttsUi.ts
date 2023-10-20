@@ -1,6 +1,6 @@
 /** @noSelfInFile */
 
-import { Tag } from "./element/base";
+import { Ref, Tag } from "./element/base";
 import { Button } from "./element/button";
 import { Cell } from "./element/cell";
 import { Defaults } from "./element/defaults";
@@ -8,7 +8,7 @@ import { Dropdown } from "./element/dropdown";
 import { GridLayout } from "./element/gridLayout";
 import { HorizontalLayout } from "./element/horizontalLayout";
 import { HorizontalScrollView } from "./element/horizontalScrollView";
-import { Image } from "./element/image";
+import { Image, ImageProps } from "./element/image";
 import { InputField } from "./element/inputField";
 import { Option } from "./element/option";
 import { Panel } from "./element/panel";
@@ -22,7 +22,6 @@ import { ToggleButton } from "./element/toggleButton";
 import { ToggleGroup } from "./element/toggleGroup";
 import { VerticalLayout } from "./element/verticalLayout";
 import { VerticalScrollView } from "./element/verticalScrollView";
-import { Ref } from "./jsx";
 
 type CreateElementFunction<P> = (this: void, props?: P, ...children: JSX.Element[]) => JSX.Element;
 
@@ -62,47 +61,47 @@ export const ttsUi = <T>(
 const createElement = (tag: Tag, props: JSX.IntrinsicElements[Tag], children: JSX.Element[]) => {
   switch (tag) {
     case "button":
-      return new Button(props);
+      return new Button(props as JSX.IntrinsicElements[typeof tag]);
     case "cell":
-      return new Cell(props);
+      return new Cell(props as JSX.IntrinsicElements[typeof tag]);
     case "defaults":
-      return new Defaults(props);
+      return new Defaults(props as JSX.IntrinsicElements[typeof tag]);
     case "dropdown":
-      return new Dropdown(props);
+      return new Dropdown(props as JSX.IntrinsicElements[typeof tag]);
     case "gridLayout":
-      return new GridLayout(props);
+      return new GridLayout(props as JSX.IntrinsicElements[typeof tag]);
     case "horizontalLayout":
-      return new HorizontalLayout(props);
+      return new HorizontalLayout(props as JSX.IntrinsicElements[typeof tag]);
     case "horizontalScrollView":
-      return new HorizontalScrollView(props);
+      return new HorizontalScrollView(props as JSX.IntrinsicElements[typeof tag]);
     case "image":
-      return new Image(props as ImageElementAttributes);
+      return new Image(props as JSX.IntrinsicElements[typeof tag]);
     case "inputField":
-      return new InputField(props);
+      return new InputField(props as JSX.IntrinsicElements[typeof tag]);
     case "option":
-      return new Option(props);
+      return new Option(props as JSX.IntrinsicElements[typeof tag]);
     case "panel":
-      return new Panel(props, makeChildren(children));
+      return new Panel(props as JSX.IntrinsicElements[typeof tag], makeChildren(children));
     case "progressBar":
-      return new ProgressBar(props);
+      return new ProgressBar(props as JSX.IntrinsicElements[typeof tag]);
     case "row":
-      return new Row(props);
+      return new Row(props as JSX.IntrinsicElements[typeof tag]);
     case "slider":
-      return new Slider(props);
+      return new Slider(props as JSX.IntrinsicElements[typeof tag]);
     case "tableLayout":
-      return new TableLayout(props);
+      return new TableLayout(props as JSX.IntrinsicElements[typeof tag]);
     case "text":
-      return new Text(props);
+      return new Text(props as JSX.IntrinsicElements[typeof tag]);
     case "toggle":
-      return new Toggle(props);
+      return new Toggle(props as JSX.IntrinsicElements[typeof tag]);
     case "toggleButton":
-      return new ToggleButton(props);
+      return new ToggleButton(props as JSX.IntrinsicElements[typeof tag]);
     case "toggleGroup":
-      return new ToggleGroup(props);
+      return new ToggleGroup(props as JSX.IntrinsicElements[typeof tag]);
     case "verticalLayout":
-      return new VerticalLayout(props);
+      return new VerticalLayout(props as JSX.IntrinsicElements[typeof tag]);
     case "verticalScrollView":
-      return new VerticalScrollView(props);
+      return new VerticalScrollView(props as JSX.IntrinsicElements[typeof tag]);
   }
 };
 

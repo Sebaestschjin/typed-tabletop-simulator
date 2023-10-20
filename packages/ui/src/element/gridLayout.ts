@@ -1,7 +1,9 @@
 import { BaseUIElement } from "./base";
 
-export class GridLayout extends BaseUIElement<"gridLayout"> {
-  constructor(props: GridLayoutElementAttributes) {
+export interface GridLayoutProps {}
+
+export class GridLayout extends BaseUIElement<GridLayoutProps> {
+  constructor(props: GridLayoutProps) {
     super("gridLayout", props);
   }
 }

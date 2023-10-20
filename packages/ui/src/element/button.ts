@@ -1,9 +1,58 @@
-import { BaseUIElement } from "./base";
+import { BaseProps, BaseUIElement, ColorLikeProps, TextLikeProps } from "./base";
+import { Converters } from "./convert";
 
-export class Button extends BaseUIElement<"button"> {
-  constructor(props: ButtonElementAttributes) {
-    super("button", props);
+type OnClickHandler = (this: void) => unknown;
+
+interface NamedColors {
+  base?: string;
+  hover?: string;
+  click?: string;
+}
+
+type ColorsProps = string[] | NamedColors;
+
+const converters: Converters = {
+  colors: (value: ColorsProps) => {
+    let values: string[] = [];
+    if (typeof (value as string[])[0] === "string") {
+      values = value as string[];
+    } else {
+      const named = value as NamedColors;
+
+      values.push(named.base ?? DEFAULT_COLORS.base);
+      values.push(named.hover ?? DEFAULT_COLORS.hover);
+      values.push(named.click ?? DEFAULT_COLORS.click);
+    }
+
+    return ["colors", values.join("|")];
+  },
+};
+
+const DEFAULT_COLORS = {
+  base: "#FFFFFF",
+  hover: "#FFFFFF",
+  click: "#C8C8C8",
+};
+
+export interface ButtonProps extends BaseProps, TextLikeProps, ColorLikeProps {
+  colors?: ColorsProps;
+  onClick: OnClickHandler;
+}
+
+export class Button extends BaseUIElement<ButtonProps> {
+  constructor(props: ButtonProps) {
+    super("button", props, { converters: converters });
+    handlers.set(this.id, props.onClick);
   }
 }
 
-export default Button;
+const handlers = new LuaMap<string, OnClickHandler>();
+
+const onClick: UIHandler = (_, __, id) => {
+  const handler = handlers.get(id);
+  if (handler) {
+    handler();
+  }
+};
+
+_G.onButtonElementClicked = onClick;

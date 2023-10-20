@@ -1,7 +1,9 @@
-import { BaseUIElement } from "./base";
+import { BaseProps, BaseUIElement } from "./base";
 
-export class Slider extends BaseUIElement<"slider"> {
-  constructor(props: SliderElementAttributes) {
+export interface SliderProps extends BaseProps {}
+
+export class Slider extends BaseUIElement<SliderProps> {
+  constructor(props: SliderProps) {
     super("slider", props);
   }
 }

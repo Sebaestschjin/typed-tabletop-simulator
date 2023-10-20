@@ -1,7 +1,9 @@
 import { BaseUIElement } from "./base";
 
-export class Option extends BaseUIElement<"option"> {
-  constructor(props: OptionElementAttributes) {
+export interface OptionProps {}
+
+export class Option extends BaseUIElement<OptionProps> {
+  constructor(props: OptionProps) {
     super("option", props);
   }
 }

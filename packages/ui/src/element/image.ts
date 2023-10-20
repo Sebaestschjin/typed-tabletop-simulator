@@ -1,13 +1,16 @@
-import { BaseUIElement } from "./base";
+import { BaseProps, BaseUIElement } from "./base";
 
-export class Image extends BaseUIElement<"image"> {
-  constructor(props: ImageElementAttributes) {
-    super("image", props);
+export interface ImageProps extends BaseProps {
+  image: string;
+  preserveAspect?: boolean;
+}
+
+export class Image extends BaseUIElement<ImageProps> {
+  constructor(props: ImageProps) {
+    super("image", { ...props, preserveAspect: props.preserveAspect ?? true });
   }
 
   setImage = (image: string) => {
     this.setAttribute("image", image);
   };
 }
-
-export default Image;

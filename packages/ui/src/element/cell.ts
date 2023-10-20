@@ -1,7 +1,9 @@
-import { BaseUIElement } from "./base";
+import { BaseProps, BaseUIElement } from "./base";
 
-export class Cell extends BaseUIElement<"cell"> {
-  constructor(props: CellElementAttributes) {
+export interface CellProps extends BaseProps {}
+
+export class Cell extends BaseUIElement<CellProps> {
+  constructor(props: CellProps) {
     super("cell", props);
   }
 }

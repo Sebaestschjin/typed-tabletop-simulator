@@ -1,32 +1,86 @@
-// export type Tag = keyof JSX.IntrinsicElements;
+import { ArrayOrSingle } from "../core";
+import { Converters, convert } from "./convert";
 
 export type Tag = keyof JSX.IntrinsicElements;
 
-export class BaseUIElement<T extends Tag> {
+export type Vector2Prop = [number, number];
+export type VectorProp = VectorShape;
+export type ScaleProp = VectorShape | number;
+
+export type ElementProps<T, A, C = ArrayOrSingle<JSX.Element>> = A & {
+  ref?: Ref<T>;
+} & {
+  children?: C;
+};
+
+export interface Ref<T> {
+  current?: T;
+}
+
+export interface BaseProps {
+  active?: boolean;
+  width?: number;
+  height?: number;
+  offset?: Vector2Prop;
+  offsetAlignment?: Alignment;
+  position?: VectorProp;
+  rotation?: VectorProp;
+  scale?: ScaleProp;
+}
+
+export interface TextLikeProps {
+  text?: string;
+  textSize?: number;
+  font?: string;
+  alignment?: Alignment;
+}
+
+export interface ColorLikeProps {
+  color?: string;
+}
+
+let generatedIds = 0;
+const ttsSelf = self;
+
+const baseConverters: Converters = {
+  textSize: convert.rename("fontSize"),
+  offset: convert.vector2("offsetXY"),
+  offsetAlignment: convert.rename("rectAlignment"),
+  onClick: convert.handlerFunction("onClick", "onButtonElementClicked"),
+  position: convert.vector3("position"),
+  rotation: convert.vector3("rotation"),
+  scale: convert.scale,
+};
+
+export abstract class BaseUIElement<Props extends BaseProps> {
+  protected id: string;
+
+  private tag: Tag;
+  private props: Props;
   private parent?: TTSObject;
-  private id?: string;
-  private tag: T;
-  private props: JSX.IntrinsicElements[T];
   private children?: JSX.Element[];
-  // private children: UIElement<a[] = [];
+  private converters: Converters;
 
-  constructor(tag: T, props: JSX.IntrinsicElements[T], children?: JSX.Element[]) {
+  constructor(
+    tag: Tag,
+    props: Props,
+    options?: {
+      children?: JSX.Element[];
+      converters?: Converters;
+    }
+  ) {
+    options ??= {};
+    options.converters ??= {};
+
     this.tag = tag;
+    this.id = `${generatedIds++}`;
     this.props = props;
-    this.id = (props as any).id;
-    this.children = children;
+    this.children = options.children;
+    this.converters = { ...baseConverters, ...options.converters };
   }
-
-  getId = () => {
-    return this.getAttribute("id", "");
-  };
 
   setActive = (active: boolean) => {
     this.setAttribute("active", active);
-  };
-
-  isActive = (): boolean => {
-    return this.getAttribute("active", true);
   };
 
   setWidth = (width: number) => {
@@ -37,27 +91,36 @@ export class BaseUIElement<T extends Tag> {
     this.setAttribute("height", height);
   };
 
-  setOffset = (offset: [number, number]) => {
-    this.setAttribute("offsetXY", `${offset[0]} ${offset[1]}`);
+  setOffset = (offset: Vector2Prop) => {
+    this.setAttribute("offset", offset);
   };
 
-  protected setAttribute = (attribute: UIAttributeName, value: UIAttributeValue) => {
-    (this.props as any)[attribute] = value as any;
-    if (this.parent && this.id) {
-      this.parent.UI.setAttribute(this.id, attribute, value);
+  protected setAttribute = (attribute: keyof Props, value: any) => {
+    this.props[attribute] = value;
+    if (this.parent) {
+      const [newName, newValue] = this.convertProp(attribute, value);
+      this.parent.UI.setAttribute(this.id, newName, newValue);
     }
   };
 
-  protected getAttribute = <V extends UIAttributeValue>(attribute: UIAssetName, defaultValue: V): V => {
-    return ((this.props as any)[attribute] as V) ?? defaultValue;
+  protected convertProp = (name: keyof Props, value: any): [UIAttributeName, UIAttributeValue] => {
+    const converter = this.converters[name as string];
+    return converter !== undefined ? converter(value) : [name as UIAttributeName, value];
+  };
+
+  private convertProps = () => {
+    return Object.fromEntries(Object.entries(this.props).map(([k, v]) => this.convertProp(k as keyof Props, v)));
   };
 
   render = (parent: TTSObject): UIElement => {
     this.parent = parent;
-    print(logString(this.children));
+
     return {
       tag: this.tag,
-      attributes: this.props,
+      attributes: {
+        id: this.id,
+        ...this.convertProps(),
+      },
       children: this.children?.map((c) => c.render(parent)),
     } as UIElement;
   };

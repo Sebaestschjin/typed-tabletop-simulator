@@ -1,7 +1,9 @@
-import { BaseUIElement } from "./base";
+import { BaseProps, BaseUIElement } from "./base";
 
-export class InputField extends BaseUIElement<"inputField"> {
-  constructor(props: InputFieldElementAttributes) {
+export interface InputFieldProps extends BaseProps {}
+
+export class InputField extends BaseUIElement<InputFieldProps> {
+  constructor(props: InputFieldProps) {
     super("inputField", props);
   }
 }

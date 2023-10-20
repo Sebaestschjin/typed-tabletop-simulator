@@ -1,7 +1,9 @@
-import { BaseUIElement } from "./base";
+import { BaseProps, BaseUIElement } from "./base";
 
-export class ProgressBar extends BaseUIElement<"progressBar"> {
-  constructor(props: ProgressBarElementAttributes) {
+export interface ProgressBarProps extends BaseProps {}
+
+export class ProgressBar extends BaseUIElement<ProgressBarProps> {
+  constructor(props: ProgressBarProps) {
     super("progressBar", props);
   }
 }

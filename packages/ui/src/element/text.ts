@@ -1,7 +1,9 @@
-import { BaseUIElement } from "./base";
+import { BaseProps, BaseUIElement, ColorLikeProps, TextLikeProps } from "./base";
 
-export class Text extends BaseUIElement<"text"> {
-  constructor(props: TextElementAttributes) {
+export interface TextProps extends BaseProps, TextLikeProps, ColorLikeProps {}
+
+export class Text extends BaseUIElement<TextProps> {
+  constructor(props: TextProps) {
     super("text", props);
   }
 

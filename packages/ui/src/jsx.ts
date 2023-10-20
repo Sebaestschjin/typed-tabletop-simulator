@@ -1,37 +1,27 @@
 export {};
 
-import Button from "./element/button";
-import { Cell } from "./element/cell";
-import { Dropdown } from "./element/dropdown";
-import { GridLayout } from "./element/gridLayout";
-import { HorizontalLayout } from "./element/horizontalLayout";
-import { HorizontalScrollView } from "./element/horizontalScrollView";
-import Image from "./element/image";
-import { InputField } from "./element/inputField";
-import { Option } from "./element/option";
-import Panel from "./element/panel";
-import { ProgressBar } from "./element/progressBar";
-import { Row } from "./element/row";
-import { Slider } from "./element/slider";
-import { TableLayout } from "./element/tableLayout";
-import { Text } from "./element/text";
-import { Toggle } from "./element/toggle";
-import { ToggleButton } from "./element/toggleButton";
-import { ToggleGroup } from "./element/toggleGroup";
-import { VerticalLayout } from "./element/verticalLayout";
-import { VerticalScrollView } from "./element/verticalScrollView";
-
-export type Ref<T> = {
-  current?: T;
-};
-
-type TTS<T, A, C = ArrayOrSingle<JSX.Element>> = A & {
-  ref?: Ref<T>;
-} & {
-  children?: C;
-};
-
-type ArrayOrSingle<T> = T | T[];
+import { ArrayOrSingle } from "./core";
+import { ElementProps } from "./element/base";
+import { Button, ButtonProps } from "./element/button";
+import { Cell, CellProps } from "./element/cell";
+import { Dropdown, DropdownProps } from "./element/dropdown";
+import { GridLayout, GridLayoutProps } from "./element/gridLayout";
+import { HorizontalLayout, HorizontalLayoutProps } from "./element/horizontalLayout";
+import { HorizontalScrollView, HorizontalScrollViewProps } from "./element/horizontalScrollView";
+import { Image, ImageProps } from "./element/image";
+import { InputField, InputFieldProps } from "./element/inputField";
+import { Option, OptionProps } from "./element/option";
+import { Panel, PanelProps } from "./element/panel";
+import { ProgressBar, ProgressBarProps } from "./element/progressBar";
+import { Row, RowProps } from "./element/row";
+import { Slider, SliderProps } from "./element/slider";
+import { TableLayout, TableLayoutProps } from "./element/tableLayout";
+import { Text, TextProps } from "./element/text";
+import { Toggle, ToggleProps } from "./element/toggle";
+import { ToggleButton, ToggleButtonProps } from "./element/toggleButton";
+import { ToggleGroup, ToggleGroupProps } from "./element/toggleGroup";
+import { VerticalLayout, VerticalLayoutProps } from "./element/verticalLayout";
+import { VerticalScrollView, VerticalScrollViewProps } from "./element/verticalScrollView";
 
 declare global {
   namespace JSX {
@@ -40,27 +30,27 @@ declare global {
     }
 
     interface IntrinsicElements {
-      button: TTS<Button, ButtonElementAttributes>;
-      cell: TTS<Cell, CellElementAttributes>;
+      button: ElementProps<Button, ButtonProps>;
+      cell: ElementProps<Cell, CellProps>;
       defaults: {};
-      dropdown: TTS<Dropdown, DropdownElementAttributes, ArrayOrSingle<JSX.IntrinsicElements["option"]>>;
-      gridLayout: TTS<GridLayout, GridLayoutElementAttributes>;
-      horizontalLayout: TTS<HorizontalLayout, HorizontalLayoutElementAttributes>;
-      horizontalScrollView: TTS<HorizontalScrollView, HorizontalScrollViewElementAttributes>;
-      image: TTS<Image, ImageElementAttributes>;
-      inputField: TTS<InputField, InputFieldElementAttributes>;
-      option: TTS<Option, OptionElementAttributes, string>;
-      panel: TTS<Panel, PanelElementAttributes>;
-      progressBar: TTS<ProgressBar, ProgressBarElementAttributes>;
-      row: TTS<Row, RowElementAttributes, ArrayOrSingle<JSX.IntrinsicElements["cell"]>>;
-      slider: TTS<Slider, SliderElementAttributes>;
-      tableLayout: TTS<TableLayout, TableLayoutElementAttributes, ArrayOrSingle<JSX.IntrinsicElements["row"]>>;
-      text: TTS<Text, TextElementAttributes, string>;
-      toggle: TTS<Toggle, ToggleElementAttributes>;
-      toggleButton: TTS<ToggleButton, ToggleButtonElementAttributes>;
-      toggleGroup: TTS<ToggleGroup, ToggleGroupElementAttributes>;
-      verticalLayout: TTS<VerticalLayout, VerticalLayoutElementAttributes>;
-      verticalScrollView: TTS<VerticalScrollView, VerticalScrollViewElementAttributes>;
+      dropdown: ElementProps<Dropdown, DropdownProps, ArrayOrSingle<JSX.IntrinsicElements["option"]>>;
+      gridLayout: ElementProps<GridLayout, GridLayoutProps>;
+      horizontalLayout: ElementProps<HorizontalLayout, HorizontalLayoutProps>;
+      horizontalScrollView: ElementProps<HorizontalScrollView, HorizontalScrollViewProps>;
+      image: ElementProps<Image, ImageProps>;
+      inputField: ElementProps<InputField, InputFieldProps>;
+      option: ElementProps<Option, OptionProps, string>;
+      panel: ElementProps<Panel, PanelProps>;
+      progressBar: ElementProps<ProgressBar, ProgressBarProps>;
+      row: ElementProps<Row, RowProps, ArrayOrSingle<JSX.IntrinsicElements["cell"]>>;
+      slider: ElementProps<Slider, SliderProps>;
+      tableLayout: ElementProps<TableLayout, TableLayoutProps, ArrayOrSingle<JSX.IntrinsicElements["row"]>>;
+      text: ElementProps<Text, TextProps, string>;
+      toggle: ElementProps<Toggle, ToggleProps>;
+      toggleButton: ElementProps<ToggleButton, ToggleButtonProps>;
+      toggleGroup: ElementProps<ToggleGroup, ToggleGroupProps>;
+      verticalLayout: ElementProps<VerticalLayout, VerticalLayoutProps>;
+      verticalScrollView: ElementProps<VerticalScrollView, VerticalScrollViewProps>;
     }
 
     interface Element {
