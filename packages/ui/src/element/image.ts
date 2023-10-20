@@ -1,6 +1,6 @@
-import { BaseProps, BaseUIElement } from "./base";
+import { BaseProps, BaseUIElement, ColorLikeProps } from "./base";
 
-export interface ImageProps extends BaseProps {
+export interface ImageProps extends BaseProps, ColorLikeProps {
   image: string;
   preserveAspect?: boolean;
 }

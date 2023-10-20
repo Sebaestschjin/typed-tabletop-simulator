@@ -1234,13 +1234,16 @@ interface TextElementAttributes extends BaseElementAttributes {
   /**
    * @defaultValue "Overflow"
    */
-  horizontalOverflow?: "Wrap" | "Overflow";
+  horizontalOverflow?: HorizontalOverflow;
 
   /**
    * @defaultValue "Truncate"
    */
-  verticalOverflow?: "Truncate" | "Overflow";
+  verticalOverflow?: VerticalOverflow;
 }
+
+type VerticalOverflow = "Truncate" | "Overflow";
+type HorizontalOverflow = "Wrap" | "Overflow";
 
 interface TextElement {
   tag: "text";
