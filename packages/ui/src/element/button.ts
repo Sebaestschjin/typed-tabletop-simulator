@@ -37,6 +37,7 @@ const DEFAULT_COLORS = {
 export interface ButtonProps extends BaseProps, TextLikeProps, ColorLikeProps {
   colors?: ColorsProps;
   textColor?: string;
+  textAlignment?: Alignment;
   onClick: OnClickHandler;
 }
 
