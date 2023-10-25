@@ -10,6 +10,7 @@ import { HorizontalLayout } from "./element/horizontalLayout";
 import { HorizontalScrollView } from "./element/horizontalScrollView";
 import { Image, ImageProps } from "./element/image";
 import { InputField } from "./element/inputField";
+import { Mask } from "./element/mask";
 import { Option } from "./element/option";
 import { Panel } from "./element/panel";
 import { ProgressBar } from "./element/progressBar";
@@ -25,9 +26,11 @@ import { VerticalScrollView } from "./element/verticalScrollView";
 
 type CreateElementFunction<P> = (this: void, props?: P, ...children: JSX.Element[]) => JSX.Element;
 
-function createFragment(this: void, props?: object, ...children: any[]): any {
+export const ttsUiFragment = (props?: object, ...children: any[]): any => {
+  print(props);
+  print(children);
   return children;
-}
+};
 
 export const useRef = <T>(): Ref<T> => {
   return {
@@ -78,6 +81,8 @@ const createElement = (tag: Tag, props: JSX.IntrinsicElements[Tag], children: JS
       return new Image(props as JSX.IntrinsicElements[typeof tag]);
     case "inputField":
       return new InputField(props as JSX.IntrinsicElements[typeof tag]);
+    case "mask":
+      return new Mask(props as JSX.IntrinsicElements[typeof tag], makeChildren(children));
     case "option":
       return new Option(props as JSX.IntrinsicElements[typeof tag]);
     case "panel":
@@ -125,9 +130,4 @@ export const render = (object: TTSObject, element: JSX.Element) => {
   const ui = element.render(object);
   object.UI.setXmlTable([ui]);
   return ui;
-};
-
-export const TtsUi = {
-  Fragment: createFragment,
-  createElement: ttsUi,
 };

@@ -1,11 +1,12 @@
-import { ttsUi, Panel, render, useRef } from "@typed-tabletop-simulator/ui";
+import { render, ttsUi, ttsUiFragment } from "@typed-tabletop-simulator/ui";
 
 const App = () => {
   return (
-    <Parent>
+    <panel color="Yellow" width={400} height={400}>
       <text text="Hello World" />
-      <text text="Foo" offsetXY="0 20" />
-    </Parent>
+      <text text="Foo" offset={[0, 20]} />
+      <>{/* <text text="Bar" offset={[0, 20]} /> */}</>
+    </panel>
   );
 };
 
@@ -16,16 +17,16 @@ interface ParentProps {
 const Parent = (props: ParentProps) => {
   return (
     <panel color="Yellow" width={400} height={400}>
-      <Content>{props.children}</Content>
+      {props.children}
     </panel>
   );
 };
 
 const Content = (props: ParentProps) => {
   return (
-    <panel id="panel" color="Red" width={300} height={300}>
+    <panel color="Red" width={300} height={300}>
       <text text="Hello World!" />
-      <text text="More text" offsetXY="0 -20" />
+      <text text="More text" />
     </panel>
   );
 };

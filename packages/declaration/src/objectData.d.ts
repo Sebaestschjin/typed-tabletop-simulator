@@ -168,7 +168,7 @@ interface BrowserData extends ObjectData {
 interface CardCustomData extends ObjectData {
   CardID: int;
 
-  CustomDeck: LuaTable<int, CustomDeckData>;
+  CustomDeck: Record<int, CustomDeckData>;
 }
 
 interface ClockData extends ObjectData {
@@ -198,7 +198,7 @@ interface DeckCustomData extends ObjectData {
   ContainedObjects: CardCustomData[];
 
   /** Information about the custom decks within this deck indexed by their deck ID */
-  CustomDeck: LuaTable<int, CustomDeckData>;
+  CustomDeck: Record<int, CustomDeckData>;
 }
 
 /**

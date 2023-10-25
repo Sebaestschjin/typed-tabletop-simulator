@@ -7,9 +7,11 @@ const rename = (newName: UIAttributeName): Converter<any> => {
   return (value: UIAttributeValue) => [newName, value];
 };
 
-const handlerFunction = (param: UIAttributeName, name: string): Converter<any> => {
+const handlerName = (name: string) => `__uiHandler__${name}`;
+
+const handlerFunction = (param: UIAttributeName): Converter<any> => {
   const myName = self === Global ? "Global" : self.getGUID();
-  return () => [param, `${myName}/${name}`];
+  return () => [param, `${myName}/${handlerName(param)}`];
 };
 
 const vector2 = (name: UIAttributeName): Converter<Vector2Prop> => {
@@ -33,6 +35,7 @@ const scale: Converter<ScaleProp> = (value) => {
 
 export const convert = {
   rename: rename,
+  handlerName,
   handlerFunction: handlerFunction,
   vector2: vector2,
   vector3: vector3,

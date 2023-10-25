@@ -10,6 +10,7 @@ import { HorizontalLayout, HorizontalLayoutProps } from "./element/horizontalLay
 import { HorizontalScrollView, HorizontalScrollViewProps } from "./element/horizontalScrollView";
 import { Image, ImageProps } from "./element/image";
 import { InputField, InputFieldProps } from "./element/inputField";
+import { Mask, MaskProps } from "./element/mask";
 import { Option, OptionProps } from "./element/option";
 import { Panel, PanelProps } from "./element/panel";
 import { ProgressBar, ProgressBarProps } from "./element/progressBar";
@@ -39,6 +40,7 @@ declare global {
       horizontalScrollView: ElementProps<HorizontalScrollView, HorizontalScrollViewProps>;
       image: ElementProps<Image, ImageProps>;
       inputField: ElementProps<InputField, InputFieldProps>;
+      mask: ElementProps<Mask, MaskProps, JSX.Element>;
       option: ElementProps<Option, OptionProps, string>;
       panel: ElementProps<Panel, PanelProps>;
       progressBar: ElementProps<ProgressBar, ProgressBarProps>;

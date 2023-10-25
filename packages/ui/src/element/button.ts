@@ -44,17 +44,6 @@ export interface ButtonProps extends BaseProps, TextLikeProps, ColorLikeProps {
 export class Button extends BaseUIElement<ButtonProps> {
   constructor(props: ButtonProps) {
     super("button", props, { converters: converters });
-    handlers.set(this.id, props.onClick);
+    this.setHandler("onClick", props.onClick);
   }
 }
-
-const handlers = new LuaMap<string, OnClickHandler>();
-
-const onClick: UIHandler = (_, __, id) => {
-  const handler = handlers.get(id);
-  if (handler) {
-    handler();
-  }
-};
-
-_G.onButtonElementClicked = onClick;

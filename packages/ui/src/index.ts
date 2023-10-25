@@ -1,6 +1,5 @@
 export { XmlUi } from "./xmlUi";
-export { TtsUi } from "./ttsUi";
-export { render, useRef, ttsUi } from "./ttsUi";
+export { render, useRef, ttsUi, ttsUiFragment } from "./ttsUi";
 
 export { Ref } from "./element/base";
 export * from "./element/button";
