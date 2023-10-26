@@ -5,6 +5,7 @@ export interface TileProperties extends BaseProperties {
   back?: string;
   thickness?: number;
   stackable?: boolean;
+  stretch?: boolean;
 }
 
 export const createCustomTile = (properties: TileProperties): TileData => {
@@ -14,7 +15,8 @@ export const createCustomTile = (properties: TileProperties): TileData => {
       CustomTile: {
         Type: TileType.Box,
         Thickness: properties.thickness ?? 0.1,
-        Stackable: properties.stackable ?? true,
+        Stackable: properties.stackable ?? false,
+        Stretch: properties.stretch ?? true,
       },
       ImageURL: properties.front,
       ImageSecondaryURL: properties.back ?? properties.front,
