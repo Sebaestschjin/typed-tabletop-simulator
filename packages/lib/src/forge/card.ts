@@ -5,6 +5,6 @@ export interface CardProperties extends BaseProperties {
   back: string;
 }
 
-export const createCustomCard = (properties: CardProperties) => {
+export const createCard = (properties: CardProperties) => {
   return createBaseObject(properties, ObjectName.CardCustom);
 };

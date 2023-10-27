@@ -19,7 +19,9 @@
   "bugs": "https://github.com/Sebaestschjin/typed-tabletop-simulato/issues",
   "main": "dist/index",
   "scripts": {
-    "build": "tsc -p tsconfig.build.json && tstl -p tsconfig.build.json",
+    "build": "pnpm build:ts && pnpm build:lua",
+    "build:ts": "tsc -p tsconfig.build.json",
+    "build:lua": "tstl -p tsconfig.build.json",
     "test": "vitest"
   },
   "devDependencies": {

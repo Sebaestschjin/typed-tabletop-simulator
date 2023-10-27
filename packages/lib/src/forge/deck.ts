@@ -20,7 +20,7 @@ export const createDeckId = () => {
   return currentDeckId++;
 };
 
-export const createCustomDeck = (properties: CustomDeckProperties): DeckCustomData => {
+export const createDeck = (properties: CustomDeckProperties): DeckCustomData => {
   const deckId = properties.deckId || createDeckId();
 
   const customDeck = {

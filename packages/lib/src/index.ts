@@ -2,7 +2,7 @@ export * as EventHandler from "./event/eventHandler";
 export * from "./observable/observable";
 export * from "./collection";
 
-export * from "./forge";
+export * as Forge from "./forge";
 
 export * from "./enum";
 

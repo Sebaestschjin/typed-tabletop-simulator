@@ -9,7 +9,7 @@ export interface CustomModelProperties extends BaseProperties {
   content?: ObjectData[];
 }
 
-export const createCustomModel = (properties: CustomModelProperties) => {
+export const createModel = (properties: CustomModelProperties) => {
   let typeName = ObjectName.Model;
   if (properties.type === ModelType.Bag) {
     typeName = ObjectName.ModelBag;

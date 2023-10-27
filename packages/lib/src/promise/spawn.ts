@@ -1,10 +1,11 @@
-interface Options<T> {
+/** @noSelfInFIle */
+export interface Options {
   position?: VectorShape;
   rotation?: VectorShape;
   scale?: VectorShape;
 }
 
-export const createObject = <T extends ObjectData>(data: T, options?: Options<T>): Promise<TTSObject<T>> =>
+export const spawnObject = <T extends ObjectData>(data: T, options?: Options): Promise<TTSObject<T>> =>
   new Promise((resolve) => {
     spawnObjectData({
       data: data,

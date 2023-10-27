@@ -1,16 +1,6 @@
-import { createBag } from "./bag";
-import { createCustomCard } from "./card";
-import { createCustomDeck, createDeckId } from "./deck";
-import { createCustomModel } from "./model";
-import { createCustomTile } from "./tile";
-
-export type * from "./deck";
-
-export const Forge = {
-  createBag: createBag,
-  createCard: createCustomCard,
-  createDeck: createCustomDeck,
-  createDeckId: createDeckId,
-  createModel: createCustomModel,
-  createTile: createCustomTile,
-};
+export { createBag } from "./bag";
+export { createCard } from "./card";
+export { createDeck, createDeckId, CardProperties } from "./deck";
+export { createModel } from "./model";
+export { createTile } from "./tile";
+export { spawnObject } from "../promise/spawn";

@@ -8,7 +8,7 @@ export interface TileProperties extends BaseProperties {
   stretch?: boolean;
 }
 
-export const createCustomTile = (properties: TileProperties): TileData => {
+export const createTile = (properties: TileProperties): TileData => {
   return {
     ...createBaseObject(properties, ObjectName.Tile),
     CustomImage: {
