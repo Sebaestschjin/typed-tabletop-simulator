@@ -15,7 +15,7 @@ export interface BaseProperties {
   ui?: string;
 }
 
-type Asset = ImageAsset | AssetBundleAsset;
+export type Asset = ImageAsset | AssetBundleAsset;
 
 interface ImageAsset {
   name: string;
@@ -68,6 +68,16 @@ export const createTransform = (properties: BaseProperties) => {
     scaleY: scale.y,
     scaleZ: scale.z,
   };
+};
+
+export const addAsset = (object: ObjectData, asset: Asset) => {
+  object.CustomUIAssets ??= [];
+
+  const newAsset = createAsset(asset);
+
+  if (!object.CustomUIAssets.find((a) => a.Name === newAsset.Name || a.URL === newAsset.URL)) {
+    object.CustomUIAssets.push(newAsset);
+  }
 };
 
 const createAssets = (properties: BaseProperties) => {

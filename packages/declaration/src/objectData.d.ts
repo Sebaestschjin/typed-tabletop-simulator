@@ -86,6 +86,8 @@ interface ObjectData {
   States?: {
     [index: number]: ObjectData;
   };
+
+  CustomUIAssets?: CustomUIAsset[];
 }
 
 /**
@@ -577,6 +579,17 @@ interface SnapPointData {
   Rotation?: VectorTable;
 
   Tags?: string[];
+}
+
+interface CustomUIAsset {
+  Type: CustomUIAssetType;
+  Name: string;
+  URL: string;
+}
+
+declare const enum CustomUIAssetType {
+  Image = 0,
+  AssetBundle = 1,
 }
 
 /**
