@@ -13,6 +13,7 @@ export interface BaseProperties {
   assets?: Asset[];
   script?: string;
   ui?: string;
+  tooltip?: boolean;
 }
 
 export type Asset = ImageAsset | AssetBundleAsset;
@@ -27,7 +28,7 @@ interface AssetBundleAsset {
   assetBundle: string;
 }
 
-export const createBaseObject = (properties: BaseProperties, type: ObjectName) => {
+export const createBaseObject = (properties: BaseProperties, type: ObjectName): ObjectData => {
   return {
     GUID: properties.guid || createGuid(),
     Name: type,
@@ -39,6 +40,7 @@ export const createBaseObject = (properties: BaseProperties, type: ObjectName) =
     Transform: createTransform(properties),
     ColorDiffuse: properties.color,
     AltLookAngle: properties.viewAngle,
+    Tooltip: properties.tooltip,
     CustomUIAssets: createAssets(properties),
     LuaScript: properties.script,
     XmlUI: properties.ui,

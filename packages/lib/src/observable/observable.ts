@@ -5,11 +5,11 @@ export class Observable<E> {
 
   constructor() {}
 
-  addObserver = (observer: Observer<E>) => {
+  addObserver(observer: Observer<E>) {
     this.observers.push(observer);
-  };
+  }
 
-  protected notify = (event: E) => {
+  protected notify(event: E) {
     this.observers.forEach((o) => o(event));
-  };
+  }
 }

@@ -88,6 +88,8 @@ interface ObjectData {
   };
 
   CustomUIAssets?: CustomUIAsset[];
+
+  AltLookAngle?: VectorTable;
 }
 
 /**
