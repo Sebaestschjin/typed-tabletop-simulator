@@ -38,6 +38,7 @@ export interface ButtonProps extends BaseProps, TextLikeProps, ColorLikeProps {
   colors?: ColorsProps;
   textColor?: string;
   textAlignment?: Alignment;
+  image?: string;
   onClick: OnClickHandler;
 }
 

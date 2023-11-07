@@ -114,14 +114,14 @@ export abstract class BaseUIElement<Props extends BaseProps> {
     }
   };
 
-  protected convertProp = (name: keyof Props, value: any): [UIAttributeName, UIAttributeValue] => {
+  protected convertProp(name: keyof Props, value: any): [UIAttributeName, UIAttributeValue] {
     if (this.handlers.get(name as UIAttributeName)) {
       return convert.handlerFunction(name as UIAttributeName)(value);
     }
 
     const converter = this.converters[name as string];
     return converter !== undefined ? converter(value) : [name as UIAttributeName, value];
-  };
+  }
 
   private convertProps = () => {
     return Object.fromEntries(Object.entries(this.props).map(([k, v]) => this.convertProp(k as keyof Props, v)));
