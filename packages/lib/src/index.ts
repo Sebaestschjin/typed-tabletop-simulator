@@ -3,6 +3,7 @@ export * from "./observable/observable";
 export * from "./collection";
 
 export * as Forge from "./forge";
+export * as Find from "./find";
 
 export * from "./enum";
 
