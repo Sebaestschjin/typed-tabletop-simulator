@@ -2324,7 +2324,7 @@ interface TakeObjectParameter {
 
 interface TakeObjectByIndex extends TakeObjectParameter {
   /** Index of the Object to take. Optional, no default. Only use index or guid, never both. */
-  index: int;
+  index?: int;
 }
 
 interface TakeObjectByGuid extends TakeObjectParameter {
