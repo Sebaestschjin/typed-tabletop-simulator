@@ -13,4 +13,8 @@ export class Image extends BaseUIElement<ImageProps> {
   setImage = (image: string) => {
     this.setAttribute("image", image);
   };
+
+  setColor = (color?: string) => {
+    this.setAttribute("color", color);
+  };
 }

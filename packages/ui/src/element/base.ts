@@ -57,7 +57,7 @@ const baseConverters: Converters = {
 };
 
 export abstract class BaseUIElement<Props extends BaseProps> {
-  protected id: string;
+  protected id?: string;
 
   private tag: Tag;
   private props: Props;
@@ -78,7 +78,6 @@ export abstract class BaseUIElement<Props extends BaseProps> {
     options.converters ??= {};
 
     this.tag = tag;
-    this.id = `${generatedIds++}`;
     this.props = props;
     this.children = options.children;
     this.converters = { ...baseConverters, ...options.converters };
@@ -107,6 +106,11 @@ export abstract class BaseUIElement<Props extends BaseProps> {
   };
 
   protected setAttribute = (attribute: keyof Props, value: any) => {
+    if (!this.id) {
+      log("Expected an ID for the UI element, but didn't find any");
+      return;
+    }
+
     this.props[attribute] = value;
     if (this.parent) {
       const [newName, newValue] = this.convertProp(attribute, value);
@@ -124,10 +128,14 @@ export abstract class BaseUIElement<Props extends BaseProps> {
   }
 
   private convertProps = () => {
-    return Object.fromEntries(Object.entries(this.props).map(([k, v]) => this.convertProp(k as keyof Props, v)));
+    return Object.fromEntries(
+      Object.entries(this.props)
+        .filter(([k]) => k !== "ref")
+        .map(([k, v]) => this.convertProp(k as keyof Props, v))
+    );
   };
 
-  private createHandlers = () => {
+  private createHandlers = (id: string) => {
     for (const [name, handler] of this.handlers) {
       let handlers = handlerFunctions.get(name);
       if (!handlers) {
@@ -138,15 +146,16 @@ export abstract class BaseUIElement<Props extends BaseProps> {
           handlerFunctions.get(name)!.get(id)?.apply(undefined);
         };
       }
-      handlers.set(this.id, handler);
+      handlers.set(id, handler);
     }
   };
 
   render = (parent: TTSObject): UIElement => {
     this.parent = parent;
-    this.id = parent === Global ? `Global_${this.id}` : `${parent.getGUID()}_${this.id}`;
-
-    this.createHandlers();
+    if (this.needsId()) {
+      this.id = parent === Global ? `Global_${this.id}` : `${parent.getGUID()}_${++generatedIds}`;
+    }
+    this.createHandlers(this.id!);
 
     return {
       tag: this.tag,
@@ -156,6 +165,10 @@ export abstract class BaseUIElement<Props extends BaseProps> {
       },
       children: this.children?.map((c) => c.render(parent)),
     } as UIElement;
+  };
+
+  private needsId = (): boolean => {
+    return !this.handlers.isEmpty() || (this.props as any)["ref"];
   };
 }
 
