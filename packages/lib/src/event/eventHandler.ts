@@ -25,10 +25,16 @@ export const triggerEvent = (eventName: string, ...args: any[]) => {
   }
 };
 
+const previousOnLoad = onLoad;
+
 onLoad = (savedState?: string) => {
   notifyHandlers("onLoad", savedState);
   for (const object of getObjects()) {
     notifyHandlers("onObjectSpawn", object);
+  }
+
+  if (previousOnLoad !== undefined) {
+    previousOnLoad(savedState);
   }
 };
 

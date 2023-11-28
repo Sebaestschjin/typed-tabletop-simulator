@@ -19,3 +19,15 @@ export const waitCondition = async (condition: Condition, timeout?: number): Pro
       () => reject("Timeout reached")
     );
   });
+
+export const waitUntilLoaded = async <T extends TTSObject>(object: T): Promise<T> => {
+  await waitCondition(() => {
+    return !object.loading_custom && !object.UI.loading;
+  }).then(() => waitFrames(30));
+
+  if (object.hasTag("Signal Loading")) {
+    await waitCondition(() => object.call("isOnLoadFinished"));
+  }
+
+  return object;
+};

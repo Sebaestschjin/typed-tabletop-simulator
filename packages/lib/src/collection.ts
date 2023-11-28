@@ -20,3 +20,19 @@ export const shuffle = (array: any[]) => {
     array[j] = temp;
   }
 };
+
+export const applyDefaults = <T extends Record<string, any>>(source: T, defaults: T): T => {
+  const target: Record<string, any> = { ...source };
+
+  for (const [k, v] of Object.entries(defaults)) {
+    if (source[k]) {
+      if (typeof v === "object") {
+        target[k] = applyDefaults(source[k], v);
+      }
+    } else {
+      target[k] = v;
+    }
+  }
+
+  return target as T;
+};

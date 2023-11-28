@@ -2,5 +2,10 @@ type Options = Omit<TakeObjectByIndex, "callback_function"> | Omit<TakeObjectByG
 
 export const takeObject = (container: TTSBag | TTSBag, options: Options): Promise<TTSObject> =>
   new Promise((resolve) => {
-    container.takeObject({ ...options, callback_function: (obj) => resolve(obj) });
+    container.takeObject({
+      ...options,
+      callback_function: (obj) => {
+        resolve(obj);
+      },
+    });
   });
