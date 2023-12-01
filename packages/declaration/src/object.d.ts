@@ -2052,6 +2052,8 @@ declare interface TTSObject<D extends ObjectData = ObjectData, C extends CustomO
   setVectorLines(parameters: Optional<VectorLine, "color" | "thickness" | "rotation">[]): boolean;
 }
 
+declare type TTSContainer = TTSBag | TTSBagInfinite | TTSDeck;
+
 /**
  * A custom asset bundle.
  *
