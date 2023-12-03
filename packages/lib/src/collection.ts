@@ -26,7 +26,7 @@ export const applyDefaults = <T extends Record<string, any>>(source: T, defaults
 
   for (const [k, v] of Object.entries(defaults)) {
     if (source[k]) {
-      if (typeof v === "object") {
+      if (isObject(source[k]) && isObject(v)) {
         target[k] = applyDefaults(source[k], v);
       }
     } else {
@@ -36,3 +36,5 @@ export const applyDefaults = <T extends Record<string, any>>(source: T, defaults
 
   return target as T;
 };
+
+const isObject = (a: any): boolean => typeof a === "object";
