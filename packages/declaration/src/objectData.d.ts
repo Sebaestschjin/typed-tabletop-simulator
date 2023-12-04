@@ -584,14 +584,9 @@ interface SnapPointData {
 }
 
 interface CustomUIAsset {
-  Type: CustomUIAssetType;
+  Type: UIAssetType;
   Name: string;
   URL: string;
-}
-
-declare const enum CustomUIAssetType {
-  Image = 0,
-  AssetBundle = 1,
 }
 
 /**
