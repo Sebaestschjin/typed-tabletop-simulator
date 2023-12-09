@@ -12,6 +12,15 @@ export const range = (start: number, end?: number): number[] => {
   return result;
 };
 
+export const rangeInclusive = (start: number, end?: number): number[] => {
+  if (!end) {
+    end = start;
+    start = 0;
+  }
+
+  return range(start, end + 1);
+};
+
 export const shuffle = (array: any[]) => {
   for (let i = array.length - 1; i > 0; i--) {
     const j = Math.floor(Math.random() * (i + 1));
