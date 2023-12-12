@@ -1,4 +1,4 @@
-import { BaseProps, BaseUIElement, ColorLikeProps, HandlerFunction } from "./base";
+import { BaseProps, BaseUIElement, ColorLikeProps, HandlerFunction, VectorProp } from "./base";
 
 export interface PanelProps extends BaseProps, ColorLikeProps {
   onMouseEnter?: HandlerFunction;
@@ -11,4 +11,8 @@ export class Panel extends BaseUIElement<PanelProps> {
     this.setHandler("onMouseEnter", props.onMouseEnter);
     this.setHandler("onMouseExit", props.onMouseExit);
   }
+
+  setRotation = (rotation: VectorProp) => {
+    this.setAttribute("rotation", rotation);
+  };
 }

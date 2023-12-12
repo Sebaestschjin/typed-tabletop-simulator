@@ -72,13 +72,13 @@ const createElement = (tag: Tag, props: JSX.IntrinsicElements[Tag], children: JS
     case "dropdown":
       return new Dropdown(props as JSX.IntrinsicElements[typeof tag]);
     case "gridLayout":
-      return new GridLayout(props as JSX.IntrinsicElements[typeof tag]);
+      return new GridLayout(props as JSX.IntrinsicElements[typeof tag], makeChildren(children));
     case "horizontalLayout":
-      return new HorizontalLayout(props as JSX.IntrinsicElements[typeof tag]);
+      return new HorizontalLayout(props as JSX.IntrinsicElements[typeof tag], makeChildren(children));
     case "horizontalScrollView":
-      return new HorizontalScrollView(props as JSX.IntrinsicElements[typeof tag]);
+      return new HorizontalScrollView(props as JSX.IntrinsicElements[typeof tag], makeChildren(children));
     case "image":
-      return new Image(props as JSX.IntrinsicElements[typeof tag]);
+      return new Image(props as JSX.IntrinsicElements[typeof tag], makeChildren(children));
     case "inputField":
       return new InputField(props as JSX.IntrinsicElements[typeof tag]);
     case "mask":
@@ -88,7 +88,7 @@ const createElement = (tag: Tag, props: JSX.IntrinsicElements[Tag], children: JS
     case "panel":
       return new Panel(props as JSX.IntrinsicElements[typeof tag], makeChildren(children));
     case "progressBar":
-      return new ProgressBar(props as JSX.IntrinsicElements[typeof tag]);
+      return new ProgressBar(props as JSX.IntrinsicElements[typeof tag], makeChildren(children));
     case "row":
       return new Row(props as JSX.IntrinsicElements[typeof tag]);
     case "slider":
@@ -104,9 +104,9 @@ const createElement = (tag: Tag, props: JSX.IntrinsicElements[Tag], children: JS
     case "toggleGroup":
       return new ToggleGroup(props as JSX.IntrinsicElements[typeof tag]);
     case "verticalLayout":
-      return new VerticalLayout(props as JSX.IntrinsicElements[typeof tag]);
+      return new VerticalLayout(props as JSX.IntrinsicElements[typeof tag], makeChildren(children));
     case "verticalScrollView":
-      return new VerticalScrollView(props as JSX.IntrinsicElements[typeof tag]);
+      return new VerticalScrollView(props as JSX.IntrinsicElements[typeof tag], makeChildren(children));
   }
 };
 

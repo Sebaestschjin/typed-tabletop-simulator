@@ -21,8 +21,8 @@ export type HandlerFunction = (this: void, player: Player) => unknown;
 
 export interface BaseProps extends UIElementProps {
   active?: boolean;
-  width?: number;
-  height?: number;
+  width?: number | `${number}%`;
+  height?: number | `${number}%`;
   position?: VectorProp;
   rotation?: VectorProp;
   scale?: ScaleProp;

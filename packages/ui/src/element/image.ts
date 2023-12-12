@@ -6,8 +6,8 @@ export interface ImageProps extends BaseProps, ColorLikeProps {
 }
 
 export class Image extends BaseUIElement<ImageProps> {
-  constructor(props: ImageProps) {
-    super("image", { ...props, preserveAspect: props.preserveAspect ?? true });
+  constructor(props: ImageProps, children: JSX.Element[]) {
+    super("image", { ...props, preserveAspect: props.preserveAspect ?? true }, { children: children });
   }
 
   setImage = (image: string) => {
