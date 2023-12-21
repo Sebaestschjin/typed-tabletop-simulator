@@ -18,8 +18,4 @@ export class Text extends BaseUIElement<TextProps> {
   constructor(props: TextProps) {
     super("text", props, { converters: converters });
   }
-
-  setText = (text: string) => {
-    this.setAttribute("text", text);
-  };
 }

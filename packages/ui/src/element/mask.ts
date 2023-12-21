@@ -8,8 +8,4 @@ export class Mask extends BaseUIElement<MaskProps> {
   constructor(props: MaskProps, children: JSX.Element[]) {
     super("mask", props, { children: children });
   }
-
-  setImage = (image: string) => {
-    this.setAttribute("image", image);
-  };
 }

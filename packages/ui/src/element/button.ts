@@ -1,7 +1,7 @@
 import { BaseProps, BaseUIElement, ColorLikeProps, TextLikeProps } from "./base";
 import { Converters } from "./convert";
 
-type OnClickHandler = (this: void) => unknown;
+type OnClickHandler = (this: void, player: Player, button: ClickEvent) => unknown;
 
 interface NamedColors {
   base?: string;

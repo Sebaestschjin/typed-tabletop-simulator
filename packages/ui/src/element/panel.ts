@@ -11,8 +11,4 @@ export class Panel extends BaseUIElement<PanelProps> {
     this.setHandler("onMouseEnter", props.onMouseEnter);
     this.setHandler("onMouseExit", props.onMouseExit);
   }
-
-  setRotation = (rotation: VectorProp) => {
-    this.setAttribute("rotation", rotation);
-  };
 }

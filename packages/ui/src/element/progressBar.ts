@@ -11,8 +11,4 @@ export class ProgressBar extends BaseUIElement<ProgressBarProps> {
   constructor(props: ProgressBarProps, children: JSX.Element[]) {
     super("progressBar", { ...props, showPercentageText: props.showPercentageText ?? false }, { children: children });
   }
-
-  setProgress = (percentage: number) => {
-    this.setAttribute("percentage", percentage);
-  };
 }

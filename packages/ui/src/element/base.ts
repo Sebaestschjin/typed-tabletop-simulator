@@ -17,7 +17,7 @@ export interface Ref<T> {
   current?: T;
 }
 
-export type HandlerFunction = (this: void, player: Player) => unknown;
+export type HandlerFunction = (this: void, player: Player, value: any) => unknown;
 
 export interface BaseProps extends UIElementProps {
   active?: boolean;
@@ -64,7 +64,7 @@ export abstract class BaseUIElement<Props extends BaseProps> {
   private parent?: TTSObject;
   private children?: JSX.Element[];
   private converters: Converters;
-  private handlers = new LuaMap<UIAttributeName, Function>();
+  private handlers = new LuaMap<UIAttributeName, HandlerFunction>();
 
   constructor(
     tag: Tag,
@@ -83,29 +83,7 @@ export abstract class BaseUIElement<Props extends BaseProps> {
     this.converters = { ...baseConverters, ...options.converters };
   }
 
-  setActive = (active: boolean) => {
-    this.setAttribute("active", active);
-  };
-
-  setWidth = (width: number) => {
-    this.setAttribute("width", width);
-  };
-
-  setHeight = (height: number) => {
-    this.setAttribute("height", height);
-  };
-
-  setOffset = (offset: Vector2Prop) => {
-    this.setAttribute("offset", offset);
-  };
-
-  protected setHandler = (name: UIAttributeName, handler?: Function) => {
-    if (handler) {
-      this.handlers.set(name, handler);
-    }
-  };
-
-  protected setAttribute = (attribute: keyof Props, value: any) => {
+  setAttribute = <K extends keyof Props>(attribute: K, value: Props[K]) => {
     if (!this.id) {
       log("Expected an ID for the UI element, but didn't find any");
       return;
@@ -115,6 +93,12 @@ export abstract class BaseUIElement<Props extends BaseProps> {
     if (this.parent) {
       const [newName, newValue] = this.convertProp(attribute, value);
       this.parent.UI.setAttribute(this.id, newName, newValue);
+    }
+  };
+
+  protected setHandler = (name: UIAttributeName, handler?: HandlerFunction) => {
+    if (handler) {
+      this.handlers.set(name, handler);
     }
   };
 
@@ -142,8 +126,11 @@ export abstract class BaseUIElement<Props extends BaseProps> {
         handlers = new LuaMap();
         handlerFunctions.set(name, handlers);
 
-        _G[convert.handlerName(name)] = (player: Player, value: string, id: string) => {
-          handlerFunctions.get(name)!.get(id)?.apply(undefined);
+        _G[convert.handlerName(name)] = (player: Player, value: ClickEvent, id: string) => {
+          const handlerFunc = handlerFunctions.get(name)!.get(id);
+          if (handlerFunc) {
+            handlerFunc(player, value);
+          }
         };
       }
       handlers.set(id, handler);
@@ -172,4 +159,4 @@ export abstract class BaseUIElement<Props extends BaseProps> {
   };
 }
 
-const handlerFunctions = new LuaMap<string, LuaMap<string, Function>>();
+const handlerFunctions = new LuaMap<string, LuaMap<string, HandlerFunction>>();
