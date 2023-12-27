@@ -88,7 +88,7 @@ type OnObjectDropHandler = (player: PlayerColor, object: TTSObject) => unknown;
  * @param container Container that was entered.
  * @param object Object that entered the container.
  */
-type OnObjectEnterContainerHandler = (container: TTSObject, object: TTSObject) => unknown;
+type OnObjectEnterContainerHandler = (container: TTSContainer, object: TTSObject) => unknown;
 
 /**
  * Called when an object enters a zone.
@@ -121,7 +121,7 @@ type OnObjectHoverHandler = (player: PlayerColor, object: TTSObject) => unknown;
  * @param container Container the object left.
  * @param object Object that left the container.
  */
-type OnObjectLeaveContainerHandler = (container: TTSObject, object: TTSObject) => unknown;
+type OnObjectLeaveContainerHandler = (container: TTSContainer, object: TTSObject) => unknown;
 
 /**
  * Called when an object leaves a zone.
@@ -155,7 +155,7 @@ type OnObjectNumberTypedHandler = (object: TTSObject, player: PlayerColor, numbe
  *
  * @param object The object that's page changed.
  */
-type OnObjectPageChangeHandler = (object: TTSObject) => unknown;
+type OnObjectPageChangeHandler = (object: TTSBook) => unknown;
 
 /**
  * Called when a player peeks at an Object.
@@ -206,7 +206,7 @@ type OnObjectRotateHandler = (
  * @param object The Object which was searched.
  * @param player Player Color of the player who triggered the function.
  */
-type OnObjectSearchEndHandler = (object: TTSObject, player: PlayerColor) => unknown;
+type OnObjectSearchEndHandler = (object: TTSContainer, player: PlayerColor) => unknown;
 
 /**
  * Called when a search is started on a container.
@@ -214,7 +214,7 @@ type OnObjectSearchEndHandler = (object: TTSObject, player: PlayerColor) => unkn
  * @param object The Object which was searched.
  * @param player Player Color of the player who triggered the function.
  */
-type OnObjectSearchStartHandler = (object: TTSObject, player: PlayerColor) => unknown;
+type OnObjectSearchStartHandler = (object: TTSContainer, player: PlayerColor) => unknown;
 
 /**
  * Called when an object is spawned/created.
@@ -340,7 +340,7 @@ type OnZoneGroupSortHandler = (zone: TTSObject, group: TTSObject[], reversed: bo
  * @param container The container the Object is trying to enter.
  * @param object The Object entering the container.
  */
-type TryObjectEnterContainerHandler = (container: TTSObject, object: TTSObject) => Maybe<boolean>;
+type TryObjectEnterContainerHandler = (container: TTSContainer, object: TTSObject) => Maybe<boolean>;
 
 /**
  * Called when a player attempts to randomize an Object.
@@ -552,129 +552,134 @@ interface CollisionInfo {
 /** Possible index values for a scripting button. */
 type ScriptingButton = 1 | 2 | 3 | 4 | 5 | 6 | 7 | 8 | 9 | 10;
 
-/** The [[OnBlindfoldHandler|onBlindfold]] event. */
-declare let onBlindfold: OnBlindfoldHandler;
-/** The [[OnChatHandler|onChat]] event. */
-declare let onChat: OnChatHandler;
-/** The [[OnExternalMessageHandler|onExternalMessage]] event. */
-declare let onExternalMessage: OnExternalMessageHandler;
-/** The [[OnFixedUpdateHandler|onFixedUpdate]] event. */
-declare let onFixedUpdate: OnFixedUpdateHandler;
-/** The [[OnLoadHandler|onLoad]] event. */
-declare let onLoad: OnLoadHandler;
-/** The [[OnObjectCollisionEnterHandler|onObjectCollisionEnter]] event. */
-declare let onObjectCollisionEnter: OnObjectCollisionEnterHandler;
-/** The [[OnObjectCollisionExitHandler|onObjectCollisionExit]] event. */
-declare let onObjectCollisionExit: OnObjectCollisionExitHandler;
-/** The [[OnObjectCollisionStayHandler|onObjectCollisionStay]] event. */
-declare let onObjectCollisionStay: OnObjectCollisionStayHandler;
-/** The [[OnObjectDestroyHandler|onObjectDestroy]] event. */
-declare let onObjectDestroy: OnObjectDestroyHandler;
-/** The [[OnObjectDropHandler|onObjectDrop]] event. */
-declare let onObjectDrop: OnObjectDropHandler;
-/** The [[OnObjectEnterContainerHandler|onObjectEnterContainer]] event. */
-declare let onObjectEnterContainer: OnObjectEnterContainerHandler;
-/** The [[OnObjectEnterZoneHandler|onObjectEnterZone]] event. */
-declare let onObjectEnterZone: OnObjectEnterZoneHandler;
-/** The [[OnObjectFlickHandler|onObjectFlick]] event. */
-declare let onObjectFlick: OnObjectFlickHandler;
-/** The [[OnObjectHoverHandler|onObjectHover]] event. */
-declare let onObjectHover: OnObjectHoverHandler;
-/** The [[OnObjectLeaveContainerHandler|onObjectLeaveContainer]] event. */
-declare let onObjectLeaveContainer: OnObjectLeaveContainerHandler;
-/** The [[OnObjectLeaveZoneHandler|onObjectLeaveZone]] event. */
-declare let onObjectLeaveZone: OnObjectLeaveZoneHandler;
-/** The [[OnObjectLoopingEffectHandler|onObjectLoopingEffect]] event. */
-declare let onObjectLoopingEffect: OnObjectLoopingEffectHandler;
-/** The [[OnObjectNumberTypedHandler|onObjectNumberTyped]] event. */
-declare let onObjectNumberTyped: OnObjectNumberTypedHandler;
-/** The [[OnObjectPageChangeHandler|onObjectPageChange]] event. */
-declare let onObjectPageChange: OnObjectPageChangeHandler;
-/** The [[OnObjectPeekHandler|onObjectPeek]] event. */
-declare let onObjectPeek: OnObjectPeekHandler;
-/** The [[OnObjectPickUpHandler|onObjectPickUp]] event. */
-declare let onObjectPickUp: OnObjectPickUpHandler;
-/** The [[OnObjectRandomizeHandler|onObjectRandomize]] event. */
-declare let onObjectRandomize: OnObjectRandomizeHandler;
-/** The [[OnObjectRotateHandler|onObjectRotate]] event. */
-declare let onObjectRotate: OnObjectRotateHandler;
-/** The [[OnObjectSearchEndHandler|onObjectSearchEnd]] event. */
-declare let onObjectSearchEnd: OnObjectSearchEndHandler;
-/** The [[OnObjectSearchStartHandler|onObjectSearchStart]] event. */
-declare let onObjectSearchStart: OnObjectSearchStartHandler;
-/** The [[OnObjectSpawnHandler|onObjectSpawn]] event. */
-declare let onObjectSpawn: OnObjectSpawnHandler;
-/** The [[OnObjectStateChangeHandler|onObjectStateChange]] event. */
-declare let onObjectStateChange: OnObjectStateChangeHandler;
-/** The [[OnObjectTriggerEffectHandler|onObjectTriggerEffect]] event. */
-declare let onObjectTriggerEffect: OnObjectTriggerEffectHandler;
-/** The [[OnPlayerActionHandler|onPlayerAction]] event. */
-declare let onPlayerAction: OnPlayerActionHandler;
-/** The [[OnPlayerChangeColorHandler|onPlayerChangeColor]] event. */
-declare let onPlayerChangeColor: OnPlayerChangeColorHandler;
-/** The [[OnPlayerChangeTeamHandler|onPlayerChangeTeam]] event. */
-declare let onPlayerChangeTeam: OnPlayerChangeTeamHandler;
-/** The [[OnPlayerConnectHandler|onPlayerConnect]] event. */
-declare let onPlayerConnect: OnPlayerConnectHandler;
-/** The [[OnPlayerDisconnectHandler|onPlayerDisconnect]] event. */
-declare let onPlayerDisconnect: OnPlayerDisconnectHandler;
-/** The [[OnPlayerPingHandler|onPlayerPing]] event. */
-declare let onPlayerPing: OnPlayerPingHandler;
-/** The [[OnPlayerTurnHandler|onPlayerTurn]] event. */
-declare let onPlayerTurn: OnPlayerTurnHandler;
-/** The [[OnSaveHandler|onSave]] event. */
-declare let onSave: OnSaveHandler;
-/** The [[OnScriptingButtonDownHandler|onScriptingButtonDown]] event. */
-declare let onScriptingButtonDown: OnScriptingButtonDownHandler;
-/** The [[OnScriptingButtonUpHandler|onScriptingButtonUp]] event. */
-declare let onScriptingButtonUp: OnScriptingButtonUpHandler;
-/** The [[OnUpdateHandler|onUpdate]] event. */
-declare let onUpdate: OnUpdateHandler;
-/** The [[OnZoneGroupSortHandler|onZoneGroupSort]] event. */
-declare let onZoneGroupSort: OnZoneGroupSortHandler;
-/** The [[TryObjectEnterContainerHandler|tryObjectEnterContainer]] event. */
-declare let tryObjectEnterContainer: TryObjectEnterContainerHandler;
-/** The [[TryObjectRandomizeHandler|tryObjectRandomize]] event. */
-declare let tryObjectRandomize: TryObjectRandomizeHandler;
-/** The [[TryObjectRotateHandler|tryObjectRotate]] event. */
-declare let tryObjectRotate: TryObjectRotateHandler;
-/** The [[OnCollisionEnterHandler|onCollisionEnter]] event. */
-declare let onCollisionEnter: OnCollisionEnterHandler;
-/** The [[OnCollisionExitHandler|onCollisionExit]] event. */
-declare let onCollisionExit: OnCollisionExitHandler;
-/** The [[OnCollisionStayHandler|onCollisionStay]] event. */
-declare let onCollisionStay: OnCollisionStayHandler;
-/** The [[OnDestroyHandler|onDestroy]] event. */
-declare let onDestroy: OnDestroyHandler;
-/** The [[OnDropHandler|onDrop]] event. */
-declare let onDrop: OnDropHandler;
-/** The [[OnFlickHandler|onFlick]] event. */
-declare let onFlick: OnFlickHandler;
-/** The [[OnGroupSortHandler|onGroupSort]] event. */
-declare let onGroupSort: OnGroupSortHandler;
-/** The [[OnHoverHandler|onHover]] event. */
-declare let onHover: OnHoverHandler;
-/** The [[OnNumberTypedHandler|onNumberTyped]] event. */
-declare let onNumberTyped: OnNumberTypedHandler;
-/** The [[OnPageChangeHandler|onPageChange]] event. */
-declare let onPageChange: OnPageChangeHandler;
-/** The [[OnPeekHandler|onPeek]] event. */
-declare let onPeek: OnPeekHandler;
-/** The [[OnPickUpHandler|onPickUp]] event. */
-declare let onPickUp: OnPickUpHandler;
-/** The [[OnRandomizeHandler|onRandomize]] event. */
-declare let onRandomize: OnRandomizeHandler;
-/** The [[OnRotateHandler|onRotate]] event. */
-declare let onRotate: OnRotateHandler;
-/** The [[OnSearchEndHandler|onSearchEnd]] event. */
-declare let onSearchEnd: OnSearchEndHandler;
-/** The [[OnSearchStartHandler|onSearchStart]] event. */
-declare let onSearchStart: OnSearchStartHandler;
-/** The [[OnStateChangeHandler|onStateChange]] event. */
-declare let onStateChange: OnStateChangeHandler;
-/** The [[TryObjectEnterHandler|tryObjectEnter]] event. */
-declare let tryObjectEnter: TryObjectEnterHandler;
-/** The [[TryRandomizeHandler|tryRandomize]] event. */
-declare let tryRandomize: TryRandomizeHandler;
-/** The [[TryRotateHandler|tryRotate]] event. */
-declare let tryRotate: TryRotateHandler;
+declare interface TTSEvent {
+  onBlindfold: OnBlindfoldHandler;
+  onChat: OnChatHandler;
+  onExternalMessage: OnExternalMessageHandler;
+  onFixedUpdate: OnFixedUpdateHandler;
+  onLoad: OnLoadHandler;
+  onObjectCollisionEnter: OnObjectCollisionEnterHandler;
+  onObjectCollisionExit: OnObjectCollisionExitHandler;
+  onObjectCollisionStay: OnObjectCollisionStayHandler;
+  onObjectDestroy: OnObjectDestroyHandler;
+  onObjectDrop: OnObjectDropHandler;
+  onObjectEnterContainer: OnObjectEnterContainerHandler;
+  onObjectEnterZone: OnObjectEnterZoneHandler;
+  onObjectFlick: OnObjectFlickHandler;
+  onObjectHover: OnObjectHoverHandler;
+  onObjectLeaveContainer: OnObjectLeaveContainerHandler;
+  onObjectLeaveZone: OnObjectLeaveZoneHandler;
+  onObjectLoopingEffect: OnObjectLoopingEffectHandler;
+  onObjectNumberTyped: OnObjectNumberTypedHandler;
+  onObjectPageChange: OnObjectPageChangeHandler;
+  onObjectPeek: OnObjectPeekHandler;
+  onObjectPickUp: OnObjectPickUpHandler;
+  onObjectRandomize: OnObjectRandomizeHandler;
+  onObjectRotate: OnObjectRotateHandler;
+  onObjectSearchEnd: OnObjectSearchEndHandler;
+  onObjectSearchStart: OnObjectSearchStartHandler;
+  onObjectSpawn: OnObjectSpawnHandler;
+  onObjectStateChange: OnObjectStateChangeHandler;
+  onObjectTriggerEffect: OnObjectTriggerEffectHandler;
+  onPlayerAction: OnPlayerActionHandler;
+  onPlayerChangeColor: OnPlayerChangeColorHandler;
+  onPlayerChangeTeam: OnPlayerChangeTeamHandler;
+  onPlayerConnect: OnPlayerConnectHandler;
+  onPlayerDisconnect: OnPlayerDisconnectHandler;
+  onPlayerPing: OnPlayerPingHandler;
+  onPlayerTurn: OnPlayerTurnHandler;
+  onSave: OnSaveHandler;
+  onScriptingButtonDown: OnScriptingButtonDownHandler;
+  onScriptingButtonUp: OnScriptingButtonUpHandler;
+  onUpdate: OnUpdateHandler;
+  onZoneGroupSort: OnZoneGroupSortHandler;
+  tryObjectEnterContainer: TryObjectEnterContainerHandler;
+  tryObjectRandomize: TryObjectRandomizeHandler;
+  tryObjectRotate: TryObjectRotateHandler;
+  onCollisionEnter: OnCollisionEnterHandler;
+  onCollisionExit: OnCollisionExitHandler;
+  onCollisionStay: OnCollisionStayHandler;
+  onDestroy: OnDestroyHandler;
+  onDrop: OnDropHandler;
+  onFlick: OnFlickHandler;
+  onGroupSort: OnGroupSortHandler;
+  onHover: OnHoverHandler;
+  onNumberTyped: OnNumberTypedHandler;
+  onPageChange: OnPageChangeHandler;
+  onPeek: OnPeekHandler;
+  onPickUp: OnPickUpHandler;
+  onRandomize: OnRandomizeHandler;
+  onRotate: OnRotateHandler;
+  onSearchEnd: OnSearchEndHandler;
+  onSearchStart: OnSearchStartHandler;
+  onStateChange: OnStateChangeHandler;
+  tryObjectEnter: TryObjectEnterHandler;
+  tryRandomize: TryRandomizeHandler;
+  tryRotate: TryRotateHandler;
+}
+
+declare let {
+  onBlindfold,
+  onChat,
+  onExternalMessage,
+  onFixedUpdate,
+  onLoad,
+  onObjectCollisionEnter,
+  onObjectCollisionExit,
+  onObjectCollisionStay,
+  onObjectDestroy,
+  onObjectDrop,
+  onObjectEnterContainer,
+  onObjectEnterZone,
+  onObjectFlick,
+  onObjectHover,
+  onObjectLeaveContainer,
+  onObjectLeaveZone,
+  onObjectLoopingEffect,
+  onObjectNumberTyped,
+  onObjectPageChange,
+  onObjectPeek,
+  onObjectPickUp,
+  onObjectRandomize,
+  onObjectRotate,
+  onObjectSearchEnd,
+  onObjectSearchStart,
+  onObjectSpawn,
+  onObjectStateChange,
+  onObjectTriggerEffect,
+  onPlayerAction,
+  onPlayerChangeColor,
+  onPlayerChangeTeam,
+  onPlayerConnect,
+  onPlayerDisconnect,
+  onPlayerPing,
+  onPlayerTurn,
+  onSave,
+  onScriptingButtonDown,
+  onScriptingButtonUp,
+  onUpdate,
+  onZoneGroupSort,
+  tryObjectEnterContainer,
+  tryObjectRandomize,
+  tryObjectRotate,
+  onCollisionEnter,
+  onCollisionExit,
+  onCollisionStay,
+  onDestroy,
+  onDrop,
+  onFlick,
+  onGroupSort,
+  onHover,
+  onNumberTyped,
+  onPageChange,
+  onPeek,
+  onPickUp,
+  onRandomize,
+  onRotate,
+  onSearchEnd,
+  onSearchStart,
+  onStateChange,
+  tryObjectEnter,
+  tryRandomize,
+  tryRotate,
+}: TTSEvent;

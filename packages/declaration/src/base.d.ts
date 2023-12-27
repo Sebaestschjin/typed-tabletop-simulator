@@ -409,7 +409,7 @@ declare function startLuaCoroutine(functionOwner: TTSObject, functionName: strin
  *
  * @category Hotkeys
  */
-type AddHotkeyCallback = (
+type HotkeyCallback = (
   playerColor: PlayerColor,
   hoveredObject: Maybe<TTSObject>,
   pointerPosition: Vector,
@@ -443,7 +443,7 @@ type AddHotkeyCallback = (
  *
  * @category Hotkeys
  */
-declare function addHotkey(label: string, callback: AddHotkeyCallback, triggerOnKeyUp?: boolean): boolean;
+declare function addHotkey(label: string, callback: HotkeyCallback, triggerOnKeyUp?: boolean): boolean;
 
 /**
  * Clears all hotkeys previously added via [[addHotkey()]].
