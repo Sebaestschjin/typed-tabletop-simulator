@@ -124,7 +124,6 @@
 ---@field FogHidePointers nil | boolean
 ---@field FogReverseHiding nil | boolean
 ---@field FogSeethrough nil | boolean
----@field FogReverseHiding nil | boolean
 ---@field vector nil | tts__CharVectorShape
 ---@field AttachedDecals nil | tts__ObjectState_Decal[]
 ---@field AttachedSnapPoints nil | tts__ObjectState_SnapPoint[]

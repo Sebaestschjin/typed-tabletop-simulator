@@ -201,7 +201,7 @@ function Object.addContextMenuItem(label, callback, keepOpen) end
 
 ---@param functionName string
 ---@param functionParameters? table | number | string | boolean
----@return any...
+---@return any ...
 function Object.call(functionName, functionParameters) end
 
 ---@return true
@@ -588,11 +588,7 @@ function Stackable.putObject(object) end
 
 --- Places an card onto another card, forming a deck.
 ---
----@param object tts__Card|tts__Deck
----@return tts__Deck
-function Card.putObject(object) end
-
----@param object tts__Card
+---@param object tts__Card | tts__Deck
 ---@return tts__Deck
 function Card.putObject(object) end
 
@@ -630,15 +626,6 @@ function Object.getRotationValue() end
 ---
 ---@return tts__Object_RotationValue[]
 function Object.getRotationValues() end
-
----
---- Returns the object's rotation values. Typically a number, but may also be a string for certain special dice.
----
---- At the time of writing, the only non-custom die that has string rotation values is Die_Piecepack, which has values
---- "Blank" and "Symbol" in place of the numbers 1 and 6 respectively (on a D6).
----
----@return number | string
-function Object.getRotationValue() end
 
 ---
 --- Returns the object's scale.
@@ -972,15 +959,11 @@ function Object.takeObject(params) end
 ---@return boolean
 function Object.unregisterCollisions() end
 
----@class tts__Callback<T>
----@field callback_function nil | T
----@field callback nil | string @Deprecated - use callback_function
----@field callback_owner nil | tts__Object @Deprecated - use callback_function
+---@class tts__ObjectCallback
+---@field callback_function nil | tts__ObjectCallbackFunction
 ---@field params nil | table @Deprecated - use callback_function
 
 ---@alias tts__ObjectCallbackFunction fun(object: tts__Object): void
-
----@class tts__ObjectCallback : tts__Callback<tts__ObjectCallbackFunction>
 
 ---@class tts__SpawnObjectParams : tts__ObjectCallback
 ---@field type string
