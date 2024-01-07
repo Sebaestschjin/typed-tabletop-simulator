@@ -1,4 +1,3 @@
-
 ---@param label string
 ---@param callback fun(playerColor: tts__PlayerColor, object: tts__Object, pointerPosition: nil | tts__Vector, isKeyUp: boolean): void
 ---@param triggerOnKeyUp? boolean @Defaults to false
@@ -62,3 +61,6 @@ function stringColorToRGB(player_color) end
 ---@param object tts__Object
 function destroyObject(object) end
 
+---@param message table
+---@return boolean
+function sendExternalMessage(message) end
