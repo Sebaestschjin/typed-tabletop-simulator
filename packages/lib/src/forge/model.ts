@@ -6,6 +6,7 @@ export interface CustomModelProperties extends BaseProperties {
   texture: string;
   collider?: string;
   material?: MaterialType;
+  convex?: boolean;
   content?: ObjectData[];
 }
 
@@ -25,6 +26,7 @@ export const createModel = (properties: CustomModelProperties) => {
       DiffuseURL: properties.texture,
       ColliderURL: properties.collider,
       MaterialIndex: properties.material,
+      Convex: properties.convex ?? true,
     },
     ContainedObjects: properties.content,
   };
