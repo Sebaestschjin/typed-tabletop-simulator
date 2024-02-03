@@ -25,6 +25,9 @@ function broadcastToAll(message, color) end
 ---@return boolean
 function broadcastToColor(message, playerColor, messageColor) end
 
+---@return table
+function getSeatedPlayers() end
+
 ---@param objects tts__Object[]
 ---@return (tts__Container | tts__Stackable)[]
 function group(objects) end
@@ -64,3 +67,7 @@ function destroyObject(object) end
 ---@param message table
 ---@return boolean
 function sendExternalMessage(message) end
+
+---@param function_owner tts__GameObject
+---@param function_name string
+function startLuaCoroutine(function_owner, function_name) end
