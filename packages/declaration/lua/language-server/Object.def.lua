@@ -681,10 +681,11 @@ function Object.getVelocity() end
 ---@return tts__ScriptingTrigger[]
 function Object.getZones() end
 
+---@param color? tts__ColorShape|string
 ---@return true
-function Object.highlightOff() end
+function Object.highlightOff(color) end
 
----@param color tts__ColorShape
+---@param color tts__ColorShape|string
 ---@param duration? number
 ---@return true
 function Object.highlightOn(color, duration) end
