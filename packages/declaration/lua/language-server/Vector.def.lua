@@ -70,13 +70,9 @@ function Vector:sqrMagnitude() end
 ---@return number
 function Vector:magnitude() end
 
----@overload fun(scale: number): self
----@overload fun(scale: tts__Vector): self
----@param x string
----@param y string
----@param z string
+---@param factor number|tts__Vector
 ---@return self
-function Vector:scale(x, y, z) end
+function Vector:scale(factor) end
 
 ---@overload fun(v1: tts__Vector, v2: tts__Vector): tts__Vector
 ---@overload fun(v: tts__Vector, scale: number): tts__Vector
