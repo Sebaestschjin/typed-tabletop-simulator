@@ -161,40 +161,9 @@ declare interface Player {
 }
 
 /** @noSelf */
-declare interface PlayerManager {
-  /** Returns the player currently seated for player color White */
-  White: Maybe<Player>;
-
-  /** Returns the player currently seated for player color Brown */
-  Brown: Maybe<Player>;
-
-  /** Returns the player currently seated for player color Red */
-  Red: Maybe<Player>;
-
-  /** Returns the player currently seated for player color Orange */
-  Orange: Maybe<Player>;
-
-  /** Returns the player currently seated for player color Yellow */
-  Yellow: Maybe<Player>;
-
-  /** Returns the player currently seated for player color Green */
-  Green: Maybe<Player>;
-
-  /** Returns the player currently seated for player color Teal */
-  Teal: Maybe<Player>;
-
-  /** Returns the player currently seated for player color Blue */
-  Blue: Maybe<Player>;
-
-  /** Returns the player currently seated for player color Purple */
-  Purple: Maybe<Player>;
-
-  /** Returns the player currently seated for player color Pink */
-  Pink: Maybe<Player>;
-
-  /** Returns the player currently seated for player color Black */
-  Black: Maybe<Player>;
-
+declare type PlayerManager = {
+  [color in PlayerColor]: Maybe<Player>;
+} & {
   /**
    * Returns a table of strings of every valid seat color at the current table.
    *
@@ -218,7 +187,7 @@ declare interface PlayerManager {
    * Returns a table of all spectator (Grey) Player instances.
    */
   getSpectators(): Player[];
-}
+};
 
 declare const Player: PlayerManager;
 
