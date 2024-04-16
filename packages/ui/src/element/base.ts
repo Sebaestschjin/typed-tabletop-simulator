@@ -140,7 +140,8 @@ export abstract class BaseUIElement<Props extends BaseProps> {
   render = (parent: TTSObject): UIElement => {
     this.parent = parent;
     if (this.needsId()) {
-      this.id = parent === Global ? `Global_${this.id}` : `${parent.getGUID()}_${++generatedIds}`;
+      const nextId = ++generatedIds;
+      this.id = parent === Global ? `Global_${nextId}` : `${parent.getGUID()}_${nextId}`;
     }
     this.createHandlers(this.id!);
 
