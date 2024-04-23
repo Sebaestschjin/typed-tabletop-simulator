@@ -1,7 +1,21 @@
-import { BaseProps, BaseUIElement, ColorLikeProps, TextLikeProps } from "./base";
+import { BaseProps, BaseUIElement, ColorLikeProps, OnClickHandler, TextLikeProps } from "./base";
 import { Converters } from "./convert";
 
-type OnClickHandler = (this: void, player: Player, button: ClickEvent) => unknown;
+export interface ButtonProps extends BaseProps, TextLikeProps, ColorLikeProps {
+  colors?: ColorsProps;
+  textColor?: string;
+  textAlignment?: Alignment;
+  image?: string;
+  onClick: OnClickHandler;
+}
+
+export class Button extends BaseUIElement<ButtonProps> {
+  constructor(props: ButtonProps) {
+    super("button", props, { converters: converters });
+
+    this.setHandler("onClick", props.onClick);
+  }
+}
 
 interface NamedColors {
   base?: string;
@@ -33,18 +47,3 @@ const DEFAULT_COLORS = {
   hover: "#FFFFFF",
   click: "#C8C8C8",
 };
-
-export interface ButtonProps extends BaseProps, TextLikeProps, ColorLikeProps {
-  colors?: ColorsProps;
-  textColor?: string;
-  textAlignment?: Alignment;
-  image?: string;
-  onClick: OnClickHandler;
-}
-
-export class Button extends BaseUIElement<ButtonProps> {
-  constructor(props: ButtonProps) {
-    super("button", props, { converters: converters });
-    this.setHandler("onClick", props.onClick);
-  }
-}

@@ -19,6 +19,8 @@ export interface Ref<T> {
 
 export type HandlerFunction = (this: void, player: Player, value: any) => unknown;
 
+export type OnClickHandler = (this: void, player: Player, button: ClickEvent) => unknown;
+
 export interface BaseProps extends UIElementProps {
   active?: boolean;
   width?: number | `${number}%`;
