@@ -127,7 +127,10 @@ const isElementArray = (c: any): c is JSX.Element[] => {
 };
 
 export const render = (object: TTSObject, element: JSX.Element) => {
-  const ui = element.render(object);
+  return element.render(object);
+};
+
+export const applyUi = (object: TTSObject, element: JSX.Element) => {
+  const ui = render(object, element);
   object.UI.setXmlTable([ui]);
-  return ui;
 };

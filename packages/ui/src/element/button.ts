@@ -1,4 +1,5 @@
-import { BaseProps, BaseUIElement, ColorLikeProps, OnClickHandler, TextLikeProps } from "./base";
+import { OnClickHandler } from "../handler";
+import { BaseProps, BaseUIElement, ColorLikeProps, TextLikeProps } from "./base";
 import { Converters } from "./convert";
 
 export interface ButtonProps extends BaseProps, TextLikeProps, ColorLikeProps {
@@ -11,7 +12,7 @@ export interface ButtonProps extends BaseProps, TextLikeProps, ColorLikeProps {
 
 export class Button extends BaseUIElement<ButtonProps> {
   constructor(props: ButtonProps) {
-    super("button", props, { converters: converters });
+    super("button", props, { converters });
 
     this.setHandler("onClick", props.onClick);
   }

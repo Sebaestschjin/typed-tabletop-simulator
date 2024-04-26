@@ -1,6 +1,8 @@
 import { ScaleProp, Vector2Prop, VectorProp } from "./base";
 
-export type Converter<T> = (this: void, value: T) => [UIAttributeName, UIAttributeValue];
+export type KeyValuePair = [UIAttributeName, UIAttributeValue];
+export type ConvertResult = KeyValuePair | KeyValuePair[];
+export type Converter<T> = (this: void, value: T) => ConvertResult;
 export type Converters = Record<string, Converter<any>>;
 
 const rename = (newName: UIAttributeName): Converter<any> => {

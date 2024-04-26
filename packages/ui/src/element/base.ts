@@ -1,5 +1,5 @@
 import { ArrayOrSingle } from "../core";
-import { Converters, convert } from "./convert";
+import { ConvertResult, Converters, KeyValuePair, convert } from "./convert";
 
 export type Tag = keyof JSX.IntrinsicElements;
 
@@ -18,8 +18,6 @@ export interface Ref<T> {
 }
 
 export type HandlerFunction = (this: void, player: Player, value: any) => unknown;
-
-export type OnClickHandler = (this: void, player: Player, button: ClickEvent) => unknown;
 
 export interface BaseProps extends UIElementProps {
   active?: boolean;
@@ -85,6 +83,14 @@ export abstract class BaseUIElement<Props extends BaseProps> {
     this.converters = { ...baseConverters, ...options.converters };
   }
 
+  setActive = (active: boolean) => {
+    this.setAttribute("active", active);
+  };
+
+  setOffset = (offset: Vector2Prop) => {
+    this.setAttribute("offset", offset);
+  };
+
   setAttribute = <K extends keyof Props>(attribute: K, value: Props[K]) => {
     if (!this.id) {
       log("Expected an ID for the UI element, but didn't find any");
@@ -93,8 +99,14 @@ export abstract class BaseUIElement<Props extends BaseProps> {
 
     this.props[attribute] = value;
     if (this.parent) {
-      const [newName, newValue] = this.convertProp(attribute, value);
-      this.parent.UI.setAttribute(this.id, newName, newValue);
+      const converted = this.convertProp(attribute, value);
+      if (this.isSingleResult(converted)) {
+        this.parent.UI.setAttribute(this.id, converted[0], converted[1]);
+      } else {
+        for (const [key, value] of converted) {
+          this.parent.UI.setAttribute(this.id, key, value);
+        }
+      }
     }
   };
 
@@ -104,7 +116,7 @@ export abstract class BaseUIElement<Props extends BaseProps> {
     }
   };
 
-  protected convertProp(name: keyof Props, value: any): [UIAttributeName, UIAttributeValue] {
+  protected convertProp(name: keyof Props, value: any): ConvertResult {
     if (this.handlers.get(name as UIAttributeName)) {
       return convert.handlerFunction(name as UIAttributeName)(value);
     }
@@ -114,11 +126,27 @@ export abstract class BaseUIElement<Props extends BaseProps> {
   }
 
   private convertProps = () => {
-    return Object.fromEntries(
-      Object.entries(this.props)
-        .filter(([k]) => k !== "ref")
-        .map(([k, v]) => this.convertProp(k as keyof Props, v))
-    );
+    const props: any = {};
+
+    const addProp = ([name, value]: KeyValuePair) => (props[name] = value);
+
+    for (const [k, v] of Object.entries(this.props)) {
+      if (k !== "ref") {
+        const converted = this.convertProp(k as keyof Props, v);
+
+        if (this.isSingleResult(converted)) {
+          addProp(converted);
+        } else {
+          converted.forEach((c) => addProp(c));
+        }
+      }
+    }
+
+    return props;
+  };
+
+  private isSingleResult = (result: ConvertResult): result is KeyValuePair => {
+    return typeof result[0] === "string";
   };
 
   private createHandlers = (id: string) => {
