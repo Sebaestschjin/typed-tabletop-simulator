@@ -1794,7 +1794,7 @@ declare interface TTSObject<D extends ObjectData = ObjectData, C extends CustomO
    *
    * @category Global
    */
-  addDecal(parameters: Decal): boolean;
+  addDecal(parameters: DecalAdd): boolean;
 
   /**
    * Used to call a Lua function on another entity.
@@ -1859,7 +1859,7 @@ declare interface TTSObject<D extends ObjectData = ObjectData, C extends CustomO
    *
    * @category Global
    */
-  getDecals(): Decal[];
+  getDecals(): Maybe<Decal[]>;
 
   /**
    * Get a Lua script as a string from the entity.
@@ -2334,18 +2334,20 @@ interface TakeObjectByGuid extends TakeObjectParameter {
   guid: GUID;
 }
 
-interface Decal {
+interface Decal<PositionType = Vector> {
   /** The name of the decal being placed. */
   name: string;
   /** The file path or URL for the image to be displayed. */
   url: string;
   /** Position to place Object. */
-  position: VectorShape;
+  position: PositionType;
   /** Rotation of the Object. */
-  rotation: VectorShape;
+  rotation: PositionType;
   /** How the image is scaled. 1 is normal scale, 0.5 would be half sized, 2 would be twice as large, etc. */
-  scale: Vector;
+  scale: PositionType;
 }
+
+type DecalAdd = Optional<Decal<VectorShape>, "position" | "rotation" | "scale">;
 
 interface SnapPoint {
   /** Local Position of the snap point. When attached to an object, position is relative to the object's center. */
