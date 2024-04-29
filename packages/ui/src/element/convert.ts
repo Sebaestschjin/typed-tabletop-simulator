@@ -16,6 +16,10 @@ const handlerFunction = (param: UIAttributeName): Converter<any> => {
   return () => [param, `${myName}/${handlerName(param)}`];
 };
 
+const concat = <T>(name: UIAttributeName): Converter<T[]> => {
+  return (value) => [name, value.join("|")];
+};
+
 const vector2 = (name: UIAttributeName): Converter<Vector2Prop> => {
   return (value) => [name, `${value[0]} ${value[1]}`];
 };
@@ -36,10 +40,11 @@ const scale: Converter<ScaleProp> = (value) => {
 };
 
 export const convert = {
-  rename: rename,
+  concat,
   handlerName,
-  handlerFunction: handlerFunction,
-  vector2: vector2,
-  vector3: vector3,
-  scale: scale,
+  handlerFunction,
+  vector2,
+  vector3,
+  rename,
+  scale,
 };

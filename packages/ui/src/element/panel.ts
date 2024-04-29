@@ -1,9 +1,11 @@
 import { OnClickHandler } from "../handler";
-import { BaseProps, BaseUIElement, ColorLikeProps, HandlerFunction } from "./base";
-import { Converters } from "./convert";
+import { BaseProps, BaseUIElement, ColorLikeProps, HandlerFunction, Vector2Prop } from "./base";
+import { Converters, convert } from "./convert";
 
 export interface PanelProps extends BaseProps, ColorLikeProps {
   draggable?: boolean;
+  borderColor?: string;
+  borderSize?: Vector2Prop;
   onMouseEnter?: HandlerFunction;
   onMouseExit?: HandlerFunction;
   onClick?: OnClickHandler;
@@ -20,6 +22,8 @@ export class Panel extends BaseUIElement<PanelProps> {
 }
 
 const converters: Converters = {
+  borderColor: convert.rename("outline"),
+  borderSize: convert.vector2("outlineSize"),
   draggable: (value: boolean) => {
     if (value) {
       return [

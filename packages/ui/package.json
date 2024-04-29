@@ -1,7 +1,7 @@
 {
   "name": "@typed-tabletop-simulator/ui",
   "description": "JSX wrapper and components for Tabletop Simulator UI",
-  "version": "0.3.0",
+  "version": "0.4.0",
   "author": "Sebastian Stern",
   "license": "CC0-1.0",
   "keywords": [

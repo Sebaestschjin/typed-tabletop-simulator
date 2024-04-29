@@ -20,17 +20,18 @@ export interface Ref<T> {
 export type HandlerFunction = (this: void, player: Player, value: any) => unknown;
 
 export interface BaseProps extends UIElementProps {
-  active?: boolean;
-  width?: number | `${number}%`;
-  height?: number | `${number}%`;
+  visibleTo?: (PlayerColor | PlayerTeam | "Host" | "Admin")[];
   position?: VectorProp;
   rotation?: VectorProp;
   scale?: ScaleProp;
 }
 
 export interface UIElementProps {
+  active?: boolean;
   offset?: Vector2Prop;
   offsetAlignment?: Alignment;
+  width?: number | `${number}%`;
+  height?: number | `${number}%`;
 }
 
 export interface TextLikeProps {
@@ -45,7 +46,6 @@ export interface ColorLikeProps {
 }
 
 let generatedIds = 0;
-const ttsSelf = self;
 
 const baseConverters: Converters = {
   textSize: convert.rename("fontSize"),
@@ -54,6 +54,7 @@ const baseConverters: Converters = {
   position: convert.vector3("position"),
   rotation: convert.vector3("rotation"),
   scale: convert.scale,
+  visibleTo: convert.concat("visibility"),
 };
 
 export abstract class BaseUIElement<Props extends BaseProps> {

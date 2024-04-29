@@ -68,7 +68,7 @@ const createElement = (tag: Tag, props: JSX.IntrinsicElements[Tag], children: JS
     case "cell":
       return new Cell(props as JSX.IntrinsicElements[typeof tag]);
     case "defaults":
-      return new Defaults(props as JSX.IntrinsicElements[typeof tag]);
+      return new Defaults(props as JSX.IntrinsicElements[typeof tag], makeChildren(children));
     case "dropdown":
       return new Dropdown(props as JSX.IntrinsicElements[typeof tag]);
     case "gridLayout":
