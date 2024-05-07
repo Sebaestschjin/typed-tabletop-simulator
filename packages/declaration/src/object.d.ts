@@ -2418,6 +2418,8 @@ type ObjectCallback = (this: void, object: TTSObject) => unknown;
 
 declare const enum ObjectName {
   AssetBundle = "Custom_Assetbundle",
+  AssetBundleBag = "Custom_Assetbundle_Bag",
+  AssetBundleInfiniteBag = "Custom_Assetbundle_Infinite_Bag",
   BackgammonBoard = "backgammon_board",
   BackgammonPieceBrown = "backgammon_piece_brown",
   BackgammonPieceWhite = "backgammon_piece_white",

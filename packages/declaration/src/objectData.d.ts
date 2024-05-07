@@ -79,6 +79,8 @@ interface ObjectData {
   /** Objects attached to this object. */
   ChildObjects?: ObjectData[];
 
+  AttachedDecals?: DecalData[];
+
   AttachedSnapPoints?: SnapPointData[];
 
   AttachedVectorLines?: VectorLineData[];
@@ -547,6 +549,8 @@ interface TileData extends ObjectData {
   };
 }
 
+declare type ContainerData = BagData | BagInfiniteData | DeckCustomData;
+
 interface CustomDeckData {
   Type: CardType;
 
@@ -570,6 +574,21 @@ interface RotationValueData {
   Value: RotationValue;
 
   Rotation: VectorTable;
+}
+
+/**
+ * Data for decals added to an object.
+ */
+interface DecalData {
+  Transform: TransformData;
+
+  CustomDecal: {
+    /** The name of the decal. */
+    Name: string;
+    /** The image for the decal. */
+    ImageURL: string;
+    Size?: number;
+  };
 }
 
 /**
