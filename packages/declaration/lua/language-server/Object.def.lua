@@ -210,7 +210,7 @@ function Object.clearContextMenu() end
 ---@class tts__ButtonParameters
 ---@field click_function nil | string @A String of the function's name that will be run when button is clicked.
 ---@field function_owner nil | string | tts__Self | tts__Object @The Object which contains the click_function function. Defaults to Global>
----@field label nil | string @Text that appears on the button. Defaults to ''.
+---@field label nil | string | number @Text that appears on the button. Defaults to ''.
 ---@field position nil | tts__VectorShape @Where the button appears, relative to the Object's center.
 ---@field rotation nil | tts__VectorShape @How the button is rotated, relative to the Object's rotation. Defaults to {x=0, y=0, z=0}.
 ---@field scale nil | tts__VectorShape @Scale of the button, relative to the Object's scale. Defaults to {x=1, y=1, z=1}.
