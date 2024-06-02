@@ -22,6 +22,7 @@
     "build": "pnpm build:ts && pnpm build:lua",
     "build:ts": "tsc -p tsconfig.build.json",
     "build:lua": "tstl -p tsconfig.build.json",
+    "dev": "pnpm build:lua --watch",
     "test": "vitest"
   },
   "devDependencies": {
