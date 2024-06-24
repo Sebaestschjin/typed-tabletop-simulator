@@ -1,9 +1,3 @@
-imports/
-contents/
-
-node_modules/
-
 .tts/
-
-.idea/
-*.iml
+lua/
+node_modules/

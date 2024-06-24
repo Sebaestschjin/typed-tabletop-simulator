@@ -1,20 +1,20 @@
 {
   "name": "@typed-tabletop-simulator/demo",
   "description": "Demo",
-  "version": "0.1.0",
+  "version": "1.0.0",
   "keywords": [
     "tabletop-simulator",
     "tabletopsimulator"
   ],
   "scripts": {
-    "build": "tstl"
+    "build": "tstl",
+    "dev": "tstl --watch"
   },
   "devDependencies": {
-    "@typed-tabletop-simulator/declaration": "workspace:^",
-    "@typed-tabletop-simulator/lib": "workspace:^",
-    "@typed-tabletop-simulator/ui": "workspace:^",
+    "@typed-tabletop-simulator/declaration": "^2.0.3",
+    "@typed-tabletop-simulator/ui": "^0.4.0",
     "@typescript-to-lua/language-extensions": "^1.19.0",
-    "typescript": "~5.2.2",
-    "typescript-to-lua": "~1.20.1"
+    "typescript": "~5.5.2",
+    "typescript-to-lua": "~1.26.0"
   }
 }
