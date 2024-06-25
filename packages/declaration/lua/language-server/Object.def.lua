@@ -751,7 +751,7 @@ function Object.setColorTint(color) end
 ---@field back_is_hidden nil | boolean @Defaults to false
 ---@field type nil | tts__CardType @Defaults to 0
 
----@alias tts__Object_CustomObject_In tts__Object_DeckCustomObject_CustomDeck_In
+---@alias tts__Object_CustomObject_In tts__Object_DeckCustomObject_CustomDeck_In | tts__Object_CustomObject
 
 ---@param parameters tts__Object_CustomObject_In
 function Object.setCustomObject(parameters) end
@@ -910,14 +910,14 @@ function Object.shuffle() end
 function Object.unlock() end
 
 ---
---- Returns a world coordinate position corresponding with local coordinate position.
+--- Returns a local coordinate position corresponding with world coordinate position.
 ---
 ---@param position tts__VectorShape
 ---@return tts__Vector
 function Object.positionToLocal(position) end
 
 ---
---- Returns a local coordinate position corresponding with world coordinate position.
+--- Returns a world coordinate position corresponding with local coordinate position.
 ---
 ---@param position tts__VectorShape
 ---@return tts__Vector
