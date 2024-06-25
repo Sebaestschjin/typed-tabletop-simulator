@@ -6,6 +6,9 @@
     "luaTarget": "5.2"
   },
   "compilerOptions": {
+    "outDir": "./lua",
+    "rootDir": "./src",
+    "baseUrl": "./src",
     "lib": ["ESNext"],
     "target": "esnext",
     "moduleResolution": "node",
@@ -19,9 +22,6 @@
       "@typescript-to-lua/language-extensions"
     ],
     "strict": true,
-    "outDir": "./imports",
-    "rootDir": "./src",
-    "baseUrl": "./src",
     "sourceMap": true
   }
 }
