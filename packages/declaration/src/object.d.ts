@@ -1883,7 +1883,7 @@ declare interface TTSObject<D extends ObjectData = ObjectData, C extends CustomO
    *
    * @category Global
    */
-  getSnapPoints(): SnapPoint[];
+  getSnapPoints(): Required<SnapPoint>[];
 
   /**
    * Data value of a variable in another Object's script.
@@ -1996,7 +1996,7 @@ declare interface TTSObject<D extends ObjectData = ObjectData, C extends CustomO
    *
    * @category Global
    */
-  setSnapPoints(snapPoints: Partial<SnapPoint>[]): boolean;
+  setSnapPoints(snapPoints: SnapPoint[]): boolean;
 
   /**
    * Creates/updates a global table variable in another entity's script.
@@ -2351,13 +2351,13 @@ type DecalAdd = Optional<Decal<VectorShape>, "position" | "rotation" | "scale">;
 
 interface SnapPoint {
   /** Local Position of the snap point. When attached to an object, position is relative to the object's center. */
-  position: VectorShape;
+  position?: VectorShape;
   /** Local Rotation of the snap point. When attached to an object, rotation is relative to the object's rotation. */
-  rotation: VectorShape;
+  rotation?: VectorShape;
   /** Whether the snap point is a rotation snap point. */
-  rotation_snap: boolean;
+  rotation_snap?: boolean;
   /** Table of representing the tags associated with the snap point. */
-  tags: string[];
+  tags?: string[];
 }
 
 type RotationValue = int | float | string;
