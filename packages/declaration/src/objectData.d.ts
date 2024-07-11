@@ -8,7 +8,7 @@ interface ObjectData {
   GUID?: GUID;
 
   /** The type of the object. */
-  Name: ObjectType;
+  Name: ObjectName;
 
   /** Contains the position, rotation and scale of the object. */
   Transform: TransformData;
