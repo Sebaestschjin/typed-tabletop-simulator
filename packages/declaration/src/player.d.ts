@@ -162,7 +162,7 @@ declare interface Player {
 
 /** @noSelf */
 declare type PlayerManager = {
-  [color in PlayerColor]: Maybe<Player>;
+  [color in PlayerColor]: Player;
 } & {
   /**
    * Returns a table of strings of every valid seat color at the current table.
