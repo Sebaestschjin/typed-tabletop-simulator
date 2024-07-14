@@ -39,7 +39,7 @@ type OnFixedUpdateHandler = () => unknown;
  *
  * @param scriptState The previously saved script state i.e. value returned from onSave(...), or an empty string if there is no saved script state available.
  */
-type OnLoadHandler = (scriptState: Maybe<string>) => unknown;
+type OnLoadHandler = (scriptState: string) => unknown;
 
 /**
  * Called when an Object starts colliding with a collision registered Object.
