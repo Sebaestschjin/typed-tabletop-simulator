@@ -297,7 +297,7 @@ type OnPlayerTurnHandler = (player: Player, previousPlayer: Player) => unknown;
 /**
  * Called whenever a script needs to save its state.
  */
-type OnSaveHandler = () => Maybe<string>;
+type OnSaveHandler = () => string;
 
 /**
  * Called when a scripting button (numpad by default) is pressed. The index range that is returned is 1-10.
