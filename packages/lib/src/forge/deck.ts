@@ -7,6 +7,7 @@ export interface CustomDeckProperties extends BaseProperties {
   deckId?: number;
   front: string;
   back: string;
+  uniqueBack?: boolean;
   width: number;
   height: number;
   cards: CardProperties[];
@@ -31,7 +32,7 @@ export const createDeck = (properties: CustomDeckProperties): DeckCustomData => 
       NumWidth: properties.width,
       NumHeight: properties.height,
       BackIsHidden: true,
-      UniqueBack: false,
+      UniqueBack: properties.uniqueBack ?? false,
     },
   };
 
@@ -52,6 +53,25 @@ export const createDeck = (properties: CustomDeckProperties): DeckCustomData => 
     CustomDeck: customDeck,
     ContainedObjects: cards,
   };
+};
+
+/**
+ * Combines the given decks into a single deck. The result deck has the properties (name, tags, etc.) of the first deck in the list.
+ * Only the cards of the other decks will be added to the first deck.
+ *
+ * *NOTE*: This operation mutates the first deck!
+ */
+export const combineDecks = (decks: DeckCustomData[]): DeckCustomData => {
+  const baseDeck = decks[0];
+
+  for (let i = 1; i < decks.length; i++) {
+    const deck = decks[i];
+    baseDeck.ContainedObjects.push(...deck.ContainedObjects);
+    baseDeck.DeckIDs.push(...deck.DeckIDs);
+    baseDeck.CustomDeck = { ...baseDeck.CustomDeck, ...deck.CustomDeck };
+  }
+
+  return baseDeck;
 };
 
 const getCardId = (deckId: number, card: CardProperties): number => {
