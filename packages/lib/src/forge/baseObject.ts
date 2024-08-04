@@ -8,6 +8,7 @@ export interface BaseProperties {
   position?: VectorTable;
   rotation?: VectorTable;
   scale?: VectorTable | number;
+  locked?: boolean;
   color?: ColorData;
   viewAngle?: VectorTable;
   assets?: Asset[];
@@ -38,6 +39,7 @@ export const createBaseObject = (properties: BaseProperties, type: ObjectName): 
     Memo: properties.memo,
     Tags: properties.tags,
     Transform: createTransform(properties),
+    Locked: properties.locked,
     ColorDiffuse: properties.color,
     AltLookAngle: properties.viewAngle,
     Tooltip: properties.tooltip,

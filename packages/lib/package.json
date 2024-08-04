@@ -29,9 +29,9 @@
   "devDependencies": {
     "@typed-tabletop-simulator/declaration": "workspace:^",
     "@typescript-to-lua/language-extensions": "^1.19.0",
-    "typescript": "~5.2.2",
-    "typescript-to-lua": "^1.19.0",
-    "vitest": "^0.34.4"
+    "typescript": "5.5.2",
+    "typescript-to-lua": "^1.26.2",
+    "vitest": "^2.0.5"
   },
   "files": [
     "dist"
