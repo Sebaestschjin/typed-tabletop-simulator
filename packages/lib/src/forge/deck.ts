@@ -1,28 +1,40 @@
 import { BaseProperties, createBaseObject } from "./baseObject";
 
+// The latest generated deck id. Will be incremented by 1 each time a new deck is created.
 let currentDeckId = 1337;
 
+// The list of alread created decks ids based on the URL to the front image.
+const createdDeckIds = new Map<string, number>();
+
 export interface CustomDeckProperties extends BaseProperties {
+  /** The type of each card. */
   type?: CardType;
-  deckId?: number;
+  /** URL to the front image of the deck sheet. */
   front: string;
+  /** URL to the back image of the deck sheet. */
   back: string;
+  /** If `true`, the back image is considered to be a sheet iteself instead of a single image. */
   uniqueBack?: boolean;
+  /** Number of cards in each row of the sheet. */
   width: number;
+  /** Number of cards in each column of the sheet. */
   height: number;
+  /** The cards inside the deck. */
   cards: CardProperties[];
 }
 
 export interface CardProperties extends BaseProperties {
+  /** Zero-based index of the card in the sheet. */
   index: number;
 }
 
-export const createDeckId = () => {
-  return currentDeckId++;
-};
-
+/**
+ * Creates a new deck with the given properties.
+ *
+ * By default the `BackIsHidden` property is set to `true`.
+ */
 export const createDeck = (properties: CustomDeckProperties): DeckCustomData => {
-  const deckId = properties.deckId || createDeckId();
+  const deckId = getDeckId(properties);
 
   const customDeck = {
     [deckId]: {
@@ -72,6 +84,19 @@ export const combineDecks = (decks: DeckCustomData[]): DeckCustomData => {
   }
 
   return baseDeck;
+};
+
+declare const console: any;
+
+const getDeckId = (deck: CustomDeckProperties): number => {
+  const existing = createdDeckIds.get(deck.front);
+  if (existing) {
+    return existing;
+  }
+
+  createdDeckIds.set(deck.front, currentDeckId);
+  currentDeckId++;
+  return currentDeckId - 1;
 };
 
 const getCardId = (deckId: number, card: CardProperties): number => {
