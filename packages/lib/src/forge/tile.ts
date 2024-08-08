@@ -3,6 +3,7 @@ import { BaseProperties, createBaseObject } from "./baseObject";
 export interface TileProperties extends BaseProperties {
   front: string;
   back?: string;
+  type?: TileType;
   thickness?: number;
   stackable?: boolean;
   stretch?: boolean;
@@ -13,7 +14,7 @@ export const createTile = (properties: TileProperties): TileData => {
     ...createBaseObject(properties, ObjectName.Tile),
     CustomImage: {
       CustomTile: {
-        Type: TileType.Box,
+        Type: properties.type ?? TileType.Box,
         Thickness: properties.thickness ?? 0.1,
         Stackable: properties.stackable ?? false,
         Stretch: properties.stretch ?? true,

@@ -29,6 +29,12 @@ export interface CardProperties extends BaseProperties {
 }
 
 /**
+ * Sets the starting deck id that will be used.
+ * This is useful if multiple processes create content for the same TTS save, since otherwise their deck ids would clash.
+ */
+export const setCurrentDeckId = (id: number) => (currentDeckId = id);
+
+/**
  * Creates a new deck with the given properties.
  *
  * By default the `BackIsHidden` property is set to `true`.
