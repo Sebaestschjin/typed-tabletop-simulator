@@ -11,6 +11,7 @@
     "types": [ "@typed-tabletop-simulator/declaration", "@typescript-to-lua/language-extensions"],
     "module": "commonjs",
     "strict": true,
+    "rootDir": "src",
     "outDir": "./dist",
     "declaration": true,
     "removeComments": false,
