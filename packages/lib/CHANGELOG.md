@@ -7,6 +7,12 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [Unreleased]
 
+## [0.2.0] - 2024-08-13
+
+### Added
+
+- Forge: Color property for objects can now be defined as a hex value as well.
+
 ## [0.1.0] - 2024-08-08
 
 ### Fixed

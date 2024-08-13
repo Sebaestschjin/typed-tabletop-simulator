@@ -9,7 +9,7 @@ export interface BaseProperties {
   rotation?: VectorTable;
   scale?: VectorTable | number;
   locked?: boolean;
-  color?: ColorData;
+  color?: ColorData | string;
   viewAngle?: VectorTable;
   assets?: Asset[];
   script?: string;
@@ -40,7 +40,7 @@ export const createBaseObject = (properties: BaseProperties, type: ObjectName): 
     Tags: properties.tags,
     Transform: createTransform(properties),
     Locked: properties.locked,
-    ColorDiffuse: properties.color,
+    ColorDiffuse: properties.color ? createColor(properties.color) : undefined,
     AltLookAngle: properties.viewAngle,
     Tooltip: properties.tooltip,
     CustomUIAssets: createAssets(properties),
@@ -71,6 +71,24 @@ export const createTransform = (properties: BaseProperties) => {
     scaleX: scale.x,
     scaleY: scale.y,
     scaleZ: scale.z,
+  };
+};
+
+export const createColor = (color: ColorData | string): ColorData => {
+  if (typeof color === "string") {
+    color = color.replace("#", "");
+    const [r, g, b] = [color.slice(0, 2), color.slice(2, 4), color.slice(4, 6)];
+    const a = color.length > 6 ? color.slice(6) : undefined;
+    color = { r: parseInt(r, 16), g: parseInt(g, 16), b: parseInt(b, 16), a: a ? parseInt(a, 16) : undefined };
+  }
+
+  const adjust = (value: number) => (value > 1 ? value / 255 : value);
+
+  return {
+    r: adjust(color.r),
+    g: adjust(color.g),
+    b: adjust(color.b),
+    a: color.a ? adjust(color.a) : undefined,
   };
 };
 
