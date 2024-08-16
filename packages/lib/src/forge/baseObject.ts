@@ -1,3 +1,5 @@
+import math from "../math";
+
 export interface BaseProperties {
   guid?: string;
   name: string;
@@ -82,14 +84,18 @@ export const createColor = (color: ColorData | string): ColorData => {
     color = { r: parseInt(r, 16), g: parseInt(g, 16), b: parseInt(b, 16), a: a ? parseInt(a, 16) : undefined };
   }
 
-  const adjust = (value: number) => (value > 1 ? value / 255 : value);
+  if (color.r > 1 || color.g > 1 || color.b > 1) {
+    const adjust = (value: number) => math.round(value / 255, 4);
 
-  return {
-    r: adjust(color.r),
-    g: adjust(color.g),
-    b: adjust(color.b),
-    a: color.a ? adjust(color.a) : undefined,
-  };
+    return {
+      r: adjust(color.r),
+      g: adjust(color.g),
+      b: adjust(color.b),
+      a: color.a ? adjust(color.a) : undefined,
+    };
+  }
+
+  return color;
 };
 
 export const addAsset = (object: ObjectData, asset: Asset) => {
