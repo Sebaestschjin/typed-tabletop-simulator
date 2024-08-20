@@ -92,8 +92,6 @@ export const combineDecks = (decks: DeckCustomData[]): DeckCustomData => {
   return baseDeck;
 };
 
-declare const console: any;
-
 const getDeckId = (deck: CustomDeckProperties): number => {
   const existing = createdDeckIds.get(deck.front);
   if (existing) {

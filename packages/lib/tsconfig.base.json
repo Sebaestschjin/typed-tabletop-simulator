@@ -2,7 +2,8 @@
   "$schema": "https://raw.githubusercontent.com/TypeScriptToLua/TypeScriptToLua/master/tsconfig-schema.json",
   "tstl": {
     "noImplicitSelf": true,
-    "buildMode": "library"
+    "buildMode": "library",
+    "luaTarget": "5.2"
   },
   "compilerOptions": {
     "lib": ["ESNext"],
