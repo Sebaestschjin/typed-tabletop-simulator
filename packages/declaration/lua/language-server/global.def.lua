@@ -1,8 +1,12 @@
+---@meta
+
 ---@param label string
----@param callback fun(playerColor: tts__PlayerColor, object: tts__Object, pointerPosition: nil | tts__Vector, isKeyUp: boolean): void
+---@param callback tts__Hotkey_Callback
 ---@param triggerOnKeyUp? boolean @Defaults to false
 ---@return true
 function addHotkey(label, callback, triggerOnKeyUp) end
+
+---@alias tts__Hotkey_Callback fun(playerColor: tts__PlayerColor, object: tts__Object, pointerPosition: tts__Vector, isKeyUp: boolean): void
 
 ---@param label string @Text for the menu item.
 ---@param callback fun(playerColor: tts__PlayerHandColor, menuPosition: nil | tts__Vector): void

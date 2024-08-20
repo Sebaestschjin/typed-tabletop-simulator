@@ -1,3 +1,5 @@
+---@meta
+
 ---@class tts__Time
 ---@field time number
 ---@field delta_time number

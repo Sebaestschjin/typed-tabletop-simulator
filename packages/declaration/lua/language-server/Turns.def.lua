@@ -1,3 +1,5 @@
+---@meta
+
 -- Auto | Custom
 ---@alias tts__TurnsType 1 | 2
 

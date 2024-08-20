@@ -1,3 +1,5 @@
+---@meta
+
 ---@class tts__Info_Range
 ---@field [1] number
 ---@field [2] number

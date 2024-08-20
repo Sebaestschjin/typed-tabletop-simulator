@@ -1,3 +1,5 @@
+---@meta
+
 ---@class tts__Component
 ---@field name string
 ---@field game_object tts__GameObject

@@ -1,3 +1,5 @@
+---@meta
+
 ---@class tts__CharColorShape
 ---@field r number
 ---@field g number
@@ -52,7 +54,7 @@ function Color.fromHex(hexColor) end
 
 ---@return number, number, number, number
 function Color:get()
-    return self.r, self.g, self.b, self.a
+  return self.r, self.g, self.b, self.a
 end
 
 ---@param includeAlpha? boolean

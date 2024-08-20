@@ -1,3 +1,5 @@
+---@meta
+
 ---@alias tts__Grid_Type 1 | 2 | 3
 ---@alias tts__Grid_Snapping 1 | 2 | 3 | 4
 

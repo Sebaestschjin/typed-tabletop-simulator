@@ -1,3 +1,5 @@
+---@meta
+
 ---@return string
 function onSave() end
 

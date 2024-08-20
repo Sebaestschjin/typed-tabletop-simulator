@@ -1,3 +1,5 @@
+---@meta
+
 ---@class tts__CharVectorShape
 ---@field x number
 ---@field y number

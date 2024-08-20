@@ -1,3 +1,5 @@
+---@meta
+
 ---@alias tts__Physics_CastParametersType 1 | 2 | 3
 
 ---@class tts__Physics_CastParameters

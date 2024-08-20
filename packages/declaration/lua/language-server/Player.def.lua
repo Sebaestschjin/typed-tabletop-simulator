@@ -1,3 +1,5 @@
+---@meta
+
 ---@alias tts__PlayerRegularColor 'White' | 'Brown' | 'Red' | 'Orange' | 'Yellow' | 'Green' | 'Teal' | 'Blue' | 'Purple' | 'Pink'
 ---@alias tts__PlayerGameMasterColor 'Black'
 ---@alias tts__PlayerSpectatorColor 'Grey'

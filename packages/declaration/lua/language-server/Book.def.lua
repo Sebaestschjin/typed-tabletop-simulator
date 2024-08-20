@@ -1,3 +1,5 @@
+---@meta
+
 ---@class tts__BookBehaviour
 local Book
 

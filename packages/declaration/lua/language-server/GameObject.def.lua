@@ -1,3 +1,5 @@
+---@meta
+
 ---@class tts__GameObject
 ---@field name string
 local GameObject = {}

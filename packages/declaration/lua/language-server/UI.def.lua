@@ -1,3 +1,5 @@
+---@meta
+
 ---@class tts__UI
 ---@field loading boolean @Indicates whether (the server) has finished loading all UI custom assets
 UI = {}

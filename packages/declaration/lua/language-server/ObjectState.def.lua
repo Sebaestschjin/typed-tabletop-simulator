@@ -1,3 +1,5 @@
+---@meta
+
 ---@class tts__ObjectState_Transform
 ---@field posX nil | number
 ---@field posY nil | number

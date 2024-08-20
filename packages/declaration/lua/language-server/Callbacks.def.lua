@@ -1,3 +1,5 @@
+---@meta
+
 ---@type nil | fun(container: tts__Object, object: tts__Object): void
 onObjectEnterContainer = nil
 

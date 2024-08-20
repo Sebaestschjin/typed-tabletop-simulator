@@ -1,3 +1,5 @@
+---@meta
+
 ---@alias tts__ObjectType "3D Text" | "Backgammon Piece" | "Bag" | "Block" | "Board" | "Calculator" | "Card" | "Checker" | "Chess" | "Chip" | "Clock" | "Coin" | "Counter" | "Deck" | "Dice" | "Domino" | "Figurine" | "Fog" | "FogOfWar" | "GoPiece" | "Hand" | "Infinite" | "InventoryBackground" | "InventoryBotBG" | "InventoryItemBlank" | "InventoryTopBG" | "Mp3" | "Notecard" | "Jigsaw" | "Jigsaw Box" | "Pointer" | "Randomize" | "rpgFigurine" | "Scripting" | "Stack" | "Superfight" | "Surface" | "Tablet" | "Tile" | "Tileset" | "VR UI"
 
 ---@alias tts__JointType "Fixed" | "Hinge" | "Spring"
@@ -828,6 +830,16 @@ function Object.setState(state) end
 ---@param name string @Name of the table.
 ---@param tab table
 function Object.setTable(name, tab) end
+
+---@class tts__Object_Decal_Add
+---@field name string
+---@field url string
+---@field position tts__VectorShape
+---@field rotation? tts__VectorShape
+---@field scale? tts__VectorShape
+
+---@param decal tts__Object_Decal_Add
+function Object.addDecal(decal) end
 
 ---@alias tts__Object_Tag string
 
