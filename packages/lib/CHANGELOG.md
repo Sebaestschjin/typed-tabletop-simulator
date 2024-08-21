@@ -7,6 +7,13 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [Unreleased]
 
+## [0.3.0] - 2024-08-21
+
+### Added
+
+- `Forge` can also create snap points for objects.
+- Exports internal `math` module as `Math` for maths helper functions.
+
 ## [0.2.2] - 2024-08-20
 
 ### Fixed

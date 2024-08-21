@@ -10,7 +10,7 @@
 ---@field [2] number
 ---@field [3] number
 
----@alias tts__VectorShape tts__CharVectorShape | tts__NumVectorShape
+---@alias tts__VectorShape tts__CharVectorShape | tts__NumVectorShape | tts__Vector
 
 ---@class tts__Vector : tts__CharVectorShape
 ---@overload fun(x: number, y: number, z: number): tts__Vector
@@ -44,7 +44,7 @@ function Vector:get() end
 ---@return tts__Vector
 function Vector:copy() end
 
----@param other tts__CharVectorShape
+---@param other tts__VectorShape
 ---@return self
 function Vector:add(other) end
 

@@ -4,4 +4,4 @@ export { createDeck, CardProperties, combineDecks, setCurrentDeckId } from "./de
 export { createModel } from "./model";
 export { createTile } from "./tile";
 export { spawnObject } from "../promise/spawn";
-export { addAsset, Asset } from "./baseObject";
+export { addAsset, Asset, SnapPoint } from "./baseObject";

@@ -14,12 +14,25 @@ export interface BaseProperties {
   color?: ColorData | string;
   viewAngle?: VectorTable;
   assets?: Asset[];
+  snapPoints?: SnapPoint[];
   script?: string;
   ui?: string;
   tooltip?: boolean;
 }
 
 export type Asset = ImageAsset | AssetBundleAsset;
+
+/**
+ * A snappoint.
+ * Either just the position of the snappoint or a complete definition with rotation or tags.
+ */
+export type SnapPoint =
+  | VectorTable
+  | {
+      position: VectorTable;
+      rotation?: VectorTable;
+      tags?: string[];
+    };
 
 interface ImageAsset {
   name: string;
@@ -33,7 +46,7 @@ interface AssetBundleAsset {
 
 export const createBaseObject = (properties: BaseProperties, type: ObjectName): ObjectData => {
   return {
-    GUID: properties.guid || createGuid(),
+    GUID: properties.guid ?? createGuid(),
     Name: type,
     Nickname: properties.name,
     Description: properties.description,
@@ -46,6 +59,7 @@ export const createBaseObject = (properties: BaseProperties, type: ObjectName): 
     AltLookAngle: properties.viewAngle,
     Tooltip: properties.tooltip,
     CustomUIAssets: createAssets(properties),
+    AttachedSnapPoints: createSnapPoints(properties),
     LuaScript: properties.script,
     XmlUI: properties.ui,
   };
@@ -106,6 +120,28 @@ export const addAsset = (object: ObjectData, asset: Asset) => {
   if (!object.CustomUIAssets.find((a) => a.Name === newAsset.Name || a.URL === newAsset.URL)) {
     object.CustomUIAssets.push(newAsset);
   }
+};
+
+const createSnapPoints = (properties: BaseProperties): Maybe<SnapPointData[]> => {
+  if (!properties.snapPoints) {
+    return undefined;
+  }
+
+  return properties.snapPoints.map(createSnapPoint);
+};
+
+const createSnapPoint = (snapPoint: SnapPoint): SnapPointData => {
+  if ("position" in snapPoint) {
+    return {
+      Position: { ...snapPoint.position },
+      Rotation: snapPoint.rotation ? { ...snapPoint.rotation } : undefined,
+      Tags: snapPoint.tags,
+    };
+  }
+
+  return {
+    Position: snapPoint,
+  };
 };
 
 const createAssets = (properties: BaseProperties) => {

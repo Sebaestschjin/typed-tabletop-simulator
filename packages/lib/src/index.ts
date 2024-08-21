@@ -15,3 +15,5 @@ export { PointyHexGrid, FlatHexGrid };
 export * from "./promise/object";
 export * from "./promise/spawn";
 export * from "./promise/wait";
+
+export { default as Math } from "./math";
