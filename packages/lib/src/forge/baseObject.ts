@@ -127,7 +127,7 @@ const createSnapPoints = (properties: BaseProperties): Maybe<SnapPointData[]> =>
     return undefined;
   }
 
-  return properties.snapPoints.map(createSnapPoint);
+  return properties.snapPoints.map((s) => createSnapPoint(s));
 };
 
 const createSnapPoint = (snapPoint: SnapPoint): SnapPointData => {
