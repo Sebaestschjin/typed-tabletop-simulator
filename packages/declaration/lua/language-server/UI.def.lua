@@ -45,6 +45,7 @@ UI = {}
 ---@alias tts__UITooltipPosition "Above" | "Below" | "Left" | "Right"
 
 ---@alias tts__UIElement_CallbackFunction fun(player: tts__Player, value: string, id: nil | string)
+---@alias tts__UIElement_ElementFunction fun(player: tts__Player, value: string, id: string)
 
 --- The name of global function matching the type tts__UIElement_CallbackFunction.
 ---
