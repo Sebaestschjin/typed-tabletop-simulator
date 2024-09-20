@@ -158,7 +158,47 @@ declare interface Player {
 
   /** Sets the UI theme for the player. */
   setUITheme(theme: string): boolean;
+
+  /** Displays info string to player. */
+  showInfoDialog(info: string): void;
+
+  /** Displays info string to player with a confirmation buton. The callback is called if user hits OK. */
+  showConfirmDialog(info: string, callback: ConfirmDialogCallback): void;
+
+  /** Simple text input. The callback is called if user hits OK. */
+  showInputDialog(description: string, defaultText: Maybe<string>, callback: InputDialogCallback): void;
+
+  /** Large text input. The callback is called if user hits OK. */
+  showMemoDialog(description: string, defaultText: Maybe<string>, callback: InputDialogCallback): void;
+
+  /**
+   * Shows a dialog to the user where they can select an entry from a dropdown.
+   *
+   * @param description Text shown above the options.
+   * @param options The list of options the user can select from
+   * @param defaultValue The default value selected. If `nil`, no value will be selected by default.
+   * @param callback The callback is called when the user hits OK.
+   */
+  showOptionsDialog(
+    description: string,
+    options: string[],
+    defaultValue: Maybe<string>,
+    callback: OptionsDialogCallback
+  ): void;
+
+  /**
+   * Shows a color picker dialog to the user.
+   *
+   * @param defaultColor The color that should be selected by default.
+   * @param callback The callback is called with the selected color if the user hits OK.
+   */
+  showColorDialog(defaultColor: ColorShape, callback: ColorDialogCallback): void;
 }
+
+declare type ConfirmDialogCallback = (this: void, playerColor: PlayerColor) => unknown;
+declare type InputDialogCallback = (this: void, value: string, playerColor: PlayerColor) => unknown;
+declare type OptionsDialogCallback = (this: void, option: string, index: int, playerColor: PlayerColor) => unknown;
+declare type ColorDialogCallback = (this: void, color: Color, playerColor: PlayerColor) => unknown;
 
 /** @noSelf */
 declare type PlayerManager = {
