@@ -635,9 +635,10 @@ function Object.getRotationValues() end
 function Object.getScale() end
 
 ---@class tts__Object_SnapPoint
----@field position tts__Vector @Position of the snap point. The position is relative to the object's center (a local position).
----@field rotation tts__Vector @Rotation of the snap point. The rotation is relative to the object's rotation (a local rotation).
----@field rotation_snap boolean @If the snap point is a "rotation" snap point.
+---@field position tts__Vector Position of the snap point. The position is relative to the object's center (a local position).
+---@field rotation tts__Vector Rotation of the snap point. The rotation is relative to the object's rotation (a local rotation).
+---@field rotation_snap boolean If the snap point is a "rotation" snap point.
+---@field tags string[] The list of tags added to this snap point.
 
 --- Returns an array of snap points.
 ---@return tts__Object_SnapPoint[]
@@ -813,9 +814,10 @@ function Object.setPositionSmooth(position, collide, fast) end
 function Object.setScale(scale) end
 
 ---@class tts__Object_SnapPointParameters
----@field position nil | tts__VectorShape @Position of the snap point. The position is relative to the object's center (a local position). Default {0, 0, 0}
----@field rotation nil | tts__VectorShape @Rotation of the snap point. The rotation is relative to the object's rotation (a local rotation). Default {0, 0, 0}
----@field rotation_snap nil | boolean @If the snap point is a "rotation" snap point. Default false
+---@field position nil | tts__VectorShape Position of the snap point. The position is relative to the object's center (a local position). Default {0, 0, 0}
+---@field rotation nil | tts__VectorShape Rotation of the snap point. The rotation is relative to the object's rotation (a local rotation). Default {0, 0, 0}
+---@field rotation_snap nil | boolean If the snap point is a "rotation" snap point. Default false
+---@field tags nil | string[] The list of tags for this snap point.
 
 --- Removes all existing snap points, replacing them with a snap point per entry in the provided snap point parameters array.
 ---@param snapPoints tts__Object_SnapPointParameters[]
