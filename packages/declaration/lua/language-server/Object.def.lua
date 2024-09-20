@@ -78,6 +78,7 @@ local Object
 
 
 ---@class tts__Container : tts__Object
+---@field Container tts__ContainerBehaviour
 local Container
 
 ---@class tts__Stackable : tts__Object

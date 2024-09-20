@@ -2072,6 +2072,8 @@ declare interface TTSAssetBundle extends TTSObject<AssetBundleData, AssetBundleC
  * @category Object Type
  */
 declare interface TTSBag extends TTSObject<BagData> {
+  Container: ContainerBehavior;
+
   getObjects(): ContainedObjectInfo[];
 }
 
@@ -2081,6 +2083,8 @@ declare interface TTSBag extends TTSObject<BagData> {
  * @category Object Type
  */
 declare interface TTSBagInfinite extends TTSObject<BagInfiniteData> {
+  Container: ContainerBehavior;
+
   getObjects(): [ContainedObjectInfo];
 }
 
@@ -2150,6 +2154,8 @@ declare interface TTSCounter extends TTSObject<CounterData> {
  * @category Object Type
  */
 declare interface TTSDeck extends TTSObject<DeckCustomData, DeckCustomObject> {
+  Container: ContainerBehavior;
+
   getObjects(): ContainedObjectInfo[];
 
   putObject(object: TTSCard | TTSDeck): TTSDeck;

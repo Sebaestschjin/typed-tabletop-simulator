@@ -171,6 +171,18 @@ declare interface ClockBehavior {
 }
 
 /**
+ * The Container behavior is present on decks and bags.
+ *
+ * @noSelf
+ */
+declare interface ContainerBehavior {
+  /**
+   * Opens the search window of the container for the given player color.
+   */
+  Search(playerColor: PlayerColor): void;
+}
+
+/**
  * The Counter behavior is present on the Counter object.
  *
  * @noSelf
