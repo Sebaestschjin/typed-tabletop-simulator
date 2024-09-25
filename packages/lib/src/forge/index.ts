@@ -1,3 +1,4 @@
+export { createAssetBundle } from "./assetBundle";
 export { createBag } from "./bag";
 export { createCard } from "./card";
 export { createDeck, CardProperties, combineDecks, setCurrentDeckId } from "./deck";

@@ -16,6 +16,7 @@ import "./object";
 import "./objectBehavior";
 import "./objectCustom";
 import "./objectData";
+import "./object/assetBundle";
 import "./physics";
 import "./player";
 import "./saveFile";

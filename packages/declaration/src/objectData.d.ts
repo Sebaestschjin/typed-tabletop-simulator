@@ -95,23 +95,6 @@ interface ObjectData {
 }
 
 /**
- * Object data for a custom asset bundle.
- */
-interface AssetBundleData extends ObjectData {
-  CustomAssetbundle: {
-    AssetbundleURL: URI;
-
-    AssetbundleSecondaryURL?: URI;
-
-    MaterialIndex?: MaterialType;
-
-    TypeIndex?: ModelType;
-
-    LoopingEffectIndex?: int;
-  };
-}
-
-/**
  * Object data for a regular bag.
  */
 interface BagData extends ObjectData {
