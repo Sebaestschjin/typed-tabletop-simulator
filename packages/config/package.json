@@ -1,0 +1,16 @@
+{
+  "name": "@typed-tabletop-simulator/config",
+  "description": "Common configurations for Tabletop Simulator projects",
+  "version": "1.0.0",
+  "author": "Sebastian Stern",
+  "license": "CC0-1.0",
+  "keywords": [
+    "typescript",
+    "lua",
+    "tabletopsimulator",
+    "tabletop-simulator"
+  ],
+  "files": [
+    "tsconfig.json"
+  ]
+}

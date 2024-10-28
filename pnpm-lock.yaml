@@ -8,6 +8,8 @@ importers:
 
   .: {}
 
+  packages/config: {}
+
   packages/declaration:
     devDependencies:
       '@typescript-to-lua/language-extensions':
@@ -40,6 +42,9 @@ importers:
 
   packages/lib:
     devDependencies:
+      '@typed-tabletop-simulator/config':
+        specifier: workspace:^
+        version: link:../config
       '@typed-tabletop-simulator/declaration':
         specifier: workspace:^
         version: link:../declaration
@@ -76,12 +81,18 @@ importers:
 
   packages/ui:
     devDependencies:
+      '@typed-tabletop-simulator/config':
+        specifier: workspace:^
+        version: link:../config
       '@typed-tabletop-simulator/declaration':
         specifier: workspace:^
         version: link:../declaration
       '@typescript-to-lua/language-extensions':
         specifier: ^1.19.0
         version: 1.19.0
+      rimraf:
+        specifier: ^6.0.1
+        version: 6.0.1
       typescript:
         specifier: 5.5.2
         version: 5.5.2

@@ -1,22 +1,9 @@
 {
-  "$schema": "https://raw.githubusercontent.com/TypeScriptToLua/vscode-typescript-to-lua/master/tsconfig-schema.json",
+  "$schema": "https://raw.githubusercontent.com/TypeScriptToLua/TypeScriptToLua/master/tsconfig-schema.json",
+  "extends": "@typed-tabletop-simulator/config/tsconfig.json",
   "include": ["src/**/*"],
-  "tstl": {
-    "noImplicitSelf": true
-  },
   "compilerOptions": {
-    "declaration": true,
-    "module": "commonjs",
-    "removeComments": false,
-    "preserveConstEnums": true,
-    "lib": ["ESNext"],
-    "target": "esnext",
-    "moduleResolution": "node",
-    "outDir": "./dist",
-    "types": [ "@typed-tabletop-simulator/declaration", "@typescript-to-lua/language-extensions"],
-    "strict": true,
-    "jsx": "react",
-    "jsxFactory": "TtsUi.createElement",
-    "jsxFragmentFactory": "TtsUi.Fragment"
+    "outDir": "dist",
+    "rootDir": "src",
   }
 }
