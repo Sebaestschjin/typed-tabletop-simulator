@@ -1,12 +1,12 @@
-import { ScaleProp, Vector2Prop, VectorProp } from "./base";
+import { OffsetProp, ScaleProp, Vector2Prop, VectorProp } from "./base";
 
 export type KeyValuePair = [UIAttributeName, UIAttributeValue];
 export type ConvertResult = KeyValuePair | KeyValuePair[];
 export type Converter<T> = (this: void, value: T) => ConvertResult;
 export type Converters = Record<string, Converter<any>>;
 
-const rename = (newName: UIAttributeName): Converter<any> => {
-  return (value: UIAttributeValue) => [newName, value];
+const concat = <T>(name: UIAttributeName): Converter<T[]> => {
+  return (value) => [name, value.join("|")];
 };
 
 const handlerName = (name: string) => `__uiHandler__${name}`;
@@ -16,8 +16,30 @@ const handlerFunction = (param: UIAttributeName): Converter<any> => {
   return () => [param, `${myName}/${handlerName(param)}`];
 };
 
-const concat = <T>(name: UIAttributeName): Converter<T[]> => {
-  return (value) => [name, value.join("|")];
+const offset: Converter<OffsetProp> = (value) => {
+  if (typeof value === "string") {
+    return ["rectAlignment", value];
+  }
+
+  const alignment = value[2];
+  const offset = vector2("offsetXY")([value[0], value[1]]) as KeyValuePair;
+  if (alignment) {
+    return [offset, ["rectAlignment", alignment]];
+  }
+
+  return offset;
+};
+
+const rename = (newName: UIAttributeName): Converter<any> => {
+  return (value: UIAttributeValue) => [newName, value];
+};
+
+const scale: Converter<ScaleProp> = (value) => {
+  if (typeof value === "number") {
+    return ["scale", `${value} ${value} ${value}`];
+  }
+
+  return vector3("scale")(value);
 };
 
 const vector2 = (name: UIAttributeName): Converter<Vector2Prop> => {
@@ -31,20 +53,13 @@ const vector3 = (name: UIAttributeName): Converter<VectorProp> => {
   };
 };
 
-const scale: Converter<ScaleProp> = (value) => {
-  if (typeof value === "number") {
-    return ["scale", `${value} ${value} ${value}`];
-  }
-
-  return vector3("scale")(value);
-};
-
 export const convert = {
   concat,
   handlerName,
   handlerFunction,
-  vector2,
-  vector3,
+  offset,
   rename,
   scale,
+  vector2,
+  vector3,
 };

@@ -6,6 +6,7 @@ export type Tag = keyof JSX.IntrinsicElements;
 export type Vector2Prop = [number, number];
 export type VectorProp = VectorShape;
 export type ScaleProp = VectorShape | number;
+export type OffsetProp = Vector2Prop | Alignment | [number, number, Alignment];
 
 export type ElementProps<T, A, C = ArrayOrSingle<JSX.Element | JSX.Element[]>> = A & {
   ref?: Ref<T>;
@@ -28,8 +29,7 @@ export interface BaseProps extends UIElementProps {
 
 export interface UIElementProps {
   active?: boolean;
-  offset?: Vector2Prop;
-  offsetAlignment?: Alignment;
+  offset?: OffsetProp;
   width?: number | `${number}%`;
   height?: number | `${number}%`;
 }
@@ -49,8 +49,7 @@ let generatedIds = 0;
 
 const baseConverters: Converters = {
   textSize: convert.rename("fontSize"),
-  offset: convert.vector2("offsetXY"),
-  offsetAlignment: convert.rename("rectAlignment"),
+  offset: convert.offset,
   position: convert.vector3("position"),
   rotation: convert.vector3("rotation"),
   scale: convert.scale,
@@ -88,7 +87,7 @@ export abstract class BaseUIElement<Props extends BaseProps> {
     this.setAttribute("active", active);
   };
 
-  setOffset = (offset: Vector2Prop) => {
+  setOffset = (offset: OffsetProp) => {
     this.setAttribute("offset", offset);
   };
 

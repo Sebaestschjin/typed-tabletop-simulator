@@ -1,7 +1,7 @@
+export { applyUi, render, ttsUi, ttsUiFragment, useRef } from "./ttsUi";
 export { XmlUi } from "./xmlUi";
-export { render, applyUi, useRef, ttsUi, ttsUiFragment } from "./ttsUi";
 
-export { Ref, UIElementProps } from "./element/base";
+export { BaseProps, ColorLikeProps, OffsetProp, Ref, UIElementProps, Vector2Prop } from "./element/base";
 export * from "./element/button";
 export * from "./element/cell";
 export * from "./element/defaults";
