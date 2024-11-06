@@ -1,8 +1,12 @@
-import { BaseProps, BaseUIElement, ColorLikeProps, TextLikeProps } from "./base";
-import { Converters } from "./convert";
+import { BaseProps, BaseUIElement, ColorLikeProps, OffsetProp, TextLikeProps, Vector2Prop } from "./base";
+import { convert, Converters } from "./convert";
 
 export interface TextProps extends BaseProps, TextLikeProps, ColorLikeProps {
   overflow?: boolean;
+  outlineColor?: string;
+  outlineSize?: number;
+  shadowColor?: string;
+  shadowOffset?: number | Vector2Prop;
 }
 
 export class Text extends BaseUIElement<TextProps> {
@@ -16,10 +20,8 @@ export class Text extends BaseUIElement<TextProps> {
 }
 
 const converters: Converters = {
-  overflow: (value: boolean) => {
-    if (value) {
-      return ["verticalOverflow", "Overflow"];
-    }
-    return ["verticalOverflow", "Truncate"];
-  },
+  outlineColor: convert.rename("outline"),
+  overflow: convert.toggle("verticalOverflow", "Overflow", "Truncate"),
+  shadowColor: convert.rename("shadow"),
+  shadowOffset: convert.shadow,
 };

@@ -6,6 +6,7 @@ export type Tag = keyof JSX.IntrinsicElements;
 export type Vector2Prop = [number, number];
 export type VectorProp = VectorShape;
 export type ScaleProp = VectorShape | number;
+export type ShadowProp = number | Vector2Prop;
 export type OffsetProp = Vector2Prop | Alignment | [number, number, Alignment];
 
 export type ElementProps<T, A, C = ArrayOrSingle<JSX.Element | JSX.Element[]>> = A & {

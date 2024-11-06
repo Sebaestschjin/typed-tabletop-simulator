@@ -1,4 +1,4 @@
-import { OffsetProp, ScaleProp, Vector2Prop, VectorProp } from "./base";
+import { OffsetProp, ScaleProp, ShadowProp, Vector2Prop, VectorProp } from "./base";
 
 export type KeyValuePair = [UIAttributeName, UIAttributeValue];
 export type ConvertResult = KeyValuePair | KeyValuePair[];
@@ -42,6 +42,14 @@ const scale: Converter<ScaleProp> = (value) => {
   return vector3("scale")(value);
 };
 
+const shadow: Converter<ShadowProp> = (value) => {
+  if (typeof value === "number") {
+    value = [value, -value];
+  }
+
+  return vector2("shadowDistance")(value);
+};
+
 const vector2 = (name: UIAttributeName): Converter<Vector2Prop> => {
   return (value) => [name, `${value[0]} ${value[1]}`];
 };
@@ -53,6 +61,14 @@ const vector3 = (name: UIAttributeName): Converter<VectorProp> => {
   };
 };
 
+const toggle = (
+  name: UIAttributeName,
+  trueValue: UIAttributeValue,
+  falseValue: UIAttributeValue
+): Converter<boolean> => {
+  return (value) => [name, value ? trueValue : falseValue];
+};
+
 export const convert = {
   concat,
   handlerName,
@@ -60,6 +76,8 @@ export const convert = {
   offset,
   rename,
   scale,
+  shadow,
+  toggle,
   vector2,
   vector3,
 };
