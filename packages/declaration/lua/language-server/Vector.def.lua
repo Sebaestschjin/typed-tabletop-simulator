@@ -29,13 +29,13 @@ Vector = {}
 function Vector.new(x, y, z) end
 
 ---@param k 'x' | 'y' | 'z'
----@return self
+---@return tts__Vector
 function Vector:setAt(k, v) end
 
 ---@param x nil | number
 ---@param y nil | number
 ---@param z nil | number
----@return self
+---@return tts__Vector
 function Vector:set(x, y, z) end
 
 ---@return number, number, number
@@ -45,7 +45,7 @@ function Vector:get() end
 function Vector:copy() end
 
 ---@param other tts__VectorShape
----@return self
+---@return tts__Vector
 function Vector:add(other) end
 
 ---@param v1 tts__Vector
@@ -54,7 +54,7 @@ function Vector:add(other) end
 function Vector.__add(v1, v2) end
 
 ---@param other tts__CharVectorShape
----@return self
+---@return tts__Vector
 function Vector:sub(other) end
 
 ---@param v1 tts__Vector
@@ -73,7 +73,7 @@ function Vector:sqrMagnitude() end
 function Vector:magnitude() end
 
 ---@param factor number|tts__Vector
----@return self
+---@return tts__Vector
 function Vector:scale(factor) end
 
 ---@overload fun(v1: tts__Vector, v2: tts__Vector): tts__Vector
@@ -116,7 +116,7 @@ function Vector:__tostring() end
 function Vector:angle(other) end
 
 ---@param maxLen number
----@return self
+---@return tts__Vector
 function Vector:clamp(maxLen) end
 
 ---@param other tts__CharVectorShape
@@ -138,33 +138,33 @@ function Vector:lerp(target, t) end
 ---@return tts__Vector
 function Vector:moveTowards(target, maxDist) end
 
----@return self
+---@return tts__Vector
 function Vector:normalize() end
 
 ---@return tts__Vector
 function Vector:normalized() end
 
 ---@param other tts__Vector
----@return self
+---@return tts__Vector
 function Vector:project(other) end
 
 ---@param unitTarget tts__Vector
 ---@param maxDelta number
----@return self
+---@return tts__Vector
 function Vector:rotateTowardsUnit(unitTarget, maxDelta) end
 
 ---@param target tts__Vector
 ---@param maxDelta number
----@return self
+---@return tts__Vector
 function Vector:rotateTowards(target, maxDelta) end
 
 ---@param planeNormal tts__Vector
----@return self
+---@return tts__Vector
 function Vector:reflect(planeNormal) end
 
 ---@param axis 'x' | 'y' | 'z'
 ---@param angle number
----@return self
+---@return tts__Vector
 function Vector:rotateOver(axis, angle) end
 
 ---@param v1 tts__CharVectorShape
@@ -177,15 +177,15 @@ function Vector.max(v1, v2) end
 ---@return tts__Vector
 function Vector.min(v1, v2) end
 
----@return self
+---@return tts__Vector
 function Vector:inverse() end
 
 ---@param planeNormal tts__Vector
----@return self
+---@return tts__Vector
 function Vector:projectOnPlane(planeNormal) end
 
 ---@param binormalPlanar? tts__Vector
----@return self, tts__Vector, tts__Vector
+---@return tts__Vector, tts__Vector, tts__Vector
 function Vector:orthoNormalize(binormalPlanar) end
 
 ---@overload fun(): number, number, number
