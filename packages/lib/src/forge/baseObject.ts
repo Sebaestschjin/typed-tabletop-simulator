@@ -65,6 +65,29 @@ export const createBaseObject = (properties: BaseProperties, type: ObjectName): 
   };
 };
 
+/**
+ * Creates a stated object from the given object data.
+ *
+ * @param objects The list of objects to add as states. The order in this list will represent the state numbers.
+ * @param startingState The index of `objects` of the object which should be the current object. Defaults to the first entry.
+ */
+export const createStates = (objects: ObjectData[], startingState: number = 0): ObjectData => {
+  const baseObject = objects[startingState];
+
+  baseObject.States = {};
+
+  for (let i = 0; i < objects.length; i++) {
+    if (i === startingState) {
+      continue;
+    }
+
+    const stateId = i + 1;
+    baseObject.States[stateId] = objects[i];
+  }
+
+  return baseObject;
+};
+
 export const createGuid = () => {
   return "123456";
 };

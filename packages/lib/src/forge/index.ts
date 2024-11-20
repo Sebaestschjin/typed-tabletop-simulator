@@ -1,8 +1,8 @@
+export { spawnObject } from "../promise/spawn";
 export { createAssetBundle } from "./assetBundle";
 export { createBag } from "./bag";
+export { Asset, SnapPoint, addAsset, createStates } from "./baseObject";
 export { createCard } from "./card";
-export { createDeck, CardProperties, combineDecks, setCurrentDeckId } from "./deck";
+export { CardProperties, combineDecks, createDeck, setCurrentDeckId } from "./deck";
 export { createModel } from "./model";
 export { createTile } from "./tile";
-export { spawnObject } from "../promise/spawn";
-export { addAsset, Asset, SnapPoint } from "./baseObject";
