@@ -32,10 +32,18 @@ export const ttsUiFragment = (props?: object, ...children: any[]): any => {
   return children;
 };
 
-export const useRef = <T>(): Ref<T> => {
-  return {
-    current: undefined,
-  };
+export const useRef = <T>(): Ref<T> => ({
+  current: undefined,
+});
+
+export const useRefs = <T>(amount: number): Array<Ref<T>> => {
+  const refs = [];
+
+  for (let i = 0; i < amount; i++) {
+    refs.push(useRef<T>());
+  }
+
+  return refs;
 };
 
 export const ttsUi = <T>(
