@@ -7,6 +7,14 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [Unreleased]
 
+### Added
+
+- `Forge` can add the script state to objects.
+
+### Changed
+
+- `memo` field in `Forge` methods can take an object in addition to a `string`. The object will be stringified using `JSON.stringify`.
+
 ## [0.5.0] - 2024-11-20
 
 ### Added
