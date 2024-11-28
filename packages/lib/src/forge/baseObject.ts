@@ -4,7 +4,7 @@ export interface BaseProperties {
   guid?: string;
   name: string;
   description?: string;
-  memo?: string;
+  memo?: Metadata;
   gmNotes?: string;
   tags?: string[];
   position?: VectorTable;
@@ -16,9 +16,12 @@ export interface BaseProperties {
   assets?: Asset[];
   snapPoints?: SnapPoint[];
   script?: string;
+  state?: Metadata;
   ui?: string;
   tooltip?: boolean;
 }
+
+type Metadata = string | object;
 
 export type Asset = ImageAsset | AssetBundleAsset;
 
@@ -51,7 +54,7 @@ export const createBaseObject = (properties: BaseProperties, type: ObjectName): 
     Nickname: properties.name,
     Description: properties.description,
     GMNotes: properties.gmNotes,
-    Memo: properties.memo,
+    Memo: parseMetadata(properties.memo),
     Tags: properties.tags,
     Transform: createTransform(properties),
     Locked: properties.locked,
@@ -61,6 +64,7 @@ export const createBaseObject = (properties: BaseProperties, type: ObjectName): 
     CustomUIAssets: createAssets(properties),
     AttachedSnapPoints: createSnapPoints(properties),
     LuaScript: properties.script,
+    LuaScriptState: parseMetadata(properties.state),
     XmlUI: properties.ui,
   };
 };
@@ -143,6 +147,18 @@ export const addAsset = (object: ObjectData, asset: Asset) => {
   if (!object.CustomUIAssets.find((a) => a.Name === newAsset.Name || a.URL === newAsset.URL)) {
     object.CustomUIAssets.push(newAsset);
   }
+};
+
+const parseMetadata = (metadata: Maybe<Metadata>): Maybe<string> => {
+  if (!metadata) {
+    return undefined;
+  }
+
+  if (typeof metadata === "string") {
+    return metadata;
+  }
+
+  return JSON.stringify(metadata);
 };
 
 const createSnapPoints = (properties: BaseProperties): Maybe<SnapPointData[]> => {
