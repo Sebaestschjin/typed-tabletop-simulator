@@ -568,8 +568,10 @@ function Object.getObjects() end
 function Container.getObjects() end
 
 --- If this object is a scripting trigger, bag or deck, returns the objects contained within. Otherwise, logs an error and returns nil
+--- If the zone has tags, then only objects with compatible tags will occupy the zone (unless `ignoreTags` is `true`).
+---@param ignoreTags? boolean If `true` then all objects in the zone will be returned, regardless of tags.
 ---@return tts__Object[]
-function ScriptingTrigger.getObjects() end
+function ScriptingTrigger.getObjects(ignoreTags) end
 
 --- Combines 2 combinable objects to form a new container (Deck, Stat, etc)
 ---
