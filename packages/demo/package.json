@@ -11,10 +11,10 @@
     "dev": "tstl --watch"
   },
   "devDependencies": {
-    "@typed-tabletop-simulator/declaration": "^2.0.3",
-    "@typed-tabletop-simulator/ui": "^0.4.0",
-    "@typescript-to-lua/language-extensions": "^1.19.0",
-    "typescript": "5.5.2",
-    "typescript-to-lua": "^1.26.2"
+    "@typed-tabletop-simulator/declaration": "catalog:",
+    "@typed-tabletop-simulator/ui": "catalog:",
+    "@typescript-to-lua/language-extensions": "catalog:",
+    "typescript": "catalog:",
+    "typescript-to-lua": "catalog:"
   }
 }

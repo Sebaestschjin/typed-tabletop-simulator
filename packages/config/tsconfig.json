@@ -5,6 +5,8 @@
     "noImplicitSelf": true
   },
   "compilerOptions": {
+    "outDir": "${configDir}/dist",
+    "rootDir": "${configDir}/src",
     "module": "commonjs",
     "declaration": true,
     "removeComments": false,
@@ -13,6 +15,5 @@
     "target": "esnext",
     "moduleResolution": "node",
     "strict": true,
-    "types": [ "@typed-tabletop-simulator/declaration", "@typescript-to-lua/language-extensions"],
   }
 }

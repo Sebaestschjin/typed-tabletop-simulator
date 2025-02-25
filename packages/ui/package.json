@@ -24,10 +24,10 @@
   "devDependencies": {
     "@typed-tabletop-simulator/config": "workspace:^",
     "@typed-tabletop-simulator/declaration": "workspace:^",
-    "@typescript-to-lua/language-extensions": "^1.19.0",
-    "rimraf": "^6.0.1",
-    "typescript": "5.5.2",
-    "typescript-to-lua": "^1.26.2"
+    "@typescript-to-lua/language-extensions": "catalog:",
+    "rimraf": "catalog:",
+    "typescript": "catalog:",
+    "typescript-to-lua": "catalog:"
   },
   "files": [
     "dist"
