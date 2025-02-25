@@ -1,0 +1,41 @@
+{
+  "include": ["."],
+  "compilerOptions": {
+    /**
+     * Type Checking
+     */
+    "strict": true,
+    "exactOptionalPropertyTypes": true, // not sure about that one yet
+    "noImplicitOverride": true,
+    "noImplicitReturns": true,
+    "noPropertyAccessFromIndexSignature": true,
+    /**
+     * Modules
+     */
+    "baseUrl": "${configDir}/src",
+    "module": "NodeNext",
+    "moduleResolution": "nodenext",
+    "noUncheckedSideEffectImports": true,
+    "resolveJsonModule": true,
+    /**
+     * Emit
+     */
+    "declaration": false,
+    "outDir": "${configDir}/dist",
+    "sourceMap": true,
+    "removeComments": false,
+    /**
+     * Interop Constraints
+     */
+    "isolatedModules": true,
+    /**
+     * Language and Environment
+     */
+    "lib": ["ESNext"],
+    "target": "es2022", // node 20 (https://github.com/tsconfig/bases#centralized-recommendations-for-tsconfig-bases)
+    /**
+     * Completeness
+     */
+    "skipLibCheck": true
+  }
+}

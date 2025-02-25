@@ -1,0 +1,8 @@
+{
+  "extends": "@typed-tabletop-simulator/config/tsconfig.json",
+  "include": ["src/**/*"],
+  "compilerOptions": {
+    "module": "ESNext",
+    "moduleResolution": "bundler"
+  }
+}
