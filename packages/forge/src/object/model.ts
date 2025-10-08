@@ -1,6 +1,6 @@
 import { MaterialType, ModelData, ModelDataName, ModelType, ObjectData } from "@typed-tabletop-simulator/data";
 
-import { BaseProperties, createBaseObject } from "./baseObject";
+import { BaseProperties, createBaseObject } from "./baseObject.js";
 
 export interface CustomModelProperties extends BaseProperties {
   type: ModelType;

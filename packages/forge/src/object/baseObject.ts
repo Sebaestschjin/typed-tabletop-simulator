@@ -7,8 +7,8 @@ import {
   UIAssetType,
 } from "@typed-tabletop-simulator/data";
 
-import { Color, Maybe, Vector } from "../types";
-import { round } from "../util";
+import { Color, Maybe, Vector } from "../types.js";
+import { createRandom, round } from "../util.js";
 
 /**
  * Base properties for creating new objects.
@@ -122,8 +122,20 @@ export const createBaseObject = (properties: BaseProperties): ObjectDataBase => 
 //   return baseObject;
 // };
 
+const GUID_CACHE = new Set<String>();
+
+/**
+ * Creates a random ID of length 8 with letter A-Z and 0-9. Caches created IDs, so there are no collissions within the
+ * current process.
+ */
 const createGuid = () => {
-  return "123456";
+  while (true) {
+    const guid = createRandom(8);
+    if (!GUID_CACHE.has(guid)) {
+      GUID_CACHE.add(guid);
+      return guid;
+    }
+  }
 };
 
 const createTransform = (properties: BaseProperties) => {

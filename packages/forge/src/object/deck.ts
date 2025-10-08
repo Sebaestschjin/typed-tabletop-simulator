@@ -1,6 +1,6 @@
 import { CardData, CardType, DeckData } from "@typed-tabletop-simulator/data";
 
-import { BaseProperties, createBaseObject } from "./baseObject";
+import { BaseProperties, createBaseObject } from "./baseObject.js";
 
 // The latest generated deck id. Will be incremented by 1 each time a new deck is created.
 let currentDeckId = 1337;

@@ -1,6 +1,6 @@
 import { BagData, ObjectData } from "@typed-tabletop-simulator/data";
 
-import { BaseProperties, createBaseObject } from "./baseObject";
+import { BaseProperties, createBaseObject } from "./baseObject.js";
 
 /**
  * Properties for creating new bag objects.

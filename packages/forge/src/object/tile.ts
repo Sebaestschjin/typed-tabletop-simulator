@@ -1,6 +1,6 @@
 import { TileData, TileType } from "@typed-tabletop-simulator/data";
 
-import { BaseProperties, createBaseObject } from "./baseObject";
+import { BaseProperties, createBaseObject } from "./baseObject.js";
 
 export interface TileProperties extends BaseProperties {
   front: string;

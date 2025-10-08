@@ -1,5 +1,7 @@
 import { type } from "arktype";
 
+import { ColorData } from "../base/color.js";
+
 export const VectorData = type({
   x: "number",
   y: "number",
@@ -28,17 +30,16 @@ export const TransformData = type({
 });
 export type TransformData = typeof TransformData.infer;
 
-export const ColorData = type({
-  /** Red value between 0 and 1. */
-  r: "number",
-  /** Green value between 0 and 1. */
-  g: "number",
-  /** Blue value between 0 and 1. */
-  b: "number",
-  /** Alpha value between 0 and 1. */
-  "a?": "number",
+/** Data for a decal. */
+export const DecalData = type({
+  /** The name of the decal. */
+  Name: "string",
+  /** The URL to the image for the decal. */
+  ImageURL: "string",
+  /** The scale of the decal. */
+  Size: "number",
 });
-export type ColorData = typeof ColorData.infer;
+export type DecalData = typeof DecalData.infer;
 
 export const SnapPointData = type({
   Position: VectorData,

@@ -1,6 +1,6 @@
 import { AssetBundleData, BagModelType, MaterialType, ModelType, ObjectData } from "@typed-tabletop-simulator/data";
 
-import { BaseProperties, createBaseObject } from "./baseObject";
+import { BaseProperties, createBaseObject } from "./baseObject.js";
 
 export type AssetBundleProperties = AssetBundleBaseProperties | AssetBundleBagProperties;
 

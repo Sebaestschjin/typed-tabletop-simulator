@@ -1,6 +1,7 @@
 import { type } from "arktype";
 
-import { ColorData, MaterialTypeValue, ObjectDataBase } from "./base.js";
+import { MaterialTypeValue, ObjectDataBase } from "./base.js";
+import { ColorData } from "../base/color.js";
 import { BagObjectData } from "./bag.js";
 
 export const ModelType = {

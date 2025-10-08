@@ -1,8 +1,11 @@
-import { createAssetBundle } from "./object/assetBundle";
-import { createBag } from "./object/bag";
-import { createDeck } from "./object/deck";
-import { createModel } from "./object/model";
-import { createTile } from "./object/tile";
+import { createAssetBundle } from "./object/assetBundle.js";
+import { createBag } from "./object/bag.js";
+import { createDeck } from "./object/deck.js";
+import { createModel } from "./object/model.js";
+import { createSaveFile } from "./object/saveFile.js";
+import { createTile } from "./object/tile.js";
+
+export type { Asset } from "./object/baseObject.js";
 
 export default {
   createAssetBundle,
@@ -11,4 +14,5 @@ export default {
   createModel,
   // createStates,
   createTile,
+  createSaveFile,
 };

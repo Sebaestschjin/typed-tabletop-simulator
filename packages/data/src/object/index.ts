@@ -16,7 +16,7 @@ import { AssetBundleBagData, AssetBundleData, AssetBundleInfiniteBagData } from 
 // * clocks
 // * counter
 
-const ObjectData = type.module({
+export const ObjectData = type.module({
   objectData: `
 asset
 | assetBag
@@ -83,5 +83,5 @@ export { MaterialType, UIAssetType } from "./base.js";
 export type { ObjectDataBase, SnapPointData, UIAssetData } from "./base.js";
 
 export { CardType } from "./deck.js";
-export { ModelType, BagModelType } from "./model.js";
+export { ModelType, type BagModelType } from "./model.js";
 export { TileType } from "./tile.js";
