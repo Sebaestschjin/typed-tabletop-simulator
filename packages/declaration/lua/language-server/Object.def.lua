@@ -288,9 +288,9 @@ function Object.clone(parameters) end
 ---@param count number
 ---@param destination? tts__Object_DealDestination @Default "Seated"
 ---@param handIndex? number @Default 1
----@param DealFromBottom? boolean @Default false
+---@param dealFromBottom? boolean @Default false
 ---@return true
-function Object.deal(count, destination, handIndex, DealFromBottom) end
+function Object.deal(count, destination, handIndex, dealFromBottom) end
 
 --- Destroys an attachment with the given index.
 ---@param index number
