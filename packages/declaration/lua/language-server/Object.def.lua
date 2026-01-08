@@ -288,8 +288,9 @@ function Object.clone(parameters) end
 ---@param count number
 ---@param destination? tts__Object_DealDestination @Default "Seated"
 ---@param handIndex? number @Default 1
+---@param dealFromBottom? boolean @Default false
 ---@return true
-function Object.deal(count, destination, handIndex) end
+function Object.deal(count, destination, handIndex, dealFromBottom) end
 
 --- Destroys an attachment with the given index.
 ---@param index number
@@ -576,26 +577,30 @@ function ScriptingTrigger.getObjects(ignoreTags) end
 --- Combines 2 combinable objects to form a new container (Deck, Stat, etc)
 ---
 ---@param object tts__Object
+---@param index? number
 ---@return self
-function Object.putObject(object) end
+function Object.putObject(object, index) end
 
 --- Places an object into a container.
 ---
 ---@param object tts__Object
+---@param index? number
 ---@return self
-function Container.putObject(object) end
+function Container.putObject(object, index) end
 
 --- Places an chip onto another chip, forming a stack.
 ---
 ---@param object tts__Stackable
+---@param index? number
 ---@return self
-function Stackable.putObject(object) end
+function Stackable.putObject(object, index) end
 
 --- Places an card onto another card, forming a deck.
 ---
 ---@param object tts__Card | tts__Deck
+---@param index? number
 ---@return tts__Deck
-function Card.putObject(object) end
+function Card.putObject(object, index) end
 
 ---@param index number
 ---@return tts__Object
