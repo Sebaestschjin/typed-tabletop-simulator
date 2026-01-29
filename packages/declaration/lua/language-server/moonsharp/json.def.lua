@@ -1,3 +1,5 @@
+---@meta
+
 ---@class moonsharp__json
 json = {}
 

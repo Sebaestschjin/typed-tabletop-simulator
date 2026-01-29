@@ -378,6 +378,9 @@ function Object.getBoundsNormalized() end
 ---@return tts__Button[]
 function Object.getButtons() end
 
+---@return tts__Color
+function Object.getColorTint() end
+
 ---@class tts__Object_ImageCustomObject
 ---@field image string
 ---@field image_bottom string @Same value as image_secondary
@@ -641,6 +644,24 @@ function Object.getRotationValues() end
 --- Returns the object's scale.
 ---@return tts__Vector
 function Object.getScale() end
+
+---
+--- Returns a Vector of the forward direction of this Object. The direction is relative to how the object is facing.
+---
+---@return tts__Vector
+function Object.getTransformForward() end
+
+---
+--- Returns a Vector of the right direction of this object. The direction is relative to how the object is facing.
+---
+---@return tts__Vector
+function Object.getTransformRight() end
+
+---
+--- Returns a Vector of the up direction of this Object. The direction is relative to how the object is facing.
+---
+---@return tts__Vector
+function Object.getTransformUp() end
 
 ---@class tts__Object_SnapPoint
 ---@field position tts__Vector Position of the snap point. The position is relative to the object's center (a local position).
@@ -1035,14 +1056,28 @@ end
 function getObjects()
 end
 
----@param tag string
+---
+--- Returns a table of all Objects which have the specified tag attached.
+---
+---@param tag string The tag to search for on Objects.
 ---@return tts__Object[]
 function getObjectsWithTag(tag)
 end
 
----@param tags string[]
+---
+--- Returns a table of all Objects which have all of of the specified tags attached.
+---
+---@param tags string[] A table of tags to search for. An Object must have every tag in this table to be returned.
 ---@return tts__Object[]
 function getObjectsWithAllTags(tags)
+end
+
+---
+--- Returns a table of all Objects which have at least one of the specified tags attached.
+---
+---@param tags string[] A table of tags to search for. An Object must have at least one of these tags to be returned.
+---@return tts__Object[]
+function getObjectsWithAnyTags(tags)
 end
 
 ---@class tts__Global : tts__Object

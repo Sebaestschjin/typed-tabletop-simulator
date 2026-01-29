@@ -164,7 +164,7 @@
 ---@field CardID number
 
 ---@class __tts__CardCustomBaseState : tts__ObjectState
----@field Name 'CardCustom'
+---@field Name 'Card' | 'CardCustom'
 ---@field CardID number
 
 ---@class tts__CardCustomState : __tts__CardCustomBaseState
@@ -226,6 +226,7 @@
 
 ---@class tts__LayoutZoneState_L
 ---@field Options tts__LayoutZoneState_Options
+---@field GroupsInZone? string[][]
 
 --- Right/Down | Down/Right | Left/Down | Down/Left | Right/Up | Up/Right | Left/Up | Up/Left
 ---@alias tts__LayoutZone_Direction 0 | 1 | 2 | 3 | 4 | 5 | 6 | 7
