@@ -12,10 +12,17 @@
 
 ---@alias tts__VectorShape tts__CharVectorShape | tts__NumVectorShape | tts__Vector
 
----@class tts__Vector : tts__CharVectorShape
+---@class tts__Vector : tts__CharVectorShape, tts__NumVectorShape
 ---@overload fun(x: number, y: number, z: number): tts__Vector
 ---@overload fun(src: tts__VectorShape): tts__Vector
+---@operator add(tts__CharVectorShape): tts__Vector
+---@operator sub(tts__CharVectorShape): tts__Vector
+---@operator mul(tts__CharVectorShape): tts__Vector
+---@operator mul(number): tts__Vector
 ---@field __isVector true
+---@field x number
+---@field y number
+---@field z number
 ---@field [1] number
 ---@field [2] number
 ---@field [3] number
@@ -80,9 +87,9 @@ function Vector:scale(factor) end
 ---@overload fun(v: tts__Vector, scale: number): tts__Vector
 ---@overload fun(scale: number, v: tts__Vector): tts__Vector
 ---@param v tts__Vector
----@param scaleX string
----@param scaleY string
----@param scaleZ string
+---@param scaleX number
+---@param scaleY number
+---@param scaleZ number
 ---@return tts__Vector
 function Vector.__mul(v, scaleX, scaleY, scaleZ) end
 

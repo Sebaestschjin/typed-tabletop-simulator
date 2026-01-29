@@ -30,6 +30,13 @@ local PlayerInstance = {}
 ---@field right tts__Vector
 ---@field up tts__Vector
 
+---
+--- Print message on Player's screen and their game chat log.
+---
+---@param message string The message to be displayed.
+---@param message_color? tts__ColorShape @Default {r=1, g=1, b=1}. Tint of the message text.
+function PlayerInstance.broadcast(message, message_color) end
+
 --- Changes (moves) the player to the seat of an available color.
 --- Returns false on failure (i.e. if the specified color is already occupied), otherwise true.
 ---@param color tts__PlayerColor
@@ -75,6 +82,13 @@ function PlayerInstance.lookAt(target) end
 --- Emulates the player using the ping tool at the given position (tapping Tab).
 ---@param position tts__VectorShape
 function PlayerInstance.pingTable(position) end
+
+---
+--- Prints a message into the Player's game chat.
+---
+---@param message string The text to be displayed.
+---@param message_color? tts__ColorShape @Default {r=1, g=1, b=1}. Color for the message text to be tinted.
+function PlayerInstance.print(message, message_color) end
 
 --- Displays info string to player.
 ---@param info string
@@ -139,6 +153,40 @@ function Player.getPlayers() end
 --- Returns all spectating (grey) players.
 ---@return tts__Player[]
 function Player.getSpectators() end
+
+---@enum tts__PlayerAction
+Player.Action = {
+  --- Copy (or commence cloning) the targets.
+  Copy = 1,
+  --- Cut (copy and delete) the targets.
+  Cut = 2,
+  --- Delete the targets.
+  Delete = 3,
+  --- Incrementally rotate the targets counter-clockwise around their flip axes, typically the scene's Z-axis.
+  FlipIncrementalLeft = 4,
+  --- Incrementally rotate the targets clockwise around their flip axes, typically the scene's Z-axis.
+  FlipIncrementalRight = 5,
+  --- Rotate the targets 180 degrees around their flip axes, typically the scene's Z-axis i.e. toggle the targets between face up and face down.
+  FlipOver = 6,
+  --- Group the targets.
+  Group = 7,
+  --- Paste (spawn) the targets.
+  Paste = 8,
+  --- Pick up the targets.
+  PickUp = 9,
+  --- Randomize the targets.
+  Randomize = 10,
+  --- Rotate the targets incrementally, typically counter-clockwise around the scene's Y-axis. Instead of being rotated exclusively around the Y-axis, dice will be rotated to the previous rotation value.
+  RotateIncrementalLeft = 11,
+  --- Rotate the targets incrementally, typically clockwise around the scene's Y-axis. Instead of being rotated exclusively around the Y-axis, dice will be rotated to the next rotation value.
+  RotateIncrementalRight = 12,
+  --- Rotate the targets 180 degrees around the scene's Y-axis.
+  RotateOver = 13,
+  --- Add the targets to the player's selection.
+  Select = 14,
+  --- Move the targets underneath objects below them on table.
+  Under = 15,
+}
 
 ---@class tts__Player_CameraSetting
 ---@field position tts__VectorShape

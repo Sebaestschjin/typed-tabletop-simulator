@@ -18,14 +18,20 @@ function addContextMenuItem(label, callback, keepOpen, requireTable) end
 ---@return true
 function clearContextMenu() end
 
----@param message string
----@param color? tts__ColorParameter
+---
+--- Print an on-screen message to all Players.
+---
+---@param message string Message to display on-screen.
+---@param color? tts__ColorParameter A Table containing the RGB color tint for the text.
 ---@return boolean
 function broadcastToAll(message, color) end
 
----@param message string
----@param playerColor string
----@param messageColor? string
+---
+--- Print an on-screen message to a specified Player and their in-game chat.
+---
+---@param message string Message to display on-screen.
+---@param playerColor string Player Color to receive the message.
+---@param messageColor? tts__ColorParameter RGB color tint for the text.
 ---@return boolean
 function broadcastToColor(message, playerColor, messageColor) end
 

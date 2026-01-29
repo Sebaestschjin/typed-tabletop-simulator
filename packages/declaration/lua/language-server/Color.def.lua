@@ -15,8 +15,8 @@
 ---@alias tts__ColorShape tts__CharColorShape | tts__NumColorShape
 ---@alias tts__ColorParameter tts__ColorShape | tts__PlayerColor
 
----@class tts__Color
----@overload fun(src: tts__Color): tts__Color
+---@class tts__Color : tts__CharColorShape, tts__NumColorShape
+---@overload fun(src: tts__ColorShape): tts__Color
 ---@overload fun(r: number, g: number, b: number): tts__Color
 ---@overload fun(r: number, g: number, b: number, a: number): tts__Color
 ---@field [tts__PlayerColor] tts__Color
