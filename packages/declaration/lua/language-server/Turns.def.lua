@@ -1,7 +1,8 @@
 ---@meta
 
--- Auto | Custom
----@alias tts__TurnsType 1 | 2
+---@alias tts__TurnsType
+---| 1 Auto
+---| 2 Custom
 
 ---@class tts__Turns
 ---@field enable boolean @Whether the turn system is enabled.

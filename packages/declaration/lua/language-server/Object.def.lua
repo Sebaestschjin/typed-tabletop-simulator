@@ -244,14 +244,25 @@ function Object.clearContextMenu() end
 ---@field validation nil | tts__Input_Validation @An Int which determines what characters can be input into the value.
 ---@field tab nil | tts__Input_Tab @An Int which determines how pressing tab is handled when inputting.
 
---- Automatic | Left | Center | Right | Justified
----@alias tts__Input_Alignment 1 | 2 | 3 | 4 | 5
+---@alias tts__Input_Alignment
+---| 1 Automatic
+---| 2 Left
+---| 3 Center
+---| 4 Right
+---| 5 Justified
 
---- None | Integer | Float | Alphanumeric | Username | Name
----@alias tts__Input_Validation 1 | 2 | 3 | 4 | 5 | 6
+---@alias tts__Input_Validation
+---| 1 None
+---| 2 Integer
+---| 3 Float
+---| 4 Alphanumeric
+---| 5 Username
+---| 6 Name
 
---- None | Select Next Input | Indent
----@alias tts__Input_Tab 1 | 2 | 3
+---@alias tts__Input_Tab
+---| 1 None
+---| 2 Select Next Input
+---| 3 Indent
 
 ---@class tts__EditInputParameters : tts__InputParameters
 ---@field index number
@@ -387,11 +398,21 @@ function Object.getColorTint() end
 ---@field image_secondary string
 ---@field image_scalar number
 
---- Plastic | Wood | Metal | Cardboard | Glass
----@alias tts__MaterialType 0 | 1 | 2 | 3 | 4
+---@alias tts__MaterialType
+---| 0 Plastic
+---| 1 Wood
+---| 2 Metal
+---| 3 Cardboard
+---| 4 Glass
 
---- Generic | Coin | Bag | Figurine | Board | Infinite | Dice
----@alias tts__AssetBundleType 0 | 1 | 2 | 3 | 4 | 5 | 6
+---@alias tts__AssetBundleType
+---| 0 Generic
+---| 1 Coin
+---| 2 Bag
+---| 3 Figurine
+---| 4 Board
+---| 5 Infinite
+---| 6 Dice
 
 ---@class tts__Object_AssetBundleCustomObject
 ---@field assetbundle string
@@ -425,8 +446,15 @@ function Object.getColorTint() end
 ---@class tts__Object_DieCustomObject : tts__Object_ImageCustomObject
 ---@field type tts__DieType
 
---- Generic | Figurine | Dice | Coin | Board | Chip | Bag | Infinite
----@alias tts__ModelType 0 | 1 | 2 | 3 | 4 | 5 | 6 | 7
+---@alias tts__ModelType
+---| 0 Generic
+---| 1 Figurine
+---| 2 Dice
+---| 3 Coin
+---| 4 Board
+---| 5 Chip
+---| 6 Bag
+---| 7 Infinite
 
 ---@class tts__Object_ModelCustomObject
 ---@field mesh string

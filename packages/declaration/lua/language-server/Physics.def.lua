@@ -1,6 +1,9 @@
 ---@meta
 
----@alias tts__Physics_CastParametersType 1 | 2 | 3
+---@alias tts__Physics_CastParametersType
+---| 1 Ray
+---| 2 Sphere
+---| 3 Box
 
 ---@class tts__Physics_CastParameters
 ---@field type tts__Physics_CastParametersType
@@ -10,14 +13,14 @@
 ---@field debug nil | boolean @If the cast is visualized for the user. Default false
 
 ---@class tts__Physics_CastRayParameters : tts__Physics_CastParameters
----@field type 1
+---@field type 1 Ray
 
 ---@class tts__Physics_CastSphereParameters : tts__Physics_CastParameters
----@field type 2
+---@field type 2 Sphere
 ---@field size nil | tts__VectorShape @size.x specifies the diameter of the sphere. Default (0,0,0)
 
 ---@class tts__Physics_CastBoxParameters : tts__Physics_CastParameters
----@field type 3
+---@field type 3 Box
 ---@field size nil | tts__VectorShape @Size of the box. Default (0,0,0)
 ---@field orientation nil | tts__VectorShape @Euler angles (in degrees) specifying the rotation of the box. Default (0,0,0)
 
