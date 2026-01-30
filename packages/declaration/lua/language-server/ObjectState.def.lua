@@ -246,7 +246,7 @@
 ---@field TriggerForNonCards boolean
 ---@field SplitAddedDecks boolean
 ---@field CombineIntoDecks boolean
----@field CardsPerDeck number
+---@field CardsPerDeck integer
 ---@field Direction tts__LayoutZone_Direction
 ---@field NewObjectFacing tts__LayoutZone_Facing
 ---@field HorizontalGroupPadding number
@@ -261,7 +261,7 @@
 ---@field MeldSortExisting boolean
 ---@field HorizonalSpread number
 ---@field VerticalSpread number
----@field MaxObjectsPerGroup number
+---@field MaxObjectsPerGroup integer
 ---@field AlternateDirection boolean
----@field MaxObjectsPerNewGroup number
+---@field MaxObjectsPerNewGroup integer
 ---@field AllowSwapping boolean

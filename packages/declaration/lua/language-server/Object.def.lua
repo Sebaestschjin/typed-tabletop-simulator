@@ -685,7 +685,7 @@ function Object.getTable(name) end
 
 ---
 --- If the object is a bag, deck or stack, returns the number of objects within, otherwise -1.
----@return number
+---@return integer
 function Object.getQuantity() end
 
 ---@return any
@@ -761,13 +761,6 @@ function Object.removeButton(index) end
 ---@return true
 function Object.scale(scale) end
 
----@class tts__Object_DecalParameters
----@field name string
----@field url string
----@field position nil | tts__VectorShape @Default Vector(0, 0, 0)
----@field rotation nil | tts__VectorShape @Default Vector(0, 0, 0)
----@field scale nil | tts__VectorShape @Default Vector(1, 1, 1)
-
 ---@param color tts__ColorShape
 ---@return boolean
 function Object.setColorTint(color) end
@@ -787,6 +780,13 @@ function Object.setColorTint(color) end
 
 ---@param parameters tts__Object_CustomObject_In
 function Object.setCustomObject(parameters) end
+
+---@class tts__Object_DecalParameters
+---@field name string
+---@field url string
+---@field position nil | tts__VectorShape @Default Vector(0, 0, 0)
+---@field rotation nil | tts__VectorShape @Default Vector(0, 0, 0)
+---@field scale nil | tts__VectorShape @Default Vector(1, 1, 1)
 
 ---
 --- Removes all existing decals, replacing them with a decal per entry in the provided decal parameters array.
@@ -926,8 +926,8 @@ function Object.setRotationSmooth(rotation, collide, fast) end
 ---@see tts__Object#getRotationValues
 function Object.setRotationValue(value) end
 
----@param newValue string
----@return any
+---@param newValue integer | string
+---@return boolean
 function Object.setValue(newValue) end
 
 ---@param name string
