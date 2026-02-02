@@ -7,10 +7,11 @@
 ---@class __tts__ZoneBaseBehaviour
 local Zone = {}
 
---- NOT IMPLEMENTED
----@deprecated
----@return nil
-function Zone.getObjects() end
+-- @TODO: hide/deprioritize in autocomplete
+-- --- NOT IMPLEMENTED
+-- ---@deprecated
+-- ---@return nil
+-- function Zone.getObjects() end
 
 ---
 --- The LayoutZone behavior is present on Layout Zones.
