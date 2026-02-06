@@ -1,7 +1,14 @@
 ---@meta
 
----@alias tts__Grid_Type 1 | 2 | 3
----@alias tts__Grid_Snapping 1 | 2 | 3 | 4
+---@alias tts__Grid_Type
+---| 1 Rectangles
+---| 2 Horizontal hexes
+---| 3 Vertical hexes
+---@alias tts__Grid_Snapping
+---| 1 Off
+---| 2 Lines
+---| 3 Center
+---| 4 Both
 
 ---@class tts__Grid
 ---@field type tts__Grid_Type

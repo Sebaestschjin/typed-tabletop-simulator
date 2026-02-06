@@ -11,8 +11,12 @@
 ---@field scaleY nil | number
 ---@field scaleZ nil | number
 
---- RectangleRounded | Rectangle | HexRounded | Hex | Circle
----@alias tts__CardType 0 | 1 | 2 | 3 | 4
+---@alias tts__CardType
+---| 0 RectangleRounded
+---| 1 Rectangle
+---| 2 HexRounded
+---| 3 Hex
+---| 4 Circle
 
 ---@class tts__ObjectState_CustomDeck
 ---@field Type nil | tts__CardType
@@ -23,8 +27,13 @@
 ---@field BackIsHidden nil | boolean
 ---@field UniqueBack nil | boolean
 
---- D4 | D6 | D8 | D10 | D12 | D20
----@alias tts__DieType 0 | 1 | 2 | 3 | 4 | 5
+---@alias tts__DieType
+---| 0 D4
+---| 1 D6
+---| 2 D8
+---| 3 D10
+---| 4 D12
+---| 5 D20
 
 ---@class tts__ObjectState_CustomImage_CustomDie
 ---@field Type tts__DieType
@@ -38,8 +47,11 @@
 ---@field NumPuzzlePieces number
 ---@field ImageOnBoard nil | boolean
 
---- Box | Hex | Circle | Rounded
----@alias tts__TileType 0 | 1 | 2 | 3
+---@alias tts__TileType
+---| 0 Box
+---| 1 Hex
+---| 2 Circle
+---| 3 Rounded
 
 ---@class tts__ObjectState_CustomImage_CustomTile
 ---@field Type tts__TileType
@@ -228,17 +240,36 @@
 ---@field Options tts__LayoutZoneState_Options
 ---@field GroupsInZone? string[][]
 
---- Right/Down | Down/Right | Left/Down | Down/Left | Right/Up | Up/Right | Left/Up | Up/Left
----@alias tts__LayoutZone_Direction 0 | 1 | 2 | 3 | 4 | 5 | 6 | 7
+---@alias tts__LayoutZone_Direction
+---| 0 Right/Down
+---| 1 Down/Right
+---| 2 Left/Down
+---| 3 Down/Left
+---| 4 Right/Up
+---| 5 Up/Right
+---| 6 Left/Up
+---| 7 Up/Left
 
----Do not Change | Face Up | Face Down | Group is Tipped
----@alias tts__LayoutZone_Facing 0 | 1 | 2 | 3
+---@alias tts__LayoutZone_Facing
+---| 0 Do not Change
+---| 1 Face Up
+---| 2 Face Down
+---| 3 Group is Tipped
 
----Eastward | Westward | Northward | Southward
----@alias tts__LayoutZone_GroupDirection 0 | 1 | 2 | 3
+---@alias tts__LayoutZone_GroupDirection
+---| 0 Eastward
+---| 1 Westward
+---| 2 Northward
+---| 3 Southward
 
---- None | Added Time | Value | Name | Description | GM Notes | Memo
----@alias tts__LayoutZone_GroupSort 0 | 1 | 2 | 3 | 4 | 5 | 6
+---@alias tts__LayoutZone_GroupSort
+---| 0 None
+---| 1 Added Time
+---| 2 Value
+---| 3 Name
+---| 4 Description
+---| 5 GM Notes
+---| 6 Memo
 
 ---@class tts__LayoutZoneState_Options
 ---@field TriggerForFaceUp boolean
