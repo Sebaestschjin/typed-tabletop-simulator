@@ -28,8 +28,17 @@
 ---@field min_distance nil | number
 
 ---@class tts__Object : tts__GameObject
+---@field AssetBundle tts__AssetBundle?          @[Read only] <br>Some objects provide additional behavior. This functionality is accessible as Object member variables, but will be nil unless the Object includes the behavior.
+---@field Book        tts__BookBehaviour?        @[Read only] <br>Some objects provide additional behavior. This functionality is accessible as Object member variables, but will be nil unless the Object includes the behavior.
+---@field Browser     tts__BrowserBehaviour?     @[Read only] <br>Some objects provide additional behavior. This functionality is accessible as Object member variables, but will be nil unless the Object includes the behavior.
+---@field Clock       tts__ClockBehaviour?       @[Read only] <br>Some objects provide additional behavior. This functionality is accessible as Object member variables, but will be nil unless the Object includes the behavior.
+---@field Counter     tts__CounterBehaviour?     @[Read only] <br>Some objects provide additional behavior. This functionality is accessible as Object member variables, but will be nil unless the Object includes the behavior.
+---@field Container   tts__ContainerBehaviour?   @[Read only] <br>Some objects provide additional behavior. This functionality is accessible as Object member variables, but will be nil unless the Object includes the behavior.
+---@field LayoutZone  tts__LayoutZoneBehaviour?  @[Read only] <br>Some objects provide additional behavior. This functionality is accessible as Object member variables, but will be nil unless the Object includes the behavior.
+---@field RPGFigurine tts__RPGFigurineBehaviour? @[Read only] <br>Some objects provide additional behavior. This functionality is accessible as Object member variables, but will be nil unless the Object includes the behavior.
+---@field TextTool    tts__TextToolBehaviour?    @[Read only] <br>Some objects provide additional behavior. This functionality is accessible as Object member variables, but will be nil unless the Object includes the behavior.
+---@field Zone        __tts__ZoneBaseBehaviour?  @[Read only] <br>Some objects provide additional behavior. This functionality is accessible as Object member variables, but will be nil unless the Object includes the behavior.
 ---@field angular_drag number
----@field AssetBundle tts__AssetBundle  @[Read only]
 ---@field auto_raise boolean
 ---@field bounciness number
 ---@field drag number
@@ -71,17 +80,18 @@
 local Object
 
 ---@class tts__Book : tts__Object
----@field Book tts__BookBehaviour
+---@field Book tts__BookBehaviour @[Read only] <br>Some objects provide additional behavior. This functionality is accessible as Object member variables, but will be nil unless the Object includes the behavior.
 
 --- The following are not real types in TTS, but this allows us to strongly type our code where an object of a specific type is required.
 --- NOTE: There is no tts__AssetBundle or tts__Model, because these objects always masquerade as another object type.
 
 
 ---@class tts__Container : tts__Object
----@field Container tts__ContainerBehaviour
+---@field Container tts__ContainerBehaviour @[Read only] <br>Some objects provide additional behavior. This functionality is accessible as Object member variables, but will be nil unless the Object includes the behavior.
 local Container
 
 ---@class tts__Stackable : tts__Object
+---@field Container tts__ContainerBehaviour @[Read only] <br>Some objects provide additional behavior. This functionality is accessible as Object member variables, but will be nil unless the Object includes the behavior.
 local Stackable
 
 ---@class tts__BackgammonPiece : tts__Object
@@ -107,10 +117,12 @@ local CardCustom
 ---@class tts__Chip : tts__Stackable
 
 ---@class tts__Clock : tts__Object
+---@field Clock tts__ClockBehaviour @[Read only] <br>Some objects provide additional behavior. This functionality is accessible as Object member variables, but will be nil unless the Object includes the behavior.
 
 ---@class tts__Coin : tts__Object
 
 ---@class tts__Counter : tts__Object
+---@field Counter tts__CounterBehaviour @[Read only] <br>Some objects provide additional behavior. This functionality is accessible as Object member variables, but will be nil unless the Object includes the behavior.
 
 ---@class tts__Deck : tts__Container
 
@@ -122,7 +134,17 @@ local DeckCustom
 ---@class tts__DieCustom : tts__Die
 local DieCustom
 
----@class Hand : tts__Object
+---@class tts__Domino : tts__Object
+
+---@class tts__Figurine : tts__Object
+
+---@class tts__Fog : tts__Zone
+
+---@class tts__FogOfWar : tts__Zone
+
+---@class tts__GoPiece : tts__Object
+
+---@class tts__Hand : tts__Zone
 local Hand
 
 ---@return tts__PlayerHandColor
@@ -132,19 +154,7 @@ function Hand.getValue() end
 ---@return boolean
 function Hand.setValue(newValue) end
 
----@class tts__Domino : tts__Object
-
----@class tts__Figurine : tts__Object
-
----@class tts__Fog : tts__Object
-
----@class tts__FogOfWar : tts__Object
-
----@class tts__GoPiece : tts__Object
-
----@class tts__Hand : tts__Object
-
----@class tts__Infinite : tts__Object
+---@class tts__Infinite : tts__Container
 
 ---@class tts__InventoryBackground : tts__Object
 
@@ -164,20 +174,30 @@ function Hand.setValue(newValue) end
 
 ---@class tts__Pointer : tts__Object
 
----@class tts__Randomize : tts__Object
+---@class tts__Randomize : tts__Zone
 
 ---@class tts__RPGFigurine : tts__Object
+---@field RPGFigurine tts__RPGFigurineBehaviour @[Read only] <br>Some objects provide additional behavior. This functionality is accessible as Object member variables, but will be nil unless the Object includes the behavior.
 
----@class tts__ScriptingTrigger : tts__Object
-local ScriptingTrigger
+---@class tts__ScriptingTrigger : tts__Zone
+
+---@class tts__Zone : tts__Object
+---@field Zone __tts__ZoneBaseBehaviour @[Read only] <br>Some objects provide additional behavior. This functionality is accessible as Object member variables, but will be nil unless the Object includes the behavior.
+local Zone
+
+---@class tts__LayoutZone : tts__Zone
+---@field Zone       tts__LayoutZoneBehaviour @[Read only] <br>Some objects provide additional behavior. This functionality is accessible as Object member variables, but will be nil unless the Object includes the behavior.
+---@field LayoutZone tts__LayoutZoneBehaviour @[Read only] <br>Some objects provide additional behavior. This functionality is accessible as Object member variables, but will be nil unless the Object includes the behavior.
 
 ---@class tts__Superfight : tts__Object
 
 ---@class tts__Surface : tts__Object
 
 ---@class tts__Tablet : tts__Object
+---@field Browser tts__BrowserBehaviour @[Read only] <br>Some objects provide additional behavior. This functionality is accessible as Object member variables, but will be nil unless the Object includes the behavior.
 
 ---@class tts__Text : tts__Object
+---@field TextTool tts__TextToolBehaviour @[Read only] <br>Some objects provide additional behavior. This functionality is accessible as Object member variables, but will be nil unless the Object includes the behavior.
 
 ---@class tts__Tile : tts__Stackable
 local Tile
@@ -563,19 +583,19 @@ function Object.getName() end
 ---@class tts__IndexedSimpleObjectState : tts__SimpleObjectState
 ---@field index number
 
---- If this object is a scripting trigger, bag or deck, returns the objects contained within. Otherwise, logs an error and returns nil
+--- If this object is a zone, bag or deck, returns the objects contained within. Otherwise, logs an error and returns nil
 ---@return nil | tts__Object[] | tts__IndexedSimpleObjectState[]
 function Object.getObjects() end
 
---- If this object is a scripting trigger, bag or deck, returns the objects contained within. Otherwise, logs an error and returns nil
+--- If this object is a zone, bag or deck, returns the objects contained within. Otherwise, logs an error and returns nil
 ---@return tts__IndexedSimpleObjectState[]
 function Container.getObjects() end
 
---- If this object is a scripting trigger, bag or deck, returns the objects contained within. Otherwise, logs an error and returns nil
+--- If this object is a zone, bag or deck, returns the objects contained within. Otherwise, logs an error and returns nil
 --- If the zone has tags, then only objects with compatible tags will occupy the zone (unless `ignoreTags` is `true`).
 ---@param ignoreTags? boolean If `true` then all objects in the zone will be returned, regardless of tags.
 ---@return tts__Object[]
-function ScriptingTrigger.getObjects(ignoreTags) end
+function Zone.getObjects(ignoreTags) end
 
 --- Combines 2 combinable objects to form a new container (Deck, Stat, etc)
 ---
@@ -685,7 +705,7 @@ function Object.getTable(name) end
 
 ---
 --- If the object is a bag, deck or stack, returns the number of objects within, otherwise -1.
----@return number
+---@return integer
 function Object.getQuantity() end
 
 ---@return any
@@ -710,7 +730,7 @@ function Object.getVectorLines() end
 ---@return tts__Vector
 function Object.getVelocity() end
 
----@return tts__ScriptingTrigger[]
+---@return tts__Zone[]
 function Object.getZones() end
 
 ---@param color? tts__ColorShape|string
@@ -761,13 +781,6 @@ function Object.removeButton(index) end
 ---@return true
 function Object.scale(scale) end
 
----@class tts__Object_DecalParameters
----@field name string
----@field url string
----@field position nil | tts__VectorShape @Default Vector(0, 0, 0)
----@field rotation nil | tts__VectorShape @Default Vector(0, 0, 0)
----@field scale nil | tts__VectorShape @Default Vector(1, 1, 1)
-
 ---@param color tts__ColorShape
 ---@return boolean
 function Object.setColorTint(color) end
@@ -787,6 +800,13 @@ function Object.setColorTint(color) end
 
 ---@param parameters tts__Object_CustomObject_In
 function Object.setCustomObject(parameters) end
+
+---@class tts__Object_DecalParameters
+---@field name string
+---@field url string
+---@field position nil | tts__VectorShape @Default Vector(0, 0, 0)
+---@field rotation nil | tts__VectorShape @Default Vector(0, 0, 0)
+---@field scale nil | tts__VectorShape @Default Vector(1, 1, 1)
 
 ---
 --- Removes all existing decals, replacing them with a decal per entry in the provided decal parameters array.
@@ -926,8 +946,8 @@ function Object.setRotationSmooth(rotation, collide, fast) end
 ---@see tts__Object#getRotationValues
 function Object.setRotationValue(value) end
 
----@param newValue string
----@return any
+---@param newValue integer | string
+---@return boolean
 function Object.setValue(newValue) end
 
 ---@param name string

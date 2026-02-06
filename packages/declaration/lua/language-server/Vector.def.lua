@@ -17,7 +17,7 @@
 ---@overload fun(src: tts__VectorShape): tts__Vector
 ---@operator add(tts__CharVectorShape): tts__Vector
 ---@operator sub(tts__CharVectorShape): tts__Vector
----@operator mul(tts__CharVectorShape): tts__Vector
+---@operator mul(tts__Vector): tts__Vector
 ---@operator mul(number): tts__Vector
 ---@field __isVector true
 ---@field x number

@@ -50,7 +50,7 @@ tryObjectEnter = nil
 ---
 --- Return `false` to prevent the object entering.
 ---
----@type nil | fun(container: tts__Container, object: tts__Object): boolean|void
+---@type nil | fun(container: tts__Card | tts__Container, object: tts__Object): boolean|void
 tryObjectEnterContainer = nil
 
 ---
@@ -70,20 +70,20 @@ onObjectLeaveContainer = nil
 ---
 --- Called before an object changes state. Return false to prevent the state change.
 ---
----@type fun(new_state_index: integer, player_color: string): boolean|void
+---@type nil | fun(new_state_index: integer, player_color: string): boolean|void
 tryStateChange = nil
 
 ---
 --- Called when the script-owner Object spawned as a result of an Object state change.
 ---
----@type fun(new_state_index: integer, player_color: string): void
+---@type nil | fun(new_state_index: integer, player_color: string): void
 onStateChange = nil
 
 --- (GLOBAL SCRIPT ONLY)
 ---
 --- Called before an object changes state. Return false to prevent the state change.
 ---
----@type fun(object: tts__Object, new_state_index: integer, player_color: string): boolean|void
+---@type nil | fun(object: tts__Object, new_state_index: integer, player_color: string): boolean|void
 tryObjectStateChange = nil
 
 ---
