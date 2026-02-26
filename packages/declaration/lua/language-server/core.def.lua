@@ -1,3 +1,0 @@
----@meta
-
----@alias void nil
