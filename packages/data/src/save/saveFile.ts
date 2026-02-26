@@ -41,7 +41,8 @@ export const SaveFileData = type({
   "LuaScript?": "string",
   "LuaScriptState?": "string",
   "XmlUI?": "string",
-  ObjectStates: ObjectData.objectData.array(),
+  ObjectStates: ObjectData.array(),
 });
 
+// TODO split
 export type SaveFileData = typeof SaveFileData.infer;

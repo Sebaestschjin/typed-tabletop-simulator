@@ -16,7 +16,7 @@ import { AssetBundleBagData, AssetBundleData, AssetBundleInfiniteBagData } from 
 // * clocks
 // * counter
 
-export const ObjectData = type.module({
+const _ObjectData = type.module({
   objectData: `
 asset
 | assetBag
@@ -58,26 +58,36 @@ asset
   modelBag: [ModelBagData, "&", "content"],
   modelInfinite: [ModelInfiniteBagData, "&", "content"],
 });
+type _ObjectData = typeof _ObjectData.objectData.infer;
 
-export type ObjectData = typeof ObjectData.objectData.infer;
+const States = type({
+  "States?": type.Record("string", _ObjectData.objectData),
+})
+type States = typeof States.infer;
+
+export const ObjectData = _ObjectData.objectData.and(States)
+export type ObjectData = _ObjectData & States;
 export type ObjectName = ObjectData["Name"];
-export type ContainerData = typeof ObjectData.container.infer;
+export type ContainerData = typeof _ObjectData.container.infer & States;
 
 export type AssetBundleData =
-  | typeof ObjectData.asset.infer
-  | typeof ObjectData.assetBag.infer
-  | typeof ObjectData.assetInfinite.infer;
-export type BagData = typeof ObjectData.bag.infer;
-export type BagInfiniteData = typeof ObjectData.bagInfinite.infer;
-export type CardData = typeof ObjectData.card.infer;
-export type DeckData = typeof ObjectData.deck.infer;
+  (
+    | typeof _ObjectData.asset.infer
+    | typeof _ObjectData.assetBag.infer
+    | typeof _ObjectData.assetInfinite.infer)
+  & States;
+export type BagData = typeof _ObjectData.bag.infer & States;
+export type BagInfiniteData = typeof _ObjectData.bagInfinite.infer & States;
+export type CardData = typeof _ObjectData.card.infer & States;
+export type DeckData = typeof _ObjectData.deck.infer & States;
 export type ModelData =
-  | typeof ObjectData.model.infer
-  | typeof ObjectData.modelBag.infer
-  | typeof ObjectData.modelInfinite.infer;
+  (
+    | typeof _ObjectData.model.infer
+    | typeof _ObjectData.modelBag.infer
+    | typeof _ObjectData.modelInfinite.infer) & States;
 export type ModelDataName = ModelData["Name"];
-export type InfiniteBagData = typeof ObjectData.bagInfinite.infer;
-export type TileData = typeof ObjectData.tile.infer;
+export type InfiniteBagData = typeof _ObjectData.bagInfinite.infer & States;
+export type TileData = typeof _ObjectData.tile.infer & States;
 
 export { MaterialType, UIAssetType } from "./base.js";
 export type { ObjectDataBase, SnapPointData, UIAssetData } from "./base.js";

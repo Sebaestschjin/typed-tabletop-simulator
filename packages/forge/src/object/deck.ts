@@ -39,7 +39,7 @@ export const setCurrentDeckId = (id: number) => (currentDeckId = id);
 /**
  * Creates a new deck with the given properties.
  *
- * By default the `BackIsHidden` property is set to `true`.
+ * By default, the `BackIsHidden` property is set to `true`.
  */
 export const createDeck = (properties: CustomDeckProperties): DeckData => {
   const deckId = getDeckId(properties);

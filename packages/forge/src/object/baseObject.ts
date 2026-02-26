@@ -105,22 +105,22 @@ export const createBaseObject = (properties: BaseProperties): ObjectDataBase => 
  * @param objects The list of objects to add as states. The order in this list will represent the state numbers.
  * @param startingState The index of `objects` of the object which should be the current object. Defaults to the first entry.
  */
-// export const createStates = (objects: ObjectData[], startingState: number = 0): ObjectData => {
-//   const baseObject = objects[startingState];
+export const createStates = (objects: ObjectData[], startingState: number = 0): ObjectData => {
+  const baseObject = objects[startingState];
 
-//   baseObject.States = {};
+  baseObject.States = {};
 
-//   for (let i = 0; i < objects.length; i++) {
-//     if (i === startingState) {
-//       continue;
-//     }
+  for (let i = 0; i < objects.length; i++) {
+    if (i === startingState) {
+      continue;
+    }
 
-//     const stateId = i + 1;
-//     baseObject.States[stateId] = objects[i];
-//   }
+    const stateId = i + 1;
+    baseObject.States[stateId] = objects[i];
+  }
 
-//   return baseObject;
-// };
+  return baseObject;
+};
 
 const GUID_CACHE = new Set<String>();
 
