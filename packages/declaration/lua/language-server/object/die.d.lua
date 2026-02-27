@@ -32,9 +32,9 @@ function Die.getData() end
 ---@class tts.Die.Data : tts.Object.Data
 ---@field Name 'Custom_Dice' | tts.Die.InternalName
 ---@field RotationValues tts.Die.Data.RotationValue[]
----@field CustomImage tts__ObjectState_DieCustomImage
+---@field CustomImage tts.Die.Data.CustomImage
 
----@class tts.Die.Data.CustomImage : tts__ObjectState_CustomImage
+---@class tts.Die.Data.CustomImage : tts.Object.Data.CustomImage
 ---@field CustomDice tts.Die.Data.CustomDie
 
 ---@class tts.Die.Data.CustomDie

@@ -16,7 +16,7 @@
 ---
 ---@class tts.Lighting
 ---@field ambient_intensity number The strength of the ambient light. Range = 0 to 4.
----@field ambient_type tts__Lighting_AmbientType The source of ambient light. 1 = background, 2 = gradient.
+---@field ambient_type tts.Lighting.AmbientType The source of ambient light. 1 = background, 2 = gradient.
 ---@field light_intensity number The strength of the directional light shining down in the scene. Range = 0 to 4.
 ---@field lut_contribution number How much the LUT contributes to the light.
 ---@field lut_index integer The LUT index of the light.

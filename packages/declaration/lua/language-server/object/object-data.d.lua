@@ -1,0 +1,101 @@
+---@meta
+
+---@class tts.Object.Data
+---@field Name string
+---@field Transform nil | tts.Object.Data.Transform
+---@field Nickname nil | string Default ""
+---@field Description nil | string Default ""
+---@field GMNotes nil | string Default ""
+---@field Memo nil | string Default nil
+---@field GUID nil | string
+---@field LuaScript nil | string Default ""
+---@field LuaScriptState nil | string Default ""
+---@field XmlUI nil | string Default ""
+---@field CustomUIAssets nil | tts.Object.Data.Asset[]
+---@field Grid nil | boolean Default true
+---@field Snap nil | boolean Default true
+---@field DragSelectable nil | boolean Default true
+---@field Autoraise nil | boolean Default true
+---@field Sticky nil | boolean Default true
+---@field Tooltip nil | boolean Default true
+---@field Locked nil | boolean Default false
+---@field IgnoreFoW nil | boolean Default false
+---@field GridProjection nil | boolean Default false
+---@field MeasureMovement nil | boolean
+---@field HideWhenFaceDown nil | boolean
+---@field Hands nil | boolean
+---@field AltSound nil | boolean
+---@field DeckIDs nil | number[] Despite the name, these are card IDs not deck IDs
+---@field CardID nil | number
+---@field ColorDiffuse nil | tts.CharColorShape
+---@field MaterialIndex nil | number
+---@field MeshIndex nil | number
+---@field Number nil | number
+---@field SidewaysCard nil | boolean
+---@field RPGmode nil | boolean
+---@field RPGdead nil | boolean
+---@field FogColor nil | string
+---@field FogHidePointers nil | boolean
+---@field FogReverseHiding nil | boolean
+---@field FogSeethrough nil | boolean
+---@field vector nil | tts.CharVectorShape
+---@field AttachedDecals nil | tts.Object.Data.Decal[]
+---@field AttachedSnapPoints nil | tts.Object.Data.SnapPoint[]
+---@field States nil | table<number, tts.Object.Data>
+---@field Tags nil | string[]
+---@field ChildObjects nil | tts.Object.Data[]
+
+---@alias tts.Object.Data.Vector tts.CharVectorShape
+
+---@class tts.Object.Data.Transform
+---@field posX nil | number
+---@field posY nil | number
+---@field posZ nil | number
+---@field rotX nil | number
+---@field rotY nil | number
+---@field rotZ nil | number
+---@field scaleX nil | number
+---@field scaleY nil | number
+---@field scaleZ nil | number
+
+---@class tts.Object.Data.Asset
+---@field Type tts.UI.Asset.Type
+---@field Name string
+---@field URL string
+
+---@class tts.Object.Data.CustomImage
+---@field ImageURL string
+---@field ImageSecondaryURL nil | string
+---@field ImageScale nil | number
+---@field WidthScale nil | number
+
+---@class tts.Object.Data.CustomMesh
+---@field MeshURL string
+---@field DiffuseURL nil | string
+---@field ColliderURL nil | string
+---@field NormalURL nil | string
+---@field Convex nil | boolean Default true
+---@field MaterialIndex nil | tts.Object.MaterialType
+---@field TypeIndex nil | tts.Model.Type
+---@field CustomShader nil | tts.Object.Data.CustomShader
+---@field CastShadows nil | boolean Default true
+
+---@class tts.Object.Data.CustomShader
+---@field SpecularColor nil | tts.ColorShape Default {0.9, 0.9, 0.9}
+---@field SpecularIntensity nil | number Default 0.1
+---@field SpecularSharpness nil | number Default 3
+---@field FresnelStrength nil | number Default 0.1
+
+---@class tts.Object.Data.Decal
+---@field Transform tts.Object.Data.Transform
+---@field CustomDecal tts.Object.Data.CustomDecal
+
+---@class tts.Object.Data.CustomDecal
+---@field Name string
+---@field ImageURL string
+---@field Size nil | number
+
+---@class tts.Object.Data.SnapPoint
+---@field Position tts.Object.Data.Vector
+---@field Rotation tts.Object.Data.Vector
+---@field Tags nil | string[]

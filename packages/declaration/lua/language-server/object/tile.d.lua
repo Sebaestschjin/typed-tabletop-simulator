@@ -19,7 +19,7 @@ function Tile.getData() end
 ---@field Name 'Custom_Tile'
 ---@field CustomImage tts__ObjectState_TileCustomImage
 
----@class tts.Tile.Data.CustomImage : tts__ObjectState_CustomImage
+---@class tts.Tile.Data.CustomImage : tts.Object.Data.CustomImage
 ---@field CustomTile tts.Tile.Data.CustomTile
 
 ---@class tts.Tile.Data.CustomTile

@@ -1,6 +1,8 @@
 ---@meta
 
----
+---@class tts.Browser : tts.Object
+---@field Browser tts.Browser.Behaviour [Read only] <br>Some objects provide additional behavior. This functionality is accessible as Object member variables, but will be nil unless the Object includes the behavior.
+
 --- The Browser behavior is present on the Tablet Object.
 ---
 --- **Example**

@@ -89,3 +89,62 @@ function sendExternalMessage(message) end
 ---@param function_owner tts.Object
 ---@param function_name string
 function startLuaCoroutine(function_owner, function_name) end
+
+---@param params tts.Object.SpawnObject.Options
+---@return tts.Object
+function spawnObject(params) end
+
+---@param params tts.Object.SpawnObjectData.Options
+---@return tts.Object
+function spawnObjectData(params) end
+
+---@param params tts.SpawnObjectJSON.Options
+---@return tts.Object
+function spawnObjectJSON(params) end
+
+---@param guid string
+---@return nil | tts.Object
+function getObjectFromGUID(guid) end
+
+---@return tts.Object[]
+function getAllObjects() end
+
+---@return tts.Object[]
+function getObjects() end
+
+--- Returns a table of all Objects which have the specified tag attached.
+---
+---@param tag string The tag to search for on Objects.
+---@return tts.Object[]
+function getObjectsWithTag(tag) end
+
+--- Returns a table of all Objects which have all of of the specified tags attached.
+---
+---@param tags string[] A table of tags to search for. An Object must have every tag in this table to be returned.
+---@return tts.Object[]
+function getObjectsWithAllTags(tags) end
+
+--- Returns a table of all Objects which have at least one of the specified tags attached.
+---
+---@param tags string[] A table of tags to search for. An Object must have at least one of these tags to be returned.
+---@return tts.Object[]
+function getObjectsWithAnyTags(tags) end
+
+---@class tts.Object.SpawnObject.Options : tts.Object.Callback
+---@field type string
+---@field position? tts.VectorShape Default Vector(0, 0, 0)
+---@field rotation? tts.VectorShape Default Vector(0, 0, 0)
+---@field scale? tts.VectorShape Default Vector(1, 1, 1)
+---@field sound? boolean Default true
+---@field snap_to_grid? boolean
+
+---@class tts.Object.SpawnObjectSerialized.Options : tts.Object.Callback
+---@field position? tts.VectorShape
+---@field rotation? tts.VectorShape
+---@field scale? tts.VectorShape
+
+---@class tts.Object.SpawnObjectData.Options : tts.Object.SpawnObjectSerialized.Options
+---@field data tts.Object.Data
+
+---@class tts.SpawnObjectJSON.Options : tts.Object.SpawnObjectSerialized.Options
+---@field json string

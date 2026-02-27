@@ -1,6 +1,8 @@
 ---@meta
 
----
+---@class tts.Clock : tts.Object
+---@field Clock tts.Clock.Behaviour [Read only] <br>Some objects provide additional behavior. This functionality is accessible as Object member variables, but will be nil unless the Object includes the behavior.
+
 --- The Clock behavior is present on the Digital Clock object.
 ---
 --- Clock Modes

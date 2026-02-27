@@ -1,6 +1,8 @@
 ---@meta
 
----
+---@class tts.Counter : tts.Object
+---@field Counter tts.Counter.Behaviour [Read only] <br>Some objects provide additional behavior. This functionality is accessible as Object member variables, but will be nil unless the Object includes the behavior.
+
 --- The Counter behavior is present on the Counter object.
 ---
 --- **Example**
@@ -13,32 +15,27 @@
 ---@class tts.Counter.Behaviour
 local Counter = {}
 
----
 --- Resets Counter to 0.
 ---
 ---@return boolean
 function Counter.clear() end
 
----
 --- Reduces Counter's value by 1.
 ---
 ---@return boolean
 function Counter.decrement() end
 
----
 --- Returns Counter's current value. This function behaves the same as Object's getValue().
 ---
 ---@see tts.Object.getValue
 ---@return integer
 function Counter.getValue() end
 
----
 --- Increases Counter's value by 1.
 ---
 ---@return boolean
 function Counter.increment() end
 
----
 --- Sets the current value of the Counter. This function behaves the same as Object's setValue().
 ---
 ---@see tts.Object.setValue

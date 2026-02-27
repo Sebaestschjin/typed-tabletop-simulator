@@ -10,6 +10,13 @@ function Card.getCustomObject() end
 ---@return tts.Card.Data
 function Card.getData() end
 
+--- Places an card onto another card, forming a deck.
+---
+---@param object tts.Card | tts.Deck
+---@param index? number
+---@return tts.Deck
+function Card.putObject(object, index) end
+
 --- The card shape.
 ---@alias tts.Card.Type
 ---| 0 Rectangle (Rounded)

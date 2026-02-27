@@ -1,281 +1,249 @@
----@alias tts__AssetBundle tts.AssetBundle.Behaviour
----@alias tts__AssetBundle_Effect tts.AssetBundle.Effect
----@alias tts__BookBehaviour tts.Book.Behaviour
----@alias tts__BrowserBehaviour tts.Browser.Behaviour
----@alias tts__ClockBehaviour tts.Clock.Behaviour
----@alias tts__CounterBehaviour tts.Counter.Behaviour
----@alias tts__ContainerBehaviour tts.Container.Behaviour
----@alias tts__LayoutZoneBehaviour tts.LayoutZone.Behaviour
----@alias tts__LayoutZone_Options tts.LayoutZone.Options
----@alias tts__LayoutZoneBehaviour_OptionsParameter tts.LayoutZone.Options.Parameter
----@alias tts__RPGFigurineBehaviour tts.RPGFigurine.Behaviour
----@alias tts__TextToolBehaviour tts.TextTool.Behaviour
-
----@alias tts__Backgrounds tts.Backgrounds
+---------- Globals
 ---@alias tts__BackgroundName tts.Background.Name
-
----@alias tts__Color tts.Color
----@alias tts__CharColorShape tts.CharColorShape
----@alias tts__NumColorShape tts.NumColorShape
----@alias tts__ColorShape tts.ColorShape
----@alias tts__ColorParameter tts.ColorParameter
-
----@alias tts__CharVectorShape tts.CharVectorShape
----@alias tts__NumVectorShape tts.NumVectorShape
----@alias tts__VectorShape tts.VectorShape
----@alias tts__Vector tts.Vector
-
----@alias tts__Component tts.Component
----@alias tts__GameObject tts.GameObject
-
----@alias moonsharp__json moonsharp.json
-
----@alias tts__Hotkey_Callback tts.Hotkey.Handler
-
+---@alias tts__Backgrounds tts.Backgrounds
+---@alias tts__GlobalWebRequest tts.WebRequest.Manager
 ---@alias tts__Grid tts.Grid
----@alias tts__Grid_Type tts.Grid.Type
 ---@alias tts__Grid_Snapping tts.Grid.Snapping
-
+---@alias tts__Grid_Type tts.Grid.Type
+---@alias tts__Hotkey_Callback tts.Hotkey.Handler
 ---@alias tts__Info tts.Info
-
 ---@alias tts__JSON tts.JSON
 ---@alias tts__JSON__EncodeOptions tts.JSON.EncodeOptions
-
 ---@alias tts__Lighting tts.Lighting
 ---@alias tts__Lighting_AmbientType tts.Lighting.AmbientType
-
 ---@alias tts__MusicPlayer tts.MusicPlayer
 ---@alias tts__MusicPlayer_AudioClip tts.MusicPlayer.AudioClip
-
 ---@alias tts__Notes tts.Notes
----@alias tts__Notes_GetParameter tts.Notes.Get.Options
 ---@alias tts__Notes_AddParameter tts.Notes.Add.Options
 ---@alias tts__Notes_EditParameter tts.Notes.Edit.Options
-
+---@alias tts__Notes_GetParameter tts.Notes.Get.Options
 ---@alias tts__Physics tts.Physics
----@alias tts__Physics_CastParameters tts.Physics.Cast.Base.Options
----@alias tts__Physics_CastRayParameters tts.Physics.Cast.Ray.Options
----@alias tts__Physics_CastSphereParameters tts.Physics.Cast.Sphere.Options
 ---@alias tts__Physics_CastBoxParameters tts.Physics.Cast.Box.Options
+---@alias tts__Physics_CastParameters tts.Physics.Cast.Base.Options
 ---@alias tts__Physics_CastParametersType tts.Physics.Cast.Type
+---@alias tts__Physics_CastRayParameters tts.Physics.Cast.Ray.Options
 ---@alias tts__Physics_CastResult tts.Physics.Cast.Result
-
----@alias tts__PlayerColor tts.PlayerColor
----@alias tts__PlayerRegularColor tts.PlayerColor.Regular
----@alias tts__PlayerGameMasterColor tts.PlayerColor.GameMaster
----@alias tts__PlayerSpectatorColor tts.PlayerColor.Spectator
----@alias tts__PlayerTeam tts.PlayerTeam
----@alias tts__PlayerRole tts.PlayerRole
----@alias tts__PlayerHandColor tts.PlayerColor.Hand
----@alias tts__Player tts.Player
----@alias tts__HandTransform tts.HandTransform
----@alias tts__Player_CameraSetting tts.Player.Camera.Options
----@alias tts__GlobalPlayer tts.PlayerManager
----@alias tts__PlayerAction tts.Player.Action
-
+---@alias tts__Physics_CastSphereParameters tts.Physics.Cast.Sphere.Options
+---@alias tts__TableName tts.Table.Name
 ---@alias tts__Tables tts.Tables
 ---@alias tts__TableState_Name tts.Table.InternalName
----@alias tts__TableName tts.Table.Name
-
 ---@alias tts__Time tts.Time
-
 ---@alias tts__Turns tts.Turns
 ---@alias tts__TurnsType tts.Turns.Type
-
 ---@alias tts__Wait tts.Wait
-
----@alias tts__GlobalWebRequest tts.WebRequest.Manager
 ---@alias tts__WebRequest tts.WebRequest
 ---@alias tts__WebRequest_Callback tts.WebRequest.Handler
 
----@alias tts__UI tts.UI
----@alias tts__UIAssetName tts.UI.Asset.Name
----@alias tts__UIAssetType tts.UI.Asset.Type
----@alias tts__UIAsset tts.UI.Asset
----@alias tts__UIAttributeValue tts.UI.Element.AttributeValue
----@alias tts__UIElement_Boolean tts.UI.Element.AttributeValue.Boolean
----@alias tts__UIElement_Color tts.UI.Element.AttributeValue.Color
----@alias tts__UIElement_ColorBlock tts.UI.Element.AttributeValue.ColorBlock
----@alias tts__UIElement_Alignment tts.UI.Element.AttributeValue.Alignment
----@alias tts__UIElement_Alignment_Axis tts.UI.Element.AttributeValue.AlignmentAxis
----@alias tts__UIElement_Alignment_Corner tts.UI.Element.AttributeValue.AlignmentCorner
----@alias tts__UIElement_ContentSizeFit tts.UI.Element.AttributeValue.ContentSizeFit
----@alias tts__UIElement_FontStyle tts.UI.Element.AttributeValue.FontStyle
----@alias tts__UIElement_IconAlignment tts.UI.Element.AttributeValue.IconAlignment
----@alias tts__UIElement_Id tts.UI.Element.AttributeValue.Id
----@alias tts__UIElement_CallbackFunctionName tts.UI.Element.AttributeValue.Handler
----@alias tts__UIElement_Navigation tts.UI.Element.AttributeValue.Navigation
----@alias tts__UIElement_Number tts.UI.Element.AttributeValue.Number
----@alias tts__UIElement_Padding tts.UI.Element.AttributeValue.Padding
----@alias tts__UIElement_Percentage tts.UI.Element.AttributeValue.Percentage
----@alias tts__UIElement_Vector2 tts.UI.Element.AttributeValue.Vector2
----@alias tts__UIElement_Vector3 tts.UI.Element.AttributeValue.Vector3
----@alias tts__UIElement_PlayerColors tts.UI.Element.AttributeValue.PlayerColors
----@alias tts__UIElement_HideAnimation tts.UI.Element.AttributeValue.HideAnimation
----@alias tts__UIElement_ShowAnimation tts.UI.Element.AttributeValue.ShowAnimation
----@alias tts__UITooltipPosition tts.UI.Element.AttributeValue.TooltipPosition
----@alias tts__UIButtonElement_Transition tts.UI.Element.AttributeValue.Transition
----@alias tts__UITextElement_HorizontalOverflow tts.UI.Element.AttributeValue.HorizontalOverflow
----@alias tts__UITextElement_VerticalOverflow tts.UI.Element.AttributeValue.VerticalOverflow
----@alias tts__UIGridLayoutElement_Constraint tts.UI.Element.AttributeValue.Constraint
----@alias tts__UIElement_Tag tts.UI.Element.Tag
----@alias tts__UILayoutElement_Tag tts.UI.LayoutElement.Tag
----@alias tts__UILayoutElement tts.UI.LayoutElement
----@alias tts__UIScrollViewElement tts.UI.ScrollViewElement
----@alias tts__UIElement tts.UI.Element
----@alias tts__UIElement_CallbackFunction tts.UI.Handler
----@alias tts__UIElement_ElementFunction tts.UI.ElementHandler
----@alias tts__UIElementBase tts.UI.Element.Base
----@alias tts__UIElementBase_Attributes tts.UI.Element.Base.Attributes
----@alias tts__UIInputElementBase tts.UI.Element.Input.Base
----@alias tts__UIInputElementBase_Attributes tts.UI.Element.Input.Base.Attributes
----@alias tts__UIInputFieldElement tts.UI.Element.InputField
----@alias tts__UIInputFieldElement_Attributes tts.UI.Element.InputField.Attributes
----@alias tts__UIProgressBarElement tts.UI.Element.ProgressBar
----@alias tts__UIProgressBarElement_Attributes tts.UI.Element.ProgressBar.Attributes
----@alias tts__UISliderElement tts.UI.Element.Slider
----@alias tts__UISliderElement_Attributes tts.UI.Element.Slider.Attributes
----@alias tts__UIButtonElement tts.UI.Element.Button
----@alias tts__UIButtonElement_Attributes tts.UI.Element.Button.Attributes
----@alias tts__UICellElement tts.UI.Element.Cell
----@alias tts__UIHorizontalScrollViewElement tts.UI.Element.HorizontalScrollView
----@alias tts__UIVerticalScrollViewElement tts.UI.Element.VerticalScrollView
----@alias tts__UIDefaultsElement tts.UI.Element.Defaults
----@alias tts__UIDropdownElement tts.UI.Element.Dropdown
----@alias tts__UIDropdownElement_Attributes tts.UI.Element.Dropdown.Attributes
----@alias tts__UIImageElement tts.UI.Element.Image
----@alias tts__UIImageElement_Attributes tts.UI.Element.Image.Attributes
----@alias tts__UIOptionElement tts.UI.Element.Option
----@alias tts__UIOptionElement_Attributes tts.UI.Element.Option.Attributes
----@alias tts__UIRowElement tts.UI.Element.Row
----@alias tts__UITextElement tts.UI.Element.Text
----@alias tts__UITextElement_Attributes tts.UI.Element.Text.Attributes
----@alias tts__UITableLayoutElement tts.UI.Element.TableLayout
----@alias tts__UIToggleElement tts.UI.Element.Toggle
----@alias tts__UIToggleElement_Attributes tts.UI.Element.Toggle.Attributes
----@alias tts__UIToggleButtonElement tts.UI.Element.ToggleButton
----@alias tts__UIToggleGroupElement tts.UI.Element.ToggleGroup
----@alias tts__UIPanelElement tts.UI.Element.Panel
----@alias tts__UIPanelElement_Attributes tts.UI.Element.Panel.Attributes
----@alias tts__UILayoutElementBase tts.UI.Element.Layout.Base
----@alias tts__UILayoutElementBase_Attributes tts.UI.Element.Layout.Base.Attributes
----@alias tts__UIHorizontalOrVerticalLayoutElementBase_Attributes tts.UI.Element.AxisLayout.Base.Attributes
----@alias tts__UIHorizontalLayoutElement tts.UI.Element.HorizontalLayout
----@alias tts__UIHorizontalLayoutElement_Attributes tts.UI.Element.HorizontalLayout.Attributes
----@alias tts__UIVerticalLayoutElement tts.UI.Element.VerticalLayout
----@alias tts__UIVerticalLayoutElement_Attributes tts.UI.Element.VerticalLayout.Attributes
----@alias tts__UIGridLayoutElement tts.UI.Element.GridLayout
----@alias tts__UIGridLayoutElement_Attributes tts.UI.Element.GridLayout.Attributes
-
---@alias void nil
-
----@alias tts__Object tts.Object
----@alias tts__ObjectCallbackFunction tts.Object.Handler
----@alias tts__ObjectType tts.Object.Type
----@alias tts__Container tts.Container
----@alias tts__Book tts.Book
----@alias tts__Hand tts.Hand
----@alias tts__Stackable tts.Stackable
----@alias tts__Zone tts.Zone
----@alias tts__JointType tts.Object.Joint.Type
----@alias tts__JointParameters tts.Object.Joint.Base.Options
----@alias tts__FixedJointOptions tts.Object.Joint.Fixed.Options
----@alias tts__SpringJointOptions tts.Object.Joint.Spring.Options
----@alias tts__HingeJointOptions tts.Object.Joint.Hinge.Options
----@alias tts__BackgammonPiece tts.BackgammonPiece
----@alias tts__Bag tts.Bag
----@alias tts__Block tts.Block
----@alias tts__Board tts.Board
----@alias tts__Calculator tts.Calculator
----@alias tts__Card tts.Card
----@alias tts__CardCustom tts.CardCustom
----@alias tts__Checker tts.Checker
----@alias tts__Chess tts.Chess
----@alias tts__Chip tts.Chip
----@alias tts__Clock tts.Clock
----@alias tts__Coin tts.Coin
----@alias tts__Counter tts.Counter
----@alias tts__Domino tts.Domino
----@alias tts__Figurine tts.Figurine
----@alias tts__Fog tts.Fog
----@alias tts__FogOfWar tts.FogOfWar
----@alias tts__GoPiece tts.GoPiece
----@alias tts__Infinite tts.InfiniteBag
----@alias tts__InventoryBackground tts.InventoryBackground
----@alias tts__InventoryBotBG tts.InventoryBotBG
----@alias tts__InventoryItemBlank tts.InventoryItemBlank
----@alias tts__InventoryTopBG tts.InventoryTopBG
----@alias tts__MP3 tts.MP3
----@alias tts__Notecard tts.Notecard
----@alias tts__Jigsaw tts.Jigsaw
----@alias tts__JigsawBox tts.JigsawBox
----@alias tts__Pointer tts.Pointer
----@alias tts__Randomize tts.Randomize
----@alias tts__RPGFigurine tts.RPGFigurine
----@alias tts__ScriptingTrigger tts.ScriptingZone
----@alias tts__LayoutZone tts.LayoutZone
----@alias tts__Superfight tts.Superfight
----@alias tts__Surface tts.Surface
----@alias tts__Tablet tts.Browser
----@alias tts__Text tts.Text
----@alias tts__Tileset tts.Tileset
----@alias tts__Token tts.Token
----@alias tts__VRUI tts.VRUI
----@alias tts__Object_DealDestination tts.Object.Deal.Destination
----@alias tts__Button tts.Object.Button
----@alias tts__ButtonParameters tts.Object.Button.Options
----@alias tts__CreateButtonParameters tts.Object.Button.Create.Options
----@alias tts__EditButtonParameters tts.Object.Button.Edit.Options
----@alias tts__Input tts.Object.Input
----@alias tts__InputParameters tts.Object.Input.Options
----@alias tts__EditInputParameters tts.Object.Input.Edit.Options
----@alias tts__CloneParameters tts.Object.Clone.Options
----@alias tts__Bounds tts.Object.Bounds
----@alias tts__Self tts.Self
----@alias tts__Global tts.Global
----@alias tts__Input_Alignment tts.Object.Input.Alignment
----@alias tts__Input_Validation tts.Object.Input.Validation
----@alias tts__Input_Tab tts.Object.Input.Tab
----@alias tts__MaterialType tts.Object.MaterialType
----@alias tts__Object_ModelCustomObject tts.Object.Custom.Model
----@alias tts__Object_DeckCustomObject_CustomDeck_In tts.Object.Custom.Deck.Options
----@alias tts__Object_DeckCustomObject tts.Object.Custom.DeckInfo
----@alias tts__Object_ImageCustomObject tts.Object.Custom.Image.Base
----@alias tts__Object_CustomObject tts.Object.Custom
----@alias tts__Object_CustomObject_In tts.Object.Custom.Options
----@alias tts__Object_AssetBundleCustomObject tts.Object.Custom.AssetBundle
----@alias tts__Object_Decal tts.Object.Decal
----@alias tts__Object_DecalParameters tts.Object.Decal.Options
----@alias tts__Object_Decal_Add tts.Object.Decal.Add.Options
----@alias tts__Object_SnapPoint tts.Object.SnapPoint
----@alias tts__Object_SnapPointParameters tts.Object.SnapPoint.Options
----@alias tts__Object_RotationValue tts.Object.RotationValue
----@alias tts__CardType tts.Card.Type
----@alias tts__Object_Tag tts.Object.Tag
----@alias tts__Object_VectorLine tts.Object.VectorLine
----@alias tts__Object_VectorLineParameters tts.Object.VectorLine.Options
----@alias tts__Object_TakeObjectParameters tts.Object.TakeObject.Base.Options
----@alias tts__Object_GuidTakeObjectParameters tts.Object.TakeObject.Guid.Options
----@alias tts__Object_IndexTakeObjectParameters tts.Object.TakeObject.Index.Options
----@alias tts__ObjectCallback tts.Object.Callback
+---------- Global functions
 ---@alias tts__SpawnObjectParams tts.Object.SpawnObject.Options
 ---@alias tts__SpawnObjectSerializedParams tts.Object.SpawnObjectSerialized.Options
 ---@alias tts__SpawnObjectJSONParams tts.SpawnObjectJSON.Options
 ---@alias tts__SpawnObjectDataParams tts.Object.SpawnObjectData.Options
----@alias tts__AssetBundleType tts.AssetBundle.Type
----@alias tts__SimpleObjectState tts.Object.View
----@alias tts__IndexedSimpleObjectState tts.Object.IndexedView
 
----@alias tts__ObjectState tts.Object.Data
----@alias tts__ModelType tts.Model.Type
----@alias tts__Object_TokenCustomObject tts.Object.Custom.Token
+---------- Color
+---@alias tts__CharColorShape tts.CharColorShape
+---@alias tts__Color tts.Color
+---@alias tts__ColorParameter tts.ColorParameter
+---@alias tts__ColorShape tts.ColorShape
+---@alias tts__NumColorShape tts.NumColorShape
+
+---------- Vector
+---@alias tts__CharVectorShape tts.CharVectorShape
+---@alias tts__NumVectorShape tts.NumVectorShape
+---@alias tts__Vector tts.Vector
+---@alias tts__VectorShape tts.VectorShape
+
+---------- Moonsharp
+---@alias moonsharp__json moonsharp.json
+
+---------- Player
+---@alias tts__GlobalPlayer tts.PlayerManager
+---@alias tts__HandTransform tts.HandTransform
+---@alias tts__Player tts.Player
+---@alias tts__Player_CameraSetting tts.Player.Camera.Options
+---@alias tts__PlayerAction tts.Player.Action
+---@alias tts__PlayerColor tts.PlayerColor
+---@alias tts__PlayerGameMasterColor tts.PlayerColor.GameMaster
+---@alias tts__PlayerHandColor tts.PlayerColor.Hand
+---@alias tts__PlayerRegularColor tts.PlayerColor.Regular
+---@alias tts__PlayerRole tts.PlayerRole
+---@alias tts__PlayerSpectatorColor tts.PlayerColor.Spectator
+---@alias tts__PlayerTeam tts.PlayerTeam
+
+---------- XML UI
+---@alias tts__UI tts.UI
+---@alias tts__UIAsset tts.UI.Asset
+---@alias tts__UIAssetName tts.UI.Asset.Name
+---@alias tts__UIAssetType tts.UI.Asset.Type
+---@alias tts__UIAttributeValue tts.UI.Element.AttributeValue
+---@alias tts__UIButtonElement tts.UI.Element.Button
+---@alias tts__UIButtonElement_Attributes tts.UI.Element.Button.Attributes
+---@alias tts__UIButtonElement_Transition tts.UI.Element.AttributeValue.Transition
+---@alias tts__UICellElement tts.UI.Element.Cell
+---@alias tts__UIDefaultsElement tts.UI.Element.Defaults
+---@alias tts__UIDropdownElement tts.UI.Element.Dropdown
+---@alias tts__UIDropdownElement_Attributes tts.UI.Element.Dropdown.Attributes
+---@alias tts__UIElement tts.UI.Element
+---@alias tts__UIElement_Alignment tts.UI.Element.AttributeValue.Alignment
+---@alias tts__UIElement_Alignment_Axis tts.UI.Element.AttributeValue.AlignmentAxis
+---@alias tts__UIElement_Alignment_Corner tts.UI.Element.AttributeValue.AlignmentCorner
+---@alias tts__UIElement_Boolean tts.UI.Element.AttributeValue.Boolean
+---@alias tts__UIElement_CallbackFunction tts.UI.Handler
+---@alias tts__UIElement_CallbackFunctionName tts.UI.Element.AttributeValue.Handler
+---@alias tts__UIElement_Color tts.UI.Element.AttributeValue.Color
+---@alias tts__UIElement_ColorBlock tts.UI.Element.AttributeValue.ColorBlock
+---@alias tts__UIElement_ContentSizeFit tts.UI.Element.AttributeValue.ContentSizeFit
+---@alias tts__UIElement_ElementFunction tts.UI.ElementHandler
+---@alias tts__UIElement_FontStyle tts.UI.Element.AttributeValue.FontStyle
+---@alias tts__UIElement_HideAnimation tts.UI.Element.AttributeValue.HideAnimation
+---@alias tts__UIElement_IconAlignment tts.UI.Element.AttributeValue.IconAlignment
+---@alias tts__UIElement_Id tts.UI.Element.AttributeValue.Id
+---@alias tts__UIElement_Navigation tts.UI.Element.AttributeValue.Navigation
+---@alias tts__UIElement_Number tts.UI.Element.AttributeValue.Number
+---@alias tts__UIElement_Padding tts.UI.Element.AttributeValue.Padding
+---@alias tts__UIElement_Percentage tts.UI.Element.AttributeValue.Percentage
+---@alias tts__UIElement_PlayerColors tts.UI.Element.AttributeValue.PlayerColors
+---@alias tts__UIElement_ShowAnimation tts.UI.Element.AttributeValue.ShowAnimation
+---@alias tts__UIElement_Tag tts.UI.Element.Tag
+---@alias tts__UIElement_Vector2 tts.UI.Element.AttributeValue.Vector2
+---@alias tts__UIElement_Vector3 tts.UI.Element.AttributeValue.Vector3
+---@alias tts__UIElementBase tts.UI.Element.Base
+---@alias tts__UIElementBase_Attributes tts.UI.Element.Base.Attributes
+---@alias tts__UIGridLayoutElement tts.UI.Element.GridLayout
+---@alias tts__UIGridLayoutElement_Attributes tts.UI.Element.GridLayout.Attributes
+---@alias tts__UIGridLayoutElement_Constraint tts.UI.Element.AttributeValue.Constraint
+---@alias tts__UIHorizontalLayoutElement tts.UI.Element.HorizontalLayout
+---@alias tts__UIHorizontalLayoutElement_Attributes tts.UI.Element.HorizontalLayout.Attributes
+---@alias tts__UIHorizontalOrVerticalLayoutElementBase_Attributes tts.UI.Element.AxisLayout.Base.Attributes
+---@alias tts__UIHorizontalScrollViewElement tts.UI.Element.HorizontalScrollView
+---@alias tts__UIImageElement tts.UI.Element.Image
+---@alias tts__UIImageElement_Attributes tts.UI.Element.Image.Attributes
+---@alias tts__UIInputElementBase tts.UI.Element.Input.Base
+---@alias tts__UIInputElementBase_Attributes tts.UI.Element.Input.Base.Attributes
+---@alias tts__UIInputFieldElement tts.UI.Element.InputField
+---@alias tts__UIInputFieldElement_Attributes tts.UI.Element.InputField.Attributes
+---@alias tts__UILayoutElement tts.UI.LayoutElement
+---@alias tts__UILayoutElement_Tag tts.UI.LayoutElement.Tag
+---@alias tts__UILayoutElementBase tts.UI.Element.Layout.Base
+---@alias tts__UILayoutElementBase_Attributes tts.UI.Element.Layout.Base.Attributes
+---@alias tts__UIOptionElement tts.UI.Element.Option
+---@alias tts__UIOptionElement_Attributes tts.UI.Element.Option.Attributes
+---@alias tts__UIPanelElement tts.UI.Element.Panel
+---@alias tts__UIPanelElement_Attributes tts.UI.Element.Panel.Attributes
+---@alias tts__UIProgressBarElement tts.UI.Element.ProgressBar
+---@alias tts__UIProgressBarElement_Attributes tts.UI.Element.ProgressBar.Attributes
+---@alias tts__UIRowElement tts.UI.Element.Row
+---@alias tts__UIScrollViewElement tts.UI.ScrollViewElement
+---@alias tts__UISliderElement tts.UI.Element.Slider
+---@alias tts__UISliderElement_Attributes tts.UI.Element.Slider.Attributes
+---@alias tts__UITableLayoutElement tts.UI.Element.TableLayout
+---@alias tts__UITextElement tts.UI.Element.Text
+---@alias tts__UITextElement_Attributes tts.UI.Element.Text.Attributes
+---@alias tts__UITextElement_HorizontalOverflow tts.UI.Element.AttributeValue.HorizontalOverflow
+---@alias tts__UITextElement_VerticalOverflow tts.UI.Element.AttributeValue.VerticalOverflow
+---@alias tts__UIToggleButtonElement tts.UI.Element.ToggleButton
+---@alias tts__UIToggleElement tts.UI.Element.Toggle
+---@alias tts__UIToggleElement_Attributes tts.UI.Element.Toggle.Attributes
+---@alias tts__UIToggleGroupElement tts.UI.Element.ToggleGroup
+---@alias tts__UITooltipPosition tts.UI.Element.AttributeValue.TooltipPosition
+---@alias tts__UIVerticalLayoutElement tts.UI.Element.VerticalLayout
+---@alias tts__UIVerticalLayoutElement_Attributes tts.UI.Element.VerticalLayout.Attributes
+---@alias tts__UIVerticalScrollViewElement tts.UI.Element.VerticalScrollView
+
+---------- Objects Base
+---@alias tts__Bounds tts.Object.Bounds
+---@alias tts__Button tts.Object.Button
+---@alias tts__ButtonParameters tts.Object.Button
+---@alias tts__CloneParameters tts.Object.Clone.Options
+---@alias tts__Component tts.Component
+---@alias tts__CreateButtonParameters tts.Object.Button.Options.Create
+---@alias tts__EditButtonParameters tts.Object.Button.Options.Edit
+---@alias tts__EditInputParameters tts.Object.Input.Options.Edit
+---@alias tts__FixedJointOptions tts.Object.Joint.Fixed.Options
+---@alias tts__GameObject tts.GameObject
+---@alias tts__Global tts.Global
+---@alias tts__HingeJointOptions tts.Object.Joint.Hinge.Options
+---@alias tts__IndexedSimpleObjectState tts.Object.IndexedView
+---@alias tts__Input tts.Object.Input
+---@alias tts__Input_Alignment tts.Object.Input.Alignment
+---@alias tts__Input_Tab tts.Object.Input.Tab
+---@alias tts__Input_Validation tts.Object.Input.Validation
+---@alias tts__InputParameters tts.Object.Input.Options.Create
+---@alias tts__JointParameters tts.Object.Joint.Base.Options
+---@alias tts__JointType tts.Object.Joint.Type
+---@alias tts__MaterialType tts.Object.MaterialType
+---@alias tts__Object tts.Object
+---@alias tts__Object_CustomObject tts.Object.Custom
+---@alias tts__Object_CustomObject_In tts.Object.Custom.Options
+---@alias tts__Object_Decal tts.Object.Decal
+---@alias tts__Object_Decal_Add tts.Object.Decal.Options.Add
+---@alias tts__Object_DecalParameters tts.Object.Decal
+---@alias tts__Object_GuidTakeObjectParameters tts.Object.TakeObject.Guid.Options
+---@alias tts__Object_IndexTakeObjectParameters tts.Object.TakeObject.Index.Options
+---@alias tts__Object_RotationValue tts.Object.RotationValue
+---@alias tts__Object_SnapPoint tts.Object.SnapPoint
+---@alias tts__Object_SnapPointParameters tts.Object.SnapPoint.Options
+---@alias tts__Object_Tag tts.Object.Tag
+---@alias tts__Object_TakeObjectParameters tts.Object.TakeObject.Base.Options
+---@alias tts__Object_VectorLine tts.Object.VectorLine
+---@alias tts__Object_VectorLineParameters tts.Object.VectorLine.Options
+---@alias tts__ObjectCallback tts.Object.Callback
+---@alias tts__ObjectCallbackFunction tts.Object.Handler
+---@alias tts__ObjectType tts.Object.Type
+---@alias tts__Self tts.Self
+---@alias tts__SimpleObjectState tts.Object.View
+---@alias tts__SpringJointOptions tts.Object.Joint.Spring.Options
+
+---------- Object Data
 ---@alias tts__ContainerState tts.Container.Data
+---@alias tts__ObjectState tts.Object.Data
+---@alias tts__ObjectState_Asset tts.Object.Data.Asset
+---@alias tts__ObjectState_CustomDecal tts.Object.Data.CustomDecal
+---@alias tts__ObjectState_CustomImage tts.Object.Data.CustomImage
+---@alias tts__ObjectState_CustomMesh tts.Object.Data.CustomMesh
+---@alias tts__ObjectState_CustomMesh_CustomShader tts.Object.Data.CustomShader
+---@alias tts__ObjectState_Decal tts.Object.Data.Decal
+---@alias tts__ObjectState_SnapPoint tts.Object.Data.SnapPoint
 ---@alias tts__ObjectState_Transform tts.Object.Data.Transform
 
+---------- AssetBundle
+---@alias tts__AssetBundle tts.AssetBundle.Behaviour
+---@alias tts__AssetBundle_Effect tts.AssetBundle.Effect
+---@alias tts__AssetBundleType tts.AssetBundle.Type
+---@alias tts__Object_AssetBundleCustomObject tts.AssetBundle.Custom
+
+---------- Browser
+---@alias tts__BrowserBehaviour tts.Browser.Behaviour
+---@alias tts__Tablet tts.Browser
+
+---------- Book
+---@alias tts__Book tts.Book
+---@alias tts__BookBehaviour tts.Book.Behaviour
+
 ---------- Card
+-- removed tts__CardCustom
 -- removed tts__CardCustomState
+---@alias tts__Card tts.Card
 ---@alias tts__CardState tts.Card.Data
+---@alias tts__CardType tts.Card.Type
 ---@alias tts__Object_CardCustomObject tts.Card.Custom
+
+---------- Clock
+---@alias tts__Clock tts.Clock
+---@alias tts__ClockBehaviour tts.Clock.Behaviour
+
+---------- Counter
+---@alias tts__Counter tts.Counter
+---@alias tts__CounterBehaviour tts.Counter.Behaviour
+
+---------- Container
+---@alias tts__Bag tts.Bag
+---@alias tts__BagState tts.Bag.Data
+---@alias tts__Container tts.Container
+---@alias tts__ContainerBehaviour tts.Container.Behaviour
+---@alias tts__Infinite tts.InfiniteBag
+---@alias tts__InfiniteBagState tts.InfiniteBag.Data
+---@alias tts__Stackable tts.Stackable
 
 ---------- Deck
 -- removed tts__DeckCustom
@@ -284,11 +252,12 @@
 ---@alias tts__Deck tts.Deck
 ---@alias tts__DeckState tts.Deck.Data
 ---@alias tts__Object_DeckCustomObject_CustomDeck tts.Deck.Custom
+---@alias tts__Object_DeckCustomObject_CustomDeck_In tts.Object.Custom.Deck.Options
 ---@alias tts__ObjectState_CustomDeck tts.Deck.Data.Info
 
 ---------- Die
--- removed tts__DieCustomState
 -- removed tts__DieCustom
+-- removed tts__DieCustomState
 ---@alias tts__Die tts.Die
 ---@alias tts__DieState tts.Die.Data
 ---@alias tts__DieType tts.Die.Type
@@ -298,6 +267,32 @@
 ---@alias tts__ObjectState_RotationValue tts.Die.Data.RotationValue
 ---@alias tts__StandardDieName tts.Die.InternalName
 
+---------- LayoutZone
+-- removed tts__LayoutZoneState_L
+---@alias tts__LayoutZone tts.LayoutZone
+---@alias tts__LayoutZone_Direction tts.LayoutZone.Direction
+---@alias tts__LayoutZone_Facing tts.LayoutZone.Facing
+---@alias tts__LayoutZone_GroupDirection tts.LayoutZone.GroupDirection
+---@alias tts__LayoutZone_GroupSort tts.LayoutZone.GroupSort
+---@alias tts__LayoutZone_Options tts.LayoutZone.Options
+---@alias tts__LayoutZoneBehaviour tts.LayoutZone.Behaviour
+---@alias tts__LayoutZoneBehaviour_OptionsParameter tts.LayoutZone.Options.Set\
+---@alias tts__LayoutZoneState tts.LayoutZone.Data
+---@alias tts__LayoutZoneState_Options tts.LayoutZone.Data.Options
+
+---------- Model
+---@alias tts__ModelCustomState tts.Model.Data
+---@alias tts__ModelType tts.Model.Type
+---@alias tts__Object_ModelCustomObject tts.Object.Custom.Model
+
+---------- RPG Figurine
+---@alias tts__RPGFigurine tts.RPGFigurine
+---@alias tts__RPGFigurineBehaviour tts.RPGFigurine.Behaviour
+
+---------- Text
+---@alias tts__Text tts.Text
+---@alias tts__TextToolBehaviour tts.TextTool.Behaviour
+
 ---------- Tile
 ---@alias tts__Object_TileCustomObject tts.Tile.Custom
 ---@alias tts__ObjectState_CustomImage_CustomTile tts.Tile.Data.CustomTile
@@ -306,5 +301,55 @@
 ---@alias tts__TileState tts.Tile.Data
 ---@alias tts__TileType tts.Tile.Type
 
+---------- Token
+---@alias tts__Object_TokenCustomObject tts.Token.Custom
+---@alias tts__ObjectState_CustomImage_CustomToken tts.Token.Data.CustomToken
+---@alias tts__ObjectState_TokenCustomImage tts.Token.Data.CustomImage
+---@alias tts__Token tts.Token
+---@alias tts__TokenState tts.Token.Data
+
+---------- Zone
+---@alias tts__Fog tts.HiddenZone
+---@alias tts__FogOfWar tts.FogOfWarZone
+---@alias tts__Hand tts.HandZone
+---@alias tts__Randomize tts.RandomizeZone
+---@alias tts__ScriptingTrigger tts.ScriptingZone
+---@alias tts__Zone tts.Zone
+
+---------- Misc objects
+---@alias tts__BackgammonPiece tts.BackgammonPiece
+---@alias tts__Block tts.Block
+---@alias tts__Board tts.Board
+---@alias tts__BoardState tts.Board.Data
+---@alias tts__Calculator tts.Calculator
+---@alias tts__Checker tts.Checker
+---@alias tts__Chess tts.Chess
+---@alias tts__Chip tts.Chip
+---@alias tts__Coin tts.Coin
+---@alias tts__Domino tts.Domino
+---@alias tts__Figurine tts.Figurine
+---@alias tts__FigurineCustomState tts.Figurine.Data
+---@alias tts__GoPiece tts.GoPiece
+---@alias tts__MP3 tts.MP3
+---@alias tts__Notecard tts.Notecard
+---@alias tts__Tileset tts.Tileset
+
 ---------- Events
 ---@alias tts__CollisionInfo tts.Event.CollisionInfo
+
+---------- Other
+-- removed __tts__CardCustomBaseState
+-- removed tts__InventoryBackground
+-- removed tts__InventoryBotBG
+-- removed tts__InventoryItemBlank
+-- removed tts__InventoryTopBG
+-- removed tts__Jigsaw
+-- removed tts__JigsawBox
+-- removed tts__Object_DealDestination
+-- removed tts__Object_ImageCustomObject
+-- removed tts__ObjectState_BoardImage
+-- removed tts__ObjectState_CustomImage_CustomJigsawPuzzle
+-- removed tts__ObjectState_JigsawPuzzleCustomImage
+-- removed tts__Superfight
+-- removed tts__Surface
+-- removed tts__VRUI

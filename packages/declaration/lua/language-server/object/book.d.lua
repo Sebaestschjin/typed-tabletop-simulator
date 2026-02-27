@@ -1,6 +1,8 @@
 ---@meta
 
----
+---@class tts.Book : tts.Object
+---@field Book tts.Book.Behaviour [Read only] <br>Some objects provide additional behavior. This functionality is accessible as Object member variables, but will be nil unless the Object includes the behavior.
+
 --- The Book behavior is present on Custom PDF Objects. The Book behaviour allows you to manipulate the displayed PDF.
 ---
 ---@class tts.Book.Behaviour
