@@ -44,5 +44,9 @@ export const SaveFileData = type({
   ObjectStates: ObjectData.array(),
 });
 
-// TODO split
-export type SaveFileData = typeof SaveFileData.infer;
+const WithoutObjects = SaveFileData.omit("ObjectStates")
+type WithoutObjects = typeof WithoutObjects.infer;
+
+export type SaveFileData = WithoutObjects & {
+  ObjectStates: ObjectData[]
+};
