@@ -6,7 +6,7 @@ import { createSaveFile } from "./object/saveFile.js";
 import { createTile } from "./object/tile.js";
 import { createStates } from "./object/baseObject.js";
 
-export type { Asset } from "./object/baseObject.js";
+export type { Asset, BaseProperties } from "./object/baseObject.js";
 
 export default {
   createAssetBundle,
