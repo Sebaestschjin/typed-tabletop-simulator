@@ -7,6 +7,7 @@ import { createTile } from "./object/tile.js";
 import { createStates } from "./object/baseObject.js";
 
 export type { Asset, BaseProperties } from "./object/baseObject.js";
+export type { CardProperties } from "./object/deck.js"
 
 export default {
   createAssetBundle,
