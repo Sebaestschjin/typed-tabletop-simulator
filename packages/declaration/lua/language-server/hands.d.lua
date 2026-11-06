@@ -2,5 +2,5 @@
 
 Hands = {}
 
----@return tts.Hand[]
+---@return tts.HandZone[]
 function Hands.getHands() end
